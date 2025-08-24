@@ -22,7 +22,7 @@
   {
     "cmdlet": "Connect-PnPOnline",
     "description": "Connects to a SharePoint site or another API and creates a context that is required for the other PnP Cmdlets.\nSeehttps://pnp.github.io/powershell/articles/connecting.htmlfor more information on the options to connect.",
-    "syntax": "Connect-PnPOnline -Interactive [-ReturnConnection] -Url <String> [-PersistLogin] [-CreateDrive] [-DriveName <String>]\n [-ClientId <String>] [-AzureEnvironment <AzureEnvironment>] [-TenantAdminUrl <String>] [-ForceAuthentication] [-ValidateConnection] [-MicrosoftGraphEndPoint <string>] [-AzureADLoginEndPoint <string>] [-Connection <PnPConnection>]",
+    "syntax": "Connect-PnPOnline -Interactive [-ReturnConnection] -Url <String> [-PersistLogin] [-CreateDrive] [-DriveName <String>]\n [-ClientId <String>] [-AzureEnvironment <AzureEnvironment>] [-TenantAdminUrl <String>] [-ForceAuthentication] [-ValidateConnection] [-MicrosoftGraphEndPoint <string>] [-AzureADLoginEndPoint <string>] [-Tenant <String>] [-CertificatePath <String>] [-CertificatePassword <SecureString>] [-ManagedIdentity]",
     "examples": [
       "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\"",
       "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -Credentials (Get-Credential)",

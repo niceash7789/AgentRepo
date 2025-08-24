@@ -62,7 +62,7 @@
   {
     "cmdlet": "Add-PnPTeamsChannel",
     "description": "Allows to add channel to an existing team in Microsoft Teams. By using theIsFavoriteByDefaultit is possible to specify if the channel will be visible for members by default.",
-    "syntax": "Add-PnPTeamsChannel -Team <TeamsTeamPipeBind> -DisplayName <String> [-ChannelType Standard] [-Description <String>] [-IsFavoriteByDefault <Boolean>]",
+    "syntax": "Add-PnPTeamsChannel -Team <TeamsTeamPipeBind> -DisplayName <String> [-ChannelType Standard] [-Description <String>] [-IsFavoriteByDefault <Boolean>] [-OwnerUPN <String>] [-Connection <PnPConnection>]",
     "examples": [
       "Add-PnPTeamsChannel -Team 4efdf392-8225-4763-9e7f-4edeb7f721aa -DisplayName \"My Channel\" -IsFavoriteByDefault $true",
       "Add-PnPTeamsChannel -Team \"My Team\" -DisplayName \"My standard channel\"",
@@ -243,7 +243,7 @@
   {
     "cmdlet": "Get-PnPMicrosoft365Group",
     "description": "Allows to retrieve Microsoft 365 Groups. By usingIdentityoption you may specify the exact group that will be retrieved.",
-    "syntax": "Get-PnPMicrosoft365Group [-Identity <Microsoft365GroupPipeBind>] [-IncludeSiteUrl] [-IncludeOwners] [-Detailed] [-Filter <string>] [-IncludeSensitivityLabels]",
+    "syntax": "Get-PnPMicrosoft365Group [-Identity <Microsoft365GroupPipeBind>] [-IncludeSiteUrl] [-IncludeOwners] [-Detailed] [-Filter <string>] [-IncludeSensitivityLabels] [-Connection <PnPConnection>]",
     "examples": [
       "Get-PnPMicrosoft365Group",
       "Get-PnPMicrosoft365Group -Identity $groupId",
@@ -438,7 +438,7 @@
   {
     "cmdlet": "Get-PnPTeamsTeam",
     "description": "Allows to retrieve list of Microsoft Teams teams. By usingIdentityit is possible to retrieve a specific team, and by usingFilteryou can supply any filter queries supported by the Graph API.",
-    "syntax": "Get-PnPTeamsTeam [-Identity <TeamsTeamPipeBind>] [-Filter <String>]  [-User <AzureADUserPipeBind>]",
+    "syntax": "Get-PnPTeamsTeam [-Identity <TeamsTeamPipeBind>] [-Filter <String>]  [-User <AzureADUserPipeBind>] [-Connection <PnPConnection>]",
     "examples": [
       "Get-PnPTeamsTeam",
       "Get-PnPTeamsTeam -Identity \"PnP PowerShell\"",
@@ -509,7 +509,7 @@
   {
     "cmdlet": "New-PnPTeamsTeam",
     "description": "Allows to create new team in Microsoft Teams or to teamify an existing Microsoft 365 Group. If the Microsoft 365 Group does not exist yet, it will create it first and then add a Microsoft Teams team to the group.",
-    "syntax": "New-PnPTeamsTeam -GroupId <String> [-AllowAddRemoveApps <Boolean>]\n [-AllowChannelMentions <Boolean>] [-AllowCreateUpdateChannels <Boolean>]\n [-AllowCreateUpdateRemoveConnectors <Boolean>] [-AllowCreateUpdateRemoveTabs <Boolean>]\n [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>] [-AllowGiphy <Boolean>]\n [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>]\n [-Classification <String>] [-Owners <String[]>] [-Members <String[]>]",
+    "syntax": "New-PnPTeamsTeam -GroupId <String> [-AllowAddRemoveApps <Boolean>]\n [-AllowChannelMentions <Boolean>] [-AllowCreateUpdateChannels <Boolean>]\n [-AllowCreateUpdateRemoveConnectors <Boolean>] [-AllowCreateUpdateRemoveTabs <Boolean>]\n [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>] [-AllowGiphy <Boolean>]\n [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>]\n [-Classification <String>] [-Owners <String[]>] [-Members <String[]>] [-Connection <PnPConnection>]",
     "examples": [
       "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -AllowCreateUpdateRemoveTabs $false -AllowUserDeleteMessages $false",
       "New-PnPTeamsTeam -GroupId $groupId",
@@ -738,7 +738,7 @@
   {
     "cmdlet": "Set-PnPMicrosoft365Group",
     "description": "Allows to modify Microsoft 365 Group.",
-    "syntax": "Set-PnPMicrosoft365Group -Identity <Microsoft365GroupPipeBind> [-DisplayName <String>] [-Description <String>] [-Owners <String[]>] [-Members <String[]>] [-IsPrivate] [-LogoPath <String>] [-CreateTeam]  [-HideFromAddressLists <Boolean>] [-HideFromOutlookClients <Boolean>] [-RequireSenderAuthenticationEnabled <Boolean>] [-AutoSubscribeNewMembers <Boolean>] [-MailNickname <String>] [-SensitivityLabels <GUID[]>] [-Verbose]",
+    "syntax": "Set-PnPMicrosoft365Group -Identity <Microsoft365GroupPipeBind> [-DisplayName <String>] [-Description <String>] [-Owners <String[]>] [-Members <String[]>] [-IsPrivate] [-LogoPath <String>] [-CreateTeam]  [-HideFromAddressLists <Boolean>] [-HideFromOutlookClients <Boolean>] [-RequireSenderAuthenticationEnabled <Boolean>] [-AutoSubscribeNewMembers <Boolean>] [-MailNickname <String>] [-SensitivityLabels <GUID[]>] [-Verbose] [-Connection <PnPConnection>]",
     "examples": [
       "Set-PnPMicrosoft365Group -Identity $group -DisplayName \"My DisplayName\"",
       "Set-PnPMicrosoft365Group -Identity $groupId -Description \"My Description\" -DisplayName \"My DisplayName\"",
@@ -802,7 +802,7 @@
   {
     "cmdlet": "Set-PnPTeamsTeam",
     "description": "Allows to update team settings.",
-    "syntax": "Set-PnPTeamsTeam -Identity <TeamsTeamPipeBind> [-DisplayName <String>] [-Description <String>]\n [-Visibility <TeamVisibility>] [-AllowAddRemoveApps <Boolean>] [-AllowChannelMentions <Boolean>]\n [-AllowCreateUpdateChannels <Boolean>] [-AllowCreateUpdateRemoveConnectors <Boolean>]\n [-AllowCreateUpdateRemoveTabs <Boolean>] [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>]\n [-AllowGiphy <Boolean>] [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>] [-AllowCreatePrivateChannels <Boolean>]\n [-Classification <String>]",
+    "syntax": "Set-PnPTeamsTeam -Identity <TeamsTeamPipeBind> [-DisplayName <String>] [-Description <String>]\n [-Visibility <TeamVisibility>] [-AllowAddRemoveApps <Boolean>] [-AllowChannelMentions <Boolean>]\n [-AllowCreateUpdateChannels <Boolean>] [-AllowCreateUpdateRemoveConnectors <Boolean>]\n [-AllowCreateUpdateRemoveTabs <Boolean>] [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>]\n [-AllowGiphy <Boolean>] [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>] [-AllowCreatePrivateChannels <Boolean>]\n [-Classification <String>] [-Connection <PnPConnection>]",
     "examples": [
       "Set-PnPTeamsTeam -Identity 'MyTeam' -DisplayName 'My Team'",
       "Set-PnPTeamsTeam -Identity \"baba9192-55be-488a-9fb7-2e2e76edbef2\" -Visibility Public",
