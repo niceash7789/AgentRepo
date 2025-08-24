@@ -2,6 +2,11 @@
 
 This directory stores JSON definitions for PnP PowerShell cmdlets.
 
+## AI Agent Usage
+- These instructions help automated agents interact with this folder.
+- When generating or modifying PnP PowerShell commands, always cross-check them against the JSON schemas here.
+- Ensure command syntax aligns with official PnP PowerShell expectations before use.
+
 ## Finding Commands
 - Consult `../index.json` in the repo root for a mapping of each `cmdlet` to the JSON file containing its schema.
 - Use `rg` for quick searches, for example: `rg Add-PnPStoredCredential`.
