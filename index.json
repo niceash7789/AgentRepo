@@ -1,0 +1,3270 @@
+[
+  {
+    "cmdlet": "Add-PnPStoredCredential",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Add-PnPVivaConnectionsDashboardACE",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Connect-PnPOnline",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Disconnect-PnPOnline",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPAccessToken",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPAuthenticationRealm",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPConnection",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformCustomConnector",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalConnection",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPStoredCredential",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Get-PnPVivaConnectionsDashboardACE",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "New-PnPSearchExternalConnection",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Register-PnPEntraIDAppForInteractiveLogin",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSearchExternalConnection",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPStoredCredential",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPVivaConnectionsDashboardACE",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalConnection",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Set-PnPVivaConnectionsDashboardACE",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Update-PnPVivaConnectionsDashboardACE",
+    "file": "Authentication_Connections.json"
+  },
+  {
+    "cmdlet": "Add-PnPDocumentSet",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Add-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Add-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Add-PnPOrgAssetsLibrary",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Convert-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Copy-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Copy-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Find-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPDocumentSetTemplate",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileAnalyticsData",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileCheckedOut",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileInFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileRetentionLabel",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileVersion",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFolderInFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPFolderStorageMetric",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPLibraryFileVersionBatchDeleteJobStatus",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPLibraryFileVersionExpirationReportJobStatus",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPOrgAssetsLibrary",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Get-PnPProfileCardProperty",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Move-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Move-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "New-PnPLibraryFileVersionBatchDeleteJob",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "New-PnPLibraryFileVersionExpirationReportJob",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "New-PnpProfileCardProperty",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFileVersion",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPLibraryFileVersionBatchDeleteJob",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPOrgAssetsLibrary",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Remove-PnPProfileCardProperty",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Rename-PnPFile",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Rename-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Reset-PnPDocumentId",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Reset-PnPFileVersion",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Resolve-PnPFolder",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Restore-PnPFileVersion",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Save-PnPPageConversionLog",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Set-PnPFileCheckedIn",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Set-PnPFileCheckedOut",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Set-PnPFileRetentionLabel",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Set-PnPOrgAssetsLibrary",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Undo-PnPFileCheckedOut",
+    "file": "Libraries_Files.json"
+  },
+  {
+    "cmdlet": "Add-PnPListDesign",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Add-PnPListItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Add-PnPListItemAttachment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Add-PnPListItemComment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Clear-PnpRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Clear-PnPTenantRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Copy-PnPItemProxy",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Copy-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPFolderItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPLargeListOperationStatus",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPListDesign",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPListItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPListItemAttachment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPListItemComment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPListItemVersion",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Get-PnPTodoList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPListDesign",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Measure-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Move-PnPListItemToRecycleBin",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Move-PnpRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "New-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "New-PnPTodoList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPListDesign",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPListItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPListItemAttachment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPListItemComment",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPListItemVersion",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTodoList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Request-PnPReIndexList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Restore-PnPListItemVersion",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Restore-PnPRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Restore-PnPTenantRecycleBinItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Set-PnPImageListItemColumn",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Set-PnPList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Set-PnPListItem",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Update-PnPTodoList",
+    "file": "Lists_List_Items.json"
+  },
+  {
+    "cmdlet": "Add-PnPBrandCenterFont",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPBrandCenterFontPackage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPHtmlPublishingPageLayout",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPJavaScriptLink",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPMasterPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPNavigationNode",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPageSection",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPageTextPart",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPublishingImageRendition",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPublishingPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPublishingPageLayout",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantTheme",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPWikiPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "ConvertTo-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Copy-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Disable-PnPPageScheduling",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Enable-PnPPageScheduling",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Export-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Export-PnPPageMapping",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterConfig",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterFont",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterFontPackage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPClientSidePage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPHideDefaultThemes",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPHomePage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPJavaScriptLink",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPMasterPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPNavigationNode",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPageComponent",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPageCopyProgress",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPageLikedByInformation",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPageSchedulingEnabled",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPPublishingImageRendition",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantTheme",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPTheme",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPUnfurlLink",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Get-PnPWikiPageContent",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Move-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Move-PnPPageComponent",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPClientSidePage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPJavaScriptLink",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPNavigationNode",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPageComponent",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPublishingImageRendition",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantTheme",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Remove-PnPWikiPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPAvailablePageLayouts",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPClientSidePage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPDefaultPageLayout",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPHideDefaultThemes",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPHomePage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPMasterPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPPage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPPageTextPart",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPTheme",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Set-PnPWikiPageContent",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Use-PnPBrandCenterFontPackage",
+    "file": "Pages_Navigation.json"
+  },
+  {
+    "cmdlet": "Add-PnPPlannerBucket",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Add-PnPPlannerRoster",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Add-PnPPlannerRosterMember",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Add-PnPPlannerTask",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerBucket",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerConfiguration",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerPlan",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerRosterMember",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerRosterPlan",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerTask",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Get-PnPPlannerUserPolicy",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "New-PnPPlannerPlan",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerBucket",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerPlan",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerRoster",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerRosterMember",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerTask",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Set-PnPPlannerBucket",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Set-PnPPlannerConfiguration",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Set-PnPPlannerPlan",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Set-PnPPlannerTask",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Set-PnPPlannerUserPolicy",
+    "file": "Planner.json"
+  },
+  {
+    "cmdlet": "Add-PnPAvailableSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPContentTypesFromContentTypeHub",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPContentTypeToDocumentSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPContentTypeToList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPFieldFromXml",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPFieldToContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileSensitivityLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPTaxonomyField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantRestrictedSearchAllowedList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPTermToTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Clear-PnPListItemAsRecord",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Disable-PnPSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Enable-PnPSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Export-PnPTaxonomy",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Export-PnPTermGroupToXml",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPAvailableSensitivityLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPAvailableSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPCompatibleHubContentTypes",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPContentTypePublishingHubUrl",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPContentTypePublishingStatus",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileSensitivityLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileSensitivityLabelInfo",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPInPlaceRecordsManagement",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPListRecordDeclaration",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchConfiguration",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchCrawlLog",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalItem",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalSchema",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSearchSettings",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionTermStore",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteSearchQueryResults",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteSensitivityLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTaxonomyItem",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTaxonomySession",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantRestrictedSearchAllowedList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantRestrictedSearchMode",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTermGroup",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTermLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Get-PnPTermSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Import-PnPTaxonomy",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Import-PnPTermGroupFromXml",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Import-PnPTermSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSearchQuery",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Merge-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Move-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Move-PnPTermSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteCollectionTermStore",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "New-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "New-PnPTermGroup",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "New-PnPTermLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "New-PnPTermSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Publish-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAvailableSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPContentTypeFromDocumentSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPContentTypeFromList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFieldFromContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSearchConfiguration",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSearchExternalItem",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionTermStore",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTaxonomyItem",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantRestrictedSearchAllowedList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTermGroup",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTermLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPDefaultContentTypeToList",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPDocumentSetField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPField",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPInPlaceRecordsManagement",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPListItemAsRecord",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPListRecordDeclaration",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSearchConfiguration",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalItem",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalSchema",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSearchSettings",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteSensitivityLabel",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPTaxonomyFieldValue",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantRestrictedSearchMode",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPTerm",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPTermGroup",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Set-PnPTermSet",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Submit-PnPSearchQuery",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Test-PnPListItemIsRecord",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Unlock-PnPSensitivityLabelEncryptedFile",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Unpublish-PnPContentType",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Update-PnPAvailableSiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Update-SiteClassification",
+    "file": "Search_Taxonomy.json"
+  },
+  {
+    "cmdlet": "Add-PnPAzureADServicePrincipalAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDServicePrincipalAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileAnonymousSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileOrganizationalSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileSharingInvite",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileUserSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFlowOwner",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFolderAnonymousSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFolderOrganizationalSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFolderSharingInvite",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPFolderUserSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPGroupMember",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPRoleDefinition",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Approve-PnPTenantServicePrincipalPermissionRequest",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Deny-PnPTenantServicePrincipalPermissionRequest",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Disable-PnPSharingForNonOwnersOfSite",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Disable-PnPTenantServicePrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Enable-PnPTenantServicePrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Export-PnPUserInfo",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Export-PnPUserProfile",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAuditing",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureACSPrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADActivityReportDirectoryAudit",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADActivityReportSignIn",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADAppPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipalAssignedAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipalAvailableAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDActivityReportDirectoryAudit",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDActivityReportSignIn",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDAppPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipalAssignedAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipalAvailableAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPExternalUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPFileSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPFlowOwner",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPFolderSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPGroupMember",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPGroupPermissions",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPListInformationRightsManagement",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPListItemPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPListPermissions",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerAppPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPPriviledgedIdentityManagementRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPRequestAccessEmails",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPRoleDefinition",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPSharingForNonOwnersOfSite",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPSitePolicy",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteUserInvitations",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteVersionPolicy",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteVersionPolicyStatus",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipal",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipalPermissionGrants",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipalPermissionRequests",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPUnifiedAuditLog",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPUserOneDriveQuota",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPUserProfilePhoto",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPUserProfileProperty",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Grant-PnPAzureADAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Grant-PnPEntraIDAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Grant-PnPHubSiteRights",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Grant-PnPSiteDesignRights",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Grant-PnPTenantServicePrincipalPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "New-PnPAzureADUserTemporaryAccessPass",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "New-PnPEntraIDUserTemporaryAccessPass",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "New-PnPUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Register-PnPAzureADApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Register-PnPEntraIDApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADServicePrincipalAssignedAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDApp",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDServicePrincipalAssignedAppRole",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPExternalUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFileSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFlowOwner",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFolderSharingLink",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPGroupMember",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPRoleDefinition",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteUserInvitations",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPUser",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPUserInfo",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPUserProfile",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Remove-PnPUserProfilePhoto",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Reset-PnPUserOneDriveQuotaToDefault",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPAzureADAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPEntraIDAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPHubSiteRights",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPSiteDesignRights",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPTenantServicePrincipalPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Revoke-PnPUserSession",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPAuditing",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPAzureADAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPEntraIDAppSitePermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPFolderPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPGroupPermissions",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPListInformationRightsManagement",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPListItemPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPListPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPRequestAccessEmails",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPRoleDefinition",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPSitePolicy",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteVersionPolicy",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantCdnPolicy",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPUserOneDriveQuota",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPUserProfilePhoto",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPUserProfileProperty",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Set-PnPWebPermission",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Update-PnPUserType",
+    "file": "Security_Permissions.json"
+  },
+  {
+    "cmdlet": "Add-PnPDataRowsToSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPFileToSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPHomeSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPHubSiteAssociation",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPListFoldersToSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPOrgNewsSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPPageImageWebPart",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPPageWebPart",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteCollectionAdmin",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteCollectionAppCatalog",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesign",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesignFromWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesignTask",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteScript",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteScriptPackage",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequenceSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequenceSubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPWebhookSubscription",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPWebPartToWebPartPage",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPWebPartToWikiPage",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Clear-PnPTenantAppCatalogUrl",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Convert-PnPFolderToSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Convert-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Convert-PnPSiteTemplateToMarkdown",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Enable-PnPCommSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Export-PnPListToSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPBuiltInSiteTemplateSettings",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPHomeSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPHubSiteChild",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPIsSiteAliasAvailable",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPKnowledgeHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPOrgNewsSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteAnalyticsData",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteClosure",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionAdmin",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionAppCatalog",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesign",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRights",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRun",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRunStatus",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignTask",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteFileVersionBatchDeleteJobStatus",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteFileVersionExpirationReportJobStatus",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteGroup",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteScript",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteScriptFromList",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteScriptFromWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPStructuralNavigationCacheSiteState",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPStructuralNavigationCacheWebState",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPSubWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantAppCatalogUrl",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantDeletedSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantSequenceSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebHeader",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebhookSubscription",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebhookSubscriptions",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebPart",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebPartProperty",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebPartXml",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Get-PnPWebTemplates",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteDesign",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteScript",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteSwap",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPWebAction",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Measure-PnPWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPPersonalSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteFileVersionBatchDeleteJob",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteFileVersionExpirationReportJob",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteGroup",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPSiteTemplateFromFolder",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceCommunicationSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "New-PnPWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Read-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Register-PnPAppCatalogSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Register-PnPHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFileFromSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPHomeSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPHubSiteAssociation",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPKnowledgeHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPOrgNewsSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionAdmin",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionAppCatalog",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteDesign",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteDesignTask",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteFileVersionBatchDeleteJob",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteGroup",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSiteScript",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantDeletedSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPWebhookSubscription",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Remove-PnPWebPart",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Rename-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Repair-PnPSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Request-PnPPersonalSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Request-PnPReIndexWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Restore-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Save-PnPSiteTemplate",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPBuiltInSiteTemplateSettings",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPHomeSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPKnowledgeHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPPageWebPart",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteArchiveState",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteClosure",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteDesign",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteDocumentIdPrefix",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteGroup",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteScript",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteScriptPackage",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPSiteTemplateMetadata",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPStructuralNavigationCacheSiteState",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPStructuralNavigationCacheWebState",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantAppCatalogUrl",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPWebHeader",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPWebhookSubscription",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPWebPartProperty",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Set-PnPWebTheme",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Test-PnPSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Unregister-PnPHubSite",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Update-PnPSiteDesignFromWeb",
+    "file": "Sites_Site_Collections.json"
+  },
+  {
+    "cmdlet": "Add-PnPAzureADGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPAzureADGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupToSite",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPTeamsChannel",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnpTeamsChannelUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPTeamsTab",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPTeamsUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPAzureADGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPAzureADGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPEntraIDGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPEntraIDGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPMicrosoft365GroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Clear-PnPMicrosoft365GroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Copy-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPDeletedMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPDeletedTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365ExpiringGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupEndpoint",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupMembers",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupOwners",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupSettings",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupSettingTemplates",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupYammerCommunity",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365Roadmap",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsApp",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannel",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelFilesFolder",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelMessage",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelMessageReply",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsPrimaryChannel",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTab",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTag",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Get-PnPTeamsUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPAzureADGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPEntraIDGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPMicrosoft365GroupSettings",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPTeamsApp",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamNoGroupSite",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamNoGroupSubSite",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamSite",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPDeletedMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupMember",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupOwner",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupPhoto",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupSettings",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsApp",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsChannel",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsChannelUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTab",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTag",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Reset-PnPMicrosoft365GroupExpiration",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Restore-PnPDeletedMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPAzureADGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPEntraIDGroup",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPMicrosoft365Group",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPMicrosoft365GroupSettings",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamifyPromptHidden",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsChannel",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnpTeamsChannelUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTab",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTag",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeam",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeamArchivedState",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeamPicture",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Submit-PnPTeamsChannelMessage",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Sync-PnPAppToTeams",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Test-PnPMicrosoft365GroupAliasIsUsed",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Update-PnPTeamsApp",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Update-PnPTeamsUser",
+    "file": "Teams_Microsoft_365_Groups.json"
+  },
+  {
+    "cmdlet": "Add-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Add-PnPApplicationCustomizer",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantCdnOrigin",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequence",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Disable-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Enable-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Export-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Export-PnPPowerApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPAppErrors",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPAppInfo",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPApplicationCustomizer",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPDeletedFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPEnterpriseAppInsightsReport",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPFlowRun",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPGraphSubscription",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPManagedAppId",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPRetentionLabel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPStorageEntity",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPSyntexModel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPSyntexModelPublication",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTemporarilyDisableAppBar",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenant",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnEnabled",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnOrigin",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnPolicies",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantId",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantInfo",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantInstance",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantInternalSetting",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantPronounsSetting",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantRetentionLabel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantSequence",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantSyncClientRestriction",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Get-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Install-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "New-PnPGraphSubscription",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "New-PnPSdnProvider",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantSequence",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "New-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Publish-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Publish-PnPSyntexModel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Read-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPApplicationCustomizer",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPGraphSubscription",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPManagedAppId",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPSdnProvider",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPStorageEntity",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantCdnOrigin",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Remove-PnPTenantSyncClientRestriction",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Request-PnPSyntexClassifyAndExtract",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Reset-PnPRetentionLabel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Restart-PnPFlowRun",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Restore-PnPFlow",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Save-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPApplicationCustomizer",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPAppSideLoading",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPGraphSubscription",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPManagedAppId",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPPowerAppByPassConsent",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPRetentionLabel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPStorageEntity",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPTemporarilyDisableAppBar",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenant",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantCdnEnabled",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantPronounsSetting",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Set-PnPTenantSyncClientRestriction",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Start-PnPEnterpriseAppInsightsReport",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Stop-PnPFlowRun",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Test-PnPTenantTemplate",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Uninstall-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Unpublish-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Unpublish-PnPSyntexModel",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Update-PnPApp",
+    "file": "Tenant_Admin_commands.json"
+  },
+  {
+    "cmdlet": "Add-PnPAdaptiveScopeProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPAlert",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPCustomAction",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPEventReceiver",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPHubToHubAssociation",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPIndexedProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPJavaScriptBlock",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPPropertyBagValue",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPView",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Add-PnPViewsFromXML",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Clear-PnPDefaultColumnValues",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Clear-PnPTraceLog",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Disable-PnPFeature",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Disable-PnPPowerShellTelemetry",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Enable-PnPFeature",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Enable-PnPPowerShellTelemetry",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Enable-PnPPriviledgedIdentityManagement",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPAlert",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPAvailableLanguage",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPAzureCertificate",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPBrowserIdleSignout",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPBuiltInDesignPackageVisibility",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPChangeLog",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPContainer",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPContainerType",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPContainerTypeConfiguration",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPContext",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPCopilotAdminLimitedMode",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPCopilotAgent",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPCustomAction",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPDefaultColumnValues",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPDeletedContainer",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPDiagnostics",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPDisableSpacesActivation",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPEventReceiver",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPException",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPFeature",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPFooter",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPGroup",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPIndexedPropertyKeys",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPMessageCenterAnnouncement",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformEnvironment",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformSolution",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPPowerShellTelemetryEnabled",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPPriviledgedIdentityManagementEligibleAssignment",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPPropertyBag",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPServiceCurrentHealth",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPServiceHealthIssue",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPSharePointAddIn",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPTimeZoneId",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPTraceLog",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPUPABulkImportStatus",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPView",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Get-PnPVivaEngageCommunity",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPBatch",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPGraphMethod",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPQuery",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Invoke-PnPSPRestMethod",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Move-PnPClientSideComponent",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPAzureCertificate",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPBatch",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPContainerType",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPExtensibilityHandlerObject",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPGroup",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPUPABulkImportJob",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "New-PnPVivaEngageCommunity",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Receive-PnPCopyMoveJobStatus",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAdaptiveScopeProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPAlert",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPContainer",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPContainerType",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPCustomAction",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPEventReceiver",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPGroup",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPHubToHubAssociation",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPIndexedProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPPropertyBagValue",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPView",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Remove-PnPVivaEngageCommunity",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Restore-PnPDeletedContainer",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Send-PnPMail",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPAdaptiveScopeProperty",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPBrowserIdleSignout",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPBuiltInDesignPackageVisibility",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPContext",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPCopilotAdminLimitedMode",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPDefaultColumnValues",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPDisableSpacesActivation",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPFooter",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPGroup",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPIndexedProperties",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsArchived",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsFavorite",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsNotArchived",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsNotFavorite",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsRead",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsUnread",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPPropertyBagValue",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPView",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Set-PnPVivaEngageCommunity",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Start-PnPTraceLog",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Stop-PnPTraceLog",
+    "file": "Utilities.json"
+  },
+  {
+    "cmdlet": "Write-PnPTraceLog",
+    "file": "Utilities.json"
+  }
+]
