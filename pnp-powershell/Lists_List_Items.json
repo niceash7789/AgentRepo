@@ -1,0 +1,416 @@
+[
+  {
+    "cmdlet": "Add-PnPListDesign",
+    "description": "Allows to add new List Design to tenant.",
+    "syntax": "Add-PnPListDesign -Title <String> -SiteScript <TenantSiteScriptPipeBind> [-Description <String>] \n [-ListColor<TenantListDesignIcon>] [-ListIcon <TenantListDesignColor>] [-ThumbnailUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPListDesign -Title \"My Custom List\" -SiteScriptIds \"e84dcb46-3ab9-4456-a136-66fc6ae3d3c5\"",
+      "Add-PnPListDesign -Title \"My Company Design\" -SiteScriptIds \"6def687f-0e08-4f1e-999c-791f3af9a600\" -Description \"My description\" -ListColor Orange -ListIcon BullseyeTarget -ThumbnailUrl \"https://contoso.sharepoint.com/SiteAssets/site-thumbnail.png\"",
+      "Get-PnPSiteScript -Identity \"My List Script\" | Add-PnPListDesign -Title \"My Custom List\"",
+      "Get-PnPList -Identity \"My List\" | Get-PnPSiteScriptFromList | Add-PnPSiteScript -Title \"My List Script\" | Add-PnPListDesign -Title \"My List\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPListItem",
+    "description": "Allows to add an item to the list and sets the creation time to the current date and time. The author is set to the current authenticated user executing the cmdlet. In order to set the author to a different user, please refer to Set-PnPListItem.",
+    "syntax": "Add-PnPListItem [-List] <ListPipeBind> [-ContentType <ContentTypePipeBind>] [-Values <Hashtable>]\n [-Folder <String>] [-Label <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPListItem -List \"Demo List\" -Values @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "Add-PnPListItem -List \"Demo List\" -ContentType \"Company\" -Values @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "Add-PnPListItem -List \"Demo List\" -Values @{\"MultiUserField\"=\"user1@domain.com\",\"user2@domain.com\"}",
+      "Add-PnPListItem -List \"Demo List\" -Values @{\"Title\"=\"Sales Report\"} -Folder \"projects/europe\"",
+      "Add-PnPListItem -List \"Demo List\" -Values @{\"Title\"=\"Sales Report\"} -Label \"Public\"",
+      "$batch = New-PnPBatch\nfor($i=0;$i -lt 10;$i++)\n{\n    Add-PnPListItem -List \"Demo List\" -Values @{\"Title\"=\"Report $i\"} -Batch $batch\n}\nInvoke-PnPBatch -Batch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPListItemAttachment",
+    "description": "This cmdlet allows adding a file as an attachment to a list item in a SharePoint Online list.",
+    "syntax": "Add-PnPListItemAttachment [-List] <ListPipeBind> [-Identity] <ListItemPipeBind> [-Path <String>] [-NewFileName <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPListItemAttachment -List \"Demo List\" -Identity 1 -Path c:\\temp\\test.mp4",
+      "Add-PnPListItemAttachment -List \"Demo List\" -Identity 1 -FileName \"test.txt\" -Content '{ \"Test\": \"Value\" }'",
+      "Add-PnPListItemAttachment -List \"Demo List\" -Identity 1 -FileName \"test.mp4\" -Stream $fileStream"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPListItemComment",
+    "description": "Allows to add comment to the specified list item.",
+    "syntax": "Add-PnPListItemComment [-List] <ListPipeBind> [-Identity] <ListItemPipeBind> [-Text] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPListItemComment -List \"Demo List\" -Identity \"1\" -Text \"Hello world\""
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnpRecycleBinItem",
+    "description": "Allows to permanently delete items from recycle bin. By default the command will delete all items but it is allowed to specify the items by using theIdentityorRowLimitoptions.",
+    "syntax": "Clear-PnPRecycleBinItem [-All] [-SecondStageOnly] [-Force] [-RowLimit <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPRecycleBinItem | Where-Object LeafName -like \"*.docx\" | Clear-PnPRecycleBinItem",
+      "Clear-PnPRecycleBinItem -Identity 72e4d749-d750-4989-b727-523d6726e442",
+      "Clear-PnPRecycleBinItem -Identity $item -Force",
+      "Clear-PnPRecycleBinItem -All -RowLimit 10000"
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPTenantRecycleBinItem",
+    "description": "The Clear-PnPTenantRecycleBinItem cmdlet allows a site collection that has been deleted and still exists in the tenant recycle bin to be permanently deleted from the recycle bin as well.",
+    "syntax": "Clear-PnPTenantRecycleBinItem -Url <String> [-Wait] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPTenantRecycleBinItem -Url \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Clear-PnPTenantRecycleBinItem -Url \"https://tenant.sharepoint.com/sites/contoso\" -Wait"
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPItemProxy",
+    "description": "This cmdlet is an alias of theCopy-Itemcmdlet that is natively available with PowerShell.",
+    "syntax": "Copy-Item\n    [-Path] <String[]>\n    [[-Destination] <String>]\n    [-Container]\n    [-Force]\n    [-Filter <String>]\n    [-Include <String[]>]\n    [-Exclude <String[]>]\n    [-Recurse]\n    [-PassThru]\n    [-Credential <PSCredential>]    \n    [-Confirm]\n    [-FromSession <PSSession>]\n    [-ToSession <PSSession>]",
+    "examples": [
+      "Copy-PnPItemProxy \"C:\\Users\\Admin\\seattle.master\" -Destination \"C:\\Presentation\""
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPList",
+    "description": "This cmdlet allows an existing list to be copied to either the same site or to another site (same tenant). It copies the fields, views and settings of the list. It does not copy along the list items in the list. If you wish to copy a list from one tenant to another, you will have to export the list as a provisioning template, and then apply the template to the target tenant.",
+    "syntax": "Copy-PnPList -Identity <ListPipeBind> -Title <String> [-WhatIf] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Copy-PnPList -Identity \"My List\" -Title \"Copy of My List\"",
+      "Copy-PnPList -Identity \"My List\" -DestinationWebUrl https://contoso.sharepoint.com/sites/hrdepartment",
+      "Copy-PnPList -Identity \"My List\" -DestinationWebUrl https://contoso.sharepoint.com/sites/hrdepartment -Title \"My copied list\"",
+      "$list = Get-PnPList -Identity \"My List\"\nCopy-PnPList -Identity $list -Title \"My copied list\"",
+      "Get-PnPList | ? Title -like \"*Test*\" | Copy-PnPList -DestinationWebUrl https://contoso.sharepoint.com/sites/hrdepartment",
+      "Copy-PnPList -SourceListUrl https://contoso.sharepoint.com/sites/templates/lists/mylist -Verbose -DestinationWebUrl https://contoso.sharepoint.com/sites/hrdepartment\\"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFolderItem",
+    "description": "This cmdlet allows listing of all the content in a folder. It can be used to list all files and folders in a folder and optionally all its subfolders.",
+    "syntax": "Get-PnPFolderItem [-FolderSiteRelativeUrl <String>] [-ItemType <String>] [-ItemName <String>] [-Recursive] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFolderItem",
+      "Get-PnPFolderItem -Recurse",
+      "Get-PnPFolderItem -Identity \"Shared Documents\"",
+      "Get-PnPFolderItem -FolderSiteRelativeUrl \"SitePages\" -ItemName \"Default.aspx\"",
+      "Get-PnPFolderItem -FolderSiteRelativeUrl \"SitePages\" -ItemType Folder",
+      "Get-PnPFolder -Url \"Shared Documents\" | Get-PnPFolderItem -ItemType File",
+      "Get-PnPFolderItem -FolderSiteRelativeUrl \"SitePages\" -Recursive"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPLargeListOperationStatus",
+    "description": "Allows to get the status of a large list operation.",
+    "syntax": "Get-PnPLargeListOperationStatus [-Identity] <ListId> [-OperationId] <OperationId> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPLargeListOperationStatus -Identity 9ea5d197-2227-4156-9ae1-725d74dc029d -OperationId 924e6a34-5c90-4d0d-8083-2efc6d1cf481"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPList",
+    "description": "This cmdlet returns lists in the current web.",
+    "syntax": "Get-PnPList [[-Identity] <ListPipeBind>] [-ThrowExceptionIfListNotFound] \n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPList",
+      "Get-PnPList -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Get-PnPList -Identity Lists/Announcements",
+      "Get-PnPList | Where-Object {$_.RootFolder.ServerRelativeUrl -like \"/lists/*\"}",
+      "Get-PnPList -Includes HasUniqueRoleAssignments"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListDesign",
+    "description": "Retrieve List Designs that have been registered on the current tenant. When providing a name with -Identity, it returns all list designs with that name.",
+    "syntax": "Get-PnPListDesign [[-Identity] <TenantListDesignPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListDesign",
+      "Get-PnPListDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd",
+      "Get-PnPListDesign -Identity ListEvent"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListItem",
+    "description": "Allows to retrieve list items.",
+    "syntax": "Get-PnPListItem [-List] <ListPipeBind> [-FolderServerRelativeUrl <String>] [-Fields <String[]>]\n [-PageSize <Int32>] [-ScriptBlock <ScriptBlock>][-IncludeContentType <SwitchParameter>][-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListItem -List Tasks",
+      "Get-PnPListItem -List Tasks -Id 1",
+      "Get-PnPListItem -List Tasks -UniqueId bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3",
+      "(Get-PnPListItem -List Tasks -Fields \"Title\",\"GUID\").FieldValues",
+      "Get-PnPListItem -List Tasks -Query \"<View><Query><Where><Eq><FieldRef Name='GUID'/><Value Type='Guid'>bd6c5b3b-d960-4ee7-a02c-85dc6cd78cc3</Value></Eq></Where></Query></View>\"",
+      "Get-PnPListItem -List Tasks -Query \"<View><ViewFields><FieldRef Name='Title'/><FieldRef Name='Modified'/></ViewFields><Query><Where><Eq><FieldRef Name='Modified'/><Value Type='DateTime'><Today/></Value></Eq></Where></Query></View>\"",
+      "Get-PnPListItem -List Tasks -PageSize 1000",
+      "Get-PnPListItem -List Tasks -PageSize 1000 -ScriptBlock { Param($items) $items.Context.ExecuteQuery() } | ForEach-Object { $_.BreakRoleInheritance($true, $true) }",
+      "Get-PnPListItem -List Samples -FolderServerRelativeUrl \"/sites/contosomarketing/Lists/Samples/Demo\"",
+      "PS D:\\Code> Get-PnPListItem -List \"Shared Documents\" | Select-Object id,@{label=\"Filename\";expression={$_.FieldValues.FileLeafRef}}\n\nId Filename\n-- --------\n 1 Contoso-Financial-Calendar-Q1_68340_97779.pptx\n 5 Does this work.docx",
+      "Get-PnPListItem -List Tasks -Id 1 -IncludeContentType"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListItemAttachment",
+    "description": "Allows to download the list item attachments to a specified path. UseForceoption in order to skip the confirmation question and overwrite the files on the local disk, if they already exist.",
+    "syntax": "Get-PnPListItemAttachment [-List] <ListPipeBind> [-Identity] <ListItemPipeBind> [-Path <String>] [-Force <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListItemAttachment -List \"Demo List\" -Identity 1 -Path \"C:\\temp\"",
+      "Get-PnPListItemAttachment -List \"Demo List\" -Identity 1 -Path \"C:\\temp\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListItemComment",
+    "description": "Retrieves all comments from the list item in the specified list.",
+    "syntax": "Get-PnPListItemComment -List <ListPipeBind> -Identity <ListItemPipeBind>",
+    "examples": [
+      "Get-PnPListItemComment -List Tasks -Identity 1"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListItemVersion",
+    "description": "This cmdlet retrieves the version history of a list item.",
+    "syntax": "Get-PnPListItemVersion -List <ListPipeBind> -Identity <ListItemPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListItemVersion -List \"Demo List\" -Identity 1"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPRecycleBinItem",
+    "description": "This command will return all the items in the recycle bin for the SharePoint site you connected to with Connect-PnPOnline. You must connect as a Site Collection Owner or Administrator. The SharePoint Admin Role in the tenant alone will not work. If you are not a Site Collection Admin connect to the Tenant Admin URL with Connect-PnPOnline and use Get-PnPTenantRecycleBinItem.",
+    "syntax": "Get-PnPRecycleBinItem [-RowLimit <Int32>] [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPRecycleBinItem",
+      "Get-PnPRecycleBinItem -Identity f3ef6195-9400-4121-9d1c-c997fb5b86c2",
+      "Get-PnPRecycleBinItem -FirstStage",
+      "Get-PnPRecycleBinItem -SecondStage",
+      "Get-PnPRecycleBinItem -RowLimit 10000"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantRecycleBinItem",
+    "description": "This command will return all the items in the tenant recycle bin for the Office 365 tenant you are connected to. If you are not a SharePoint Tenant Admin connect to the site where you want to manage the recycle bin and use Get-PnPRecycleBinItem.",
+    "syntax": "Get-PnPTenantRecycleBinItem [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantRecycleBinItem"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTodoList",
+    "description": "Use the cmdlet to retrieve all Todo lists or a specific Todo list.",
+    "syntax": "Get-PnPTodoList [[-Identity] <String>] [-[User] <AzureADUserPipeBind>]",
+    "examples": [
+      "Get-PnPTodoList",
+      "Get-PnPTodoList -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASUnLfyAAA=\"",
+      "Get-PnPTodoList -User john@doe.com",
+      "Get-PnPTodoList -User john@doe.com -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASUnLfyAAA=\""
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPListDesign",
+    "description": "Applies the List Design provided through Identity to an existing site.",
+    "syntax": "Invoke-PnPListDesign [-Identity] <TenantListDesignPipeBind> [-WebUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPListDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd",
+      "Invoke-PnPListDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd -WebUrl \"https://contoso.sharepoint.com/sites/mydemosite\"",
+      "Get-PnPListDesign | ?{$_.Title -eq \"Demo\"} | Invoke-PnPListDesign"
+    ]
+  },
+  {
+    "cmdlet": "Measure-PnPList",
+    "description": "Allows to retrieve statistics on specified list. The command may fail on lists larger than the list view threshold.",
+    "syntax": "Measure-PnPList [-Identity] <ListPipeBind> [-ItemLevel] [-BrokenPermissions] \n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Measure-PnPList \"Documents\"",
+      "Measure-PnPList \"Documents\" -BrokenPermissions -ItemLevel"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPListItemToRecycleBin",
+    "description": "Allows to move an item to the recycle bin.",
+    "syntax": "Move-PnPListItemToRecycleBin [-List] <ListPipeBind> -Identity <ListItemPipeBind> [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Move-PnPListItemToRecycleBin -List \"Demo List\" -Identity \"1\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnpRecycleBinItem",
+    "description": "Moves all the items in the first stage recycle bin of the current site collection to the second stage recycle bin",
+    "syntax": "Move-PnPRecycleBinItem [-Identity <RecycleBinItemPipeBind>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Move-PnPRecycleBinItem",
+      "Move-PnPRecycleBinItem -Identity 26ffff29-b526-4451-9b6f-7f0e56ba7125",
+      "Move-PnPRecycleBinItem -Force"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPList",
+    "description": "Allows to create a new list.",
+    "syntax": "New-PnPList -Title <String> -Template <ListTemplateType> [-Url <String>] [-Hidden] [-EnableVersioning]\n [-EnableContentTypes] [-OnQuickLaunch] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPList -Title Announcements -Template Announcements",
+      "New-PnPList -Title \"Demo List\" -Url \"lists/DemoList\" -Template Announcements",
+      "New-PnPList -Title HiddenList -Template GenericList -Hidden"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTodoList",
+    "description": "Use the cmdlet to create a Todo list.",
+    "syntax": "New-PnPTodoList [[-DisplayName] <String>] [-[User] <AzureADUserPipeBind>]",
+    "examples": [
+      "New-PnPTodoList -DisplayName \"Travel items\"",
+      "New-PnPTodoList -User john@doe.com -DisplayName \"Travel Items\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPList",
+    "description": "Allows to remove a list.",
+    "syntax": "Remove-PnPList [-Identity] <ListPipeBind> [-Recycle] [-LargeList] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPList -Identity Announcements",
+      "Remove-PnPList -Identity Announcements -Force",
+      "Remove-PnPList -Identity Announcements -Recycle",
+      "Remove-PnPList -Identity Announcements -Recycle -LargeList"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPListDesign",
+    "description": "Allows to remove a list design.",
+    "syntax": "Remove-PnPListDesign -Identity <TenantListDesignPipeBind> [-Force] [-WhatIf] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPListDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPListItem",
+    "description": "Allows to remove a list item.",
+    "syntax": "Remove-PnPListItem [-List] <ListPipeBind> -Identity <ListItemPipeBind> [-Recycle] [-Force]",
+    "examples": [
+      "Remove-PnPListItem -List \"Demo List\" -Identity \"1\" -Force",
+      "Remove-PnPListItem -List \"Demo List\" -Identity \"1\" -Force -Recycle",
+      "$batch = New-PnPBatch\n1..50 | Foreach-Object{Remove-PnPListItem -List \"DemoList\" -Identity $_ -Batch $batch}\nInvoke-PnPBatch -Batch $batch",
+      "Remove-PnPListItem -List \"Demo List\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPListItemAttachment",
+    "description": "This cmdlet removes one or all attachments from the specified list item in a SharePoint list.",
+    "syntax": "Remove-PnPListItemAttachment [-List] <ListPipeBind> [-Identity] <ListItemPipeBind> [-FileName <String>] [-Recycle <SwitchParameter>] [-Force <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPListItemAttachment -List \"Demo List\" -Identity 1 -FileName test.txt",
+      "Remove-PnPListItemAttachment -List \"Demo List\" -Identity 1 -FileName test.txt -Recycle",
+      "Remove-PnPListItemAttachment -List \"Demo List\" -Identity 1 -FileName test.txt -Recycle -Force",
+      "Remove-PnPListItemAttachment -List \"Demo List\" -Identity 1 -All -Recycle -Force",
+      "Remove-PnPListItemAttachment -List \"Demo List\" -Identity 1 -All"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPListItemComment",
+    "description": "Allows to remove comments from list item.",
+    "syntax": "Remove-PnPListItemComment [-List] <ListPipeBind> [-Identity] <ListItemPipeBind> [-Text] [-Force]",
+    "examples": [
+      "Remove-PnPListItemComment -List \"Demo List\" -Identity \"1\" -Text \"test comment\" -Force",
+      "Remove-PnPListItemComment -List \"Demo List\" -Identity \"1\" -Text \"test comment\"",
+      "Remove-PnPListItemComment -List \"Demo List\" -Identity \"1\" -All -Force",
+      "Remove-PnPListItemComment -List \"Demo List\" -Identity \"1\" -All"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPListItemVersion",
+    "description": "This cmdlet removes a specific list item version.",
+    "syntax": "Remove-PnPListItemVersion -List <ListPipeBind> -Identity <ListItemPipeBind> -Version <ListItemVersionPipeBind> [-Force] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPListItemVersion -List \"Demo List\" -Identity 1 -Version 512",
+      "Remove-PnPListItemVersion -List \"Demo List\" -Identity 1 -Version \"1.0\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTodoList",
+    "description": "Use the cmdlet to delete a Todo list.",
+    "syntax": "Remove-PnPTodoList [[-Identity] <String>] [-[User] <AzureADUserPipeBind>]",
+    "examples": [
+      "Remove-PnPTodoList -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASYG0vWAAA=\"",
+      "Remove-PnPTodoList -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASYG0vWAAA=\" -User john@doe.com"
+    ]
+  },
+  {
+    "cmdlet": "Request-PnPReIndexList",
+    "description": "Allows to mark the list for full indexing during the next incremental crawl.",
+    "syntax": "Request-PnPReIndexList [-Identity] <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Request-PnPReIndexList -Identity \"Demo List\""
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPListItemVersion",
+    "description": "This cmdlet restores a specific list item version.",
+    "syntax": "Restore-PnPListItemVersion -List <ListPipeBind> -Identity <ListItemPipeBind> -Version <ListItemVersionPipeBind> [-Force] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPListItemVersion -List \"Demo List\" -Identity 1 -Version 512",
+      "Restore-PnPListItemVersion -List \"Demo List\" -Identity 1 -Version \"1.0\""
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPRecycleBinItem",
+    "description": "This cmdlet restores the specified item from the recycle bin to its original location.",
+    "syntax": "Restore-PnPRecycleBinItem -Identity <RecycleBinItemPipeBind> [-Force] [-RowLimit <Int32>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPRecycleBinItem -Identity 72e4d749-d750-4989-b727-523d6726e442",
+      "Get-PnPRecycleBinItem | ? -Property LeafName -like \"*.docx\" | Restore-PnPRecycleBinItem",
+      "Get-PnPRecycleBinItem -RowLimit 10000 | Restore-PnPRecycleBinItem -Force"
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPTenantRecycleBinItem",
+    "description": "The Restore-PnPTenantRecycleBinItem cmdlet allows a site collection that has been deleted and still exists in the tenant recycle bin to be restored to its original location.",
+    "syntax": "Restore-PnPTenantRecycleBinItem -Url <String> [-Wait] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPTenantRecycleBinItem -Url \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Restore-PnPTenantRecycleBinItem -Url \"https://tenant.sharepoint.com/sites/contoso\" -Wait"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPImageListItemColumn",
+    "description": "Allows setting the Image/Thumbnail column value of a list item.",
+    "syntax": "Set-PnPImageListItemColumn [-List <ListPipeBind>] -Identity <ListItemPipeBind> [-Field <FieldPipeBind>]\n [-Path <string>] [-UpdateType <UpdateType>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPImageListItemColumn -List \"Demo List\" -Identity 1 -Field \"Thumbnail\" -ServerRelativePath \"/sites/contoso/SiteAssets/test.png\"",
+      "Set-PnPImageListItemColumn -List \"Demo List\" -Identity 1 -Field \"Thumbnail\" -Path sample.png"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPList",
+    "description": "Allows the configuration of a specific SharePoint Online list to be set.",
+    "syntax": "Set-PnPList -Identity <ListPipeBind> [-EnableContentTypes <Boolean>] [-BreakRoleInheritance]\n [-ResetRoleInheritance] [-CopyRoleAssignments] [-ClearSubScopes] [-Title <String>] [-Description <String>]\n [-Hidden <Boolean>] [-AllowDeletion <Boolean>] [-ForceCheckout <Boolean>] [-ListExperience <ListExperience>]\n [-EnableAttachments <Boolean>] [-EnableFolderCreation <Boolean>] [-EnableVersioning <Boolean>]\n [-EnableMinorVersions <Boolean>] [-MajorVersions <UInt32>] [-MinorVersions <UInt32>]\n [-EnableModeration <Boolean>] [-DraftVersionVisibility <DraftVisibilityType>] [-ReadSecurity <ListReadSecurity>] [-WriteSecurity <ListWriteSecurity>]\n [-NoCrawl] [-ExemptFromBlockDownloadOfNonViewableFiles <Boolean>] [-DisableGridEditing <Boolean>] [-DisableCommenting <Boolean>] \n [-EnableAutoExpirationVersionTrim <Boolean>] [-ExpireVersionsAfterDays <UInt32>]\n [-DefaultSensitivityLabelForLibrary <SensitivityLabelPipeBind>] [-Path <String>] [-OpenDocumentsMode <DocumentLibraryOpenDocumentsInMode>] [-Color <ListColor>] [-Icon <ListIcon>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPList -Identity \"Demo List\" -EnableContentTypes $true",
+      "Set-PnPList -Identity \"Demo List\" -Hidden $true",
+      "Set-PnPList -Identity \"Demo List\" -EnableVersioning $true",
+      "Set-PnPList -Identity \"Demo List\" -EnableVersioning $true -MajorVersions 20",
+      "Set-PnPList -Identity \"Demo Library\" -EnableVersioning $true -EnableMinorVersions $true -MajorVersions 20 -MinorVersions 5",
+      "Set-PnPList -Identity \"Demo List\" -EnableAttachments $true",
+      "Set-PnPList -Identity \"Demo List\" -Title \"Demo List 2\" -Path \"Lists/DemoList2\"",
+      "Set-PnPList -Identity \"Demo List\" -EnableAutoExpirationVersionTrim $true",
+      "Set-PnPList -Identity \"Demo List\" -EnableAutoExpirationVersionTrim $false -ExpireVersionsAfterDays 30 -MajorVersions 500",
+      "Set-PnPList -Identity \"Demo List\" -EnableAutoExpirationVersionTrim $false -ExpireVersionsAfterDays 0 -MajorVersions 500",
+      "Set-PnPList -Identity \"Demo List\" -DefaultSensitivityLabelForLibrary \"Confidential\"",
+      "Set-PnPList -Identity \"Demo List\" -Color Green -Icon \"Plane\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListItem",
+    "description": "Allows to modify a list item.",
+    "syntax": "Set-PnPListItem [-List <ListPipeBind>] -Identity <ListItemPipeBind> [-ContentType <ContentTypePipeBind>]\n [-Values <Hashtable>] [-UpdateType <UpdateType>] [-Label <String>] [-ClearLabel] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListItem -List \"Demo List\" -Identity 1 -Values @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "Set-PnPListItem -List \"Demo List\" -Identity 1 -ContentType \"Company\" -Values @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "Set-PnPListItem -List \"Demo List\" -Identity $item -Values @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "Set-PnPListItem -List \"Demo List\" -Identity 1 -Label \"Public\"",
+      "$batch = New-PnPBatch\nfor($i=1;$i -lt 100;$i++)\n{\n    Set-PnPListItem -List \"Demo List\" -Identity $i -Values @{\"Title\"=\"Updated Title\"} -Batch $batch\n}\nInvoke-PnPBatch -Batch $batch",
+      "Set-PnPListItem -List \"Demo List\" -Identity 1 -Values @{\"Editor\"=\"testuser@domain.com\"} -UpdateType UpdateOverwriteVersion"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPTodoList",
+    "description": "Use the cmdlet to update display name of a Todo list.",
+    "syntax": "Update-PnPTodoList [[-Identity] <String>] [[-DisplayName] <String>] [-[User] <AzureADUserPipeBind>]",
+    "examples": [
+      "Update-PnPTodoList -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASYG0vWAAA=\" -DisplayName \"Travel items\"",
+      "Update-PnPTodoList -Identity \"AAMkAGU4MGE1OTRiLTUzMGEtNDRjZi05ZmVmLWFiMTkyYmQxODRjOQAuAAAAAACQV8RStyZCQJ4ydzjIK5HmAQD2LFcxdwYMRqbupn47nEYYAASYG0vWAAA=\" -User john@doe.com -DisplayName \"Travel Items\""
+    ]
+  }
+]

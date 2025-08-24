@@ -1,0 +1,874 @@
+[
+  {
+    "cmdlet": "Add-PnPAzureADGroupMember",
+    "description": "Allows to add users to Azure Active Directory Group. This can be a security, distribution or Microsoft 365 group. By specifying-RemoveExistingoption it is possible to first clear the group of all existing members.",
+    "syntax": "Add-PnPAzureADGroupMember -Identity <AzureADGroupPipeBind> -Users <String[]> [-RemoveExisting] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPAzureADGroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPAzureADGroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\" -RemoveExisting",
+      "Add-PnPAzureADGroupMember -Identity \"Project Team\" -Users \"125eaa87-7b54-41fd-b30f-2adfa68c4afe\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPAzureADGroupOwner",
+    "description": "Allows to add users to owners of an Azure Active Directory Group. This can be a security, distribution or Microsoft 365 group. By specifying-RemoveExistingoption it is possible to first clear the group of all existing members.",
+    "syntax": "Add-PnPAzureADGroupOwner -Identity <AzureADGroupPipeBind> -Users <String[]> [-RemoveExisting] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPAzureADGroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPAzureADGroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\" -RemoveExisting",
+      "Add-PnPAzureADGroupOwner -Identity \"Project Team\" -Users \"125eaa87-7b54-41fd-b30f-2adfa68c4afe\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDGroupMember",
+    "description": "This is an alias forAdd-PnPAzureADGroupMember.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDGroupOwner",
+    "description": "This is an alias forAdd-PnPAzureADGroupOwner.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupMember",
+    "description": "Allows to add multiple users to Microsoft 365 Group.",
+    "syntax": "Add-PnPMicrosoft365GroupMember -Identity <Microsoft365GroupPipeBind> -Users <String[]> [-RemoveExisting] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPMicrosoft365GroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPMicrosoft365GroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\" -RemoveExisting"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupOwner",
+    "description": "Allows to add multiple users to Microsoft 365 Group as owners.",
+    "syntax": "Add-PnPMicrosoft365GroupOwner -Identity <Microsoft365GroupPipeBind> -Users <String[]> [-RemoveExisting] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPMicrosoft365GroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPMicrosoft365GroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\" -RemoveExisting"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPMicrosoft365GroupToSite",
+    "description": "This command allows you to add a Microsoft 365 Unified group to an existing classic site collection, also known as groupifying.",
+    "syntax": "Add-PnPMicrosoft365GroupToSite -Url <String> -Alias <String> -DisplayName <String> [-Description <String>]\n [-Classification <String>] [-IsPublic] [-KeepOldHomePage] [-HubSiteId <Guid>] [-Owners <String[]>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPMicrosoft365GroupToSite -Url \"https://contoso.sharepoint.com/sites/FinanceTeamsite\" -Alias \"FinanceTeamsite\" -DisplayName \"My finance team site group\"",
+      "Add-PnPMicrosoft365GroupToSite -Alias \"HRTeamsite\" -DisplayName \"My HR team site group\"",
+      "Add-PnPMicrosoft365GroupToSite -Url $SiteURL -Alias $GroupAlias -DisplayName $GroupName -IsPublic -KeepOldHomePage"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTeamsChannel",
+    "description": "Allows to add channel to an existing team in Microsoft Teams. By using theIsFavoriteByDefaultit is possible to specify if the channel will be visible for members by default.",
+    "syntax": "Add-PnPTeamsChannel -Team <TeamsTeamPipeBind> -DisplayName <String> [-ChannelType Standard] [-Description <String>] [-IsFavoriteByDefault <Boolean>]",
+    "examples": [
+      "Add-PnPTeamsChannel -Team 4efdf392-8225-4763-9e7f-4edeb7f721aa -DisplayName \"My Channel\" -IsFavoriteByDefault $true",
+      "Add-PnPTeamsChannel -Team \"My Team\" -DisplayName \"My standard channel\"",
+      "Add-PnPTeamsChannel -Team \"HR\" -DisplayName \"My private channel\" -ChannelType Private -OwnerUPN user1@domain.com",
+      "Add-PnPTeamsChannel -Team \"Logistical Department\" -DisplayName \"My shared channel\" -ChannelType Shared -OwnerUPN user1@domain.com"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnpTeamsChannelUser",
+    "description": "Allows to add a user to a private channel in Microsoft Teams.",
+    "syntax": "Add-PnPTeamsChannelUser -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -User <String> -Role <String>",
+    "examples": [
+      "Add-PnPTeamsChannelUser -Team 4efdf392-8225-4763-9e7f-4edeb7f721aa -Channel \"19:796d063b63e34497aeaf092c8fb9b44e@thread.skype\" -User john@doe.com -Role Owner",
+      "Add-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Private Channel\" -User john@doe.com -Role Member"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTeamsTab",
+    "description": "Allows to add a tab to an existing Channel. By usingContentUrloption you may specify the content of the tab.",
+    "syntax": "Add-PnPTeamsTab -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -DisplayName <String>\n -Type <TeamTabType> -ContentUrl <String>",
+    "examples": [
+      "Add-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\" -DisplayName \"My Tab Name\" -Type WebSite -ContentUrl \"https://aka.ms/m365pnp\"",
+      "Add-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\" -DisplayName \"My Tab Name\" -Type PDF -ContentUrl \"https://contoso.sharepoint.com/sites/Marketing/Shared Documents/General/MyFile.pdf\" -EntityId \"null\"",
+      "Add-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\" -DisplayName \"My Tab Name\" -Type SharePointPageAndList -WebSiteUrl \"https://contoso.sharepoint.com/sites/Marketing/SitePages/Home.aspx\"",
+      "Add-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\" -DisplayName \"My Excel Tab\" -Type Excel -ContentUrl \"https://contoso.sharepoint.com/sites/Marketing/Shared Documents/My Excel File.csv\" -EntityId 6",
+      "$PlannerPlan = Get-PnPPlannerPlan -Group $groupId -Identity $PlannerName\nif(-not $PlannerPlan)\n{\n    $PlannerPlan = New-PnPPlannerPlan -Group $groupId -Title $PlannerName\n}\n$bucket = Add-PnPPlannerBucket -Group $groupId -Plan $PlannerPlan.Id -Name \"Tasks\"\nAdd-PnPPlannerTask -Group $groupId -Plan $PlannerPlan.Id -Bucket $bucket.Id -Title \"plannertaskA\"\n\n$teamsChannel = Get-PnPTeamsChannel -Team $groupId -Identity \"General\"\n\n$tenant = \"contoso.onmicrosoft.com\"\n\n$teamsTab = Add-PnPTeamsTab -Team $groupId -Channel $teamsChannel -DisplayName \"My Tab Name\" -Type Planner -ContentUrl \"https://tasks.office.com/$tenant/Home/PlannerFrame?page=7&planId=$($PlannerPlan.Id)\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTeamsTeam",
+    "description": "This command allows you to add a Teams team to an existing, Microsoft 365 group connected, site collection.",
+    "syntax": "Add-PnPTeamsTeam [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPTeamsTeam"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTeamsUser",
+    "description": "This cmdlet adds one or more users to an existing Team.",
+    "syntax": "Add-PnPTeamsUser -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -User <String> -Role <String>",
+    "examples": [
+      "Add-PnPTeamsUser -Team MyTeam -User john@doe.com -Role Owner",
+      "Add-PnPTeamsUser -Team MyTeam -User john@doe.com -Role Member",
+      "Add-PnPTeamsUser -Team MyTeam -Users \"john@doe.com\",\"jane@doe.com\" -Role Member",
+      "Add-PnPTeamsUser -Team MyTeam -User \"jane@doe.com\" -Role Member -Channel Private"
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPAzureADGroupMember",
+    "description": "Allows to remove all current members from specified Azure Active Directory group. This can be a security, distribution or Microsoft 365 group.",
+    "syntax": "Clear-PnPAzureADGroupMember -Identity <AzureADGroupPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPAzureADGroupMember -Identity \"Project Team\""
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPAzureADGroupOwner",
+    "description": "Allows to remove all current owners from specified Azure Active Directory group. This can be a security, distribution or Microsoft 365 group.",
+    "syntax": "Clear-PnPAzureADGroupOwner -Identity <AzureADGroupPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPAzureADGroupOwner -Identity \"Project Team\""
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPEntraIDGroupMember",
+    "description": "This is an alias forClear-PnPAzureADGroupMember.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Clear-PnPEntraIDGroupOwner",
+    "description": "This is an alias forClear-PnPAzureADGroupOwner.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Clear-PnPMicrosoft365GroupMember",
+    "description": "Allows to remove all current members from a specified Microsoft 365 Group.",
+    "syntax": "Clear-PnPMicrosoft365GroupMember -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Clear-PnPMicrosoft365GroupMember -Identity \"Project Team\""
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPMicrosoft365GroupOwner",
+    "description": "Allows to remove all current owners from a specified Microsoft 365 Group.",
+    "syntax": "Clear-PnPMicrosoft365GroupOwner -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Clear-PnPMicrosoft365GroupOwner -Identity \"Project Team\""
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPTeamsTeam",
+    "description": "Using this command, global admins and Microsoft Teams service admins can access teams that they are not a member of to make a copy of them.",
+    "syntax": "Copy-PnPTeamsTeam -DisplayName <String> -Identity <TeamsTeamPipeBind> [-PartsToClone <ClonableTeamParts[]>] [-Description <String>] [-Visibility <TeamVisibility>] [-Classification <String>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Copy-PnPTeamsTeam -Identity ee0f40fc-b2f7-45c7-b62d-11b90dd2ea8e -DisplayName \"Library Assist\" -PartsToClone apps,tabs,settings,channels,members",
+      "Copy-PnPTeamsTeam -Identity \"Team 12\" -DisplayName \"Library Assist\"",
+      "Copy-PnPTeamsTeam -Identity \"Team 12\" -DisplayName \"Library Assist\" -PartsToClone apps,tabs,settings,channels,members -Description \"Self help community for library\" -Classification \"Library\" -Visibility public",
+      "Copy-PnPTeamsTeam -Identity \"Team 12\" -DisplayName \"Library Assist\" -PartsToClone settings,channels -Description \"Self help community for library\" -Classification \"Library\" -Visibility public"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroup",
+    "description": "Allows to retrieve a list of Azure Active Directory groups. Those can be a security, distribution or Microsoft 365 group. By specifyingIdentityoption it is possible to get a single group.",
+    "syntax": "Get-PnPAzureADGroup [-Identity <AzureADGroupPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADGroup",
+      "Get-PnPAzureADGroup -Identity $groupId",
+      "Get-PnPAzureADGroup -Identity $groupDisplayName",
+      "Get-PnPAzureADGroup -Identity $groupSiteMailNickName",
+      "Get-PnPAzureADGroup -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroupMember",
+    "description": "Allows to list members from given Entra ID group. This can be a security, distribution or Microsoft 365 group.",
+    "syntax": "Get-PnPAzureADGroupMember -Identity <AzureADGroupPipeBind> [-Connection <PnPConnection>] [-Transitive]",
+    "examples": [
+      "Get-PnPAzureADGroupMember -Identity $groupId",
+      "Get-PnPAzureADGroupMember -Identity $group",
+      "Get-PnPAzureADGroupMember -Identity $group -Transitive"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADGroupOwner",
+    "description": "Allows to list owners from a given Azure Active Directory group. This can be a security, distribution or Microsoft 365 group.",
+    "syntax": "Get-PnPAzureADGroupOwner -Identity <AzureADGroupPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADGroupOwner -Identity $groupId",
+      "Get-PnPAzureADGroupOwner -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDeletedMicrosoft365Group",
+    "description": "Allows to get list of deleted Microsoft 365 Groups. Use theIdentityoption to specify the exact group.",
+    "syntax": "Get-PnPDeletedMicrosoft365Group [-Identity <Microsoft365GroupPipeBind>]",
+    "examples": [
+      "Get-PnPDeletedMicrosoft365Group",
+      "Get-PnPDeletedMicrosoft365Group -Identity 38b32e13-e900-4d95-b860-fb52bc07ca7f"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDeletedTeam",
+    "description": "Allows to retrieve a list of deleted Microsoft Teams teams",
+    "syntax": "Get-PnPDeletedTeam",
+    "examples": [
+      "Get-PnPDeletedTeam"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroup",
+    "description": "This is an alias forGet-PnPAzureADGroup.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroupMember",
+    "description": "This is an alias forGet-PnPAzureADGroupMember.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDGroupOwner",
+    "description": "This is an alias forGet-PnPAzureADGroupOwner.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365ExpiringGroup",
+    "description": "This command returns all soon to expire Microsoft 365 Groups. By default, groups expiring in the next 31 days are returned (in accordance with SharePoint/OneDrive's retention period's 31-day months). The-Limitparameter can be used to specify a different time period.",
+    "syntax": "Get-PnPMicrosoft365ExpiringGroup [-Limit <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPMicrosoft365ExpiringGroup",
+      "Get-PnPMicrosoft365ExpiringGroup -Limit 93"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365Group",
+    "description": "Allows to retrieve Microsoft 365 Groups. By usingIdentityoption you may specify the exact group that will be retrieved.",
+    "syntax": "Get-PnPMicrosoft365Group [-Identity <Microsoft365GroupPipeBind>] [-IncludeSiteUrl] [-IncludeOwners] [-Detailed] [-Filter <string>] [-IncludeSensitivityLabels]",
+    "examples": [
+      "Get-PnPMicrosoft365Group",
+      "Get-PnPMicrosoft365Group -Identity $groupId",
+      "Get-PnPMicrosoft365Group -Identity $groupDisplayName",
+      "Get-PnPMicrosoft365Group -Identity $groupSiteMailNickName",
+      "Get-PnPMicrosoft365Group -Identity $group",
+      "Get-PnPMicrosoft365Group -IncludeSiteUrl",
+      "$groups = Get-PnPMicrosoft365Group -IncludeOwners\n$g[0].Owners",
+      "$groups = Get-PnPMicrosoft365Group -Filter \"startswith(description, 'contoso')\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupEndpoint",
+    "description": "This cmdlet allows retrieval of details on the endpoints connected to a Microsoft 365 Group",
+    "syntax": "Get-PnPMicrosoft365GroupEndpoint -Identity <Microsoft365GroupPipeBind> [-Connection] [-Verbose]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupEndpoint",
+      "Get-PnPMicrosoft365GroupEndpoint -Identity \"IT Team\"",
+      "Get-PnPMicrosoft365GroupEndpoint -Identity e6212531-7f09-4c3b-bc2e-12cae26fb409"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupMember",
+    "description": "Returns the members of a particular Microsoft 365 Group",
+    "syntax": "Get-PnPMicrosoft365GroupMember -Identity <Microsoft365GroupPipeBind> [-UserType <String>]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupMember -Identity $groupId",
+      "Get-PnPMicrosoft365GroupMember -Identity $group",
+      "Get-PnPMicrosoft365GroupMember -Identity \"Sales\" | Where-Object UserType -eq Guest"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupMembers",
+    "description": "This is an alias forGet-PnPMicrosoft365GroupMember.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupOwner",
+    "description": "Allows to retrieve owners of Microsoft 365 Group.",
+    "syntax": "Get-PnPMicrosoft365GroupOwner -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Get-PnPMicrosoft365GroupOwner -Identity $groupId",
+      "Get-PnPMicrosoft365GroupOwner -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupOwners",
+    "description": "This is an alias forGet-PnPMicrosoft365GroupOwner.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupSettings",
+    "description": "Allows to retrieve tenant wide settings of Microsoft 365 Groups or by usingIdentityoption you may specify the exact Microsoft 365 Group.",
+    "syntax": "Get-PnPMicrosoft365GroupSettings [-Identity <Microsoft365GroupPipeBind>] [-GroupSetting <Microsoft365GroupSettingsPipeBind>]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupSettings",
+      "Get-PnPMicrosoft365GroupSettings -Identity $groupId",
+      "Get-PnPMicrosoft365GroupSettings -GroupSetting $groupSettingId",
+      "Get-PnPMicrosoft365GroupSettings -Identity $groupId -GroupSetting $groupSettingId"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupSettingTemplates",
+    "description": "Allows to retrieve available system wide template of settings for Microsoft 365 Groups.",
+    "syntax": "Get-PnPMicrosoft365GroupSettingTemplates [-Identity <string>]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupSettingTemplates",
+      "Get-PnPMicrosoft365GroupSettingTemplates -Identity \"08d542b9-071f-4e16-94b0-74abb372e3d9\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupTeam",
+    "description": "This cmdlet allows retrieval of details on the Microsoft Teams team connected to a Microsoft 365 Group.",
+    "syntax": "Get-PnPMicrosoft365GroupTeam -Identity <Microsoft365GroupPipeBind> [-Connection] [-Verbose]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupTeam",
+      "Get-PnPMicrosoft365GroupTeam -Identity \"IT Team\"",
+      "Get-PnPMicrosoft365GroupTeam -Identity e6212531-7f09-4c3b-bc2e-12cae26fb409"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365GroupYammerCommunity",
+    "description": "This cmdlet allows retrieval of details on the Yammer Community connected to a Microsoft 365 Group",
+    "syntax": "Get-PnPMicrosoft365GroupYammerCommunity -Identity <Microsoft365GroupPipeBind> [-Connection] [-Verbose]",
+    "examples": [
+      "Get-PnPMicrosoft365GroupYammerCommunity",
+      "Get-PnPMicrosoft365GroupYammerCommunity -Identity \"IT Community\"",
+      "Get-PnPMicrosoft365GroupYammerCommunity -Identity e6212531-7f09-4c3b-bc2e-12cae26fb409"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMicrosoft365Roadmap",
+    "description": "Allows retrieval of the Microsoft 365 Roadmap. Pipe the output to i.e. a Where-Object to filter it down to the desired items. You do not need to be connected to any tenant to utilize this cmdlet.",
+    "syntax": "Get-PnPMicrosoft365Roadmap [-RoadmapUrl <string>] [-Verbose]",
+    "examples": [
+      "Get-PnPMicrosoft365Roadmap",
+      "Get-PnPMicrosoft365Roadmap | Where-Object { $_.Status -eq \"Rolling out\" }",
+      "Get-PnPMicrosoft365Roadmap | Where-Object { $_.Created -ge (Get-Date).AddDays(-7) -or $_.Modified -ge (Get-Date).AddDays(-7) }"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsApp",
+    "description": "Allows to retrieve Microsoft Teams apps. By usingIdentityoption it is possible to retrieve a specific app.",
+    "syntax": "Get-PnPTeamsApp [-Identity <TeamsAppPipeBind>]",
+    "examples": [
+      "Get-PnPTeamsApp",
+      "Get-PnPTeamsApp -Identity a54224d7-608b-4839-bf74-1b68148e65d4",
+      "Get-PnPTeamsApp -Identity \"MyTeamsApp\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannel",
+    "description": "Allows to retrieve list of channels for a specified team.",
+    "syntax": "Get-PnPTeamsChannel -Team <TeamsTeamPipeBind> [-Identity <TeamsChannelPipeBind>] [-IncludeModerationSettings <SwitchParameter>]",
+    "examples": [
+      "Get-PnPTeamsChannel -Team a6c1e0d7-f579-4993-81ab-4b666f8edea8",
+      "Get-PnPTeamsChannel -Team a6c1e0d7-f579-4993-81ab-4b666f8edea8 -Identity \"Test Channel\"",
+      "Get-PnPTeamsChannel -Team a6c1e0d7-f579-4993-81ab-4b666f8edea8 -Identity \"19:796d063b63e34497aeaf092c8fb9b44e@thread.skype\"",
+      "Get-PnPTeamsChannel -Team a6c1e0d7-f579-4993-81ab-4b666f8edea8 -Identity \"19:796d063b63e34497aeaf092c8fb9b44e@thread.skype\" -IncludeModerationSettings"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelFilesFolder",
+    "description": "Allows to retrieve folder metadata for specified channel.",
+    "syntax": "Get-PnPTeamsChannel [-Team <TeamsTeamPipeBind>] [-Channel <TeamsChannelPipeBind>]",
+    "examples": [
+      "Get-PnPTeamsChannelFilesFolder -Team \"Sales Team\" -Channel \"Test Channel\"",
+      "Get-PnPTeamsChannelFilesFolder -Team a6c1e0d7-f579-4993-81ab-4b666f8edea8 -Channel \"19:796d063b63e34497aeaf092c8fb9b44e@thread.skype\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelMessage",
+    "description": "Allows to retrieve messages from the specified channel.",
+    "syntax": "Get-PnPTeamsChannelMessage -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> [-Identity <TeamsChannelMessagePipeBind>] [-IncludeDeleted]",
+    "examples": [
+      "Get-PnPTeamsChannelMessage -Team MyTestTeam -Channel \"My Channel\"",
+      "Get-PnPTeamsChannelMessage -Team MyTestTeam -Channel \"My Channel\" -Identity 1653089769293"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelMessageReply",
+    "description": "Allows to retrieve replies from the specified channel message.",
+    "syntax": "Get-PnPTeamsChannelMessageReply -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -Message <TeamsChannelMessagePipeBind> \n[-Identity <TeamsChannelMessageReplyPipeBind>] [-IncludeDeleted]",
+    "examples": [
+      "Get-PnPTeamsChannelMessageReply -Team MyTestTeam -Channel \"My Channel\" -Message 1653089769293 -IncludeDeleted",
+      "Get-PnPTeamsChannelMessageReply -Team MyTestTeam -Channel \"My Channel\" -Message 1653089769293 -Identity 1653086004630"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsChannelUser",
+    "description": "Allows to retrieve list of members of the specified private channel.",
+    "syntax": "Get-PnPTeamsChannelUser -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> [-Identity <TeamsChannelMemberPipeBind>] [-Role <String>]",
+    "examples": [
+      "Get-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\"",
+      "Get-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Role Member",
+      "Get-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Identity john.doe@contoso.com",
+      "Get-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Identity 00000000-0000-0000-0000-000000000000"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsPrimaryChannel",
+    "description": "Gets the default channel, General, of a team.",
+    "syntax": "Get-PnPTeamsPrimaryChannel -Team <TeamsTeamPipeBind> [-Identity <TeamsChannelPipeBind>]",
+    "examples": [
+      "Get-PnPTeamsPrimaryChannel -Team ee0f40fc-b2f7-45c7-b62d-11b90dd2ea8e",
+      "Get-PnPTeamsPrimaryChannel -Team Sales"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTab",
+    "description": "Allows to retrieve tabs in channel. By usingIdentityit is possible to retrieve a specific single tab.",
+    "syntax": "Get-PnPTeamsTab -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> [-Identity <TeamsTabPipeBind>]",
+    "examples": [
+      "Get-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel 19:796d063b63e34497aeaf092c8fb9b44e@thread.skype",
+      "Get-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel 19:796d063b63e34497aeaf092c8fb9b44e@thread.skype -Identity \"Wiki\"",
+      "Get-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel 19:796d063b63e34497aeaf092c8fb9b44e@thread.skype -Identity d8740a7a-e44e-46c5-8f13-e699f964fc25",
+      "Get-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\"",
+      "Get-PnPTeamsTab -Team \"My Team\" -Channel \"My Channel\" -Identity \"Wiki\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTag",
+    "description": "Retrieves all the tags for the specified Microsoft Teams instance.",
+    "syntax": "Get-PnPTeamsTag -Team <TeamsTeamPipeBind> [-Identity <string>]",
+    "examples": [
+      "Get-PnPTeamsTag -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5",
+      "Get-PnPTeamsTag -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Identity \"ZmY1ZjdmMjctZDhiNy00MWRkLTk2ZDQtYzcyYmVhMWIwOGYxIyM3ZTVhNGRmZS1kNWNlLTRkOTAtODM4MC04ZDIxM2FkYzYzOGIjI3RiVlVpR01rcg==\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsTeam",
+    "description": "Allows to retrieve list of Microsoft Teams teams. By usingIdentityit is possible to retrieve a specific team, and by usingFilteryou can supply any filter queries supported by the Graph API.",
+    "syntax": "Get-PnPTeamsTeam [-Identity <TeamsTeamPipeBind>] [-Filter <String>]  [-User <AzureADUserPipeBind>]",
+    "examples": [
+      "Get-PnPTeamsTeam",
+      "Get-PnPTeamsTeam -Identity \"PnP PowerShell\"",
+      "Get-PnPTeamsTeam -Identity \"baba9192-55be-488a-9fb7-2e2e76edbef2\"",
+      "Get-PnPTeamsTeam -Filter \"startswith(mailNickName, 'contoso')\"",
+      "Get-PnPTeamsTeam -Filter \"startswith(description, 'contoso')\"",
+      "Get-PnPTeamsTeam -User \"user@company.com\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTeamsUser",
+    "description": "Allows to retrieve list of owners, members or guests from a team.",
+    "syntax": "Get-PnPTeamsUser -Team <TeamsTeamPipeBind> [-Channel <TeamsChannelPipeBind>] [-Role <String>]",
+    "examples": [
+      "Get-PnPTeamsUser -Team MyTeam",
+      "Get-PnPTeamsUser -Team MyTeam -Role Owner",
+      "Get-PnPTeamsUser -Team MyTeam -Role Member",
+      "Get-PnPTeamsUser -Team MyTeam -Role Guest"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPAzureADGroup",
+    "description": "Allows to create an Azure Active Directory group. This can be either security or distribution group.",
+    "syntax": "New-PnPAzureADGroup -DisplayName <String> -Description <String> -MailNickname <String> [-Owners <String[]>] [-Members <String[]>] [-IsSecurityEnabled <SwitchParameter>] [-IsMailEnabled <SwitchParameter>] [-Force]",
+    "examples": [
+      "New-PnPAzureADGroup -DisplayName $displayName -Description $description -MailNickname $nickname",
+      "New-PnPAzureADGroup -DisplayName $displayName -Description $description -MailNickname $nickname -Owners $arrayOfOwners -Members $arrayOfMembers",
+      "New-PnPAzureADGroup -DisplayName $displayName -Description $description -MailNickname $nickname -IsSecurityEnabled -IsMailEnabled"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPEntraIDGroup",
+    "description": "This is an alias forNew-PnPAzureADGroup.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "New-PnPMicrosoft365Group",
+    "description": "Allows to create a new Microsoft 365 Group. It can have an assigned membership or a dynamically defined membership.",
+    "syntax": "New-PnPMicrosoft365Group -DisplayName <String> -Description <String> -MailNickname <String>\n [-Owners <String[]>] [-Members <String[]>] [-IsPrivate] [-LogoPath <String>] [-CreateTeam] [-HideFromAddressLists <Boolean>] [-HideFromOutlookClients <Boolean>] [-ResourceBehaviorOptions <TeamResourceBehaviorOptions>] [-MailEnabled <Boolean>] [-Force] [-SensitivityLabels <GUID[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname",
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname -Owners \"owner1@domain.com\" -Members \"member1@domain.com\"",
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname -IsPrivate",
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname -Owners $arrayOfOwners -Members $arrayOfMembers -IsPrivate",
+      "New-PnPMicrosoft365Group -DisplayName \"myPnPDemo1\" -Description $description -MailNickname $nickname -Owners $arrayOfOwners -Members $arrayOfMembers -IsPrivate -ResourceBehaviorOptions WelcomeEmailDisabled, HideGroupInOutlook",
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname -IsPrivate -SensitivityLabels \"bc98af29-59eb-4869-baaa-9a8dff631aa4\"",
+      "New-PnPMicrosoft365Group -DisplayName $displayName -Description $description -MailNickname $nickname -DynamicMembershipRule \"(user.department -eq \"\"HR\"\")\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPMicrosoft365GroupSettings",
+    "description": "Allows to create a new Microsoft 365 Group setting for a specific group or the tenant.",
+    "syntax": "New-PnPMicrosoft365GroupSettings -Identity <Microsoft365GroupPipeBind> -DisplayName <String> -TemplateId <String> -Values <Hashtable>",
+    "examples": [
+      "New-PnPMicrosoft365GroupSettings -DisplayName \"Group.Unified\" -TemplateId \"62375ab9-6b52-47ed-826b-58e47e0e304b\" -Values @{\"GuestUsageGuidelinesUrl\"=\"https://privacy.contoso.com/privacystatement\";\"EnableMSStandardBlockedWords\"=\"true\"}",
+      "New-PnPMicrosoft365GroupSettings -Identity $groupId -DisplayName \"Group.Unified.Guest\" -TemplateId \"08d542b9-071f-4e16-94b0-74abb372e3d9\" -Values @{\"AllowToAddGuests\"=\"false\"}"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTeamsApp",
+    "description": "Allows to add an app to the Teams App Catalog.",
+    "syntax": "New-PnPTeamsApp -Path <String>",
+    "examples": [
+      "New-PnPTeamsApp -Path c:\\myapp.zip"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTeamsTeam",
+    "description": "Allows to create new team in Microsoft Teams or to teamify an existing Microsoft 365 Group. If the Microsoft 365 Group does not exist yet, it will create it first and then add a Microsoft Teams team to the group.",
+    "syntax": "New-PnPTeamsTeam -GroupId <String> [-AllowAddRemoveApps <Boolean>]\n [-AllowChannelMentions <Boolean>] [-AllowCreateUpdateChannels <Boolean>]\n [-AllowCreateUpdateRemoveConnectors <Boolean>] [-AllowCreateUpdateRemoveTabs <Boolean>]\n [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>] [-AllowGiphy <Boolean>]\n [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>]\n [-Classification <String>] [-Owners <String[]>] [-Members <String[]>]",
+    "examples": [
+      "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -AllowCreateUpdateRemoveTabs $false -AllowUserDeleteMessages $false",
+      "New-PnPTeamsTeam -GroupId $groupId",
+      "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -AllowCreateUpdateRemoveTabs $false -AllowUserDeleteMessages $false -ResourceBehaviorOptions WelcomeEmailDisabled",
+      "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -AllowCreateUpdateRemoveTabs $false -AllowUserDeleteMessages $false -ResourceBehaviorOptions WelcomeEmailDisabled, HideGroupInOutlook",
+      "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -Owners \"user1@contoso.onmicrosoft.com\",\"user2@contoso.onmicrosoft.com\" -Members \"user3@contoso.onmicrosoft.com\"",
+      "New-PnPTeamsTeam -DisplayName \"myPnPDemo1\" -Visibility Private -Owners \"user1@contoso.onmicrosoft.com\",\"user2@contoso.onmicrosoft.com\" -Members \"user3@contoso.onmicrosoft.com\" -SensitivityLabels \"bc98af29-59eb-4869-baaa-9a8dff631aa4\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamNoGroupSite",
+    "description": "Allows to create a new site without a Microsoft 365 group in-memory object.",
+    "syntax": "New-PnPTenantSequenceTeamNoGroupSite -Url <String> -Title <String> -TimeZoneId <UInt32> [-Language <UInt32>]\n [-Owner <String>] [-Description <String>] [-HubSite] [-TemplateIds <String[]>]",
+    "examples": [
+      "$site = New-PnPTenantSequenceTeamNoGroupSite -Url \"/sites/MyTeamSite\" -Title \"My Team Site\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamNoGroupSubSite",
+    "description": "Allows to create a new team site subsite with no Microsoft 365 group object.",
+    "syntax": "New-PnPTenantSequenceTeamNoGroupSubSite -Url <String> -Title <String> -TimeZoneId <UInt32> [-Language <UInt32>]\n [-Description <String>] [-TemplateIds <String[]>] [-QuickLaunchDisabled]\n [-UseDifferentPermissionsFromParentSite]",
+    "examples": [
+      "$site = New-PnPTenantSequenceTeamNoGroupSubSite -Url \"MyTeamSubsite\" -Title \"My Team Site\" -TimeZoneId 4"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceTeamSite",
+    "description": "Allows to create a new team site object.",
+    "syntax": "New-PnPTenantSequenceTeamSite -Alias <String> -Title <String> [-Description <String>] [-DisplayName <String>]\n [-Classification <String>] [-Public] [-HubSite] [-TemplateIds <String[]>]",
+    "examples": [
+      "$site = New-PnPTenantSequenceTeamSite -Alias \"MyTeamSite\" -Title \"My Team Site\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroup",
+    "description": "Allows to remove Azure Active Directory group.",
+    "syntax": "Remove-PnPAzureADGroup -Identity <AzureADGroupPipeBind>",
+    "examples": [
+      "Remove-PnPAzureADGroup -Identity $groupId",
+      "Remove-PnPAzureADGroup -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroupMember",
+    "description": "Allows to remove members from Azure Active Directory group.",
+    "syntax": "Remove-PnPAzureADGroupMember -Identity <AzureADGroupPipeBind> -Users <String[]>",
+    "examples": [
+      "Remove-PnPAzureADGroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADGroupOwner",
+    "description": "Allows to remove owners from Azure Active Directory group.",
+    "syntax": "Remove-PnPAzureADGroupOwner -Identity <AzureADGroupPipeBind> -Users <String[]> [-Verbose]",
+    "examples": [
+      "Remove-PnPAzureADGroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPDeletedMicrosoft365Group",
+    "description": "Allows to permanently remove a deleted Microsoft 365 Group.",
+    "syntax": "Remove-PnPDeletedMicrosoft365Group -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Remove-PnPDeletedMicrosoft365Group -Identity 38b32e13-e900-4d95-b860-fb52bc07ca7f",
+      "$group = Get-PnPDeletedMicrosoft365Group -Identity 38b32e13-e900-4d95-b860-fb52bc07ca7f\nRemove-PnPDeletedMicrosoft365Group -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroup",
+    "description": "This is an alias forRemove-PnPAzureADGroup.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroupMember",
+    "description": "This is an alias forRemove-PnPAzureADGroupMember.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDGroupOwner",
+    "description": "This is an alias forRemove-PnPAzureADGroupOwner.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365Group",
+    "description": "Allows to remove Microsoft 365 Group.",
+    "syntax": "Remove-PnPMicrosoft365Group -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Remove-PnPMicrosoft365Group -Identity $groupId",
+      "Remove-PnPMicrosoft365Group -Identity $group",
+      "Get-PnPMicrosoft365Group | ? Visibility -eq \"Public\" | Remove-PnPMicrosoft365Group"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupMember",
+    "description": "Allows to remove members from a specified Microsoft 365 Group.",
+    "syntax": "Remove-PnPMicrosoft365GroupMember -Identity <Microsoft365GroupPipeBind> -Users <String[]>",
+    "examples": [
+      "Remove-PnPMicrosoft365GroupMember -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupOwner",
+    "description": "Allows to remove owners from a specified Microsoft 365 Group.",
+    "syntax": "Remove-PnPMicrosoft365GroupOwner -Identity <Microsoft365GroupPipeBind> -Users <String[]>",
+    "examples": [
+      "Remove-PnPMicrosoft365GroupOwner -Identity \"Project Team\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupPhoto",
+    "description": "Allows to remove profile photo from a specified Microsoft 365 Group.",
+    "syntax": "Remove-PnPMicrosoft365GroupPhoto -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Remove-PnPMicrosoft365GroupPhoto -Identity \"Project Team\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPMicrosoft365GroupSettings",
+    "description": "Allows to remove Microsoft 365 Group settings from the tenant or the specified group.",
+    "syntax": "Remove-PnPMicrosoft365GroupSettings -Identity <string> -Group <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Remove-PnPMicrosoft365GroupSettings -Identity \"10f686b9-9deb-4ad8-ba8c-1f9b7a00a22b\"",
+      "Remove-PnPMicrosoft365GroupSettings -Identity \"10f686b9-9deb-4ad8-ba8c-1f9b7a00a22b\" -Group $groupId"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsApp",
+    "description": "Allows to remove an app from the Teams AppCatalog.",
+    "syntax": "Remove-PnPTeamsApp -Identity <TeamsAppPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPTeamsApp -Identity ac139d8b-fa2b-4ffe-88b3-f0b30158b58b",
+      "Remove-PnPTeamsApp -Identity \"My Teams App\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsChannel",
+    "description": "Allows to remove a channel from specified team.",
+    "syntax": "Remove-PnPTeamsChannel -Team <TeamsTeamPipeBind> -Identity <TeamsChannelPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPTeamsChannel -Team 4efdf392-8225-4763-9e7f-4edeb7f721aa -Identity \"My Channel\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsChannelUser",
+    "description": "Allows to remove a user from specified private channel.",
+    "syntax": "Remove-PnPTeamsChannelUser -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -Identity <TeamsChannelMemberPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Identity MCMjMiMjMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIyMxOTowMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMEB0aHJlYWQuc2t5cGUjIzAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMA==",
+      "Remove-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Identity 00000000-0000-0000-0000-000000000000",
+      "Remove-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Channel\" -Identity john.doe@contoso.com -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTab",
+    "description": "Allows to remove a tab from channel.",
+    "syntax": "Remove-PnPTeamsTab -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -Identity <TeamsTabPipeBind>\n [-Force]",
+    "examples": [
+      "Remove-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel \"General\" -Identity Wiki",
+      "Remove-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel 19:796d063b63e34497aeaf092c8fb9b44e@thread.skype -Identity Wiki",
+      "Remove-PnPTeamsTab -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Channel 19:796d063b63e34497aeaf092c8fb9b44e@thread.skype -Identity fcef815d-2e8e-47a5-b06b-9bebba5c7852"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTag",
+    "description": "Removes the Tag with the specified Id from the Teams team.",
+    "syntax": "Remove-PnPTeamsTag -Team <TeamsTeamPipeBind> -Identity <TeamsTagPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPTeamsTag -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Identity \"ZmY1ZjdmMjctZDhiNy00MWRkLTk2ZDQtYzcyYmVhMWIwOGYxIyM3ZTVhNGRmZS1kNWNlLTRkOTAtODM4MC04ZDIxM2FkYzYzOGIjI3RiVlVpR01rcg==\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsTeam",
+    "description": "Removes a Microsoft Teams Team. This also removes the associated Microsoft 365 Group, and is functionally identical toRemove-PnPMicrosoft365Group",
+    "syntax": "Remove-PnPTeamsTeam -Identity <TeamsTeamPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPTeamsTeam -Identity 5beb63c5-0571-499e-94d5-3279fdd9b6b5",
+      "Remove-PnPTeamsTeam -Identity testteam"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTeamsUser",
+    "description": "Allows to remove user from a team.",
+    "syntax": "Remove-PnPTeamsUser -Team <TeamsTeamPipeBind> -User <String> [-Role <String>] [-Force]",
+    "examples": [
+      "Remove-PnPTeamsUser -Team MyTeam -User john@doe.com",
+      "Remove-PnPTeamsUser -Team MyTeam -User john@doe.com -Role Owner",
+      "Remove-PnPTeamsUser -Team MyTeam -Users \"john@doe.com\",\"jane@doe.com\",\"mark@doe.com\""
+    ]
+  },
+  {
+    "cmdlet": "Reset-PnPMicrosoft365GroupExpiration",
+    "description": "Allows to extend the Microsoft 365 Group expiration date by the number of days defined in the group expiration policy.",
+    "syntax": "Reset-PnPMicrosoft365GroupExpiration -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Reset-PnPMicrosoft365GroupExpiration"
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPDeletedMicrosoft365Group",
+    "description": "Restores a deleted Microsoft 365 Group based on its ID",
+    "syntax": "Restore-PnPDeletedMicrosoft365Group -Identity <Microsoft365GroupPipeBind>",
+    "examples": [
+      "Restore-PnPDeletedMicrosoft365Group -Identity 38b32e13-e900-4d95-b860-fb52bc07ca7f",
+      "$group = Get-PnPDeletedMicrosoft365Group -Identity 38b32e13-e900-4d95-b860-fb52bc07ca7f\nRestore-PnPDeletedMicrosoft365Group -Identity $group"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAzureADGroup",
+    "description": "This cmdlet sets the properties of a specific Azure Active Directory group. This can be a security, distribution or Microsoft 365 group.",
+    "syntax": "Set-PnPAzureADGroup -Identity <AzureADGroupPipeBind> [-DisplayName <String>] [-Description <String>]\n [-Owners <String[]>] [-Members <String[]>] [-SecurityEnabled] [-MailEnabled] \n [-HideFromAddressLists <Boolean>] [-HideFromOutlookClients <Boolean>]",
+    "examples": [
+      "Set-PnPAzureADGroup -Identity $group -DisplayName \"My DisplayName\"",
+      "Set-PnPAzureADGroup -Identity $groupId -Description \"My Description\" -DisplayName \"My DisplayName\"",
+      "Set-PnPAzureADGroup -Identity $group -Owners demo@contoso.com"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPEntraIDGroup",
+    "description": "This is an alias forSet-PnPAzureADGroup.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Set-PnPMicrosoft365Group",
+    "description": "Allows to modify Microsoft 365 Group.",
+    "syntax": "Set-PnPMicrosoft365Group -Identity <Microsoft365GroupPipeBind> [-DisplayName <String>] [-Description <String>] [-Owners <String[]>] [-Members <String[]>] [-IsPrivate] [-LogoPath <String>] [-CreateTeam]  [-HideFromAddressLists <Boolean>] [-HideFromOutlookClients <Boolean>] [-RequireSenderAuthenticationEnabled <Boolean>] [-AutoSubscribeNewMembers <Boolean>] [-MailNickname <String>] [-SensitivityLabels <GUID[]>] [-Verbose]",
+    "examples": [
+      "Set-PnPMicrosoft365Group -Identity $group -DisplayName \"My DisplayName\"",
+      "Set-PnPMicrosoft365Group -Identity $groupId -Description \"My Description\" -DisplayName \"My DisplayName\"",
+      "Set-PnPMicrosoft365Group -Identity $group -GroupLogoPath \".\\MyLogo.png\"",
+      "Set-PnPMicrosoft365Group -Identity $group -IsPrivate:$false",
+      "Set-PnPMicrosoft365Group -Identity $group -Owners demo@contoso.com",
+      "Set-PnPMicrosoft365Group -Identity $group -SensitivityLabels \"bc98af29-59eb-4869-baaa-9a8dff631aa4\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMicrosoft365GroupSettings",
+    "description": "Allows to modify Microsoft 365 Group settings for tenant or specified group.",
+    "syntax": "Set-PnPMicrosoft365GroupSettings -Identity <string> [-Values <Hashtable>] [-Group <Microsoft365GroupPipeBind>]",
+    "examples": [
+      "Set-PnPMicrosoft365GroupSettings -Identity $groupSettingId -Values @{\"AllowToAddGuests\"=\"true\"}",
+      "Set-PnPMicrosoft365GroupSettings -Identity $groupSettingId -Values @{\"AllowToAddGuests\"=\"true\"} -Group $groupId"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamifyPromptHidden",
+    "description": "This cmdlet hides the teamify prompt for the current site.",
+    "syntax": "Set-PnPTeamifyPromptHidden [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamifyPromptHidden"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsChannel",
+    "description": "Allows to update an existing Teams Channel.",
+    "syntax": "Set-PnPTeamsChannel -Team <TeamsTeamPipeBind> -Identity <TeamsChannelPipeBind> [-DisplayName <String>] [-Description <String>] [-IsFavoriteByDefault <Boolean>] [-AllowNewMessageFromBots <Boolean>] [-AllowNewMessageFromConnectors <Boolean>] [-ReplyRestriction <TeamChannelModerationSettingReplyRestriction>] [-UserNewMessageRestriction <TeamChannelModerationSettingNewMessageRestriction>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamsChannel -Team \"MyTeam\" -Channel \"MyChannel\" -DisplayName \"My Channel\"",
+      "Set-PnPTeamsChannel -Team \"MyTeam\" -Channel \"MyChannel\" -IsFavoriteByDefault $true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnpTeamsChannelUser",
+    "description": "Allows to update the role of a user in an existing Microsoft Teams private channel.",
+    "syntax": "Set-PnPTeamsChannelUser -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -Identity <TeamsChannelMemberPipeBind> -Role <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamsChannelUser -Team 4efdf392-8225-4763-9e7f-4edeb7f721aa -Channel \"19:796d063b63e34497aeaf092c8fb9b44e@thread.skype\" -Identity MCMjMiMjMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIyMxOTowMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMEB0aHJlYWQuc2t5cGUjIzAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMA== -Role Owner",
+      "Set-PnPTeamsChannelUser -Team \"My Team\" -Channel \"My Private Channel\" -Identity john@doe.com -Role Member"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTab",
+    "description": "Allows to update Teams tab settings.",
+    "syntax": "Set-PnPTeamsTab -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> [-Identity <TeamsTabPipeBind>]\n [-DisplayName <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamsTab -Team \"MyTeam\" -Channel \"My Channel\" -Identity \"Wiki\" -DisplayName \"Channel Wiki\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTag",
+    "description": "Allows to set a Teams tag in Microsoft Teams.",
+    "syntax": "Set-PnPTeamsTag -Team <TeamsTeamPipeBind> -Identity <TeamsTagPipeBind> -DisplayName <String>",
+    "examples": [
+      "Set-PnPTeamsTag -Team 5beb63c5-0571-499e-94d5-3279fdd9b6b5 -Identity \"ZmY1ZjdmMjctZDhiNy00MWRkLTk2ZDQtYzcyYmVhMWIwOGYxIyM3ZTVhNGRmZS1kNWNlLTRkOTAtODM4MC04ZDIxM2FkYzYzOGIjI3RiVlVpR01rcg==\" -DisplayName \"Updated Tag\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeam",
+    "description": "Allows to update team settings.",
+    "syntax": "Set-PnPTeamsTeam -Identity <TeamsTeamPipeBind> [-DisplayName <String>] [-Description <String>]\n [-Visibility <TeamVisibility>] [-AllowAddRemoveApps <Boolean>] [-AllowChannelMentions <Boolean>]\n [-AllowCreateUpdateChannels <Boolean>] [-AllowCreateUpdateRemoveConnectors <Boolean>]\n [-AllowCreateUpdateRemoveTabs <Boolean>] [-AllowCustomMemes <Boolean>] [-AllowDeleteChannels <Boolean>]\n [-AllowGiphy <Boolean>] [-AllowGuestCreateUpdateChannels <Boolean>] [-AllowGuestDeleteChannels <Boolean>]\n [-AllowOwnerDeleteMessages <Boolean>] [-AllowStickersAndMemes <Boolean>] [-AllowTeamMentions <Boolean>]\n [-AllowUserDeleteMessages <Boolean>] [-AllowUserEditMessages <Boolean>]\n [-GiphyContentRating <TeamGiphyContentRating>] [-ShowInTeamsSearchAndSuggestions <Boolean>] [-AllowCreatePrivateChannels <Boolean>]\n [-Classification <String>]",
+    "examples": [
+      "Set-PnPTeamsTeam -Identity 'MyTeam' -DisplayName 'My Team'",
+      "Set-PnPTeamsTeam -Identity \"baba9192-55be-488a-9fb7-2e2e76edbef2\" -Visibility Public",
+      "Set-PnPTeamsTeam -Identity \"My Team\" -AllowTeamMentions $false -AllowChannelMentions $true -AllowDeleteChannels $false",
+      "Set-PnPTeamsTeam -Identity \"My Team\" -GiphyContentRating Moderate"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeamArchivedState",
+    "description": "Allows to update the archived state of a team.",
+    "syntax": "Set-PnPTeamsTeamArchivedState -Identity <TeamsTeamPipeBind> -Archived <Boolean>\n [-SetSiteReadOnlyForMembers <Boolean>]  [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamsTeamArchivedState -Identity \"My Team\" -Archived $true",
+      "Set-PnPTeamsTeamArchivedState -Identity \"My Team\" -Archived $false",
+      "Set-PnPTeamsTeamArchivedState -Identity \"My Team\" -Archived $true -SetSiteReadOnlyForMembers $true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTeamsTeamPicture",
+    "description": "Notice that this cmdlet will immediately return but it can take a few hours before the changes are reflected in Microsoft Teams.",
+    "syntax": "Set-PnPTeamsTeamPicture -Team <TeamsTeamPipeBind> -Path <String>  [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTeamsTeamPicture -Team \"MyTeam\" -Path \"c:\\myimage.jpg\""
+    ]
+  },
+  {
+    "cmdlet": "Submit-PnPTeamsChannelMessage",
+    "description": "Allows to send a message to a Microsoft Teams Channel.",
+    "syntax": "Submit-PnPTeamsChannelMessage -Team <TeamsTeamPipeBind> -Channel <TeamsChannelPipeBind> -Message <String>\n [-ContentType <TeamChannelMessageContentType>] [-Important]",
+    "examples": [
+      "Submit-PnPTeamsChannelMessage -Team MyTestTeam -Channel \"My Channel\" -Message \"A new message\"",
+      "Submit-PnPTeamsChannelMessage -Team MyTestTeam -Channel \"My Channel\" -Message \"<strong>A bold new message</strong>\" -ContentType Html"
+    ]
+  },
+  {
+    "cmdlet": "Sync-PnPAppToTeams",
+    "description": "Allows to synchronize an app from the tenant app catalog to the Microsoft Teams app catalog.",
+    "syntax": "Sync-PnPAppToTeams [-Identity] <AppMetadataPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Sync-PnPAppToTeams -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe"
+    ]
+  },
+  {
+    "cmdlet": "Test-PnPMicrosoft365GroupAliasIsUsed",
+    "description": "This command allows you to test if a provided alias is used or free, helps decide if it can be used as part of connecting an Microsoft 365 group to an existing classic site collection.",
+    "syntax": "Test-PnPMicrosoft365GroupAliasIsUsed -Alias <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Test-PnPMicrosoft365GroupAliasIsUsed -Alias \"MyGroup\""
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPTeamsApp",
+    "description": "Allows to update an existing app in the Teams App Catalog.",
+    "syntax": "Update-PnPTeamsApp -Identity <TeamsAppPipeBind> -Path <String>",
+    "examples": [
+      "Update-PnPTeamsApp -Identity 4efdf392-8225-4763-9e7f-4edeb7f721aa -Path c:\\myapp.zip"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPTeamsUser",
+    "description": "This cmdlet updates the role of the specified user in the selected Teams instance to Member or Owner.",
+    "syntax": "Update-PnPTeamsUser -Team <TeamsTeamPipeBind> -User <String> -Role <String>",
+    "examples": [
+      "Update-PnPTeamsUser -Team MyTeam -User john@doe.com -Role Owner",
+      "Update-PnPTeamsUser -Team MyTeam -User john@doe.com -Role Member",
+      "Update-PnPTeamsUser -Team a0c0a395-4ba6-4fff-958a-000000506d18 -User john@doe.com -Role Member -Force"
+    ]
+  }
+]

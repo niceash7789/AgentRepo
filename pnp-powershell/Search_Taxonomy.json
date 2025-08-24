@@ -1,0 +1,901 @@
+[
+  {
+    "cmdlet": "Add-PnPAvailableSiteClassification",
+    "description": "Allows to add classic site classification values.",
+    "syntax": "Add-PnPAvailableSiteClassification -Classifications <System.Collections.Generic.List`1[System.String]>  [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPAvailableSiteClassification -Classifications \"Top Secret\"",
+      "Add-PnPAvailableSiteClassification -Classifications \"Top Secret\",\"HBI\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPContentType",
+    "description": "Adds a new content type to a site. To create a content type in the modern Content Type Gallery, first connect to the content type hub site for the tenant.",
+    "syntax": "Add-PnPContentType -Name <String> [-ContentTypeId <String>] [-Description <String>] [-Group <String>]\n [-ParentContentType <ContentType>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPContentType -Name \"Project Document\" -Description \"Use for Contoso projects\" -Group \"Contoso Content Types\" -ParentContentType $ct",
+      "Add-PnPContentType -Name \"Project Document\" -Description \"Use for Contoso projects\" -Group \"Contoso Content Types\" -ParentContentType (Get-PnPContentType -Identity 0x0101) -DocumentTemplate \"/_cts/Project Document/template.docx\"",
+      "Add-PnPContentType -Name \"Project Item\" -Description \"Use for Contoso projects\" -Group \"Contoso Content Types\"",
+      "Add-PnPContentType -Name \"Project Item\"",
+      "Add-PnPContentType -Name \"Project Document\" -Description \"Use for Contoso projects\" -Group \"Contoso Content Types\" -ContentTypeId 0x010100CD5BDB7DDE03324794E155CE37E4B6BB"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPContentTypesFromContentTypeHub",
+    "description": "Allows to add content types from content type hub site to current site. In case the same content type is already present on the current site then the latest published version will be used.",
+    "syntax": "Add-PnPContentTypesFromContentTypeHub -ContentTypes List<String> [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPContentTypesFromContentTypeHub -ContentTypes \"0x0101\", \"0x01\"",
+      "Add-PnPContentTypesFromContentTypeHub -ContentTypes \"0x010057C83E557396744783531D80144BD08D\" -Site https://tenant.sharepoint.com/sites/HR"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPContentTypeToDocumentSet",
+    "description": "Allows to add a content type to a document set.",
+    "syntax": "Add-PnPContentTypeToDocumentSet -ContentType <ContentTypePipeBind[]> -DocumentSet <DocumentSetPipeBind>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPContentTypeToDocumentSet -ContentType \"Test CT\" -DocumentSet \"Test Document Set\"",
+      "$docset = Get-PnPDocumentSetTemplate -Identity \"Test Document Set\"\n$ct = Get-PnPContentType -Identity \"Test CT\"\nAdd-PnPContentTypeToDocumentSet -ContentType $ct -DocumentSet $docset",
+      "Add-PnPContentTypeToDocumentSet -ContentType 0x0101001F1CEFF1D4126E4CAD10F00B6137E969 -DocumentSet 0x0120D520005DB65D094035A241BAC9AF083F825F3B"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPContentTypeToList",
+    "description": "Allows to add content type to list. By specifying-DefaultContentTypeoption it is possible set the newly added content type as default.",
+    "syntax": "Add-PnPContentTypeToList -List <ListPipeBind> -ContentType <ContentTypePipeBind> [-DefaultContentType]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPContentTypeToList -List \"Documents\" -ContentType \"Project Document\" -DefaultContentType"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPField",
+    "description": "Adds a field (a column) to a list or as a site column. To add a column of type Managed Metadata use the Add-PnPTaxonomyField cmdlet.",
+    "syntax": "Add-PnPField [-List <ListPipeBind>] -DisplayName <String> -InternalName <String> -Type <FieldType>\n [-Id <Guid>] [-Formula <String>] [-Choices <String>] [-AddToDefaultView] [-Required] [-Group <String>] [-ClientSideComponentId <Guid>]\n [-ClientSideComponentProperties <String>] [-AddToAllContentTypes] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPField -Type Calculated -InternalName \"C1\" -DisplayName \"C1\" -Formula \"=[Title]\"",
+      "Add-PnPField -List \"Demo list\" -DisplayName \"Location\" -InternalName \"SPSLocation\" -Type Choice -Group \"Demo Group\" -AddToDefaultView -Choices \"Stockholm\",\"Helsinki\",\"Oslo\"",
+      "Add-PnPField -List \"Demo list\" -DisplayName \"Speakers\" -InternalName \"SPSSpeakers\" -Type MultiChoice -Group \"Demo Group\" -AddToDefaultView -Choices \"Obiwan Kenobi\",\"Darth Vader\", \"Anakin Skywalker\"",
+      "Add-PnPField -List \"Demo List\" -Field \"MyTestCol\"",
+      "Add-PnPField -Type Choice -Choices \"PnP\",\"Parker\",\"Sharing Is Caring\" -DisplayName \"My Test Column\" -InternalName \"MyTestCol\"",
+      "Add-PnPField -Type Calculated -ResultType Number -DisplayName \"My Calculated Column\" -InternalName \"MyCalcCol\" -Formula \"=Today()\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFieldFromXml",
+    "description": "Allows to add new field by specifying its definition in CAML/XML format to list or site columns.",
+    "syntax": "Add-PnPFieldFromXml [-List <ListPipeBind>] [-FieldXml] <String> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "$xml = '<Field Type=\"Text\" Name=\"PSCmdletTest\" DisplayName=\"PSCmdletTest\" ID=\"{27d81055-f208-41c9-a976-61c5473eed4a}\" Group=\"Test\" Required=\"FALSE\" StaticName=\"PSCmdletTest\" />'\nAdd-PnPFieldFromXml -FieldXml $xml",
+      "$xml = '<Field Type=\"Text\" Name=\"PSCmdletTest\" DisplayName=\"PSCmdletTest\" ID=\"{27d81055-f208-41c9-a976-61c5473eed4a}\" Group=\"Test\" Required=\"FALSE\" StaticName=\"PSCmdletTest\" />'\nAdd-PnPFieldFromXml -List \"Demo List\" -FieldXml $xml"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFieldToContentType",
+    "description": "Allows to add a field from site columns to an existing content type.",
+    "syntax": "Add-PnPFieldToContentType -Field <FieldPipeBind> -ContentType <ContentTypePipeBind> [-Required] [-Hidden]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFieldToContentType -Field \"Project_Name\" -ContentType \"Project Document\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFileSensitivityLabel",
+    "description": "The Add-PnPFileSensitivityLabel cmdlet adds the sensitivity label information for a file in SharePoint using Microsoft Graph. It takes a URL as input, decodes it, and specifically encodes the '+' character if it is part of the filename. It also takes the sensitivity label Id , assignment method and justification text values as input.",
+    "syntax": "Add-PnPFileSensitivityLabel -Identity <String> -SensitivityLabelId <Guid> -AssignmentMethod <Enum> -JustificationText <string>",
+    "examples": [
+      "Add-PnPFileSensitivityLabel -Identity \"/sites/Marketing/Shared Documents/Report.pptx\" -SensitivityLabelId \"b5b11b04-05b3-4fe4-baa9-b7f5f65b8b64\" -JustificationText \"Previous label no longer applies\" -AssignmentMethod Privileged",
+      "Add-PnPFileSensitivityLabel -Identity \"/sites/Marketing/Shared Documents/Report.pptx\" -SensitivityLabelId \"\" -JustificationText \"Previous label no longer applies\" -AssignmentMethod Privileged"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteClassification",
+    "description": "This is an alias forAdd-PnPAvailableSiteClassification.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPTaxonomyField",
+    "description": "Adds a taxonomy/managed metadata field to a list or as a site column.",
+    "syntax": "Add-PnPTaxonomyField [-List <ListPipeBind>] -DisplayName <String> -InternalName <String> -TermSetPath <String>\n [-TermPathDelimiter <String>] [-Group <String>] [-Id <Guid>] [-AddToDefaultView] [-MultiValue]\n [-Required] [-FieldOptions <AddFieldOptions>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPTaxonomyField -DisplayName \"Test\" -InternalName \"Test\" -TermSetPath \"TestTermGroup|TestTermSet\"",
+      "Add-PnPTaxonomyField -DisplayName \"Test\" -InternalName \"Test\" -TaxonomyItemId \"0e5fe3c6-3e6a-4d25-9f48-82a655f15992\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantRestrictedSearchAllowedList",
+    "description": "Adds site URLs to the allowed list when Restricted SharePoint Search is enabled. The URLs can be provided directly as a string array or read from a CSV file. At present, a maximum of 100 sites can be added to the allowed list.",
+    "syntax": "Add-PnPTenantRestrictedSearchAllowedList [-SitesListFileUrl <String>] [-SitesList <String[]>] [-ContainsHeaders <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPTenantRestrictedSearchAllowedList -SitesListFileUrl \"C:\\temp\\sitelist.csv\" -ContainsHeader",
+      "Add-PnPTenantRestrictedSearchAllowedList -SitesListFileUrl \"C:\\temp\\sitelist.csv\"",
+      "Add-PnPTenantRestrictedSearchAllowedList -SitesList @(\"https://contoso.sharepoint.com/sites/Company311\",\"https://contoso.sharepoint.com/sites/contosoportal\")"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTermToTerm",
+    "description": "This cmdlet adds a new taxonomy term as a child term to an existing term.",
+    "syntax": "Add-PnPTermToTerm -ParentTermId <Guid> -Name <String> [-Id <Guid>] [-Lcid <Int32>]\n  [-LocalCustomProperties <Hashtable>]\n [-TermStore <Guid>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPTermToTerm -ParentTermId 2d1f298b-804a-4a05-96dc-29b667adec62 -Name SubTerm -CustomProperties @{\"Department\"=\"Marketing\"}",
+      "$parentTerm = Get-PnPTerm -Name Marketing -TermSet Departments -TermGroup Corporate\nAdd-PnPTermToTerm -ParentTermId $parentTerm.Id -Name \"Conference Team\""
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPListItemAsRecord",
+    "description": "Allows to un declares a list item in a list as a record.",
+    "syntax": "Clear-PnPListItemAsRecord [-List] <ListPipeBind> -Identity <ListItemPipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPListItemAsRecord -List \"Documents\" -Identity 4"
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPSiteClassification",
+    "description": "Allows to disable site classifications for the tenant.",
+    "syntax": "Disable-PnPSiteClassification",
+    "examples": [
+      "Disable-PnPSiteClassification"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPSiteClassification",
+    "description": "Allows to enable site classifications for the tenant.",
+    "syntax": "Enable-PnPSiteClassification -Classifications <System.Collections.Generic.List`1[System.String]>\n -DefaultClassification <String> [-UsageGuidelinesUrl <String>]",
+    "examples": [
+      "Enable-PnPSiteClassification -Classifications \"HBI\",\"LBI\",\"Top Secret\" -DefaultClassification \"LBI\"",
+      "Enable-PnPSiteClassification -Classifications \"HBI\",\"LBI\",\"Top Secret\" -UsageGuidelinesUrl https://aka.ms/m365pnp"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPTaxonomy",
+    "description": "Allows to export a taxonomy to either the output or to a file.",
+    "syntax": "Export-PnPTaxonomy [-TermSetId <Guid>] [-IncludeID] [-ExcludeDeprecated] [-Path <String>] [-TermStoreName <String>] [-Force]\n [-Delimiter <String>] [-Lcid <Int32>] [-Encoding <Encoding>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPTaxonomy",
+      "Export-PnPTaxonomy -Path c:\\output.txt",
+      "Export-PnPTaxonomy -Path c:\\output.txt -TermSetId f6f43025-7242-4f7a-b739-41fa32847254",
+      "Export-PnPTaxonomy -Path c:\\output.txt -TermSetId f6f43025-7242-4f7a-b739-41fa32847254 -Lcid 1044"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPTermGroupToXml",
+    "description": "Allows to export a taxonomy TermGroup to either the output or to an XML file.",
+    "syntax": "Export-PnPTermGroupToXml [-Identity <TermGroupPipeBind>] [-Out <String>] [-FullTemplate] [-Encoding <Encoding>]\n [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPTermGroupToXml",
+      "Export-PnPTermGroupToXml -Out output.xml",
+      "Export-PnPTermGroupToXml -Out c:\\output.xml -Identity \"Test Group\"",
+      "$termgroup = Get-PnPTermGroup -Identity Test\n$termgroup | Export-PnPTermGroupToXml -Out c:\\output.xml"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAvailableSensitivityLabel",
+    "description": "This cmdlet allows retrieval of the available Microsoft Purview sensitivity labels in the currently connected tenant. You can retrieve all the labels, a specific label or all the labels available to a specific user. When connected with a delegate token, it will return the Microsoft Purview sensitivity labels for the user you logged on with. When connecting with an application token, it will return all available Microsoft Purview sensitivity labels on the tenant.",
+    "syntax": "Get-PnPAvailableSensitivityLabel [-Identity <Guid>] [-User <AzureADUserPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAvailableSensitivityLabel",
+      "Get-PnPAvailableSensitivityLabel -User johndoe@tenant.onmicrosoft.com",
+      "Get-PnPAvailableSensitivityLabel -Identity 47e66706-8627-4979-89f1-fa7afeba2884"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAvailableSiteClassification",
+    "description": "This cmdlet allows for retrieving the configuration of the classic site classifications configured within the tenant. For the new Microsoft Purview sensitivity labels, useGet-PnPAvailableSensitivityLabelinstead.",
+    "syntax": "Get-PnPAvailableSiteClassification [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAvailableSiteClassification"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPCompatibleHubContentTypes",
+    "description": "Allows to retrieve list of content types present in content type hub site that are possible to be added to the current site or given list.",
+    "syntax": "Get-PnPCompatibleHubContentTypes -WebUrl <String> [-ListUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPCompatibleHubContentTypes -WebUrl 'https://contoso.sharepoint.com/web1'",
+      "Get-PnPCompatibleHubContentTypes -WebUrl 'https://contoso.sharepoint.com/web1' -ListUrl 'https://contoso.sharepoint.com/web1/Shared Documents'"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContentType",
+    "description": "Allows to get single or list of content types from site or list. Use theIdentityoption to specify the exact content type.",
+    "syntax": "Get-PnPContentType [-Identity <ContentTypePipeBind>] [-List <ListPipeBind>] [-InSiteHierarchy] [-Includes <String[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPContentType",
+      "Get-PnPContentType -InSiteHierarchy",
+      "Get-PnPContentType -Identity \"Project Document\"",
+      "Get-PnPContentType -List \"Documents\"",
+      "Get-PnPContentType -Includes \"SchemaXml\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContentTypePublishingHubUrl",
+    "description": "Allows to retrieve the url of the Content Type Publishing Hub.",
+    "syntax": "Get-PnPContentTypePublishingHubUrl [-Connection <PnPConnection>]",
+    "examples": [
+      "$url = Get-PnPContentTypePublishingHubUrl\nConnect-PnPOnline -Url $url\nGet-PnPContentType"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContentTypePublishingStatus",
+    "description": "Allows to retrieve the publishing status of a content type present on content type hub site.",
+    "syntax": "Get-PnPContentTypePublishingStatus -ContentType <ContentTypePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPContentTypePublishingStatus -ContentType 0x0101"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPField",
+    "description": "Gets all the fields from the current site",
+    "syntax": "Get-PnPField [-List <ListPipeBind>] [[-Identity] <FieldPipeBind>] [-Group <String>] [-InSiteHierarchy]\n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPField",
+      "Get-PnPField -List \"Demo list\" -Identity \"Speakers\"",
+      "Get-PnPField -Group \"Custom Columns\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileSensitivityLabel",
+    "description": "The Get-PnPFileSensitivityLabel cmdlet retrieves the sensitivity label information for a file in SharePoint using Microsoft Graph. It takes a URL as input, decodes it, and specifically encodes the '+' character if it is part of the filename.",
+    "syntax": "Get-PnPFileSensitivityLabel -Url <String>",
+    "examples": [
+      "Get-PnPFileSensitivityLabel -Url \"/sites/Marketing/Shared Documents/Report.pptx\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileSensitivityLabelInfo",
+    "description": "The Get-PnPFileSensitivityLabelInfo cmdlet retrieves the sensitivity label information for a file in SharePoint. It takes a URL as input, decodes it, and specifically encodes the '+' character if it is part of the filename.",
+    "syntax": "Get-PnPFileSensitivityLabelInfo -Url <String>",
+    "examples": [
+      "Get-PnPFileSensitivityLabelInfo -Url \"https://contoso.sharepoint.com/sites/Marketing/Shared Documents/Report.pdf\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPInPlaceRecordsManagement",
+    "description": "Returns if $true if in place records management is active",
+    "syntax": "Get-PnPInPlaceRecordsManagement [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPInPlaceRecordsManagement"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListRecordDeclaration",
+    "description": "Allows to retrieve the record declaration settings for given list.",
+    "syntax": "Get-PnPListRecordDeclaration -List <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListRecordDeclaration -List \"Documents\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchConfiguration",
+    "description": "Allows to retrieve search configuration.",
+    "syntax": "Get-PnPSearchConfiguration [-Scope <SearchConfigurationScope>] [-Path <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchConfiguration",
+      "Get-PnPSearchConfiguration -Scope Site",
+      "Get-PnPSearchConfiguration -Scope Subscription",
+      "Get-PnPSearchConfiguration -Path searchconfig.xml -Scope Subscription",
+      "Get-PnPSearchConfiguration -Scope Site -OutputFormat ManagedPropertyMappings",
+      "Get-PnPSearchConfiguration -Scope Site -PromotedResultsToBookmarkCSV -Path bookmarks.csv",
+      "Get-PnPSearchConfiguration -Scope Site -PromotedResultsToBookmarkCSV -Path bookmarks.csv -BookmarkStatus Published",
+      "Get-PnPSearchConfiguration -Scope Subscription -PromotedResultsToBookmarkCSV -ExcludeVisualPromotedResults $false"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchCrawlLog",
+    "description": "Allows to retrieve entries from the SharePoint search crawl log. To be able to use this command you need to grant access to the crawl log via the SharePoint search admin center at https://-admin.sharepoint.com/_layouts/15/searchadmin/crawllogreadpermission.aspx.",
+    "syntax": "Get-PnPSearchCrawlLog [-LogLevel <LogLevel>] [-RowLimit <Int32>] [-Filter <String>]\n [-ContentSource <ContentSource>] [-StartDate <DateTime>] [-EndDate <DateTime>] [-RawFormat]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchCrawlLog",
+      "Get-PnPSearchCrawlLog -Filter \"https://contoso-my.sharepoint.com/personal\"",
+      "Get-PnPSearchCrawlLog -ContentSource UserProfiles",
+      "Get-PnPSearchCrawlLog -ContentSource UserProfiles -Filter \"mikael\"",
+      "Get-PnPSearchCrawlLog -ContentSource Sites -LogLevel Error -RowLimit 10",
+      "Get-PnPSearchCrawlLog -EndDate (Get-Date).AddDays(-100)",
+      "Get-PnPSearchCrawlLog -RowFilter 3 -RawFormat"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalItem",
+    "description": "This cmdlet can be used to retrieve a list of indexed external items for a specific Microsoft Search external connector. The cmdlet will return all indexed external items for the specified connector. If you want to retrieve a specific external item, you can use the Identity parameter to specify the unique identifier of the external item. It uses a Microsoft Graph query in the background to retrieve the external items. This is why it will be unable to return the Access Control Lists (ACLs) information in the external items and the properties to contain more properties than you ingested yourself.",
+    "syntax": "Get-PnPSearchExternalItem -ConnectionId <SearchExternalConnectionPipeBind> [-Identity <String>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchExternalItem -ConnectionId \"pnppowershell\" -ItemId \"12345\"",
+      "Get-PnPSearchExternalItem -ConnectionId \"pnppowershell\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalSchema",
+    "description": "This cmdlet can be used to retrieve the current schema set on a connection to an external datasource that is being indexed into Microsoft Search through a custom connector.",
+    "syntax": "Get-PnPSearchExternalSchema -ConnectionId <SearchExternalConnectionPipeBind> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchExternalSchema -ConnectionId \"pnppowershell\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchSettings",
+    "description": "Allows to retrieve search settings for a site.",
+    "syntax": "Get-PnPSearchSettings [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchSettings"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteClassification",
+    "description": "This is an alias forGet-PnPAvailableSiteClassification.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionTermStore",
+    "description": "Returns the site collection scoped term store for the currently connected to site collection. If it does not exist yet, it will return a null value.",
+    "syntax": "Get-PnPSiteCollectionTermStore [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteCollectionTermStore"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteSearchQueryResults",
+    "description": "Allows to run a search query to retrieve indexed site collections.",
+    "syntax": "Get-PnPSiteSearchQueryResults [[-Query] <String>] [-StartRow <Int32>] [-MaxResults <Int32>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteSearchQueryResults",
+      "Get-PnPSiteSearchQueryResults -Query \"WebTemplate:STS\"",
+      "Get-PnPSiteSearchQueryResults -Query \"WebTemplate:SPSPERS\"",
+      "Get-PnPSiteSearchQueryResults -Query \"Title:Intranet*\"",
+      "Get-PnPSiteSearchQueryResults -MaxResults 10",
+      "Get-PnPSiteSearchQueryResults -All"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteSensitivityLabel",
+    "description": "This cmdlet allows retrieval of the currently assigned Microsoft Purview sensitivity label to the currently connected to site.",
+    "syntax": "Get-PnPSiteSensitivityLabel [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteSensitivityLabel"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTaxonomyItem",
+    "description": "Provide the term path only and then the term item if found will be returned.",
+    "syntax": "Get-PnPTaxonomyItem [-TermPath] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTaxonomyItem -TermPath \"My Term Group|My Term Set|Contoso\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTaxonomySession",
+    "description": "Allows to retrieve taxonomy session.",
+    "syntax": "Get-PnPTaxonomySession [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPTenantRestrictedSearchAllowedList",
+    "description": "This command will return all the existing list of URLs in the allowed list",
+    "syntax": "Get-PnPTenantRestrictedSearchAllowedList [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantRestrictedSearchAllowedList"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantRestrictedSearchMode",
+    "description": "Returns Restricted Search mode. Restricted SharePoint Search is disabled by default.",
+    "syntax": "Get-PnPTenantRestrictedSearchMode [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantRestrictedSearchMode"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTerm",
+    "description": "Retries a Term Store Term.",
+    "syntax": "Get-PnPTerm\n    -Identity <Guid>\n    [-TermStore <Guid>]\n    [-IncludeChildTerms] [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPTerm -TermSet \"Departments\" -TermGroup \"Corporate\"",
+      "Get-PnPTerm -Identity \"Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\"",
+      "Get-PnPTerm -Identity ab2af486-e097-4b4a-9444-527b251f1f8d -TermSet \"Departments\" -TermGroup \"Corporate\"",
+      "Get-PnPTerm -Identity \"Small Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Recursive",
+      "$term = Get-PnPTerm -Identity \"Small Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Includes Labels\n$term.Labels",
+      "Get-PnPTerm -Identity \"Small Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Recursive -IncludeDeprecated"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTermGroup",
+    "description": "Allows to retrieve a taxonomy term group.",
+    "syntax": "Get-PnPTermGroup\n [-Identity <TaxonomyTermGroupPipeBind>]\n [-TermStore <TaxonomyTermStorePipeBind>]\n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPTermGroup",
+      "Get-PnPTermGroup -Identity \"Departments\"",
+      "Get-PnPTermGroup -Identity ab2af486-e097-4b4a-9444-527b251f1f8d"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTermLabel",
+    "description": "This cmdlets allows to retrieve all or a specific translation label for a term",
+    "syntax": "Get-PnPTermLabel -Term <Guid> [-Lcid <Int32>] [-TermStore <TaxonomyTermStorePipeBind>]",
+    "examples": [
+      "Get-PnPTermLabel -Term af8601d6-d925-46dd-af7b-4a58515ffd83",
+      "Get-PnPTermLabel -Term af8601d6-d925-46dd-af7b-4a58515ffd83 -Lcid 1033",
+      "Get-PnPTermLabel -Term \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTermSet",
+    "description": "This cmdlet returns a termset from the taxonomy store.",
+    "syntax": "Get-PnPTermSet [-Identity <TaxonomyTermSetPipeBind>] [-TermGroup] <TaxonomyTermGroupPipeBind>\n [-TermStore <TaxonomyTermStorePipeBind>] [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPTermSet -TermGroup \"Corporate\"",
+      "Get-PnPTermSet -Identity \"Departments\" -TermGroup \"Corporate\"",
+      "Get-PnPTermSet -Identity ab2af486-e097-4b4a-9444-527b251f1f8d -TermGroup \"Corporate",
+      "Get-PnPTermSet -Identity \"Departments\" -TermGroup \"Corporate -Include \"Terms\""
+    ]
+  },
+  {
+    "cmdlet": "Import-PnPTaxonomy",
+    "description": "Allows to import taxonomy terms from array or file.",
+    "syntax": "Import-PnPTaxonomy [-Terms <String[]>] [-Lcid <Int32>] [-TermStoreName <String>] [-Delimiter <String>]\n [-SynchronizeDeletions] [-Connection <PnPConnection>]",
+    "examples": [
+      "Import-PnPTaxonomy -Terms 'Company|Locations|Stockholm'",
+      "Import-PnPTaxonomy -Terms 'Company|Locations|\"Stockholm,Central\"'",
+      "Import-PnPTaxonomy -Terms 'Company|Locations|Stockholm|Central','Company|Locations|Stockholm|North'",
+      "Import-PnPTaxonomy -Path ./mytaxonomyterms.txt"
+    ]
+  },
+  {
+    "cmdlet": "Import-PnPTermGroupFromXml",
+    "description": "Allows to import taxonomy term group from xml.",
+    "syntax": "Import-PnPTermGroupFromXml [[-Xml] <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Import-PnPTermGroupFromXml -Xml $xml",
+      "Import-PnPTermGroupFromXml -Path input.xml"
+    ]
+  },
+  {
+    "cmdlet": "Import-PnPTermSet",
+    "description": "The format of the file is the same as that used by the import function in the web interface. A sample file can be obtained from the web interface.",
+    "syntax": "Import-PnPTermSet -GroupName <String> -Path <String> [-TermSetId <Guid>] [-SynchronizeDeletions]\n [-IsOpen <Boolean>] [-Contact <String>] [-Owner <String>] [-TermStoreName <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Import-PnPTermSet -GroupName 'Standard Terms' -Path 'C:\\\\Temp\\\\ImportTermSet.csv' -SynchronizeDeletions",
+      "Import-PnPTermSet -TermStoreName 'My Term Store' -GroupName 'Standard Terms' -Path 'C:\\\\Temp\\\\ImportTermSet.csv' -TermSetId '{15A98DB6-D8E2-43E6-8771-066C1EC2B8D8}'",
+      "Import-PnPTermSet -GroupName 'Standard Terms' -Path 'C:\\\\Temp\\\\ImportTermSet.csv' -IsOpen $true -Contact 'user@example.org' -Owner 'user@example.org'"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSearchQuery",
+    "description": "This is an alias forSubmit-PnPSearchQuery.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Merge-PnPTerm",
+    "description": "This cmdlet merges a taxonomy term into another term.",
+    "syntax": "Merge-PnPTerm -Identity d67966b0-3b60-4331-8dc4-0b5a2ca730fc -TargetTerm 95e13729-3ccf-4ec8-998c-78e9ef1daa0b",
+    "examples": [
+      "Merge-PnPTerm -Identity d67966b0-3b60-4331-8dc4-0b5a2ca730fc -TargetTerm 95e13729-3ccf-4ec8-998c-78e9ef1daa0b"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPTerm",
+    "description": "This cmdlet moves a taxonomy term to another term set or term",
+    "syntax": "Move-PnPTerm -Identity d67966b0-3b60-4331-8dc4-0b5a2ca730fc -TargetTermSet 95e13729-3ccf-4ec8-998c-78e9ef1daa0b -TargetTermGroup b2645144-5757-4cd7-b7f9-e5d24757addf",
+    "examples": [
+      "Move-PnPTerm -Identity d67966b0-3b60-4331-8dc4-0b5a2ca730fc -TargetTermSet 95e13729-3ccf-4ec8-998c-78e9ef1daa0b -TargetTermGroup b2645144-5757-4cd7-b7f9-e5d24757addf",
+      "Move-PnPTerm -Identity \"Test\" -TargetTermSet \"TestTermSet1\" -TermSet \"OperationLevel-1 Test\" -TermGroup \"FromPowerAutomate\" -TargetTermGroup \"TestingGroup\"",
+      "Move-PnPTerm -Identity d67966b0-3b60-4331-8dc4-0b5a2ca730fc -TargetTerm 2ad90b20-b5c0-4544-ac64-25e32d51fa3b -MoveToTerm"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPTermSet",
+    "description": "This cmdlet moves taxonomy term set from one term group to another.",
+    "syntax": "Move-PnPTermSet -Identity <Guid> -TermGroup <Guid> -TargetTermGroup <Guid> [-TermStore <TaxonomyTermStorePipeBind>]",
+    "examples": [
+      "Move-PnPTermSet -Identity 81e0a4b8-701d-459c-ad61-a1c7a81810ff -TermGroup 17e16b98-a8c2-4db6-a860-5c42dbc818f4  -TargetTermGroup cf33d1cd-42d8-431c-9e43-3d8dab9ea8fd",
+      "Move-PnPTermSet -Identity \"OperationLevel-1 Test\" -TermGroup \"FromPowerAutomate\" -TargetTermGroup \"TargetTermGroup\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteCollectionTermStore",
+    "description": "The site collection scoped term store will be created if it does not exist yet. If it does already exist for the currently connected to site collection, it will return the existing instance.",
+    "syntax": "New-PnPSiteCollectionTermStore [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPSiteCollectionTermStore"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTerm",
+    "description": "This cmdlet adds a new taxonomy term to a given termset.",
+    "syntax": "New-PnPTerm -Name <String> [-Id <Guid>] [-Lcid <Int32>] [-TermSet] <TaxonomyTermSetPipeBind>\n -TermGroup <TaxonomyTermGroupPipeBind> [-Description <String>] [-CustomProperties <Hashtable>]\n [-LocalCustomProperties <Hashtable>] [-TermStore <TaxonomyTermStorePipeBind>]",
+    "examples": [
+      "New-PnPTerm -TermSet \"Departments\" -TermGroup \"Corporate\" -Name \"Finance\"",
+      "New-PnPTerm -TermSet \"Departments\" -TermGroup \"Corporate\" -Name \"Finance\" -CustomProperties @{\"IsCorporate\"=\"True\"}"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTermGroup",
+    "description": "Allows to create a taxonomy term group.",
+    "syntax": "New-PnPTermGroup -Name <String> [-Id <Guid>] [-Description <String>]\n [-TermStore <PnP.PowerShell.Commands.Base.PipeBinds.GenericObjectNameIdPipeBind`1[Microsoft.SharePoint.Client.Taxonomy.TermStore]>] [-Contributors <string []>] [-Managers <string []>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPTermGroup -GroupName \"Countries\"",
+      "New-PnPTermGroup -GroupName \"Countries\" -Contributors @(\"i:0#.f|membership|pradeepg@gautamdev.onmicrosoft.com\",\"i:0#.f|membership|adelev@gautamdev.onmicrosoft.com\") -Managers @(\"i:0#.f|membership|alexw@gautamdev.onmicrosoft.com\",\"i:0#.f|membership|diegos@gautamdev.onmicrosoft.com\")"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTermLabel",
+    "description": "Creates a localized label for a taxonomy term. Use Get-PnPTerm -Include Labels to request the current labels on a taxonomy term. Setting-IsDefault:$false, will make a new label a synonym.",
+    "syntax": "New-PnPTermLabel -Term <TaxonomyTermPipeBind> -Name <String> -Lcid <Int32> [-IsDefault]",
+    "examples": [
+      "New-PnPTermLabel -Name \"Finanzwesen\" -Lcid 1031 -Term (Get-PnPTerm -Identity \"Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\")",
+      "Get-PnPTerm -Identity \"Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\" | New-PnPTermLabel -Name \"Finanzwesen\" -Lcid 1031",
+      "Get-PnPTerm -Identity \"Finance\" -TermSet \"Departments\" -TermGroup \"Corporate\" | New-PnPTermLabel -Name \"Finanzwesen\" -Lcid 1031 -IsDefault:$false"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTermSet",
+    "description": "Allows to create a taxonomy term set.",
+    "syntax": "New-PnPTermSet -Name <String> [-Id <Guid>] [-Lcid <Int32>] -TermGroup <TermGroupPipeBind> [-Contact <String>]\n [-Description <String>] [-IsOpenForTermCreation] [-IsNotAvailableForTagging] [-Owner <String>]\n [-StakeHolders <String[]>] [-CustomProperties <Hashtable>]\n [-TermStore <PnP.PowerShell.Commands.Base.PipeBinds.GenericObjectNameIdPipeBind`1[Microsoft.SharePoint.Client.Taxonomy.TermStore]>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPTermSet -Name \"Department\" -TermGroup \"Corporate\""
+    ]
+  },
+  {
+    "cmdlet": "Publish-PnPContentType",
+    "description": "Allows to publish a content type present on content type hub site. To check if a content type has been published already, you can useGet-PnPContentTypePublishingStatus.",
+    "syntax": "Publish-PnPContentType -ContentType <ContentTypePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Publish-PnPContentType -ContentType 0x0101"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAvailableSiteClassification",
+    "description": "Allows to remove existing classic site classification values.",
+    "syntax": "Remove-PnPAvailableSiteClassification -Classifications <System.Collections.Generic.List`1[System.String]>",
+    "examples": [
+      "Remove-PnPAvailableSiteClassification -Classifications \"HBI\"",
+      "Remove-PnPAvailableSiteClassification -Classifications \"HBI\",\"Top Secret\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPContentType",
+    "description": "This cmdlet allows to remove a content type from the current web.",
+    "syntax": "Remove-PnPContentType [-Identity] <ContentTypePipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPContentType -Identity \"Project Document\"",
+      "Remove-PnPContentType -Identity \"Project Document\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPContentTypeFromDocumentSet",
+    "description": "This cmdlet allows to remove a content type from a document set.",
+    "syntax": "Remove-PnPContentTypeFromDocumentSet -ContentType <ContentTypePipeBind> -DocumentSet <DocumentSetPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPContentTypeFromDocumentSet -ContentType \"Test CT\" -DocumentSet \"Test Document Set\"",
+      "Remove-PnPContentTypeFromDocumentSet -ContentType 0x0101001F1CEFF1D4126E4CAD10F00B6137E969 -DocumentSet 0x0120D520005DB65D094035A241BAC9AF083F825F3B"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPContentTypeFromList",
+    "description": "Allows to remove a content type from a list.",
+    "syntax": "Remove-PnPContentTypeFromList -List <ListPipeBind> -ContentType <ContentTypePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPContentTypeFromList -List \"Documents\" -ContentType \"Project Document\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPField",
+    "description": "Allows to remove a field from a list or a site.",
+    "syntax": "Remove-PnPField [-Identity] <FieldPipeBind> [[-List] <ListPipeBind>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPField -Identity \"Speakers\"",
+      "Remove-PnPField -List \"Demo list\" -Identity \"Speakers\"",
+      "$batch = New-PnPBatch\nRemove-PnPField -List \"Demo list\" -Identity \"Speakers\" -Batch $batch\nRemove-PnPField -List \"Demo list\" -Identity \"Sponsors\" -Batch $batch\nRemove-PnPField -List \"Demo list\" -Identity \"Organizers\" -Batch $batch\nRemove-PnPField -Identity \"Test\" -Batch $batch\nInvoke-PnPBatch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFieldFromContentType",
+    "description": "Allows to remove a field from a content type.",
+    "syntax": "Remove-PnPFieldFromContentType -Field <FieldPipeBind> -ContentType <ContentTypePipeBind> [-DoNotUpdateChildren]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFieldFromContentType -Field \"Project_Name\" -ContentType \"Project Document\"",
+      "Remove-PnPFieldFromContentType -Field \"Project_Name\" -ContentType \"Project Document\" -DoNotUpdateChildren"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSearchConfiguration",
+    "description": "This cmdlet removes the search configuration from a single web, site collection or a tenant, using path or a configuration string.",
+    "syntax": "Remove-PnPSearchConfiguration -Configuration <String> [-Scope <SearchConfigurationScope>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSearchConfiguration -Configuration $config",
+      "Remove-PnPSearchConfiguration -Configuration $config -Scope Site",
+      "Remove-PnPSearchConfiguration -Configuration $config -Scope Subscription",
+      "Remove-PnPSearchConfiguration -Path searchconfig.xml -Scope Subscription"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSearchExternalItem",
+    "description": "This cmdlet can be used to remove a specific external item from a Microsoft Search custom connector. The item will be removed from the index and will no longer be available for search results.",
+    "syntax": "Remove-PnPSearchExternalItem -ItemId <String> -ConnectionId <SearchExternalConnectionPipeBind> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSearchExternalItem -ConnectionId \"pnppowershell\" -ItemId \"12345\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionTermStore",
+    "description": "Removes the site collection scoped term store for the currently connected site collection. If it does not exist yet, it will not do anything.",
+    "syntax": "Remove-PnPSiteCollectionTermStore [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteCollectionTermStore"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTaxonomyItem",
+    "description": "This cmdlet removes a taxonomy item.",
+    "syntax": "Remove-PnPTaxonomyItem [-TermPath] <String> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPTaxonomyItem -TermPath \"HR|Recruitment|Marketing\"",
+      "Remove-PnPTaxonomyItem -TermPath \"HR|Recruitment|Marketing\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantRestrictedSearchAllowedList",
+    "description": "Removes site URLs from the allowed list when Restricted SharePoint Search is enabled. The URLs can be provided directly as a string array or read from a CSV file. At present, a maximum of 100 sites can be added to the allowed list.",
+    "syntax": "Remove-PnPTenantRestrictedSearchAllowedList [-SitesListFileUrl <String>] [-SitesList <String[]>] [-ContainsHeaders <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPTenantRestrictedSearchAllowedList -SitesListFileUrl \"C:\\temp\\sitelist.csv\" -ContainsHeader",
+      "Remove-PnPTenantRestrictedSearchAllowedList -SitesListFileUrl \"C:\\temp\\sitelist.csv\"",
+      "Remove-PnPTenantRestrictedSearchAllowedList -SitesList @(\"https://contoso.sharepoint.com/sites/Company311\",\"https://contoso.sharepoint.com/sites/contosoportal\")"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTerm",
+    "description": "This cmdlet removes a term from the term store.",
+    "syntax": "Remove-PnPTerm -Identity <Guid> [-TermStore <TaxonomyTermStorePipeBind>]\n  [-Confirm]",
+    "examples": [
+      "Remove-PnPTerm -Identity 3d9e60e8-d89c-4cd4-af61-a010cf93b380",
+      "Remove-PnPTerm -Identity \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTermGroup",
+    "description": "This cmdlet removes a term group and all the contained term sets.",
+    "syntax": "Remove-PnPTermGroup -Identity <TaxonomyTermGroupPipeBind> [-TermStore <TaxonomyTermStorePipeBind>] [-Force]",
+    "examples": [
+      "Remove-PnPTermGroup -Identity 3d9e60e8-d89c-4cd4-af61-a010cf93b380",
+      "Remove-PnPTermGroup -Identity \"Corporate\"",
+      "Remove-PnPTermGroup -Identity \"HR\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTermLabel",
+    "description": "This cmdlet removes a label/translation from a term.",
+    "syntax": "Remove-PnPTermLabel \n    -Label <String> \n    -Term <Guid> \n    -Lcid <Int32> \n    [-TermStore <Guid>]\n    [-Connection <PnPConnection>]    \n    [-Force]",
+    "examples": [
+      "Remove-PnPTermLabel -Label \"Marknadsf\u00f6ring\" -Lcid 1053 -Term 2d1f298b-804a-4a05-96dc-29b667adec62",
+      "Remove-PnPTermLabel -Label \"Marknadsf\u00f6ring\" -Lcid 1053 -Term \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPContentType",
+    "description": "Allows modification of the settings of a content type in a list or site.",
+    "syntax": "Set-PnPContentType [-Identity] <ContentTypePipeBind> [-List] <ListPipeBind> [-InSiteHierarchy] <SwitchParameter>\n[-UpdateChildren] <SwitchParameter> [-Name] <String> [-Description] <String> [-Group] <String>\n[-Hidden] <String> [-ReadOnly] <String> [-Sealed] <String>\n [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Set-PnPContentType -Identity \"Project Document\" -UpdateChildren -Name \"Project Documentation\" -Description \"Documentation for projects\"",
+      "Set-PnPContentType -Identity \"Project Document\" -UpdateChildren -Group \"Custom Content Types\" -Hidden",
+      "Set-PnPContentType -Identity \"Project Document\" -List \"Projects\" -Name \"Project Documentation\" -Description \"Documentation for projects\"",
+      "Set-PnPContentType -Identity \"Project Document\" -List \"Projects\" -FormClientSideComponentId \"dfed9a30-ec25-4aaf-ae9f-a68f3598f13a\" -FormClientSideComponentProperties '{ \"someKey\": \"some value\" }'",
+      "Set-PnPContentType -Identity \"Project Document\" -List \"Projects\" -DisplayFormClientSideComponentId \"dfed9a30-ec25-4aaf-ae9f-a68f3598f13a\" -DisplayFormClientSideComponentProperties '{ \"someKey\": \"some value\" }'"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPDefaultContentTypeToList",
+    "description": "Allows to modify the default content type for a list.",
+    "syntax": "Set-PnPDefaultContentTypeToList -List <ListPipeBind> -ContentType <ContentTypePipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPDefaultContentTypeToList -List \"Project Documents\" -ContentType \"Project\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPDocumentSetField",
+    "description": "Allows to set a site column from the available content types to a document set.",
+    "syntax": "Set-PnPDocumentSetField -DocumentSet <DocumentSetPipeBind> -Field <FieldPipeBind> [-SetSharedField]\n [-SetWelcomePageField] [-RemoveSharedField] [-RemoveWelcomePageField] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPDocumentSetField -Field \"Test Field\" -DocumentSet \"Test Document Set\" -SetSharedField -SetWelcomePageField",
+      "Set-PnPDocumentSetField -Field \"Test Field\" -DocumentSet \"Test Document Set\" -RemoveSharedField -RemoveWelcomePageField"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPField",
+    "description": "Allows to modify a field in a specific list or for the whole site.",
+    "syntax": "Set-PnPField [-List <ListPipeBind>] [-Identity <FieldPipeBind>] [-Values <Hashtable>] [-ShowInFiltersPane <ShowInFiltersPaneStatus>] [-UpdateExistingLists] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPField -Identity AssignedTo -Values @{JSLink=\"customrendering.js\";Group=\"My fields\"}",
+      "Set-PnPField -Identity AssignedTo -Values @{JSLink=\"customrendering.js\";Group=\"My fields\"} -UpdateExistingLists",
+      "Set-PnPField -List \"Tasks\" -Identity \"AssignedTo\" -Values @{JSLink=\"customrendering.js\"}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPInPlaceRecordsManagement",
+    "description": "Activates or deactivates in place records management feature in the site collection.",
+    "syntax": "Set-PnPInPlaceRecordsManagement -Enabled <Boolean> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPInPlaceRecordsManagement -Enabled $true",
+      "Set-PnPInPlaceRecordsManagement -Enabled $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListItemAsRecord",
+    "description": "Allows to set a list item as a record.",
+    "syntax": "Set-PnPListItemAsRecord [-List] <ListPipeBind> -Identity <ListItemPipeBind> [-DeclarationDate <DateTime>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListItemAsRecord -List \"Documents\" -Identity 4",
+      "Set-PnPListItemAsRecord -List \"Documents\" -Identity 4 -DeclarationDate $date"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListRecordDeclaration",
+    "description": "The RecordDeclaration parameter supports 3 values:",
+    "syntax": "Set-PnPListRecordDeclaration -List <ListPipeBind> [-ManualRecordDeclaration <EcmListManualRecordDeclaration>]\n [-AutoRecordDeclaration <Boolean>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListRecordDeclaration -List \"Documents\" -ManualRecordDeclaration NeverAllowManualDeclaration",
+      "Set-PnPListRecordDeclaration -List \"Documents\" -AutoRecordDeclaration $true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSearchConfiguration",
+    "description": "This cmdlet sets the search configuration for a single web, site collection or a tenant, using a file or a configuration string.",
+    "syntax": "Set-PnPSearchConfiguration -Configuration <String> [-Scope <SearchConfigurationScope>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSearchConfiguration -Configuration $config",
+      "Set-PnPSearchConfiguration -Configuration $config -Scope Site",
+      "Set-PnPSearchConfiguration -Configuration $config -Scope Subscription",
+      "Set-PnPSearchConfiguration -Path searchconfig.xml -Scope Subscription"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalItem",
+    "description": "This cmdlet can be used to add or update an external item in Microsoft Search on custom connectors. The cmdlet will create a new external item if the item does not exist yet. If the item already exists, it will be updated.",
+    "syntax": "Set-PnPSearchExternalItem -ItemId <String> -ConnectionId <SearchExternalConnectionPipeBind> -Properties <Hashtable> [-ContentValue <String>] [-ContentType <SearchExternalItemContentType>] [-GrantUsers <AzureADUserPipeBind[]>] [-GrantGroups <AzureADGroupPipeBind[]>] [-DenyUsers <AzureADUserPipeBind[]>] [-DenyGroups <AzureADGroupPipeBind[]>] [-GrantExternalGroups <String[]>] [-DenyExternalGroups <String[]>] [-GrantEveryone <SwitchParameter>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSearchExternalItem -ConnectionId \"pnppowershell\" -ItemId \"12345\" -Properties @{ \"Test1\"= \"Test of this PnP PowerShell Connector\"; \"Test2\" = \"Red\",\"Blue\"; \"Test3\" = ([System.DateTime]::Now)} -ContentValue \"Sample value\" -ContentType Text -GrantEveryone",
+      "Set-PnPSearchExternalItem -ConnectionId \"pnppowershell\" -ItemId \"12345\" -Properties @{ \"Test1\"= \"Test of this PnP PowerShell Connector\"; \"Test2\" = \"Red\",\"Blue\"; \"Test3\" = ([System.DateTime]::Now)} -ContentValue \"Sample value\" -ContentType Text -GrantUsers \"user@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalSchema",
+    "description": "This cmdlet can be used to initially set or update the current schema set on a connection to an external datasource that is being indexed into Microsoft Search through a custom connector. The URL returned can be queried in Microsoft Graph to check on the status of the schema update.",
+    "syntax": "Set-PnPSearchExternalSchema -ConnectionId <SearchExternalConnectionPipeBind> -SchemaAsText <String> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSearchExternalSchema -ConnectionId \"pnppowershell\" -SchemaAsText '{\n   \"baseType\": \"microsoft.graph.externalItem\",\n   \"properties\": [\n     {\n       \"name\": \"ticketTitle\",\n       \"type\": \"String\",\n       \"isSearchable\": \"true\",\n       \"isRetrievable\": \"true\",\n       \"labels\": [\n         \"title\"\n       ]\n     },\n     {\n       \"name\": \"priority\",\n       \"type\": \"String\",\n       \"isQueryable\": \"true\",\n       \"isRetrievable\": \"true\",\n       \"isSearchable\": \"false\"\n     },\n     {\n       \"name\": \"assignee\",\n       \"type\": \"String\",\n       \"isRetrievable\": \"true\"\n     }\n   ]\n }'",
+      "$schema = Get-PnPSearchExternalSchema -ConnectionId \"pnppowershell1\"\nSet-PnPSearchExternalSchema -ConnectionId \"pnppowershell2\" -Schema $schema"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSearchSettings",
+    "description": "Allows to modify search settings for a site.",
+    "syntax": "Set-PnPSearchSettings [-SearchBoxInNavBar <SearchBoxInNavBarType>] [-SearchPageUrl <String>]\n [-SearchBoxPlaceholderText <String>] [-SearchScope <SearchScopeType>] [-Scope <SearchSettingsScope>] [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSearchSettings -SearchBoxInNavBar Hidden -Scope Site",
+      "Set-PnPSearchSettings -SearchBoxInNavBar Hidden -Scope Web",
+      "Set-PnPSearchSettings -SearchPageUrl \"https://contoso.sharepoint.com/sites/mysearch/SitePages/search.aspx\"",
+      "Set-PnPSearchSettings -SearchPageUrl \"\"",
+      "Set-PnPSearchSettings -SearchPageUrl \"https://contoso.sharepoint.com/sites/mysearch/SitePages/search.aspx\" -Scope Site",
+      "Set-PnPSearchSettings -SearchScope Tenant",
+      "Set-PnPSearchSettings -SearchScope Hub"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteClassification",
+    "description": "This cmdlet allows for setting a classic site classification on the currently connected to site. If the site has a Microsoft 365 Group behind it, the classification will be placed on the Microsoft 365 Group and will require either Directory.Read.All or Directory.ReadWrite.All application permissions on Microsoft Graph. If it does not have a Microsoft 365 Group behind it, it will set the site classification on the SharePoint Online site and will not require Microsoft Graph permissions. UseGet-PnPAvailableSiteClassificationto get an overview of the available site classifications on the tenant. For the new Microsoft Purview sensitivity labels, useSet-PnPSiteSensitivityLabelinstead.",
+    "syntax": "Set-PnPSiteClassification -Identity <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteClassification -Identity \"LBI\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteSensitivityLabel",
+    "description": "This cmdlet allows for setting a Microsoft Purview sensitivity label on the currently connected to site. If the site has a Microsoft 365 Group behind it, the label will be placed on the Microsoft 365 Group and will require either Group.ReadWrite.All or Directory.ReadWrite.All delegate permissions on Microsoft Graph. This currently cannot be done using App Only permissions due to a limitation in Microsoft Graph. If it does not have a Microsoft 365 Group behind it, it will set the label on the SharePoint Online site and will not require Microsoft Graph permissions and will work with both delegate as well as app only logins. If you're looking to set a sensitivity label on a Microsoft 365 Group backed site in an App Only context, you can useSet-PnPTenantSite -SensitivityLabelinstead to do so.",
+    "syntax": "Set-PnPSiteSensitivityLabel -Identity <String> [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Set-PnPSiteSensitivityLabel -Identity \"Top Secret\"",
+      "Set-PnPSiteSensitivityLabel -Identity a1888df2-84c2-4379-8d53-7091dd630ca7"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTaxonomyFieldValue",
+    "description": "Allows to update taxonomy term value in a listitem field.",
+    "syntax": "Set-PnPTaxonomyFieldValue -ListItem <ListItem> -InternalFieldName <String> -TermId <Guid>\n [-Label <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTaxonomyFieldValue -ListItem $item -InternalFieldName 'Department' -TermId 863b832b-6818-4e6a-966d-2d3ee057931c",
+      "Set-PnPTaxonomyFieldValue -ListItem $item -InternalFieldName 'Department' -TermPath 'CORPORATE|DEPARTMENTS|HR'",
+      "Set-PnPTaxonomyFieldValue -ListItem $item -InternalFieldName 'Department' -Terms @{\"TermId1\"=\"Label1\";\"TermId2\"=\"Label2\"}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantRestrictedSearchMode",
+    "description": "Returns Restricted Search mode. Restricted SharePoint Search is disabled by default.",
+    "syntax": "Set-PnPTenantRestrictedSearchMode -Mode <RestrictedSearchMode> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantRestrictedSearchMode -Mode Enabled",
+      "Set-PnPTenantRestrictedSearchMode -Mode Disabled"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTerm",
+    "description": "This cmdlet allows you to update an existing term.",
+    "syntax": "Set-PnPTerm -Identity <Guid> [-Name <String>] [-Lcid <Int32>] [-Description <String>]\n [-CustomProperties <Hashtable>] [-LocalCustomProperties <Hashtable>] [-DeleteAllCustomProperties]\n [-DeleteAllLocalCustomProperties] [-Deprecated <bool>] [-AvailableForTagging <bool>] [-TermStore <TaxonomyTermStorePipeBind>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTerm -Identity 3d9e60e8-d89c-4cd4-af61-a010cf93b380 -Name \"New Name\"",
+      "Set-PnPTerm -Identity \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Name \"Finance\" -CustomProperties @{\"IsCorporate\"=\"True\"}",
+      "Set-PnPTerm -Identity \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Name \"Finance\" -DeleteAllCustomProperties -CustomProperties @{\"IsCorporate\"=\"True\"}",
+      "Set-PnPTerm -Identity \"Marketing\" -TermSet \"Departments\" -TermGroup \"Corporate\" -Deprecated $true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTermGroup",
+    "description": "The cmdlet allows you to update an existing term group.",
+    "syntax": "Set-PnPTermGroup -Identity <TaxonomyTermGroupPipeBind> [-Name <String>] [-Description <String>] \n [-TermStore <TaxonomyTermStorePipeBind>] [-Connection <PnPConnection>] [-Contributors <string []>] [-Managers <string []>]",
+    "examples": [
+      "Set-PnPTermGroup -Identity \"Departments\" -Name \"Company Units\"",
+      "Set-PnPTermGroup -Identity \"Departments\" -Name \"Company Units\" -Contributors @(\"i:0#.f|membership|pradeepg@gautamdev.onmicrosoft.com\",\"i:0#.f|membership|adelev@gautamdev.onmicrosoft.com\") -Managers @(\"i:0#.f|membership|alexw@gautamdev.onmicrosoft.com\",\"i:0#.f|membership|diegos@gautamdev.onmicrosoft.com\")"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTermSet",
+    "description": "This cmdlet allows you to update an existing term set.",
+    "syntax": "Set-PnPTermSet -Identity <TaxonomyTermSetPipeBind> [-TermGroup] <TaxonomyTermGroupPipeBind>\n [-TermStore <TaxonomyTermStorePipeBind>] [-Name <String>] [-Description <String>] [-Owner <String>]\n [-Contact <String>] [-CustomProperties <Hashtable>] [-StakeholderToAdd <String>]\n [-StakeholderToDelete <String>] [-IsAvailableForTagging <Boolean>] [-IsOpenForTermCreation <Boolean>]\n [-UseForSiteNavigation <Boolean>] [-UseForFacetedNavigation <Boolean>] [-SetTargetPageForTerms <String>]\n [-RemoveTargetPageForTerms] [-SetCatalogItemPageForCategories <String>] [-RemoveCatalogItemPageForCategories]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTermSet -Identity \"Departments\" -TermGroup \"Corporate\" -Name \"Business Units\"",
+      "Set-PnPTermSet -Identity \"Departments\" -TermGroup \"Corporate\" -UseForSiteNavigation $true",
+      "Set-PnPTermSet -Identity \"Departments\" -TermGroup \"Corporate\" -IsAvailableForTagging $false"
+    ]
+  },
+  {
+    "cmdlet": "Submit-PnPSearchQuery",
+    "description": "Allows to run an arbitrary search query against the SharePoint search index.",
+    "syntax": "Submit-PnPSearchQuery [-Query] <String> [-StartRow <Int32>] [-MaxResults <Int32>] [-TrimDuplicates <Boolean>]\n [-Properties <Hashtable>] [-Refiners <String>] [-Culture <Int32>] [-QueryTemplate <String>]\n [-SelectProperties <String[]>] [-RefinementFilters <String[]>] [-SortList <Hashtable>]\n [-RankingModelId <String>] [-ClientType <String>] [-CollapseSpecification <String>]\n [-HiddenConstraints <String>] [-TimeZoneId <Int32>] [-EnablePhonetic <Boolean>] [-EnableStemming <Boolean>]\n [-EnableQueryRules <Boolean>] [-SourceId <Guid>] [-ProcessBestBets <Boolean>]\n [-ProcessPersonalFavorites <Boolean>] [-RelevantResults] [-Connection <PnPConnection>] [-RetryCount <Int32>] [-Verbose]",
+    "examples": [
+      "Submit-PnPSearchQuery -Query \"finance\"",
+      "Submit-PnPSearchQuery -Query \"Title:Intranet*\" -MaxResults 10",
+      "Submit-PnPSearchQuery -Query \"Title:Intranet*\" -All",
+      "Submit-PnPSearchQuery -Query \"Title:Intranet*\" -Refiners \"contentclass,FileType(filter=6/0/*)\"",
+      "Submit-PnPSearchQuery -Query \"contentclass:STS_ListItem_DocumentLibrary\" -SelectProperties ComplianceTag,InformationProtectionLabelId -All",
+      "Submit-PnPSearchQuery -Query \"contentclass:STS_ListItem_DocumentLibrary\" -SortList @{\"filename\" = \"ascending\"} -All"
+    ]
+  },
+  {
+    "cmdlet": "Test-PnPListItemIsRecord",
+    "description": "Allows to check if the specified list item is a record.",
+    "syntax": "Test-PnPListItemIsRecord [-List] <ListPipeBind> -Identity <ListItemPipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Test-PnPListItemIsRecord -List \"Documents\" -Identity 4"
+    ]
+  },
+  {
+    "cmdlet": "Unlock-PnPSensitivityLabelEncryptedFile",
+    "description": "It removes encryption on a Sensitivity label encrypted file in SharePoint Online.",
+    "syntax": "Unlock-PnPSensitivityLabelEncryptedFile -Url <String> -JustificationText <string> [-Connection <PnPConnection>]",
+    "examples": [
+      "Unlock-PnPSensitivityLabelEncryptedFile -Url \"https://contoso.com/sites/Marketing/Shared Documents/Doc1.docx\" -JustificationText \"Need to access file\""
+    ]
+  },
+  {
+    "cmdlet": "Unpublish-PnPContentType",
+    "description": "Allows to unpublish a content type present on content type hub site.",
+    "syntax": "Unpublish-PnPContentType -ContentType <ContentTypePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Unpublish-PnPContentType -ContentType 0x0101"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPAvailableSiteClassification",
+    "description": "This cmdlet allows for updating the configuration of the classic site classifications configured within the tenant.",
+    "syntax": "Update-PnPAvailableSiteClassification -Settings <SiteClassificationsSettings>",
+    "examples": [
+      "Update-PnPAvailableSiteClassification -Classifications \"HBI\",\"Top Secret\"",
+      "Update-PnPAvailableSiteClassification -DefaultClassification \"LBI\"",
+      "Update-PnPAvailableSiteClassification -UsageGuidelinesUrl https://aka.ms/m365pnp"
+    ]
+  },
+  {
+    "cmdlet": "Update-SiteClassification",
+    "description": "This is an alias forUpdate-PnPAvailableSiteClassification.",
+    "syntax": "",
+    "examples": []
+  }
+]

@@ -1,0 +1,1291 @@
+[
+  {
+    "cmdlet": "Add-PnPDataRowsToSiteTemplate",
+    "description": "Allows to add datarows to list inside a PnP Provisioning Template. The command allows to specify the fields which should be retrieved using-Fieldsoption and filter the datarows to be used by using-Queryoption.",
+    "syntax": "Add-PnPDataRowsToSiteTemplate [-Path] <String> -List <ListPipeBind> [-Query <String>]\n [-Fields <String[]>] [-IncludeSecurity] [[-TemplateProviderExtensions] <ITemplateProviderExtension[]>]\n [-TokenizeUrls] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPDataRowsToSiteTemplate -Path template.pnp -List 'PnPTestList' -Fields 'Title','Choice'",
+      "Add-PnPDataRowsToSiteTemplate -Path template.pnp -List 'PnPTestList' -Query '<Query><Where><Geq><FieldRef Name=\"Modified\"/><Value Type=\"DateTime\"><Today OffsetDays=\"-7\" /></Value></Geq></Where></Query>' -Fields 'Title','Choice' -IncludeSecurity"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFileToSiteTemplate",
+    "description": "Allows adding a file to a PnP Provisioning Template package (.pnp) so that the file will get uploaded to the SharePoint Online site to which the template is being invoked. This allows the file to be referenced in i.e. a document template, site logo or any other component that references a file.",
+    "syntax": "Add-PnPFileToSiteTemplate [-Path] <String> [-Source] <String> [-Folder] <String>\n [[-Container] <String>] [[-FileLevel] <FileLevel>] [-FileOverwrite]\n [[-TemplateProviderExtensions] <ITemplateProviderExtension[]>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFileToSiteTemplate -Path template.pnp -Source \"Instructions.docx\" -Folder \"Shared Documents\"",
+      "Add-PnPFileToSiteTemplate -Path c:\\temp\\template.pnp -Source \"c:\\temp\\Sample.pptx\" -Folder \"Shared Documents\\Samples\"",
+      "Add-PnPFileToSiteTemplate -Path template.pnp -Source \"./myfile.png\" -Folder \"folderinsite\" -FileLevel Published -FileOverwrite:$false",
+      "Add-PnPFileToSiteTemplate -Path template.pnp -Source $sourceFilePath -Folder $targetFolder -Container $container",
+      "Add-PnPFileToSiteTemplate -Path template.pnp -SourceUrl \"Shared%20Documents/ProjectStatus.docx\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPHomeSite",
+    "description": "Adds a home site to the current tenant.",
+    "syntax": "Add-PnPHomeSite -HomeSiteUrl <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPHomeSite -HomeSiteUrl \"https://yourtenant.sharepoint.com/sites/myhome\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPHubSiteAssociation",
+    "description": "Connects an existing site to a hubsite",
+    "syntax": "Add-PnPHubSiteAssociation -Site <SitePipeBind> -HubSite <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPHubSiteAssociation -Site \"https://tenant.sharepoint.com/sites/mysite\" -HubSite \"https://tenant.sharepoint.com/sites/hubsite\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPListFoldersToSiteTemplate",
+    "description": "Allows to add folders to a list in a PnP Provisioning Template.",
+    "syntax": "Add-PnPListFoldersToSiteTemplate [-Path] <String> [-List] <ListPipeBind> [-Recursive]\n [-IncludeSecurity] [[-TemplateProviderExtensions] <ITemplateProviderExtension[]>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPListFoldersToSiteTemplate -Path template.pnp -List 'PnPTestList'",
+      "Add-PnPListFoldersToSiteTemplate -Path template.pnp -List 'PnPTestList' -Recursive",
+      "Add-PnPListFoldersToSiteTemplate -Path template.pnp -List 'PnPTestList' -Recursive -IncludeSecurity"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPOrgNewsSite",
+    "description": "Allows to add site as an organization news source in your tenant.",
+    "syntax": "Add-PnPOrgNewsSite -OrgNewsSiteUrl <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPOrgNewsSite -OrgNewsSiteUrl \"https://yourtenant.sharepoint.com/sites/news\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPageImageWebPart",
+    "description": "Adds a new image element to a section on a client-side page.",
+    "syntax": "Add-PnPPageImageWebPart [-Page <PagePipeBind>] [-ImageUrl <String>] [-Order <Int32>] [-ImageUrl <String>] [-PageImageAlignment <PageImageAlignment>] [-ImageWidth <Int32>] [-ImageHeight <Int32>] [-Caption <String>] [-AlternativeText <String>] [-Link <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPageImageWebPart -Page \"MyPage\" -ImageUrl \"/sites/contoso/siteassets/test.png\"",
+      "Add-PnPPageImageWebPart -Page \"MyPage\" -ImageUrl \"/sites/contoso/SiteAssets/test.png\" -ImageWidth 400 -ImageHeight 200 -Caption \"Caption text\" -AlternativeText \"Alt text\" -Link \"https://pnp.github.io\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPageWebPart",
+    "description": "Adds a client-side web part to an existing client-side page.",
+    "syntax": "Add-PnPPageWebPart [-Page] <PagePipeBind> -DefaultWebPartType <DefaultClientSideWebParts>\n [-WebPartProperties <PropertyBagPipeBind>] [-Order <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPageWebPart -Page \"MyPage\" -DefaultWebPartType BingMap",
+      "Add-PnPPageWebPart -Page \"MyPage\" -Component \"HelloWorld\"",
+      "Add-PnPPageWebPart -Page \"MyPage\" -Component \"HelloWorld\" -Section 1 -Column 2"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteCollectionAdmin",
+    "description": "This command allows adding one to many users as site collection administrators to the site collection in the current context. It does not replace or remove existing site collection administrators. You must be a Site Collection Admin to run this command. UseSet-PnPTenantSite -Ownersif you are not an Admin for the site but have the SharePoint Online admin role.",
+    "syntax": "Add-PnPSiteCollectionAdmin [-Owners <System.Collections.Generic.List<[PnP.PowerShell.Commands.Base.PipeBinds.UserPipeBind]>>] [-PrimarySiteCollectionAdmin <PnP.PowerShell.Commands.Base.PipeBinds.UserPipeBind>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteCollectionAdmin -Owners \"user@contoso.onmicrosoft.com\"",
+      "Add-PnPSiteCollectionAdmin -Owners @(\"user1@contoso.onmicrosoft.com\", \"user2@contoso.onmicrosoft.com\")",
+      "Get-PnPUser | Where-Object Title -Like \"*Doe\" | Add-PnPSiteCollectionAdmin",
+      "Add-PnPSiteCollectionAdmin -PrimarySiteCollectionAdmin \"user@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteCollectionAppCatalog",
+    "description": "Allows to add Site Collection scoped App Catalog.",
+    "syntax": "Add-PnPSiteCollectionAppCatalog [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteCollectionAppCatalog",
+      "Add-PnPSiteCollectionAppCatalog -Site \"https://contoso.sharepoint.com/sites/FinanceTeamsite\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesign",
+    "description": "Allows to add a new Site Design on the current tenant.",
+    "syntax": "Add-PnPSiteDesign -Title <String> -SiteScript <TenantSiteScriptPipeBind> [-Description <String>] [-IsDefault]\n [-PreviewImageAltText <String>] [-PreviewImageUrl <String>] [-WebTemplate <SiteWebTemplate>]\n [-ThumbnailUrl <String>] [-DesignPackageId <Guid>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteDesign -Title \"My Company Design\" -SiteScriptIds \"e84dcb46-3ab9-4456-a136-66fc6ae3d3c5\",\"6def687f-0e08-4f1e-999c-791f3af9a600\" -Description \"My description\" -WebTemplate TeamSite",
+      "Add-PnPSiteDesign -Title \"My Company Design\" -SiteScriptIds \"e84dcb46-3ab9-4456-a136-66fc6ae3d3c5\",\"6def687f-0e08-4f1e-999c-791f3af9a600\" -Description \"My description\" -WebTemplate TeamSite -ThumbnailUrl https://contoso.sharepoint.com/sites/templates/siteassets/logo.png",
+      "Add-PnPSiteDesign -Title \"My Company Design\" -SiteScriptIds \"e84dcb46-3ab9-4456-a136-66fc6ae3d3c5\",\"6def687f-0e08-4f1e-999c-791f3af9a600\" -Description \"My description\" -WebTemplate TeamSite -ThumbnailUrl \"https://contoso.sharepoint.com/sites/templates/my images/logo.png\"",
+      "Get-PnPSiteScriptFromWeb -IncludeAll | Add-PnPSiteScript -Title \"My Site Script\" | Add-PnPSiteDesign -Title \"My Site Design\" -WebTemplate TeamSite"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesignFromWeb",
+    "description": "Creates a new Site Design on the current tenant based on the site provided through -Url or the currently connected to site if -Url is omitted. It combines the steps ofGet-PnPSiteScriptFromWeb,Add-PnPSiteScriptandAdd-PnPSiteDesigninto one cmdlet. The information returned from running the cmdlet is the information of the Site Design that has been created.",
+    "syntax": "Add-PnPSiteDesignFromWeb -Title <String> [-Description <String>] [-IsDefault]\n [-PreviewImageAltText <String>] [-PreviewImageUrl <String>] [-WebTemplate <SiteWebTemplate>]\n [-ThumbnailUrl <String>] [-DesignPackageId <Guid>] [-Lists <String[]>] [-IncludeBranding] [-IncludeLinksToExportedItems]\n [-IncludeRegionalSettings] [-IncludeSiteExternalSharingCapability] [-IncludeTheme]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteDesignFromWeb -Title \"My Company Design\" -Description \"My description\" -WebTemplate TeamSite -IncludeAll",
+      "Add-PnPSiteDesignFromWeb -Title \"My Company Design\" -Description \"My description\" -WebTemplate TeamSite -IncludeAll -Lists (\"/lists/Issue list\", \"Shared Documents)",
+      "Add-PnPSiteDesignFromWeb -Title \"My Company Design\" -Description \"My description\" -WebTemplate TeamSite -Lists \"/lists/Issue list\" -ThumbnailUrl https://contoso.sharepoint.com/SiteAssets/logo.png"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteDesignTask",
+    "description": "Allows to apply a site design to a specified site collection. This command is intended to be used when you need to apply a large number of actions or multiple site scripts.",
+    "syntax": "Add-PnPSiteDesignTask -SiteDesignId <Guid> [-WebUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteDesignTask -SiteDesignId 501z8c32-4147-44d4-8607-26c2f67cae82",
+      "Add-PnPSiteDesignTask -SiteDesignId 501z8c32-4147-44d4-8607-26c2f67cae82 -WebUrl \"https://contoso.sharepoint.com/sites/project\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteScript",
+    "description": "Allows to add a Site Script on the current tenant.",
+    "syntax": "Add-PnPSiteScript -Title <String> [-Description <String>] -Content <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteScript -Title \"My Site Script\" -Description \"A more detailed description\" -Content $script"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteScriptPackage",
+    "description": "Allows to add a new Site Script Package on the current tenant",
+    "syntax": "Add-PnPSiteScriptPackage -Title <String> [-Description <String>] -ContentPath <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPSiteScriptPackage -Title \"My Site Script Package\" -Description \"A more detailed description\" -ContentPath \"c:\\package.zip\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPSiteTemplate",
+    "description": "Allows to add PnP Site Template object to a tenant template.",
+    "syntax": "Add-PnPSiteTemplate -SiteTemplate <SiteTemplate> -TenantTemplate <ProvisioningHierarchy>",
+    "examples": [
+      "Add-PnPSiteTemplate -TenantTemplate $tenanttemplate -SiteTemplate $sitetemplate"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequenceSite",
+    "description": "Allows to add an existing tenant sequence site object to a tenant template.",
+    "syntax": "Add-PnPTenantSequenceSite -Site <ProvisioningSitePipeBind> -Sequence <ProvisioningSequence>",
+    "examples": [
+      "Add-PnPTenantSequenceSite -Site $myteamsite -Sequence $mysequence"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequenceSubSite",
+    "description": "Allows to add a tenant sequence sub site object to a tenant sequence site object.",
+    "syntax": "Add-PnPTenantSequenceSubSite -SubSite <TeamNoGroupSubSite> -Site <SiteCollection>",
+    "examples": [
+      "Add-PnPTenantSequenceSubSite -Site $mysite -SubSite $mysubsite"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPWebhookSubscription",
+    "description": "Allows to add a new Webhook subscription to a list.",
+    "syntax": "Add-PnPWebhookSubscription [-List <ListPipeBind>] -NotificationUrl <String> [-ExpirationDate <DateTime>]\n [-ClientState <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPWebhookSubscription -List MyList -NotificationUrl https://my-func.azurewebsites.net/webhook",
+      "Add-PnPWebhookSubscription -List MyList -NotificationUrl https://my-func.azurewebsites.net/webhook -ExpirationDate \"2017-09-01\"",
+      "Add-PnPWebhookSubscription -List MyList -NotificationUrl https://my-func.azurewebsites.net/webhook -ExpirationDate \"2017-09-01\" -ClientState \"Hello State!\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPWebPartToWebPartPage",
+    "description": "Allows to add a web part to a web part page. Use theZoneIndexoption to specify the zone.",
+    "syntax": "Add-PnPWebPartToWebPartPage -ServerRelativePageUrl <String> -Xml <String> -ZoneId <String> -ZoneIndex <Int32>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPWebPartToWebPartPage -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Path \"c:\\myfiles\\listview.webpart\" -ZoneId \"Header\" -ZoneIndex 1",
+      "Add-PnPWebPartToWebPartPage -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -XML $webpart -ZoneId \"Header\" -ZoneIndex 1"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPWebPartToWikiPage",
+    "description": "Allows to add a web part a wiki page. Use theRowandColumnoption to specify the location of the web part.",
+    "syntax": "Add-PnPWebPartToWikiPage -ServerRelativePageUrl <String> -Xml <String> -Row <Int32> -Column <Int32> [-AddSpace]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPWebPartToWikiPage -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Path \"c:\\myfiles\\listview.webpart\" -Row 1 -Column 1",
+      "Add-PnPWebPartToWikiPage -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -XML $webpart -Row 1 -Column 1"
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPTenantAppCatalogUrl",
+    "description": "Allows to remove the url of the tenant scoped app catalog. The app catalog site collection will not be removed.",
+    "syntax": "Clear-PnPTenantAppCatalogUrl [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPTenantAppCatalogUrl"
+    ]
+  },
+  {
+    "cmdlet": "Convert-PnPFolderToSiteTemplate",
+    "description": "Allows to convert the current folder together with all files, to a pnp package file of and existing template xml.",
+    "syntax": "Convert-PnPFolderToSiteTemplate [-Out] <String> [[-Folder] <String>] [-Force]",
+    "examples": [
+      "Convert-PnPFolderToSiteTemplate -Out template.pnp",
+      "Convert-PnPFolderToSiteTemplate -Out template.pnp -Folder c:\\temp"
+    ]
+  },
+  {
+    "cmdlet": "Convert-PnPSiteTemplate",
+    "description": "Allows to convert a provisioning template to an other schema version.",
+    "syntax": "Convert-PnPSiteTemplate [-Path] <String> [-Out <String>] [[-ToSchema] <XMLPnPSchemaVersion>]\n [-Encoding <Encoding>] [-Force]",
+    "examples": [
+      "Convert-PnPSiteTemplate -Path template.xml",
+      "Convert-PnPSiteTemplate -Path template.xml -Out newtemplate.xml",
+      "Convert-PnPSiteTemplate -Path template.xml -Out newtemplate.xml -ToSchema V201512"
+    ]
+  },
+  {
+    "cmdlet": "Convert-PnPSiteTemplateToMarkdown",
+    "description": "Converts an existing PnP Site Template to markdown report. Notice that this cmdlet is work in work progress, and the completeness of the report will increase in the future.",
+    "syntax": "Convert-PnPSiteTemplateToMarkdown -TemplatePath <String> [-Out <String>] [-Force <SwitchParameter>]",
+    "examples": [
+      "Convert-PnPSiteTemplateToMarkdown -TemplatePath ./mytemplate.xml",
+      "Convert-PnPSiteTemplateToMarkdown -TemplatePath ./mytemplate.xml -Out ./myreport.md"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPCommSite",
+    "description": "This command will enable the modern site experience on a classic team site. The site must be the root site of the site collection.",
+    "syntax": "Enable-PnPCommSite [-DesignPackageId <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Enable-PnPCommSite",
+      "Enable-PnPCommSite -DesignPackageId 6142d2a0-63a5-4ba0-aede-d9fefca2c767"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPListToSiteTemplate",
+    "description": "Allows to export one or more lists to provisioning template.",
+    "syntax": "Export-PnPListToSiteTemplate -List <System.Collections.Generic.List`1[System.String]> [[-Out] <String>]\n [[-Schema] <XMLPnPSchemaVersion>] [-Force] [-OutputInstance] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPListToSiteTemplate -Out template.xml -List \"Documents\"",
+      "Export-PnPListToSiteTemplate -Out template.pnp -List \"Documents\",\"Events\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBuiltInSiteTemplateSettings",
+    "description": "Retrieves the current configuration of the built into SharePoint Online site templates.",
+    "syntax": "Get-PnPBuiltInSiteTemplateSettings [-Identity <BuiltInSiteTemplateSettingsPipeBind>] [-Template <BuiltInSiteTemplates>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPBuiltInSiteTemplateSettings",
+      "Get-PnPBuiltInSiteTemplateSettings -Identity 9522236e-6802-4972-a10d-e98dc74b3344",
+      "Get-PnPBuiltInSiteTemplateSettings -Template CrisisManagement",
+      "Get-PnPBuiltInSiteTemplateSettings -Identity 00000000-0000-0000-0000-000000000000",
+      "Get-PnPBuiltInSiteTemplateSettings -Template All"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPHomeSite",
+    "description": "This cmdlet will return the SharePoint Home sites for your tenant. Depending on which parameters you provide, you will get returned either the default first Home Site URL or details on all the Home Sites that have been configured for your tenant.",
+    "syntax": "Get-PnPHomeSite [-IsVivaConnectionsDefaultStartForCompanyPortalSiteEnabled <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPHomeSite",
+      "Get-PnPHomeSite -IsVivaConnectionsDefaultStartForCompanyPortalSiteEnabled",
+      "Get-PnPHomeSite -Detailed"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPHubSite",
+    "description": "Returns all hubsite properties",
+    "syntax": "Get-PnPHubSite [[-Identity] <HubSitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPHubSite",
+      "Get-PnPHubSite -Identity \"https://contoso.sharepoint.com/sites/myhubsite\"",
+      "Get-PnPHubSite -Identity \"bc07d4b8-1c2f-4184-8cc2-a52dfd6fe0c4\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPHubSiteChild",
+    "description": "Retrieves all sites associated to a specific hub site",
+    "syntax": "Get-PnPHubSiteChild [-Identity <HubSitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPHubSiteChild",
+      "Get-PnPHubSiteChild -Identity \"https://contoso.sharepoint.com/sites/myhubsite\"",
+      "Get-PnPHubSite | Get-PnPHubSiteChild"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPIsSiteAliasAvailable",
+    "description": "Validates if the alias \"HR\" is still available to be used",
+    "syntax": "Get-PnPIsSiteAliasAvailable [-Identity <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPIsSiteAliasAvailable -Identity \"HR\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPKnowledgeHubSite",
+    "description": "Returns the Knowledge Hub Site Url for your tenant",
+    "syntax": "Get-PnPKnowledgeHubSite [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPKnowledgeHubSite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPOrgNewsSite",
+    "description": "Allows to retrieve list of all the configured organizational news sites.",
+    "syntax": "Get-PnPOrgNewsSite [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPOrgNewsSite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSite",
+    "description": "Allows to retrieve current site collection from the context.",
+    "syntax": "Get-PnPSite [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPSite",
+      "Get-PnPSite -Includes RootWeb,ServerRelativeUrl"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteAnalyticsData",
+    "description": "Retrieves site analytics data within a specific date range.",
+    "syntax": "Get-PnPSiteAnalyticsData -Url <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteAnalyticsData -All",
+      "Get-PnPSiteAnalyticsData -LastSevenDays",
+      "Get-PnPSiteAnalyticsData -StartDate (Get-date).AddDays(-15) -EndDate (Get-date) -AnalyticsAggregationInterval Day",
+      "Get-PnPSiteAnalyticsData -Identity \"https://tenant.sharepoint.com/sites/mysite\" -StartDate (Get-date).AddDays(-15) -EndDate (Get-date) -AnalyticsAggregationInterval Day"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteClosure",
+    "description": "Allows to retrieve current site closure status of the site which has a site policy applied.",
+    "syntax": "Get-PnPSiteClosure [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteClosure"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionAdmin",
+    "description": "This command will return all current site collection administrators of the site collection in the current context",
+    "syntax": "Get-PnPSiteCollectionAdmin [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteCollectionAdmin"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteCollectionAppCatalog",
+    "description": "Returns all the site collection scoped app catalogs that exist on the tenant",
+    "syntax": "Get-PnPSiteCollectionAppCatalog [-CurrentSite <SwitchParameter>] [-ExcludeDeletedSites <SwitchParameter>] [-SkipUrlValidation <SwitchParameter>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPSiteCollectionAppCatalog",
+      "Get-PnPSiteCollectionAppCatalog -CurrentSite",
+      "Get-PnPSiteCollectionAppCatalog -ExcludeDeletedSites"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesign",
+    "description": "Retrieve Site Designs that have been registered on the current tenant. When providing a name with -Identity, it returns all site designs with that name.",
+    "syntax": "Get-PnPSiteDesign [[-Identity] <TenantSiteDesignPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteDesign",
+      "Get-PnPSiteDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRights",
+    "description": "Allows to retrieve the principals with design rights on a specific Site Design.",
+    "syntax": "Get-PnPSiteDesignRights [-Identity] <TenantSiteDesignPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteDesignRights -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRun",
+    "description": "Allows to retrieve a list of site designs applied to a specified site collection. By default the command will retrieve list of designs applied to the current site but it is also possible to get this information from a different site collection usingWebUrloption.",
+    "syntax": "Get-PnPSiteDesignRun [-SiteDesignId <Guid>] [-WebUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteDesignRun",
+      "Get-PnPSiteDesignRun -WebUrl \"https://mytenant.sharepoint.com/sites/project\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignRunStatus",
+    "description": "Allows to retrieve a list of all site script actions executed for a specified site design applied to a site.",
+    "syntax": "Get-PnPSiteDesignRunStatus -Run <TenantSiteDesignRun> [-Connection <PnPConnection>]",
+    "examples": [
+      "$myrun = Get-PnPSiteDesignRun -WebUrl \"https://contoso.sharepoint.com/sites/project-playbook\" -SiteDesignId cefd782e-sean-4814-a68a-b33b116c302f\nGet-PnPSiteDesignRunStatus -Run $myrun"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteDesignTask",
+    "description": "Allows to retrieve a scheduled site design script.",
+    "syntax": "Get-PnPSiteDesignTask [-Identity <TenantSiteDesignTaskPipeBind>] [-WebUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteDesignTask -Identity 501z8c32-4147-44d4-8607-26c2f67cae82",
+      "Get-PnPSiteDesignTask",
+      "Get-PnPSiteDesignTask -WebUrl \"https://contoso.sharepoint.com/sites/project\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteFileVersionBatchDeleteJobStatus",
+    "description": "This cmdlet allows retrieval of the progress of deleting existing file versions on the site.",
+    "syntax": "Get-PnPSiteFileVersionBatchDeleteJobStatus [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteFileVersionBatchDeleteJobStatus"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteFileVersionExpirationReportJobStatus",
+    "description": "Gets the status for a file version usage report generation job for a site collection.",
+    "syntax": "Get-PnPSiteFileVersionExpirationReportJobStatus -ReportUrl <string>",
+    "examples": [
+      "Get-PnPSiteFileVersionExpirationReportJobStatus -ReportUrl \"https://contoso.sharepoint.com/sites/reports/MyReports/VersionReport.csv\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteGroup",
+    "description": "Use the Get-PnPSiteGroup cmdlet to get all the groups on the specified or currently connected site collection.",
+    "syntax": "Get-PnPSiteGroup\n   [-Group <String>]\n   [-Site <SitePipeBind>]",
+    "examples": [
+      "Get-PnPSiteGroup",
+      "Get-PnPSiteGroup -Site \"https://contoso.sharepoint.com/sites/siteA\"",
+      "Get-PnPSiteGroup -Group \"SiteA Members\"",
+      "Get-PnPSiteGroup -Group \"SiteA Members\" -Site \"https://contoso.sharepoint.com/sites/siteA\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteScript",
+    "description": "Allows to retrieve site scripts registered on the current tenant. By usingIdentityoption it is possible to retrieve specified site script",
+    "syntax": "Get-PnPSiteScript [[-Identity] <TenantSiteScriptPipeBind>] [[-SiteDesign] <TenantSiteDesignPipeBind>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteScript",
+      "Get-PnPSiteScript -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteScriptFromList",
+    "description": "This command allows a Site Script to be generated off of an existing list on your tenant. The script will return the JSON syntax with the definition of the list, including fields, views, content types, and some of the list settings. The script can then be used withAdd-PnPSiteScriptandAdd-PnPListDesignto allow lists with the same configuration as the original list to be created by end users.",
+    "syntax": "Get-PnPSiteScriptFromList -List <ListPipeBind> [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPSiteScriptFromList -List \"MyList\"",
+      "Get-PnPList -Identity \"MyList\" | Get-PnPSiteScriptFromList | Add-PnPSiteScript -Title \"MyListScript\" | Add-PnPListDesign -Title \"MyListDesign\"",
+      "Get-PnPSiteScriptFromList -Url \"https://contoso.sharepoint.com/sites/teamsite/lists/MyList\"",
+      "Get-PnPSiteScriptFromList -Url \"https://contoso.sharepoint.com/sites/teamsite/Shared Documents\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteScriptFromWeb",
+    "description": "This command allows a Site Script to be generated off of an existing site on your tenant. You need to provide at least one of the optional Include or Lists arguments. If you omit the URL, the Site Script will be created from the site to which you are connected.",
+    "syntax": "Get-PnPSiteScriptFromWeb -Url <String> [-Lists <String[]>] [-IncludeAll] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteScriptFromWeb -IncludeAll",
+      "Get-PnPSiteScriptFromWeb -Url \"https://contoso.sharepoint.com/sites/teamsite\" -IncludeAll",
+      "Get-PnPSiteScriptFromWeb -Url \"https://contoso.sharepoint.com/sites/teamsite\" -IncludeAll -Lists \"Shared Documents\",\"Lists\\MyList\"",
+      "Get-PnPSiteScriptFromWeb -Url \"https://contoso.sharepoint.com/sites/teamsite\" -IncludeBranding -IncludeLinksToExportedItems",
+      "Get-PnPSiteScriptFromWeb -IncludeAllLists",
+      "Get-PnPSiteScriptFromWeb -IncludeAllLists | Add-PnPSiteScript -Title \"My Site Script\" | Add-PnPSiteDesign -Title \"My Site Design\" -WebTemplate TeamSite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteTemplate",
+    "description": "Allows to generate a provisioning site template from a web.",
+    "syntax": "Get-PnPSiteTemplate [[-Out] <String>] [[-Schema] <XMLPnPSchemaVersion>] [-IncludeAllTermGroups]\n [-IncludeSiteCollectionTermGroup] [-IncludeSiteGroups] [-IncludeTermGroupsSecurity]\n [-IncludeSearchConfiguration] [-PersistBrandingFiles] [-PersistPublishingFiles]\n [-IncludeNativePublishingFiles] [-IncludeHiddenLists] [-IncludeAllPages] [-SkipVersionCheck]\n [-PersistMultiLanguageResources] [-ResourceFilePrefix <String>] [-Handlers <Handlers>]\n [-ExcludeHandlers <Handlers>] [-ExtensibilityHandlers <ExtensibilityHandler[]>]\n [-TemplateProviderExtensions <ITemplateProviderExtension[]>] [-ContentTypeGroups <String[]>] [-Force]\n [-NoBaseTemplate] [-Encoding <Encoding>] [-TemplateDisplayName <String>] [-TemplateImagePreviewUrl <String>]\n [-TemplateProperties <Hashtable>] [-OutputInstance] [-ExcludeContentTypesFromSyndication]\n [-ListsToExtract <System.Collections.Generic.List`1[System.String]>]\n [-Configuration <ExtractConfigurationPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteTemplate -Out template.pnp",
+      "Get-PnPSiteTemplate -Out template.xml",
+      "Get-PnPSiteTemplate -Out template.md",
+      "Get-PnPSiteTemplate -Out template.pnp -Schema V201503",
+      "Get-PnPSiteTemplate -Out template.pnp -IncludeAllTermGroups",
+      "Get-PnPSiteTemplate -Out template.pnp -IncludeSiteCollectionTermGroup",
+      "Get-PnPSiteTemplate -Out template.pnp -PersistBrandingFiles",
+      "Get-PnPSiteTemplate -Out template.pnp -Handlers Lists, SiteSecurity",
+      "$handler1 = New-PnPExtensibilityHandlerObject -Assembly Contoso.Core.Handlers -Type Contoso.Core.Handlers.MyExtensibilityHandler1\n$handler2 = New-PnPExtensibilityHandlerObject -Assembly Contoso.Core.Handlers -Type Contoso.Core.Handlers.MyExtensibilityHandler2\nGet-PnPSiteTemplate -Out NewTemplate.xml -ExtensibilityHandlers $handler1,$handler2",
+      "Get-PnPSiteTemplate -Out template.pnp -PersistMultiLanguageResources",
+      "Get-PnPSiteTemplate -Out template.pnp -PersistMultiLanguageResources -ResourceFilePrefix MyResources",
+      "$template = Get-PnPSiteTemplate -OutputInstance",
+      "Get-PnPSiteTemplate -Out template.pnp -ContentTypeGroups \"Group A\",\"Group B\"",
+      "Get-PnPSiteTemplate -Out template.pnp -ExcludeContentTypesFromSyndication",
+      "Get-PnPSiteTemplate -Out template.pnp -ListsToExtract \"Title of List One\",\"95c4efd6-08f4-4c67-94ae-49d696ba1298\",\"Title of List Three\"",
+      "Get-PnPSiteTemplate -Out template.xml -Handlers Fields, ContentTypes, SupportedUILanguages -PersistMultiLanguageResources",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com/sites/yourContentCenter\"\n\nGet-PnPSiteTemplate -Out MyModels.pnp -Handlers SyntexModels"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPStructuralNavigationCacheSiteState",
+    "description": "The Get-PnPStructuralNavigationCacheSiteState cmdlet can be used to determine if structural navigation caching is enabled or disabled for a site collection. If the SiteUrl parameter has not been specified the currently connected to site will be used.",
+    "syntax": "Get-PnPStructuralNavigationCacheSiteState [-SiteUrl <String>]",
+    "examples": [
+      "Get-PnPStructuralNavigationCacheSiteState -SiteUrl \"https://contoso.sharepoint.com/sites/product/\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPStructuralNavigationCacheWebState",
+    "description": "The Get-PnPStructuralNavigationCacheWebState cmdlet can be used to determine if structural navigation caching is enabled or disabled for a web in a site collection. If the WebUrl parameter has not been specified the currently connected to web will be used.",
+    "syntax": "Get-PnPStructuralNavigationCacheWebState [-WebUrl <String>]",
+    "examples": [
+      "Get-PnPStructuralNavigationCacheWebState -WebUrl \"https://contoso.sharepoint.com/sites/product/electronics\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSubWeb",
+    "description": "Allows to retrieve subwebs of the current web.",
+    "syntax": "Get-PnPSubWeb [[-Identity] <WebPipeBind>] [-Recurse] [-Connection <PnPConnection>]\n [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPSubWeb",
+      "Get-PnPSubWeb -Recurse",
+      "Get-PnPSubWeb -Recurse -Includes \"WebTemplate\",\"Description\" | Select ServerRelativeUrl, WebTemplate, Description",
+      "Get-PnPSubWeb -Identity Team1 -Recurse",
+      "Get-PnPSubWeb -Identity Team1 -Recurse -IncludeRootWeb"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantAppCatalogUrl",
+    "description": "Allows to retrieve the url of the tenant scoped app catalog.",
+    "syntax": "Get-PnPTenantAppCatalogUrl [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantAppCatalogUrl"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantDeletedSite",
+    "description": "Fetches the site collections which are listed in your tenant's recycle bin.",
+    "syntax": "Get-PnPTenantDeletedSite [-Identity] <String> [-Limit] [-IncludePersonalSite] [-IncludeOnlyPersonalSite] [-Detailed] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantDeletedSite",
+      "Get-PnPTenantDeletedSite -Detailed",
+      "Get-PnPTenantDeletedSite -Identity \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Get-PnPTenantDeletedSite -IncludePersonalSite",
+      "Get-PnPTenantDeletedSite -IncludeOnlyPersonalSite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantSequenceSite",
+    "description": "Allows to retrieve list of sites from tenant template sequence.",
+    "syntax": "Get-PnPTenantSequenceSite -Sequence <ProvisioningSequence> [-Identity <ProvisioningSitePipeBind>]",
+    "examples": [
+      "Get-PnPTenantSequenceSite -Sequence $mysequence",
+      "Get-PnPTenantSequenceSite -Sequence $mysequence -Identity 8058ea99-af7b-4bb7-b12a-78f93398041e"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantSite",
+    "description": "This cmdlet allows for retrieval of site collection information through the SharePoint Online tenant site. It requires having SharePoint Online administrator access.",
+    "syntax": "Get-PnPTenantSite [-Identity] <string> [-Detailed] [-DisableSharingForNonOwnersStatus] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantSite",
+      "Get-PnPTenantSite -Detailed",
+      "Get-PnPTenantSite -IncludeOneDriveSites",
+      "Get-PnPTenantSite -IncludeOneDriveSites -Filter \"Url -like '-my.sharepoint.com/personal/'\"",
+      "Get-PnPTenantSite -Identity \"http://tenant.sharepoint.com/sites/projects\"",
+      "Get-PnPTenantSite -Identity 7e8a6f56-92fe-4b22-9364-41799e579e8a",
+      "Get-PnPTenantSite -Template SITEPAGEPUBLISHING#0",
+      "Get-PnPTenantSite -Filter \"Url -like 'sales'\"",
+      "Get-PnPTenantSite -GroupIdDefined $true"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWeb",
+    "description": "Allows to retrieve the current web.",
+    "syntax": "Get-PnPWeb [[-Identity] <WebPipeBind>] [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPWeb"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebHeader",
+    "description": "Through this cmdlet the current configuration of the various options offered through \"Change the look\" Header can be retrieved.",
+    "syntax": "Get-PnPWebHeader [-SiteLogoUrl <string>] [-HeaderLayout <HeaderLayoutType>] [-HeaderEmphasis <SPVariantThemeType>] [-HideTitleInHeader]\n[-HeaderBackgroundImageUrl <string>] [-HeaderBackgroundImageFocalX <double>] [-HeaderBackgroundImageFocalY <double>] [-LogoAlignment <LogoAlignment>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebHeader"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebhookSubscription",
+    "description": "Allows to retrieve Webhook subscriptions of specified list.",
+    "syntax": "Get-PnPWebhookSubscription [-List <ListPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebhookSubscription -List MyList",
+      "Get-PnPList | Get-PnPWebhookSubscription"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebhookSubscriptions",
+    "description": "This is an alias forGet-PnPWebhookSubscription.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPWebPart",
+    "description": "Allows retrieval of the definition of a webpart on a classic SharePoint Online page.",
+    "syntax": "Get-PnPWebPart -ServerRelativePageUrl <String> [-Identity <WebPartPipeBind>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebPart -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\"",
+      "Get-PnPWebPart -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Identity a2875399-d6ff-43a0-96da-be6ae5875f82"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebPartProperty",
+    "description": "Allows to retrieve web part property.",
+    "syntax": "Get-PnPWebPartProperty -ServerRelativePageUrl <String> -Identity <Guid> [-Key <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebPartProperty -ServerRelativePageUrl /sites/demo/sitepages/home.aspx -Identity ccd2c98a-c9ae-483b-ae72-19992d583914",
+      "Get-PnPWebPartProperty -ServerRelativePageUrl /sites/demo/sitepages/home.aspx -Identity ccd2c98a-c9ae-483b-ae72-19992d583914 -Key \"Title\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebPartXml",
+    "description": "Allows to retrieve web part XML defintion.",
+    "syntax": "Get-PnPWebPartXml -ServerRelativePageUrl <String> -Identity <WebPartPipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebPartXml -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Identity a2875399-d6ff-43a0-96da-be6ae5875f82"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebTemplates",
+    "description": "Will list all available classic templates one can use to create a site. Modern templates will not be returned.",
+    "syntax": "Get-PnPWebTemplates [-Lcid <UInt32>] [-CompatibilityLevel <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWebTemplates",
+      "Get-PnPWebTemplates -LCID 1033",
+      "Get-PnPWebTemplates -CompatibilityLevel 15"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteDesign",
+    "description": "Applies the Site Design provided through Identity to an existing site. When providing a site design name and multiple site designs exist with the same name, all of them will be invoked.",
+    "syntax": "Invoke-PnPSiteDesign [-Identity] <TenantSiteDesignPipeBind> [-WebUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPSiteDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd",
+      "Invoke-PnPSiteDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd -WebUrl \"https://contoso.sharepoint.com/sites/mydemosite\"",
+      "Get-PnPSiteDesign | ?{$_.Title -eq \"Demo\"} | Invoke-PnPSiteDesign"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteScript",
+    "description": "Applies the Site Design provided through Identity to an existing site. When providing a site design name and multiple site designs exist with the same name, all of them will be invoked and applied. It is also possible to provide a site script directly without having to add it as a site script first. This could be ideal for making quick one time copies of i.e. lists and sites.",
+    "syntax": "Invoke-PnPSiteScript -Identity <TenantSiteScriptPipeBind> -WebUrl <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPSiteScript -Identity \"My awesome script\" -WebUrl https://contoso.sharepoint.com/sites/mydemosite",
+      "$script = Get-PnPSiteScriptFromList -Url \"https://contoso.sharepoint.com/sites/mytemplatesite/lists/Sample\"\nInvoke-PnPSiteScript -Script $script",
+      "Get-PnPSiteScript | ? { $_.Title -like \"*Test*\"} | Invoke-PnPSiteScript -WebUrl https://contoso.sharepoint.com/sites/mydemosite"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteSwap",
+    "description": "Swaps the location of a source site with a target site while archiving the original target site.",
+    "syntax": "Invoke-PnPSiteSwap -SourceUrl <string> -TargetUrl <string> -ArchiveUrl <string> [-DisableRedirection] [-NoWait] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPSiteSwap -SourceUrl https://contoso.sharepoint.com/sites/CommunicationSite -TargetUrl https://contoso.sharepoint.com -ArchiveUrl https://contoso.sharepoint.com/sites/Archive",
+      "Invoke-PnPSiteSwap -SourceUrl https://contoso.sharepoint.com/sites/SearchSite -TargetUrl https://contoso.sharepoint.com/search -ArchiveUrl https://contoso.sharepoint.com/sites/Archive",
+      "Invoke-PnPSiteSwap -SourceUrl https://contoso.sharepoint.com/sites/CommunicationSite -TargetUrl https://contoso.sharepoint.com -ArchiveUrl https://contoso.sharepoint.com/sites/Archive -DisableRedirection"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSiteTemplate",
+    "description": "Allows to apply a site template on a web. The template can be in XML format or a .pnp package. The cmdlet will apply the template to the web you are currently connected to, unless you provide the -Url parameter. You can specify which parts of the template to apply by using the Handlers parameter or just omit it to apply the entire template.",
+    "syntax": "Invoke-PnPSiteTemplate -Path <String> [-TemplateId <String>] [-ResourceFolder <String>]\n [-OverwriteSystemPropertyBagValues] [-IgnoreDuplicateDataRowErrors] [-ProvisionContentTypesToSubWebs]\n [-ProvisionFieldsToSubWebs] [-ClearNavigation] [-Parameters <Hashtable>] [-Handlers <Handlers>]\n [-ExcludeHandlers <Handlers>] [-ExtensibilityHandlers <ExtensibilityHandler[]>]\n [-TemplateProviderExtensions <ITemplateProviderExtension[]>] \n [-Url <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPSiteTemplate -Path template.xml -Url https://tenant.sharepoint.com/sites/sitename",
+      "Invoke-PnPSiteTemplate -Path template.xml",
+      "Invoke-PnPSiteTemplate -Path template.xml -ResourceFolder c:\\provisioning\\resources",
+      "Invoke-PnPSiteTemplate -Path template.xml -Parameters @{\"ListTitle\"=\"Projects\";\"parameter2\"=\"a second value\"}",
+      "Invoke-PnPSiteTemplate -Path template.xml -Handlers Lists, SiteSecurity",
+      "Invoke-PnPSiteTemplate -Path template.pnp",
+      "Invoke-PnPSiteTemplate -Path \"https://tenant.sharepoint.com/sites/templatestorage/Documents/template.pnp\"",
+      "$handler1 = New-PnPExtensibilityHandlerObject -Assembly Contoso.Core.Handlers -Type Contoso.Core.Handlers.MyExtensibilityHandler1\n$handler2 = New-PnPExtensibilityHandlerObject -Assembly Contoso.Core.Handlers -Type Contoso.Core.Handlers.MyExtensibilityHandler2\nInvoke-PnPSiteTemplate -Path NewTemplate.xml -ExtensibilityHandlers $handler1,$handler2",
+      "Invoke-PnPSiteTemplate -InputInstance $template",
+      "Invoke-PnPSiteTemplate -Path .\\template.xml -TemplateId \"MyTemplate\"",
+      "$stream = Get-PnPFile -Url https://tenant.sharepoint.com/sites/TemplateGallery/Shared%20Documents/ProjectSite.pnp -AsMemoryStream\nInvoke-PnPSiteTemplate -Stream $stream"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPWebAction",
+    "description": "Allows to execute operations on web, lists and list items.",
+    "syntax": "Invoke-PnPWebAction [-ListName <String>] [-Webs <Web[]>]\n [-WebAction <System.Action`1[Microsoft.SharePoint.Client.Web]>]\n [-ShouldProcessWebAction <System.Func`2[Microsoft.SharePoint.Client.Web,System.Boolean]>]\n [-PostWebAction <System.Action`1[Microsoft.SharePoint.Client.Web]>]\n [-ShouldProcessPostWebAction <System.Func`2[Microsoft.SharePoint.Client.Web,System.Boolean]>]\n [-WebProperties <String[]>] [-ListAction <System.Action`1[Microsoft.SharePoint.Client.List]>]\n [-ShouldProcessListAction <System.Func`2[Microsoft.SharePoint.Client.List,System.Boolean]>]\n [-PostListAction <System.Action`1[Microsoft.SharePoint.Client.List]>]\n [-ShouldProcessPostListAction <System.Func`2[Microsoft.SharePoint.Client.List,System.Boolean]>]\n [-ListProperties <String[]>] [-ListItemAction <System.Action`1[Microsoft.SharePoint.Client.ListItem]>]\n [-ShouldProcessListItemAction <System.Func`2[Microsoft.SharePoint.Client.ListItem,System.Boolean]>]\n [-ListItemProperties <String[]>] [-SubWebs] [-DisableStatisticsOutput] [-SkipCounting] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPWebAction -ListAction ${function:ListAction}",
+      "Invoke-PnPWebAction -ShouldProcessListAction ${function:ShouldProcessList} -ListAction ${function:ListAction}"
+    ]
+  },
+  {
+    "cmdlet": "Measure-PnPWeb",
+    "description": "Allows to retrieve statistics on specified web. By specifyingRecursiveit is possible to retrieve statistics on all subwebs as well.",
+    "syntax": "Measure-PnPWeb [[-Identity] <WebPipeBind>] [-Recursive] [-IncludeHiddenList] [-Connection <PnPConnection>]",
+    "examples": [
+      "Measure-PnPWeb",
+      "Measure-PnPWeb $web -Recursive"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPPersonalSite",
+    "description": "Creates a OneDrive For Business site for the provided user(s)",
+    "syntax": "New-PnPPersonalSite [-Email] <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPPersonalSite -Email @('katiej@contoso.onmicrosoft.com','garth@contoso.onmicrosoft.com')"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSite",
+    "description": "The New-PnPSite cmdlet creates a new site collection for the current tenant. Currently only 'modern' sites like Communication Site , Modern Microsoft 365 group-connected team sites and Modern Team sites not connected to M365 groups are supported. If you want to create a classic site, use New-PnPTenantSite. Note that the -Type parameter is mandatory to be used to indicate which type of site you would like to create. Based on the type of site you specify, you will be able to provide the additional arguments that are valid for that site type, so it is recommended to provide this as the first argument.",
+    "syntax": "New-PnPSite -Type TeamSite -Title <String> -Alias <String> [-Description <String>] [-Classification <String>] [-IsPublic] [-Lcid <UInt>] [-Owners <String[]>] [-PreferredDataLocation <Office365Geography>] [-SensitivityLabel <String>] [-HubSiteId <Guid>] [-SiteAlias <String>] [-TimeZone <PnP.Framework.Enums.TimeZone>] [-Members <String[]>] [-WelcomeEmailDisabled <SwitchParameter>] [-SubscribeNewGroupMembers <SwitchParameter>] [-AllowOnlyMembersToPost <SwitchParameter>] [-CalendarMemberReadOnly <SwitchParameter>] \n[-ConnectorsDisabled <SwitchParameter>] [-HideGroupInOutlook <SwitchParameter>] [-SubscribeMembersToCalendarEventsDisabled <SwitchParameter>] [-SiteDesignId <Guid>] [-Wait] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso",
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -SiteDesign Showcase",
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -SiteDesignId ae2349d5-97d6-4440-94d1-6516b72449ac",
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -Classification \"HBI\"",
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -ShareByEmailEnabled",
+      "New-PnPSite -Type CommunicationSite -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -Lcid 1040",
+      "New-PnPSite -Type TeamSite -Title 'Team Contoso' -Alias contoso",
+      "New-PnPSite -Type TeamSite -Title 'Team Contoso' -Alias contoso -IsPublic",
+      "New-PnPSite -Type TeamSite -Title 'Team Contoso' -Alias contoso -Lcid 1040",
+      "New-PnPSite -Type TeamSite -Title 'Team Contoso' -Alias contoso -SiteAlias contoso-site",
+      "New-PnPSite -Type TeamSiteWithoutMicrosoft365Group -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso",
+      "New-PnPSite -Type TeamSiteWithoutMicrosoft365Group -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -SiteDesignId ae2349d5-97d6-4440-94d1-6516b72449ac",
+      "New-PnPSite -Type TeamSiteWithoutMicrosoft365Group -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -Classification \"HBI\"",
+      "New-PnPSite -Type TeamSiteWithoutMicrosoft365Group -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -ShareByEmailEnabled",
+      "New-PnPSite -Type TeamSiteWithoutMicrosoft365Group -Title Contoso -Url https://tenant.sharepoint.com/sites/contoso -Lcid 1040",
+      "New-PnPSite -Type TeamSite -TimeZone UTCPLUS0200_HELSINKI_KYIV_RIGA_SOFIA_TALLINN_VILNIUS -Title \"Contoso\" -Alias \"Contoso\"",
+      "New-PnPSite -Type TeamSite -TimeZone UTCPLUS0200_HELSINKI_KYIV_RIGA_SOFIA_TALLINN_VILNIUS -Title \"Contoso\" -Alias \"Contoso\" -WelcomeEmailDisabled -SubscribeNewGroupMembers -AllowOnlyMembersToPost -CalendarMemberReadOnly -ConnectorsDisabled -HideGroupInOutlook -SubscribeMembersToCalendarEventsDisabled"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteFileVersionBatchDeleteJob",
+    "description": "Starts a file version batch trim job targeting all document libraries in a site collection.",
+    "syntax": "New-PnPSiteFileVersionBatchDeleteJob -DeleteBeforeDays <int> [-Force]",
+    "examples": [
+      "New-PnPSiteFileVersionBatchDeleteJob -DeleteBeforeDays 360",
+      "New-PnPSiteFileVersionBatchDeleteJob -DeleteBeforeDays 360 -Force",
+      "New-PnPSiteFileVersionBatchDeleteJob -Automatic",
+      "New-PnPSiteFileVersionBatchDeleteJob -MajorVersionLimit 30 -MajorWithMinorVersionsLimit 10"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteFileVersionExpirationReportJob",
+    "description": "Starts generating file version usage report for a site collection.",
+    "syntax": "New-PnPSiteFileVersionExpirationReportJob -ReportUrl <string>",
+    "examples": [
+      "New-PnPSiteFileVersionExpirationReportJob -ReportUrl \"https://contoso.sharepoint.com/sites/reports/MyReports/VersionReport.csv\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteGroup",
+    "description": "A SharePoint group is a set of individual users. SharePoint groups enable you to manage sets of users instead of individual users.",
+    "syntax": "New-PnPSiteGroup\n   -Name <String>\n   -PermissionLevels <String[]>\n   [-Site <SitePipeBind>]",
+    "examples": [
+      "New-PnPSiteGroup -Site \"https://contoso.sharepoint.com/sites/siteA\" -Name \"Project Leads\" -PermissionLevels \"Full Control\"",
+      "New-PnPSiteGroup -Site \"https://contoso.sharepoint.com/sites/marketing\" -Name \"NewGroupName\" -PermissionLevels \"Design\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteTemplate",
+    "description": "Allows to create a new provisioning site template.",
+    "syntax": "New-PnPSiteTemplate",
+    "examples": [
+      "$template = New-PnPSiteTemplate"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSiteTemplateFromFolder",
+    "description": "Allows to create a new provisioning site template based on a given folder, including files present in it.",
+    "syntax": "New-PnPSiteTemplateFromFolder [[-Out] <String>] [[-Folder] <String>] [[-TargetFolder] <String>]\n [-Match <String>] [-ContentType <ContentTypePipeBind>] [-Properties <Hashtable>]\n [[-Schema] <XMLPnPSchemaVersion>] [-AsIncludeFile] [-Force] [-Encoding <Encoding>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPSiteTemplateFromFolder -Out template.xml",
+      "New-PnPSiteTemplateFromFolder -Out template.xml -Folder c:\\temp",
+      "New-PnPSiteTemplateFromFolder -Out template.xml -Folder c:\\temp -Match *.js",
+      "New-PnPSiteTemplateFromFolder -Out template.xml -Folder c:\\temp -Match *.js -TargetFolder \"Shared Documents\"",
+      "New-PnPSiteTemplateFromFolder -Out template.xml -Folder c:\\temp -Match *.js -TargetFolder \"Shared Documents\" -ContentType \"Test Content Type\"",
+      "New-PnPSiteTemplateFromFolder -Out template.xml -Folder c:\\temp -Match *.js -TargetFolder \"Shared Documents\" -Properties @{\"Title\" = \"Test Title\"; \"Category\"=\"Test Category\"}",
+      "New-PnPSiteTemplateFromFolder -Out template.pnp",
+      "New-PnPSiteTemplateFromFolder -Out template.pnp -Folder c:\\temp"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSequenceCommunicationSite",
+    "description": "Allows to create a new communication site object.",
+    "syntax": "New-PnPTenantSequenceCommunicationSite -Url <String> -Title <String> [-Language <UInt32>] [-Owner <String>]\n [-Description <String>] [-Classification <String>] [-SiteDesignId <String>] [-HubSite]\n [-AllowFileSharingForGuestUsers] [-TemplateIds <String[]>]",
+    "examples": [
+      "$site = New-PnPTenantSequenceCommunicationSite -Url \"/sites/mycommunicationsite\" -Title \"My Team Site\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSite",
+    "description": "The New-PnPTenantSite cmdlet creates a new site collection for the current company. However, creating a new SharePoint Online site collection fails if a deleted site with the same URL exists in the Recycle Bin",
+    "syntax": "New-PnPTenantSite -Title <String> -Url <String> -Owner <String> [-Lcid <UInt32>] [-Template <String>]\n -TimeZone <Int32> [-ResourceQuota <Double>] [-ResourceQuotaWarningLevel <Double>] [-StorageQuota <Int64>]\n [-StorageQuotaWarningLevel <Int64>] [-RemoveDeletedSite] [-SharingCapability <SharingCapabilities>] [-Wait] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPTenantSite -Title Contoso -Url \"https://tenant.sharepoint.com/sites/contoso\" -Owner user@example.org -TimeZone 4 -Template STS#0",
+      "New-PnPTenantSite -Title Contoso -Url /sites/contososite -Owner user@example.org -TimeZone 4 -Template STS#0"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPWeb",
+    "description": "Allows to create new subweb under the current web.",
+    "syntax": "New-PnPWeb -Title <String> -Url <String> [-Description <String>] [-Locale <Int32>] -Template <String>\n [-BreakInheritance] [-InheritNavigation] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPWeb -Title \"Project A Web\" -Url projectA -Description \"Information about Project A\" -Locale 1033 -Template \"STS#0\""
+    ]
+  },
+  {
+    "cmdlet": "Read-PnPSiteTemplate",
+    "description": "This cmdlet allows you to read a PnP Provisioning Template from disk, by passing in XML as text or from a stream to keep it in memory and not needing to physically save the template anywhere. The template can be modified in memory if needed and then applied to a site.",
+    "syntax": "Read-PnPSiteTemplate [-Path] <String> [-TemplateProviderExtensions <ITemplateProviderExtension[]>]",
+    "examples": [
+      "Read-PnPSiteTemplate -Path template.pnp",
+      "Read-PnPSiteTemplate -Path template.pnp -TemplateProviderExtensions $extensions",
+      "Read-PnPSiteTemplate -Xml $xml",
+      "$stream = Get-PnPFile -Url \"/sites/templates/Site Templates/sample1.pnp\" -AsMemoryStream\nRead-PnPSiteTemplate -Stream $stream"
+    ]
+  },
+  {
+    "cmdlet": "Register-PnPAppCatalogSite",
+    "description": "Allows to create a new App Catalog Site and sets this site as the Tenant App Catalog.",
+    "syntax": "Register-PnPAppCatalogSite -Url <String> -Owner <String> -TimeZoneId <Int32> [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Register-PnPAppCatalogSite -Url \"https://yourtenant.sharepoint.com/sites/appcatalog\" -Owner admin@domain.com -TimeZoneId 4"
+    ]
+  },
+  {
+    "cmdlet": "Register-PnPHubSite",
+    "description": "Registers a site as a hub site.",
+    "syntax": "Register-PnPHubSite -Site <SitePipeBind> [-Principals <String[][]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Register-PnPHubSite -Site \"https://tenant.sharepoint.com/sites/myhubsite\"",
+      "Register-PnPHubSite -Site \"https://tenant.sharepoint.com/sites/myhubsite\" -Principals \"user@contoso.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFileFromSiteTemplate",
+    "description": "Allows to remove a file from a PnP Provisioning Template.",
+    "syntax": "Remove-PnPFileFromSiteTemplate [-Path] <String> [-FilePath] <String>\n [[-TemplateProviderExtensions] <ITemplateProviderExtension[]>]",
+    "examples": [
+      "Remove-PnPFileFromSiteTemplate -Path template.pnp -FilePath filePath"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPHomeSite",
+    "description": "Allows to remove a site which currently is set as home site.",
+    "syntax": "Remove-PnPHomeSite [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPHomeSite"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPHubSiteAssociation",
+    "description": "Allows to remove a hub site association from a site.",
+    "syntax": "Remove-PnPHubSiteAssociation -Site <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPHubSiteAssociation -Site \"https://tenant.sharepoint.com/sites/mysite\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPKnowledgeHubSite",
+    "description": "Allows to remove Knowledge Hub Site setting for your tenant.",
+    "syntax": "Remove-PnPKnowledgeHubSite [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPKnowledgeHubSite"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPOrgNewsSite",
+    "description": "Removes a given site from the list of organizational news sites based on its URL in your SharePoint Online tenant.",
+    "syntax": "Remove-PnPOrgNewsSite -OrgNewsSiteUrl <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPOrgNewsSite -OrgNewsSiteUrl \"https://tenant.sharepoint.com/sites/mysite\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionAdmin",
+    "description": "This command allows removing one to many users as site collection administrators from the site collection in the current context. All existing site collection administrators not included in this command will remain site collection administrator.",
+    "syntax": "Remove-PnPSiteCollectionAdmin\n -Owners <System.Collections.Generic.List`1[PnP.PowerShell.Commands.Base.PipeBinds.UserPipeBind]>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteCollectionAdmin -Owners \"user@contoso.onmicrosoft.com\"",
+      "Remove-PnPSiteCollectionAdmin -Owners @(\"user1@contoso.onmicrosoft.com\", \"user2@contoso.onmicrosoft.com\")",
+      "Get-PnPUser | ? Title -Like \"*Doe\" | Remove-PnPSiteCollectionAdmin",
+      "Get-PnPSiteCollectionAdmin | Remove-PnPSiteCollectionAdmin"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteCollectionAppCatalog",
+    "description": "Notice that this will not remove the App Catalog list and its contents from the site.",
+    "syntax": "Remove-PnPSiteCollectionAppCatalog -Site <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteCollectionAppCatalog -Site \"https://contoso.sharepoint.com/sites/FinanceTeamsite\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteDesign",
+    "description": "This cmdlet removes the specified site design.",
+    "syntax": "Remove-PnPSiteDesign [-Identity] <TenantSiteDesignPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd",
+      "$siteDesign = Get-PnPSiteDesign -Identity c234b254-b51a-4ca8-8ba3-939659a66832\nRemove-PnPSiteDesign -Identity $siteDesign"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteDesignTask",
+    "description": "This cmdlet removes a site design task. If the execution of the associated site script has already started, the execution will not be terminated.",
+    "syntax": "Remove-PnPSiteDesignTask [-Identity] <TenantSiteDesignTaskPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteDesignTask -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteFileVersionBatchDeleteJob",
+    "description": "Cancels further processing of a file version batch trim job for a site collection.",
+    "syntax": "Remove-PnPSiteFileVersionBatchDeleteJob [-Force]",
+    "examples": [
+      "Remove-PnPSiteFileVersionBatchDeleteJob",
+      "Remove-PnPSiteFileVersionBatchDeleteJob -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteGroup",
+    "description": "Allows to remove a group from specified site.",
+    "syntax": "Remove-PnPSiteGroup -Identity <String> [-Site <SitePipeBind>]    \n    [-Confirm]",
+    "examples": [
+      "Remove-PnPSiteGroup -Identity GroupToRemove -Site \"https://contoso.sharepoint.com/sites/marketing\"",
+      "Remove-PnPSiteGroup -Identity GroupToRemove"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteScript",
+    "description": "This cmdlet removes specified site script.",
+    "syntax": "Remove-PnPSiteScript [-Identity] <TenantSiteScriptPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteScript -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd",
+      "$sitescript = Get-PnPSiteScript -Identity MySiteScript\nRemove-PnPSiteScript -Identity $sitescript"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantDeletedSite",
+    "description": "Removes a site collection which is listed in your tenant administration site from the tenant's recycle bin.",
+    "syntax": "Remove-PnPTenantDeletedSite [-Identity] <String> [-Force] [-NoWait] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Remove-PnPTenantDeletedSite -Identity \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Remove-PnPTenantDeletedSite -Identity \"https://tenant.sharepoint.com/sites/contoso\" -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantSite",
+    "description": "Removes a site collection which is listed in your tenant administration site.",
+    "syntax": "Remove-PnPTenantSite [-Url] <String> [-SkipRecycleBin] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPTenantSite -Url \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Remove-PnPTenantSite -Url \"https://tenant.sharepoint.com/sites/contoso\" -Force -SkipRecycleBin",
+      "Remove-PnPTenantSite -Url \"https://tenant.sharepoint.com/sites/contoso\" -FromRecycleBin"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPWeb",
+    "description": "This cmdlet removes the specified subsite.",
+    "syntax": "Remove-PnPWeb -Identity <WebPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPWeb -Identity projectA",
+      "Remove-PnPWeb -Identity 5fecaf67-6b9e-4691-a0ff-518fc9839aa0",
+      "Get-PnPSubWeb | Remove-PnPWeb -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPWebhookSubscription",
+    "description": "Allows to remove Webhook subscription from list.",
+    "syntax": "Remove-PnPWebhookSubscription [-Identity] <WebhookSubscriptionPipeBind> [-List <ListPipeBind>] [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPWebhookSubscription -List MyList -Identity ea1533a8-ff03-415b-a7b6-517ee50db8b6",
+      "$subscriptions = Get-PnPWebhookSubscriptions -List MyList\nRemove-PnPWebhookSubscription -Identity $subscriptions[0] -List MyList",
+      "$subscriptions = Get-PnPWebhookSubscriptions -List MyList\n$subscriptions[0] | Remove-PnPWebhookSubscription -List MyList"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPWebPart",
+    "description": "Allows to remove web part from a page.",
+    "syntax": "Remove-PnPWebPart -Identity <Guid> -ServerRelativePageUrl <String> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPWebPart -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Identity a2875399-d6ff-43a0-96da-be6ae5875f82",
+      "Remove-PnPWebPart -ServerRelativePageUrl \"/sites/demo/sitepages/home.aspx\" -Title MyWebpart"
+    ]
+  },
+  {
+    "cmdlet": "Rename-PnPTenantSite",
+    "description": "This cmdlet starts a rename of a site on a SharePoint Online site. You can change the URL, and optionally the site title along with changing the URL.",
+    "syntax": "Rename-PnPTenantSite [[-Identity] <SPOSitePipeBind>] [[-NewSiteUrl] <String>] [[-NewSiteTitle] <string>]\n[[-SuppressMarketplaceAppCheck] [<SwitchParameter>]] [[-SuppressWorkflow2013Check] [<SwitchParameter>]] [[-SuppressBcsCheck] [<SwitchParameter>]] [-Connection <PnPConnection>]",
+    "examples": [
+      "$currentSiteUrl = \"https://<tenant>.sharepoint.com/site/samplesite\"\n$updatedSiteUrl = \"https://<tenant>.sharepoint.com/site/renamed\"\nRename-PnPTenantSite -Identity $currentSiteUrl -NewSiteUrl $updatedSiteUrl"
+    ]
+  },
+  {
+    "cmdlet": "Repair-PnPSite",
+    "description": "The Repair-PnPSite cmdlet runs one or all site collection health checks on the site collection and its contents. This cmdlet will make changes if issues are found and automatically repairable.",
+    "syntax": "Repair-PnPSite -Identity <SitePipeBind> [-RuleId <Guid>] [-RunAlways <SwitchParameter>]",
+    "examples": [
+      "Repair-PnPSite -Identity \"https://contoso.sharepoint.com/sites/marketing\"",
+      "Repair-PnPSite -Identity \"https://contoso.sharepoint.com/sites/marketing\" -RuleID \"ee967197-ccbe-4c00-88e4-e6fab81145e1\""
+    ]
+  },
+  {
+    "cmdlet": "Request-PnPPersonalSite",
+    "description": "The Request-PnPPersonalSite cmdlet requests that the users specified be enqueued so that a Personal Site be created for each. The actual OneDrive for Business site is created by a Timer Job later.",
+    "syntax": "Request-PnPPersonalSite -UserEmails <String[]> [-NoWait] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Request-PnPPersonalSite -UserEmails @(\"user1@contoso.com\", \"user2@contoso.com\")",
+      "Request-PnPPersonalSite -UserEmails \"user1@contoso.com\""
+    ]
+  },
+  {
+    "cmdlet": "Request-PnPReIndexWeb",
+    "description": "This cmdlet marks the web for full indexing during the next incremental crawl.",
+    "syntax": "Request-PnPReIndexWeb [-Connection <PnPConnection>]",
+    "examples": [
+      "Request-PnPReIndexWeb"
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPTenantSite",
+    "description": "Restores a site collection which is listed in your tenant administration site from the tenant's recycle bin.",
+    "syntax": "Restore-PnPTenantSite [-Identity] <String> [-Force] [-NoWait] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Restore-PnPTenantSite -Identity \"https://tenant.sharepoint.com/sites/contoso\"",
+      "Restore-PnPTenantSite -Identity \"https://tenant.sharepoint.com/sites/contoso\" -Force",
+      "Restore-PnPTenantSite -Identity \"https://tenant.sharepoint.com/sites/contoso\" -Force -NoWait"
+    ]
+  },
+  {
+    "cmdlet": "Save-PnPSiteTemplate",
+    "description": "Allows to save a PnP site template to the file system.",
+    "syntax": "Save-PnPSiteTemplate -Template <SiteTemplatePipeBind> [-Out] <String>\n [-Schema <XMLPnPSchemaVersion>] [-Force] [-TemplateProviderExtensions <ITemplateProviderExtension[]>]",
+    "examples": [
+      "Save-PnPSiteTemplate -Template .\\template.xml -Out .\\template.pnp",
+      "$template = Read-PnPSiteTemplate -Path template.xml\nSave-PnPSiteTemplate -Template $template -Out .\\template.pnp",
+      "$template = Read-PnPSiteTemplate -Path template.xml\nSave-PnPSiteTemplate -Template $template -Out .\\template.pnp -Schema V202002",
+      "Read-PnPSiteTemplate -Path template.xml | Save-PnPSiteTemplate -Out .\\template.pnp"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPBuiltInSiteTemplateSettings",
+    "description": "This cmdlet allows the built-in SharePoint Online site templates to be shown or hidden.",
+    "syntax": "Set-PnPBuiltInSiteTemplateSettings -Identity <BuiltInSiteTemplateSettingsPipeBind> -IsHidden <Boolean> [-Connection <PnPConnection>] [-WhatIf]",
+    "examples": [
+      "Set-PnPBuiltInSiteTemplateSettings -Identity 9522236e-6802-4972-a10d-e98dc74b3344 -IsHidden $false",
+      "Set-PnPBuiltInSiteTemplateSettings -Identity 00000000-0000-0000-0000-000000000000 -IsHidden $true",
+      "Set-PnPBuiltInSiteTemplateSettings -Template CrisisManagement -IsHidden $true",
+      "Set-PnPBuiltInSiteTemplateSettings -Template All -IsHidden $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPHomeSite",
+    "description": "Allows to set the home site of the current tenant.",
+    "syntax": "Set-PnPHomeSite -HomeSiteUrl <String> [VivaConnectionsDefaultStart <SwitchParameter>] [-Force <SwitchParameter>] [-DraftMode <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPHomeSite -HomeSiteUrl \"https://yourtenant.sharepoint.com/sites/myhome\"",
+      "Set-PnPHomeSite -HomeSiteUrl \"https://yourtenant.sharepoint.com/sites/myhome\" -VivaConnectionsDefaultStart:$true",
+      "Set-PnPHomeSite -HomeSiteUrl \"https://yourtenant.sharepoint.com/sites/myhome\" -VivaConnectionsDefaultStart:$true -DraftMode:$true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPHubSite",
+    "description": "Allows configuring a hub site.",
+    "syntax": "Set-PnPHubSite [-Identity] <HubSitePipeBind> [-Title <String>] [-LogoUrl <String>] [-Description <String>]\n [-SiteDesignId <Guid>] [-HideNameInNavigation] [-RequiresJoinApproval] [-EnablePermissionsSync] [-ParentHubSiteId <Guid>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -Title \"My New Title\"",
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -Description \"My updated description\"",
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -SiteDesignId df8a3ef1-9603-44c4-abd9-541aea2fa745",
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -LogoUrl \"https://tenant.sharepoint.com/SiteAssets/Logo.png\"",
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -EnablePermissionsSync",
+      "Set-PnPHubSite -Identity \"https://tenant.sharepoint.com/sites/myhubsite\" -RequiresJoinApproval:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPKnowledgeHubSite",
+    "description": "Allows to set Knowledge Hub Site of the current tenant.",
+    "syntax": "Set-PnPKnowledgeHubSite -KnowledgeHubSiteUrl <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPKnowledgeHubSite -KnowledgeHubSiteUrl \"https://yoursite.sharepoint.com/sites/knowledge\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPageWebPart",
+    "description": "Sets specific client side web part properties. Notice that the title parameter will only set the -internal- title of web part. The title which is shown in the UI will, if possible, have to be set using the PropertiesJson parameter. Use Get-PnPPageComponent to retrieve the instance id and properties of a web part.",
+    "syntax": "Set-PnPPageWebPart -Page <PagePipeBind> -Identity <WebPartPipeBind>\n [-Title <String>] [-PropertiesJson <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPageWebPart -Page Home -Identity a2875399-d6ff-43a0-96da-be6ae5875f82 -PropertiesJson \"`\"Property1`\"=`\"Value1`\"\"",
+      "Set-PnPPageWebPart -Page Home -Identity a2875399-d6ff-43a0-96da-be6ae5875f82 -PropertiesJson $myproperties"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSite",
+    "description": "Allows to modify a site properties.",
+    "syntax": "Set-PnPSite \n [-Identity <String>]\n [-Classification <String>]\n [-DisableFlows]\n [-LogoFilePath <String>]\n [-Sharing <SharingCapabilities>]\n [-StorageMaximumLevel <Int64>]\n [-StorageWarningLevel <Int64>]\n [-AllowSelfServiceUpgrade]\n [-NoScriptSite]\n [-Owners <System.Collections.Generic.List<[System.String]>]\n [-CommentsOnSitePagesDisabled]\n [-DefaultLinkPermission <SharingPermissionType>]\n [-DefaultSharingLinkType <SharingLinkType>]\n [-DefaultLinkToExistingAccess <Boolean>]\n [-DefaultLinkToExistingAccessReset]\n [-DisableAppViews <AppViewsPolicy>]\n [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicy>]\n [-DisableSharingForNonOwners]\n [-LocaleId <UInt32>]\n [-RestrictedToGeo <RestrictedToRegion>]\n [-SocialBarOnSitePagesDisabled]\n [-AnonymousLinkExpirationInDays <Int32>]\n [-RequestFilesLinkExpirationInDays <Int32>]\n [-OverrideTenantAnonymousLinkExpirationPolicy]\n [-MediaTranscription <MediaTranscriptionPolicyType>]\n [-SensitivityLabel <Guid>]\n [-RequestFilesLinkEnabled <Boolean>]\n [-ScriptSafeDomainName <string>]\n [-BlockDownloadPolicy <Boolean>] [-ExcludeBlockDownloadPolicySiteOwners <Boolean>]\n [-ExcludedBlockDownloadGroupIds <Guid[]>]\n [-ListsShowHeaderAndNavigation <Boolean>]\n [-RestrictContentOrgWideSearch <Boolean>]\n [-CanSyncHubSitePermissions <SwitchParameter>]\n [-HidePeoplePreviewingFiles <Boolean>]\n [-HidePeopleWhoHaveListsOpen <Boolean>]\n [-RestrictedAccessControl <Boolean>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSite -Classification \"HBI\"",
+      "Set-PnPSite -Classification $null",
+      "Set-PnPSite -DisableFlows",
+      "Set-PnPSite -DisableFlows:$false",
+      "Set-PnPSite -LogoFilePath c:\\images\\mylogo.png",
+      "Set-PnPSite -NoScriptSite $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteArchiveState",
+    "description": "Use this cmdlet to change the archive status of the site. You must be a SharePoint Online administrator or Global administrator and be a site collection administrator to run the cmdlet.\nMicrosoft 365 Archive needs to be enabled for the organization to be able to use this feature.",
+    "syntax": "Set-PnPSiteArchiveState -Identity <SPOSitePipeBind> -ArchiveState <SPOArchiveState> [-NoWait] [-Force]",
+    "examples": [
+      "Set-PnPSiteArchiveState https://contoso.sharepoint.com/sites/Marketing -ArchiveState Archived",
+      "Set-PnPSiteArchiveState https://contoso.sharepoint.com/sites/Marketing -ArchiveState Active"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteClosure",
+    "description": "Allows to open or close a site which has a site policy applied.",
+    "syntax": "Set-PnPSiteClosure -State <ClosureState> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteClosure -State Open",
+      "Set-PnPSiteClosure -State Closed"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteDesign",
+    "description": "Allows to update a site design on the current tenant.",
+    "syntax": "Set-PnPSiteDesign -Identity <TenantSiteDesignPipeBind> [-Title <String>] [-SiteScriptIds <GuidPipeBind[]>]\n [-Description <String>] [-IsDefault] [-PreviewImageAltText <String>] [-PreviewImageUrl <String>]\n [-WebTemplate <SiteWebTemplate>] [-Version <Int32>] [-ThumbnailUrl <String>] [-DesignPackageId <Guid>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteDesign -Identity 046e2e76-67ba-46ca-a5f6-8eb418a7821e -Title \"My Updated Company Design\"",
+      "$design = Get-PnPSiteDesign -Identity 046e2e76-67ba-46ca-a5f6-8eb418a7821e\nSet-PnPSiteDesign -Identity $design -Title \"My Updated Company Design\"",
+      "Set-PnPSiteDesign -Identity 046e2e76-67ba-46ca-a5f6-8eb418a7821e -Title \"My Company Design\" -Description \"My description\" -ThumbnailUrl \"https://contoso.sharepoint.com/sites/templates/my images/logo.png\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteDocumentIdPrefix",
+    "description": "This cmdlet allows changing of the document Id prefix that has been assigned to a site. It essentially does what you can also do using the page /_layouts/15/DocIdSettings.aspx in the SharePoint Online web interface.",
+    "syntax": "Set-PnPSiteDocumentIdPrefix -DocumentIdPrefix <string> [-ScheduleAssignment <boolean>] [-OverwriteExistingIds <boolean>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteDocumentIdPrefix \"TEST\"",
+      "Set-PnPSiteDocumentIdPrefix \"TEST\" -ScheduleAssignment $true -OverwriteExistingIds $true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteGroup",
+    "description": "For permissions and the most current information about Windows PowerShell for SharePoint Online, see the online documentation atIntro to SharePoint Online Management Shell.",
+    "syntax": "Set-PnPSiteGroup -Identity <String> [-Name <String>] [-Owner <String>] [-PermissionLevelsToAdd <String[]>] \n    [-PermissionLevelsToRemove <String[]>] [-Site <PipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteGroup -Site \"https://contoso.sharepoint.com/sites/siteA\" -Identity \"ProjectViewers\" -PermissionLevelsToRemove \"Full Control\" -PermissionLevelsToAdd \"View Only\"",
+      "Set-PnPSiteGroup -Site \"https://contoso.sharepoint.com\" -Identity \"ProjectViewers\" -Owner user@domain.com"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteScript",
+    "description": "This cmdlet updates an existing site script.",
+    "syntax": "Set-PnPSiteScript -Identity <TenantSiteScriptPipeBind> [-Title <String>] [-Description <String>]\n [-Content <String>] [-Version <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteScript -Identity f1d55d9b-b116-4f54-bc00-164a51e7e47f -Title \"My Site Script\"",
+      "$script = Get-PnPSiteScript -Identity f1d55d9b-b116-4f54-bc00-164a51e7e47f \nSet-PnPSiteScript -Identity $script -Title \"My Site Script\"",
+      "$content = Get-PnPSiteScriptFromWeb -Url https://contoso.sharepoint.com/sites/SampleSite -IncludeAll \nSet-PnPSiteScript -Identity f1d55d9b-b116-4f54-bc00-164a51e7e47f -Content $content"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteScriptPackage",
+    "description": "Allows to update an existing Site Script Package on the current tenant.",
+    "syntax": "Set-PnPSiteScriptPackage -Identity <TenantSiteScriptPipeBind> [-Title <String>] [-Description <String>]\n [-ContentPath <String>] [-Version <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteScriptPackage -Identity f1d55d9b-b116-4f54-bc00-164a51e7e47f -Title \"My Site Script\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteTemplateMetadata",
+    "description": "Allows to modify metadata of a provisioning template.",
+    "syntax": "Set-PnPSiteTemplateMetadata [-Path] <String> [-TemplateDisplayName <String>]\n [-TemplateImagePreviewUrl <String>] [-TemplateProperties <Hashtable>]\n [-TemplateProviderExtensions <ITemplateProviderExtension[]>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteTemplateMetadata -Path template.xml -TemplateDisplayName \"DisplayNameValue\"",
+      "Set-PnPSiteTemplateMetadata -Path template.pnp -TemplateDisplayName \"DisplayNameValue\"",
+      "Set-PnPSiteTemplateMetadata -Path template.xml -TemplateImagePreviewUrl \"Full URL of the Image Preview\"",
+      "Set-PnPSiteTemplateMetadata -Path template.pnp -TemplateImagePreviewUrl \"Full URL of the Image Preview\"",
+      "Set-PnPSiteTemplateMetadata -Path template.xml -TemplateProperties @{\"Property1\" = \"Test Value 1\"; \"Property2\"=\"Test Value 2\"}",
+      "Set-PnPSiteTemplateMetadata -Path template.pnp -TemplateProperties @{\"Property1\" = \"Test Value 1\"; \"Property2\"=\"Test Value 2\"}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPStructuralNavigationCacheSiteState",
+    "description": "The Set-PnPStructuralNavigationCacheSiteState cmdlet can be used to enable or disable caching for all webs in a site collection. If the SiteUrl parameter has not been specified the currently connected to site will be used.",
+    "syntax": "Set-PnPStructuralNavigationCacheSiteState -IsEnabled <Boolean> [-SiteUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPStructuralNavigationCacheSiteState -IsEnabled $true -SiteUrl \"https://contoso.sharepoint.com/sites/product/\"",
+      "Set-PnPStructuralNavigationCacheSiteState -IsEnabled $false -SiteUrl \"https://contoso.sharepoint.com/sites/product/\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPStructuralNavigationCacheWebState",
+    "description": "The Set-PnPStructuralNavigationCacheWebState cmdlet can be used to enable or disable caching for a web. If the WebUrl parameter has not been specified the currently connected to web will be used.",
+    "syntax": "Set-PnPStructuralNavigationCacheWebState -IsEnabled <Boolean> [-WebUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPStructuralNavigationCacheWebState -IsEnabled $true -WebUrl \"https://contoso.sharepoint.com/sites/product/electronics\"",
+      "Set-PnPStructuralNavigationCacheWebState -IsEnabled $false -WebUrl \"https://contoso.sharepoint.com/sites/product/electronics\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantAppCatalogUrl",
+    "description": "This cmdlet sets the tenant scoped app catalog to the specified url.",
+    "syntax": "Set-PnPTenantAppCatalogUrl -Url <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantAppCatalogUrl -Url \"https://yourtenant.sharepoint.com/sites/appcatalog\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantSite",
+    "description": "Allows settings of a site collection to be updated",
+    "syntax": "Set-PnPTenantSite [-Identity] <String> [-Title <String>] [-LocaleId <UInt32>] [-AllowSelfServiceUpgrade]\n [-PrimarySiteCollectionAdmin <String>]\n [-Owners <String[]>] [-DenyAddAndCustomizePages]\n [-SharingCapability <SharingCapabilities>] [-StorageQuota <Int64>] [-StorageQuotaWarningLevel <Int64>] [-StorageQuotaReset] [-BlockDownloadLinksFileType <BlockDownloadLinksFileTypes>]\n [-ResourceQuota <Double>] [-ResourceQuotaWarningLevel <Double>] [-EnablePWA <Boolean>]\n [-DefaultLinkPermission <SharingPermissionType>] [-DefaultSharingLinkType <SharingLinkType>] [-DefaultLinkToExistingAccess <Boolean>] [-ExternalUserExpirationInDays <Int32>]\n [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>] [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>] [-AllowDownloadingOfNonWebViewableFiles]\n [-LimitedAccessFileType <SPOLimitedAccessFileType>] [-AllowEditing <Boolean>]\n [-SharingDomainRestrictionMode <SharingDomainRestrictionModes>] [-CommentsOnSitePagesDisabled]\n [-DisableAppViews <AppViewsPolicy>] [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicy>]\n [-DisableFlows <FlowsPolicy>] [-AnonymousLinkExpirationInDays <Int32>] [-SensitivityLabel <String>] [-RemoveLabel] [-AddInformationSegment <Guid[]>] [-RemoveInformationSegment <Guid[]>]\n [-OverrideTenantAnonymousLinkExpirationPolicy] [-InformationBarriersMode <InformationBarriersMode>] \n [-MediaTranscription <MediaTranscriptionPolicyType>] \n [-BlockDownloadPolicy <Boolean>] [-ExcludeBlockDownloadPolicySiteOwners <Boolean>]\n [-ExcludedBlockDownloadGroupIds <Guid[]>]\n [-ListsShowHeaderAndNavigation <Boolean>]\n [-DefaultLinkToExistingAccessReset <SwitchParameter>] [-DefaultShareLinkRole <Role>]\n [-DefaultShareLinkScope <SharingScope>] [-LoopDefaultSharingLinkRole <Role>]\n [-LoopDefaultSharingLinkScope <SharingScope>] [-RestrictContentOrgWideSearch <Boolean>] [-ReadOnlyForUnmanagedDevices <Boolean>]\n [-RequestFilesLinkExpirationInDays <Int32>] [-RequestFilesLinkEnabled <Boolean>] [-OverrideSharingCapability <Boolean>]\n [-RestrictedAccessControl <Boolean>] [-ClearRestrictedAccessControl <SwitchParameter>] [-RestrictedAccessControlGroups <Guid[]>]\n [-AddRestrictedAccessControlGroups <Guid[]>] [-RemoveRestrictedAccessControlGroups <Guid[]>][-InheritVersionPolicyFromTenant <SwitchParameter>]\n [-AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled <Boolean>]\n [-Wait] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com\" -Title \"Contoso Website\" -SharingCapability Disabled",
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com\" -Title \"Contoso Website\" -StorageWarningLevel 8000 -StorageMaximumLevel 10000",
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com/sites/sales\" -Owners \"user@contoso.onmicrosoft.com\"",
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com/sites/sales\" -Owners @(\"user1@contoso.onmicrosoft.com\", \"user2@contoso.onmicrosoft.com\")",
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com/sites/sales\" -DenyAddAndCustomizePages:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWeb",
+    "description": "Allows setting various properties on a web",
+    "syntax": "Set-PnPWeb [-SiteLogoUrl <String>] [-AlternateCssUrl <String>] [-Title <String>] [-Description <String>]\n [-MasterUrl <String>] [-CustomMasterUrl <String>] [-QuickLaunchEnabled] [-MembersCanShare] [-NoCrawl]\n [-HeaderLayout <HeaderLayoutType>] [-HeaderEmphasis <SPVariantThemeType>] [-NavAudienceTargetingEnabled]\n [-MegaMenuEnabled] [-DisablePowerAutomate] [-CommentsOnSitePagesDisabled] [-HideTitleInHeader] [-HorizontalQuickLaunch]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWeb -CommentsOnSitePagesDisabled:$true",
+      "Set-PnPWeb -QuickLaunchEnabled:$false",
+      "Set-PnPWeb -HeaderEmphasis Strong -HeaderLayout Compact",
+      "Set-PnPWeb -NoCrawl:$true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWebHeader",
+    "description": "Through this cmdlet the various options offered through \"Change the look\" Header can be configured.",
+    "syntax": "Set-PnPWebHeader [-SiteLogoUrl <string>] [-SiteThumbnailUrl <string>] [-HeaderLayout <HeaderLayoutType>] [-HeaderEmphasis <SPVariantThemeType>] [-HideTitleInHeader] [-HeaderBackgroundImageUrl <string>] [-HeaderBackgroundImageFocalX <double>] [-HeaderBackgroundImageFocalY <double>] [-LogoAlignment <LogoAlignment>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWebHeader -HeaderBackgroundImageUrl \"/sites/hrdepartment/siteassets/background.png\" -HeaderLayout Extended",
+      "Set-PnPWebHeader -HeaderEmphasis Strong",
+      "Set-PnPWebHeader -LogoAlignment Middle"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWebhookSubscription",
+    "description": "Allows to update Webhook subscription.",
+    "syntax": "Set-PnPWebhookSubscription [-Subscription] <WebhookSubscriptionPipeBind> [-List <ListPipeBind>]\n [-NotificationUrl <String>] [-ExpirationDate <DateTime>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWebhookSubscription -List MyList -Subscription ea1533a8-ff03-415b-a7b6-517ee50db8b6 -NotificationUrl https://my-func.azurewebsites.net/webhook",
+      "Set-PnPWebhookSubscription -List MyList -Subscription ea1533a8-ff03-415b-a7b6-517ee50db8b6 -NotificationUrl https://my-func.azurewebsites.net/webhook -ExpirationDate \"2017-09-01\"",
+      "$subscriptions = Get-PnPWebhookSubscriptions -List MyList\n$updated = $subscriptions[0]\n$updated.ExpirationDate = \"2017-10-01\"\nSet-PnPWebhookSubscription -List MyList -Subscription $updated"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWebPartProperty",
+    "description": "Allows to modify web part property.",
+    "syntax": "Set-PnPWebPartProperty -ServerRelativePageUrl <String> -Identity <Guid> -Key <String> -Value <PSObject>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWebPartProperty -ServerRelativePageUrl /sites/demo/sitepages/home.aspx -Identity ccd2c98a-c9ae-483b-ae72-19992d583914 -Key \"Title\" -Value \"New Title\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWebTheme",
+    "description": "Sets the theme of the current web. * Requires SharePoint Online Administrator Rights *",
+    "syntax": "Set-PnPWebTheme [[-Theme] <ThemePipeBind>] [-WebUrl <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWebTheme -Theme MyTheme",
+      "Get-PnPTenantTheme -Name \"MyTheme\" | Set-PnPWebTheme",
+      "Set-PnPWebTheme -Theme \"MyCompanyTheme\" -WebUrl https://contoso.sharepoint.com/sites/MyWeb"
+    ]
+  },
+  {
+    "cmdlet": "Test-PnPSite",
+    "description": "The Test-PnPSite cmdlet runs one or all site collection health checks on the site collection and its contents. Tests are intended not to make any changes except in repair mode, which can be initiated by running the Repair-PnPSite cmdlet. This cmdlet reports the rules together with a summary of the results.",
+    "syntax": "Test-PnPSite -Identity <SitePipeBind> [-RuleId <Guid>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Test-PnPSite -Identity \"https://contoso.sharepoint.com/sites/marketing\"",
+      "Test-PnPSite -Identity \"https://contoso.sharepoint.com/sites/marketing\" -RuleID \"ee967197-ccbe-4c00-88e4-e6fab81145e1\""
+    ]
+  },
+  {
+    "cmdlet": "Unregister-PnPHubSite",
+    "description": "Allows to unregister a site as a hubsite.",
+    "syntax": "Unregister-PnPHubSite -Site <SitePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Unregister-PnPHubSite -Site \"https://tenant.sharepoint.com/sites/myhubsite\""
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPSiteDesignFromWeb",
+    "description": "Updates an existing Site Design on the current tenant based on the site provided through -Url or the currently connected to site if -Url is omitted. It combines the steps ofGet-PnPSiteScriptFromWebandSet-PnPSiteScriptto generate a site script from a web and update an existing site script with it into one cmdlet. The information returned from running the cmdlet is the information of the Site Design that has been updated.",
+    "syntax": "Update-PnPSiteDesignFromWeb -Identity <TenantSiteDesignPipeBind> -Url <String> [-Lists <String[]>] [-IncludeBranding <SwitchParameter>] [-IncludeLinksToExportedItems <SwitchParameter>]\n [-IncludeRegionalSettings <SwitchParameter>] [-IncludeSiteExternalSharingCapability <SwitchParameter>] [-IncludeTheme <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Update-PnPSiteDesignFromWeb -Identity \"Contoso Project\" -IncludeAll",
+      "Update-PnPSiteDesignFromWeb -Identity \"Contoso Project\" -IncludeAll -Lists (\"/lists/Issue list\", \"Shared Documents)",
+      "Update-PnPSiteDesignFromWeb -Url https://contoso.sharepoint.com/sites/template -Identity \"Contoso Project\" -Lists \"/lists/Issue list\""
+    ]
+  }
+]
