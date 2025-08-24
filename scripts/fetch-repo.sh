@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${REPO_URL:?Set REPO_URL to the repository URL}"
+REPO_URL="https://github.com/niceash7789/AgentRepo.git"
 TARGET_DIR="${TARGET_DIR:-pnp-powershell-schemas}"
 
 if [ -d "$TARGET_DIR/.git" ]; then
