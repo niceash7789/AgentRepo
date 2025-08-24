@@ -1,0 +1,192 @@
+[
+  {
+    "cmdlet": "Add-PnPPlannerBucket",
+    "description": "This cmdlets creates a new bucket for tasks in a Planner plan.",
+    "syntax": "Add-PnPPlannerBucket -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Name <String>",
+    "examples": [
+      "Add-PnPPlannerBucket -Group \"My Group\" -Plan \"My Plan\" -Name \"Project Todos\"",
+      "Add-PnPPlannerBucket -PlanId \"QvfkTd1mc02gwxHjHC_43JYABhAy\" -Name \"Project Todos\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPlannerRoster",
+    "description": "Creates a new Microsoft Planner Roster",
+    "syntax": "Add-PnPPlannerRoster [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPlannerRoster"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPlannerRosterMember",
+    "description": "Adds a user to an existing Microsoft Planner Roster",
+    "syntax": "Add-PnPPlannerRosterMember -Identity <PlannerRosterPipeBind> -User <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPlannerRosterMember -Identity \"6519868f-868f-6519-8f86-19658f861965\" -User \"johndoe@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPlannerTask",
+    "description": "This cmdlet adds a new task to Planner bucket",
+    "syntax": "Add-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Bucket <PlannerBucketPipeBind> -Title <String> \n[-PercentComplete <Int32>] [-DueDateTime <DateTime>] [-StartDateTime <DateTime>] [-AppliedCategories <AppliedCategories>]\n [-AssignedTo <String[]] [-Priority <Int32>] [-Description <String>] [-OutputTask]",
+    "examples": [
+      "Add-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -Bucket \"Todos\" -Title \"Design booth layout\" -AppliedCategories @{\"Category1\"=$true,\"Category3\"=$true}",
+      "Add-PnPPlannerTask -PlanId \"QvfkTd1mc02gwxHjHC_43JYABhAy\" -Bucket \"Todos\" -Title \"Design booth layout\" -AppliedCategories @{\"Category1\"=$true,\"Category3\"=$true}",
+      "Add-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -Bucket \"Todos\" -Title \"Design booth layout\" -AssignedTo \"user@contoso.com\",\"manager@contoso.com\" -AppliedCategories @{\"Category1\"=$true,\"Category3\"=$true}",
+      "$task = Add-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -Bucket \"Todos\" -Title \"Design booth layout\" -AssignedTo \"user@contoso.com\",\"manager@contoso.com\" -OutputTask"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerBucket",
+    "description": "This cmdlets returns all or a specific bucket in a Planner plan.",
+    "syntax": "Get-PnPPlannerBucket -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind>\n [-Identity <PlannerBucketPipeBind>]",
+    "examples": [
+      "Get-PnPPlannerBucket -Group \"Marketing\" -Plan \"Conference Plan\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerConfiguration",
+    "description": "This cmdlet returns the Microsoft Planner admin configuration of the tenant. Note that after changing the configuration usingSet-PnPPlannerTenantConfiguration, this cmdlet may return varying results which could deviate from your desired configuration while the new configuration is being propagated across the tenant.",
+    "syntax": "Get-PnPPlannerConfiguration [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPlannerConfiguration"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerPlan",
+    "description": "This cmdlet returns all or a specific Planner plan for a Microsoft 365 Group.",
+    "syntax": "Get-PnPPlannerPlan -Group <PlannerGroupPipeBind> [-Identity <PlannerPlanPipeBind>] [-ResolveIdentities]",
+    "examples": [
+      "Get-PnPPlannerPlan -Group \"Marketing\"",
+      "Get-PnPPlannerPlan -Group \"Marketing\" -Identity \"Conference Plan\"",
+      "Get-PnPPlannerPlan -Id \"gndWOTSK60GfPQfiDDj43JgACDCb\" -ResolveIdentities"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerRosterMember",
+    "description": "This cmdlet will return the current members of a Microsoft Planner Roster",
+    "syntax": "Get-PnPPlannerRosterMember -Identity <string> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPlannerRosterMember -Identity \"6519868f-868f-6519-8f86-19658f861965\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerRosterPlan",
+    "description": "This cmdlet returns Microsoft Planner roster plans for a specific Microsoft Planner Roster or a specific user",
+    "syntax": "Get-PnPPlannerRosterPlan [-Identity <PlannerRosterPipeBind>] [-User <string>]",
+    "examples": [
+      "Get-PnPPlannerRosterPlan -Identity \"abcdefgh\"",
+      "Get-PnPPlannerRosterPlan -User \"johndoe@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerTask",
+    "description": "This cmdlet returns Planner tasks.",
+    "syntax": "Get-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> [-ResolveUserDisplayNames]",
+    "examples": [
+      "Get-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\"",
+      "$tasks = Get-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -ResolveUserDiplayNames\n$task = $tasks | Select-Object -First 1\n$task.CreatedBy.DisplayName",
+      "Get-PnPPlannerTask -PlanId \"QvfkTd1mc02gwxHjHC_43JYABhAy\"",
+      "Get-PnPPlannerTask -TaskId \"QvfkTd1mc02gwxHjHC_43JYABhAy\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPlannerUserPolicy",
+    "description": "This cmdlet returns the Microsoft Planner user policy for the provided user. If a Microsoft Planner user policy has never been set yet on a tenant, this cmdlet may return a '403 Forbidden: Access is denied' error. Set a policy once first to enable the background configuration to be done so this cmdlet can succeed from thereon.",
+    "syntax": "Get-PnPPlannerUserPolicy -Identity <string> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPlannerUserPolicy -Identity \"johndoe@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPPlannerPlan",
+    "description": "This cmdlet creates a new Planner plan.",
+    "syntax": "New-PnPPlannerPlan -Group <PlannerGroupPipeBind> -Title <String>",
+    "examples": [
+      "New-PnPPlannerPlan -Group \"Marketing\" -Title \"Conference Plan\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerBucket",
+    "description": "This cmdlet removes a Planner bucket.",
+    "syntax": "Remove-PnPPlannerBucket -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind>\n -Identity <PlannerBucketPipeBind> [-Confirm]",
+    "examples": [
+      "Remove-PnPPlannerBucket -Group \"Marketing\" -Plan \"Conference\" -Identity \"Pre-conference Todos\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerPlan",
+    "description": "This cmdlet removes a Planner plan.",
+    "syntax": "Remove-PnPPlannerPlan -Group <PlannerGroupPipeBind> -Identity <PlannerPlanPipeBind>  [-Connection <PnPConnection>] [-Confirm]",
+    "examples": [
+      "Remove-PnPPlannerPlan -Group \"Marketing\" -Identity \"Conference Planning\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerRoster",
+    "description": "Removes a Microsoft Planner Roster",
+    "syntax": "Remove-PnPPlannerRoster -Identity <PlannerRosterPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPlannerRoster -Identity \"6519868f-868f-6519-8f86-19658f861965\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerRosterMember",
+    "description": "Removes a member from a Microsoft Planner Roster.",
+    "syntax": "Remove-PnPPlannerRosterMember -Identity <PlannerRosterPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPlannerRosterMember -Identity \"6519868f-868f-6519-8f86-19658f861965\" -User \"johndoe@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPlannerTask",
+    "description": "This cmdlet removes a specific Planner task.",
+    "syntax": "Remove-PnPPlannerTask -Task <PlannerTaskPipeBind>",
+    "examples": [
+      "Remove-PnPPlannerTask -Task _LIqnL4lZUqurT71i2-iY5YALFLk"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPlannerBucket",
+    "description": "This cmdlet updates an existing Planner bucket.",
+    "syntax": "Set-PnPPlannerBucket -Bucket <PlannerBucketPipeBind> -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind>\n -Name <String>",
+    "examples": [
+      "Set-PnPPlannerBucket -Bucket \"Todos\" -Group \"Marketing\" -Plan \"Conference Plan\" -Name \"Pre-conf Todos\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPlannerConfiguration",
+    "description": "This cmdlet allows the Microsoft Planner tenant configuration to be changed.",
+    "syntax": "Set-PnPPlannerConfiguration [-IsPlannerAllowed <boolean>] [-AllowRosterCreation <boolean>] [-AllowTenantMoveWithDataLoss <boolean>] [-AllowTenantMoveWithDataMigration <boolean>] [-AllowPlannerMobilePushNotifications <boolean>] [-AllowCalendarSharing <boolean>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPlannerConfiguration -AllowRosterCreation:$false -IsPlannerAllowed:$true",
+      "Set-PnPPlannerConfiguration -AllowPlannerMobilePushNotifications $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPlannerPlan",
+    "description": "This cmdlet updates an existing planner plan.",
+    "syntax": "Set-PnPPlannerPlan -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Title <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPlannerPlan -Group \"Marketing\" -Plan \"Conference\" -Title \"Conference 2020\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPlannerTask",
+    "description": "This cmdlets allows you to update an existing task in a Planner plan.",
+    "syntax": "Set-PnPPlannerTask -TaskId <String> [-Title <String>] [-Bucket <PlannerBucketPipeBind>]\n [-PercentComplete <Int32>] [-DueDateTime <DateTime>] [-StartDateTime <DateTime>] [-AppliedCategories <AppliedCategories>]\n [-AssignedTo <String[]] [-Priority <Int32>] [-Description <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPlannerTask -TaskId RSNNbc4HM0e7jt-btAKtTZYAFAf0 -Title \"New Title\" -StartDateTime 2020-10-01",
+      "Set-PnPPlannerTask -TaskId RSNNbc4HM0e7jt-btAKtTZYAFAf0 -Title \"New Title\" -Bucket \"To do\"",
+      "Set-PnPPlannerTask -TaskId RSNNbc4HM0e7jt-btAKtTZYAFAf0 -AssignedTo \"user@contoso.com\",\"manager@contoso.com\"",
+      "Set-PnPPlannerTask -TaskId RSNNbc4HM0e7jt-btAKtTZYAFAf0 -AppliedCategories ${\"Category1\"=$true,\"Category5\"=$false}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPlannerUserPolicy",
+    "description": "This cmdlet allows a Microsoft Planner user policy to be set for the provided user.",
+    "syntax": "Set-PnPPlannerUserPolicy -Identity <string> [-BlockDeleteTasksNotCreatedBySelf <boolean>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPlannerUserPolicy -Identity \"johndoe@contoso.onmicrosoft.com\""
+    ]
+  }
+]

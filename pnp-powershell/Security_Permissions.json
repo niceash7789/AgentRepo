@@ -1,0 +1,1075 @@
+[
+  {
+    "cmdlet": "Add-PnPAzureADServicePrincipalAppRole",
+    "description": "Allows adding of an app role such as Sites.FullControl.All to a service principal/application registration in Azure Active Directory. This can be used to grant permissions to a service principal/application registration, such as a Managed Identity.",
+    "syntax": "Add-PnPAzureADServicePrincipalAppRole -Principal <ServicePrincipalPipeBind> -AppRole <ServicePrincipalAppRoleBind> -BuiltInType <ServicePrincipalBuiltInType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPAzureADServicePrincipalAppRole -Principal \"62614f96-cb78-4534-bf12-1f6693e8237c\" -AppRole \"Directory.Read.All\" -BuiltInType MicrosoftGraph",
+      "Get-PnPAzureADServicePrincipal -BuiltInType SharePointOnline | Get-PnPAzureADServicePrincipalAvailableAppRole -Identity \"Sites.FullControl.All\" | Add-PnPAzureADServicePrincipalAppRole -Principal \"62614f96-cb78-4534-bf12-1f6693e8237c\"",
+      "Get-PnPAzureADServicePrincipal -BuiltInType MicrosoftGraph | Get-PnPAzureADServicePrincipalAvailableAppRole -Identity \"Group.ReadWrite.All\" | Add-PnPAzureADServicePrincipalAppRole -Principal \"mymanagedidentity\"",
+      "Add-PnPAzureADServicePrincipalAppRole -Principal \"62614f96-cb78-4534-bf12-1f6693e8237c\" -AppRole \"MyApplication.Read\" -Resource \"b8c2a8aa-33a0-43f4-a9d3-fe2851c5293e\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPEntraIDServicePrincipalAppRole",
+    "description": "This is an alias forAdd-PnPAzureADServicePrincipalAppRole.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPFileAnonymousSharingLink",
+    "description": "Creates an anonymous sharing link to share a file.",
+    "syntax": "Add-PnPFileAnonymousSharingLink -FileUrl <String> -Type <PnP.Core.Model.Security.ShareType> -Password <String> -ExpirationDateTime <DateTime> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFileAnonymousSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\"",
+      "Add-PnPFileAnonymousSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Type Edit -Password \"PnPRocks!\"",
+      "Add-PnPFileAnonymousSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Type View -ExpirationDateTime (Get-Date).AddDays(15)"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFileOrganizationalSharingLink",
+    "description": "Creates a new organization sharing link for a file.",
+    "syntax": "Add-PnPFileOrganizationalSharingLink -FileUrl <String> -Type <PnP.Core.Model.Security.ShareType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFileOrganizationalSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\"",
+      "Add-PnPFileOrganizationalSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Type Edit"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFileSharingInvite",
+    "description": "Creates an invitation for users to a file.",
+    "syntax": "Add-PnPFileSharingInvite -FileUrl <String> -Users <String[]> -Message <String> -RequireSignIn <SwitchParameter> -SendInvitation <SwitchParameter> -Role <PermissionRole> -ExpirationDateTime <DateTime> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFileSharingInvite -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn",
+      "Add-PnPFileSharingInvite -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn -SendInvitation -Role Owner",
+      "Add-PnPFileSharingInvite -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn -ExpirationDate (Get-Date).AddDays(15)"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFileUserSharingLink",
+    "description": "Creates a new user sharing link for a file.",
+    "syntax": "Add-PnPFileUserSharingLink -FileUrl <String> -Type <PnP.Core.Model.Security.ShareType> -Users <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFileUserSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPFileUserSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Type Edit -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFlowOwner",
+    "description": "This cmdlet assigns/updates permissions for a user to a Power Automate flow.",
+    "syntax": "Add-PnPFlowOwner [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerPlatformPipeBind> -User <String> -Role <FlowAccessRole> [-AsAdmin] [-Verbose]",
+    "examples": [
+      "Add-PnPFlowOwner -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User username@tenant.onmicrosoft.com -Role CanEdit",
+      "Add-PnPFlowOwner -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User 6844c04a-8ee7-40ad-af66-28f6e948cd04 -Role CanView",
+      "Add-PnPFlowOwner -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User 6844c04a-8ee7-40ad-af66-28f6e948cd04 -Role CanViewWithShare",
+      "Add-PnPFlowOwner -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User username@tenant.onmicrosoft.com -AsAdmin -Role CanEdit"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFolderAnonymousSharingLink",
+    "description": "Creates a new anonymous sharing link for a folder.",
+    "syntax": "Add-PnPFolderAnonymousSharingLink -Folder <FolderPipeBind> -Type <PnP.Core.Model.Security.ShareType> -Password <String> -ExpirationDateTime <DateTime> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFolderAnonymousSharingLink -Folder \"/sites/demo/Shared Documents/Test\"",
+      "Add-PnPFolderAnonymousSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Type Edit -Password \"PnPRocks!\"",
+      "Add-PnPFolderAnonymousSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Type Edit -Password \"PnPRocks!\" -ExpirationDateTime (Get-Date).AddDays(15)"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFolderOrganizationalSharingLink",
+    "description": "Creates a new organization sharing link for a folder.",
+    "syntax": "Add-PnPFolderOrganizationalSharingLink -Folder <FolderPipeBind> -Type <PnP.Core.Model.Security.ShareType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFolderOrganizationalSharingLink -Folder \"/sites/demo/Shared Documents/Test\"",
+      "Add-PnPFolderOrganizationalSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Type Edit"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFolderSharingInvite",
+    "description": "Creates an invitation for user to a folder.",
+    "syntax": "Add-PnPFolderSharingInvite -Folder <FolderPipeBind> -Users <String[]> -Message <String> -RequireSignIn <SwitchParameter> -SendInvitation <SwitchParameter> -Role <PermissionRole> -ExpirationDateTime <DateTime> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFolderSharingInvite -Folder \"/sites/demo/Shared Documents/Test\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn",
+      "Add-PnPFolderSharingInvite -Folder \"/sites/demo/Shared Documents/Test\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn -SendInvitation -Role Owner",
+      "Add-PnPFolderSharingInvite -Folder \"/sites/demo/Shared Documents/Test\" -Users \"john@contoso.onmicrosoft.com\" -RequireSignIn -ExpirationDate (Get-Date).AddDays(15)"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFolderUserSharingLink",
+    "description": "Creates a new user sharing link for a folder.",
+    "syntax": "Add-PnPFolderUserSharingLink -Folder <FolderPipeBind> -ShareType <PnP.Core.Model.Security.ShareType> -Users <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFolderUserSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\"",
+      "Add-PnPFolderUserSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -ShareType Edit -Users \"john@contoso.onmicrosoft.com\",\"jane@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPGroupMember",
+    "description": "Allows to add new user to SharePoint group. The SharePoint group may be specified either by id, name or related object.",
+    "syntax": "Add-PnPGroupMember -LoginName <String> -Group <GroupPipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPGroupMember -LoginName user@company.com -Group 'Marketing Site Members'",
+      "Add-PnPGroupMember -LoginName user@company.com -Group 5",
+      "$batch = New-PnPBatch\nAdd-PnPGroupMember -LoginName user@company.com -Group 5 -Batch $batch\nAdd-PnPGroupMember -LoginName user1@company.com -Group 5 -Batch $batch\nInvoke-PnPBatch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPRoleDefinition",
+    "description": "This command allows adding a custom Role Definition (Permission Level) to the site collection in the current context. It does not replace or remove existing Role Definitions.",
+    "syntax": "Add-PnPRoleDefinition -RoleName <String> [-Clone <RoleDefinitionPipeBind>] [-Include <PermissionKind[]>]\n [-Exclude <PermissionKind[]>] [-Description <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPRoleDefinition -RoleName \"CustomPerm\"",
+      "Add-PnPRoleDefinition -RoleName \"NoDelete\" -Clone \"Contribute\" -Exclude DeleteListItems",
+      "Add-PnPRoleDefinition -RoleName \"AddOnly\" -Clone \"Contribute\" -Exclude DeleteListItems, EditListItems",
+      "$roleDefinition = Get-PnPRoleDefinition -Identity \"Contribute\"\nAdd-PnPRoleDefinition -RoleName \"AddOnly\" -Clone $roleDefinition -Exclude DeleteListItems, EditListItems"
+    ]
+  },
+  {
+    "cmdlet": "Approve-PnPTenantServicePrincipalPermissionRequest",
+    "description": "Approves a permission request for the current tenant's \"SharePoint Online Client\" service principal",
+    "syntax": "Approve-PnPTenantServicePrincipalPermissionRequest -RequestId <Guid> [-Force]\n [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Deny-PnPTenantServicePrincipalPermissionRequest",
+    "description": "Denies a permission request for the current tenant's \"SharePoint Online Client\" service principal",
+    "syntax": "Deny-PnPTenantServicePrincipalPermissionRequest -RequestId <Guid> [-Force]\n [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Disable-PnPSharingForNonOwnersOfSite",
+    "description": "Configures the site to only allow sharing of the site and items in the site by owners. At this point there is no interface available yet to undo this action through script. You will have to do so through the user interface of SharePoint.",
+    "syntax": "Disable-PnPSharingForNonOwnersOfSite [-Identity <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Disable-PnPSharingForNonOwnersOfSite"
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPTenantServicePrincipal",
+    "description": "Disables the current tenant's \"SharePoint Online Client\" service principal.",
+    "syntax": "Disable-PnPTenantServicePrincipal [-Force] [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Enable-PnPTenantServicePrincipal",
+    "description": "Enables the current tenant's \"SharePoint Online Client\" service principal.",
+    "syntax": "Enable-PnPTenantServicePrincipal [-Force] [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Export-PnPUserInfo",
+    "description": "Export user information from the site user information list. If the Site parameter has not been specified, the current connect to site will be used.",
+    "syntax": "Export-PnPUserInfo -LoginName <String> [-Site <String>]",
+    "examples": [
+      "Export-PnPUserInfo -LoginName user@domain.com -Site \"https://yoursite.sharepoint.com/sites/team\"",
+      "Export-PnPUserInfo -LoginName user@domain.com -Site \"https://yoursite.sharepoint.com/sites/team\" | ConvertTo-Csv | Out-File MyFile.csv"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPUserProfile",
+    "description": "Export user profile data.",
+    "syntax": "Export-PnPUserProfile -LoginName <String>",
+    "examples": [
+      "Export-PnPUserProfile -LoginName user@domain.com",
+      "Export-PnPUserProfile -LoginName user@domain.com | ConvertTo-Csv | Out-File MyFile.csv"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAuditing",
+    "description": "Allows to get the auditing setting of the site.",
+    "syntax": "Get-PnPAuditing [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAuditing"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureACSPrincipal",
+    "description": "This cmdlet provides insight into the app registrations that have been done over time using AppRegNew.aspx. You could look at it as a (detailed) equivallent of AppPrincipals.aspx. This information can help to get insights into the app registrations that have been done on a tenant and prepare for the Azure Access Control Services (ACS) deprecation that will follow in the future.",
+    "syntax": "Get-PnPAzureACSPrincipal [-Scope <AzureACSPrincipalScope>] [-IncludeSubsites <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureACSPrincipal",
+      "Get-PnPAzureACSPrincipal -IncludeSubsites",
+      "Get-PnPAzureACSPrincipal -Scope Tenant",
+      "Get-PnPAzureACSPrincipal -Scope All -IncludeSubsites"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADActivityReportDirectoryAudit",
+    "description": "This cmdlet gets the list of audit logs generated by AzureAD. This includes audit logs generated by different services in Azure AD such as user, app, device and group Management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (self-service and admin password resets) and others.",
+    "syntax": "Get-PnPAzureADActivityReportDirectoryAudit [-Identity <string>] [-Filter <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADActivityReportDirectoryAudit",
+      "Get-PnPAzureADActivityReportDirectoryAudit -Identity \"Directory_c3b82411-5445-4620-aace-6a684a252673_02R72_362975819\"",
+      "Get-PnPAzureADActivityReportDirectoryAudit -Filter \"activityDateTime le 2018-01-24\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADActivityReportSignIn",
+    "description": "This cmdlet gets the list of sign in logs generated by Azure AD.",
+    "syntax": "Get-PnPAzureADActivityReportSignIn [-Identity <string>] [-Filter <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADActivityReportSignIn",
+      "Get-PnPAzureADActivityReportSignIn -Identity \"da364266-533d-3186-a8b2-44ee1c21af11\"",
+      "Get-PnPAzureADActivityReportSignIn -Filter \"startsWith(appDisplayName,'Graph')\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADApp",
+    "description": "This cmdlets returns all app registrations, a specific one or ones matching a provided filter.",
+    "syntax": "Get-PnPAzureADApp [-Identity <AzureADAppPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADApp",
+      "Get-PnPAzureADApp -Identity MyApp",
+      "Get-PnPAzureADApp -Identity 93a9772d-d0af-4ed8-9821-17282b64690e",
+      "Get-PnPAzureADApp -Filter \"startswith(description, 'contoso')\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADAppPermission",
+    "description": "This cmdlet returns the appid, displayname and permissions set for Microsoft SharePoint and the Microsoft Graph APIs.",
+    "syntax": "Get-PnPAzureADAppPermission [-Identity <AzureADAppPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADAppPermission",
+      "Get-PnPAzureADAppPermission -Identity MyApp",
+      "Get-PnPAzureADAppPermission -Identity 93a9772d-d0af-4ed8-9821-17282b64690e"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADAppSitePermission",
+    "description": "This cmdlet returns app permissions for either the current or a given site.",
+    "syntax": "Get-PnPAzureADAppSitePermission [-PermissionId <String>] [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADAppSitePermission",
+      "Get-PnPAzureADAppSitePermission -Site https://contoso.sharepoint.com/sites/projects",
+      "Get-PnPAzureADAppSitePermission -PermissionId TowaS50fG1zLnNwLmV4dHwxYxNmI0OTI1",
+      "Get-PnPAzureADAppSitePermission -AppIdentity \"Test App\"",
+      "Get-PnPAzureADAppSitePermission -AppIdentity \"14effc36-dc8b-4f68-8919-f6beb7d847b3\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipal",
+    "description": "Allows retrieval of all service principals/app registrations in Azure Active Directory or a specific service principal/app registration based on the AppId, ObjectId or AppName. This will include both application registrations as well as enterprise applications in Azure Active Directory.",
+    "syntax": "Get-PnPAzureADServicePrincipal [-Filter <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADServicePrincipal",
+      "Get-PnPAzureADServicePrincipal -AppId b8c2a8aa-33a0-43f4-a9d3-fe2851c5293e",
+      "Get-PnPAzureADServicePrincipal -ObjectId 06ca9985-367a-41ba-9c44-b2ed88c19aec",
+      "Get-PnPAzureADServicePrincipal -AppName \"My application\"",
+      "Get-PnPAzureADServicePrincipal -Filter \"startswith(description, 'contoso')\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipalAssignedAppRole",
+    "description": "Allows retrieval of currently assigned app roles of a specific service principals/app registration in Azure Active Directory.",
+    "syntax": "Get-PnPAzureADServicePrincipalAssignedAppRole -Principal <ServicePrincipalPipeBind> [-Identity <ServicePrincipalAppRoleBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADServicePrincipalAssignedAppRole -Principal 797ee8a7-a950-4eb8-945d-7f10cc68a933",
+      "Get-PnPAzureADServicePrincipalAssignedAppRole -Principal \"My application\"",
+      "Get-PnPAzureADServicePrincipal -AppId fd885e69-86dc-4f3b-851e-ad04920031cf | Get-PnPAzureADServicePrincipalAssignedAppRole"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADServicePrincipalAvailableAppRole",
+    "description": "Allows retrieval of all available app roles of a specific service principals/app registration in Azure Active Directory. To retrieve the app roles currently assigned to a specific service principal/application registration, useGet-PnPAzureADServicePrincipalAssignedAppRoleinstead.",
+    "syntax": "Get-PnPAzureADServicePrincipalAvailableAppRole -Principal <ServicePrincipalPipeBind> [-Identity <ServicePrincipalAppRoleBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADServicePrincipalAvailableAppRole -Principal 797ee8a7-a950-4eb8-945d-7f10cc68a933",
+      "Get-PnPAzureADServicePrincipalAvailableAppRole -Principal \"My application\"",
+      "Get-PnPAzureADServicePrincipal -AppId fd885e69-86dc-4f3b-851e-ad04920031cf | Get-PnPAzureADServicePrincipalAvailableAppRole",
+      "Get-PnPAzureADServicePrincipal -BuiltInType MicrosoftGraph | Get-PnPAzureADServicePrincipalAvailableAppRole -Identity \"User.ReadWrite.All\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureADUser",
+    "description": "Allows to retrieve a single user or a list of users from Azure Active Directory.",
+    "syntax": "Get-PnPAzureADUser [-Filter <String>] [-OrderBy <String>] [-Select <String[]>] [-StartIndex <Int32>] [-EndIndex<Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAzureADUser",
+      "Get-PnPAzureADUser -EndIndex 50",
+      "Get-PnPAzureADUser -Identity 328c7693-5524-44ac-a946-73e02d6b0f98",
+      "Get-PnPAzureADUser -Identity john@contoso.com",
+      "Get-PnPAzureADUser -Identity john@contoso.com -Select \"DisplayName\",\"extension_3721d05137db455ad81aa442e3c2d4f9_extensionAttribute1\"",
+      "Get-PnPAzureADUser -Filter \"accountEnabled eq false\"",
+      "Get-PnPAzureADUser -Filter \"startswith(DisplayName, 'John')\" -OrderBy \"DisplayName\"",
+      "Get-PnPAzureADUser -Delta",
+      "Get-PnPAzureADUser -Delta -DeltaToken abcdef",
+      "Get-PnPAzureADUser -StartIndex 10 -EndIndex 20"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDActivityReportDirectoryAudit",
+    "description": "This is an alias forGet-PnPAzureADActivityReportDirectoryAudit.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDActivityReportSignIn",
+    "description": "This is an alias forGet-PnPAzureADActivityReportSignIn.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDApp",
+    "description": "This is an alias forGet-PnPAzureADApp.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDAppPermission",
+    "description": "This is an alias forGet-PnPAzureADAppPermission.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDAppSitePermission",
+    "description": "This is an alias forGet-PnPAzureADAppSitePermission.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipal",
+    "description": "This is an alias forGet-PnPAzureADServicePrincipal.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipalAssignedAppRole",
+    "description": "This is an alias forGet-PnPAzureADServicePrincipalAssignedAppRole.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDServicePrincipalAvailableAppRole",
+    "description": "This is an alias forGet-PnPAzureADServicePrincipalAvailableAppRole.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPEntraIDUser",
+    "description": "This is an alias forGet-PnPAzureADUser.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPExternalUser",
+    "description": "The Get-PnPExternalUser cmdlet returns external users that are located in the tenant based on specified criteria.",
+    "syntax": "Get-PnPExternalUser\n   [-Position <Integer>]\n   [-PageSize <Integer>]\n   [-Filter <String>]\n   [-SortOrder <SortOrder>]\n   [-SiteUrl <String>]\n   [-ShowOnlyUsersWithAcceptingAccountNotMatchInvitedAccount <Boolean>]",
+    "examples": [
+      "Get-PnPExternalUser -Position 0 -PageSize 2",
+      "Get-PnPExternalUser -Position 2 -PageSize 2"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileSharingLink",
+    "description": "Retrieves sharing links for a file or list item.",
+    "syntax": "Get-PnPFileSharingLink -Identity <FilePipeBind> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFileSharingLink -Identity \"/sites/demo/Shared Documents/Test.docx\"",
+      "Get-PnPFileSharingLink -Identity eff4c8ca-7b92-4aa2-9744-855611c6ccf2",
+      "Get-PnPListItem -List \"Documents\" | Get-PnPFileSharingLink",
+      "Get-PnPListItem -List \"Documents\" -Id 1 | Get-PnPFileSharingLink",
+      "Get-PnPFile -Url \"/sites/demo/Shared Documents/Test.docx\" | Get-PnPFileSharingLink",
+      "Get-PnPFileInFolder -Recurse -ExcludeSystemFolders -FolderSiteRelativeUrl \"Shared Documents\" | Get-PnPFileSharingLink",
+      "Get-PnPFileInFolder -Recurse -ExcludeSystemFolders -FolderSiteRelativeUrl \"Shared Documents\"  | Get-PnPFileSharingLink | ? ExpirationDateTime -eq $null",
+      "Get-PnPFileSharingLink -Identity /sites/demo/Lists/Issue tracker/1_.000"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFlowOwner",
+    "description": "This cmdlet returns the Power Automate flow owners for a given Power Automate Flow in a Power Platform environment.",
+    "syntax": "Get-PnPFlowOwner [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind> [-AsAdmin]",
+    "examples": [
+      "Get-PnPFlowOwner -Identity 33f78dac-7e93-45de-ab85-67cad0f6ee30",
+      "Get-PnPFlowOwner -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity 33f78dac-7e93-45de-ab85-67cad0f6ee30"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFolderSharingLink",
+    "description": "Retrieves sharing links for a folder.",
+    "syntax": "Get-PnPFolderSharingLink -Folder <FolderPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFolderSharingLink -Folder \"/sites/demo/Shared Documents/Test\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPGroupMember",
+    "description": "This command will return all the users (or a specific user) that are members of the provided SharePoint group",
+    "syntax": "Get-PnPGroupMember -Group <GroupPipeBind> [-User String]",
+    "examples": [
+      "Get-PnPGroupMember -Group \"Marketing Site Members\"",
+      "Get-PnPGroupMember -Group \"Marketing Site Members\" -User \"manager@domain.com\"",
+      "Get-PnPGroup | Get-PnPGroupMember",
+      "Get-PnPGroup | ? Title -Like 'Marketing*' | Get-PnPGroupMember"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPGroupPermissions",
+    "description": "This command will return the permissions of a specific SharePoint group",
+    "syntax": "Get-PnPGroupPermissions -Identity <GroupPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPGroupPermissions -Identity 'My Site Members'"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListInformationRightsManagement",
+    "description": "Allows to get the site closure status of the current site or list which has a site policy applied.",
+    "syntax": "Get-PnPListInformationRightsManagement -List <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListInformationRightsManagement -List \"Documents\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListItemPermission",
+    "description": "Allows to retrieve list item permissions.",
+    "syntax": "Get-PnPListItemPermission [-List] <ListPipeBind> -Identity <ListItemPipeBind>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPListItemPermission -List 'Documents' -Identity 1"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPListPermissions",
+    "description": "This cmdlet retrieves the list permissions (role definitions) for a specific user or group in a provided list.",
+    "syntax": "Get-PnPListPermissions [-Identity] <ListPipeBind> -PrincipalId <Int32>",
+    "examples": [
+      "Get-PnPListPermissions -Identity DemoList -PrincipalId 60",
+      "Get-PnPListPermissions -Identity DemoList -PrincipalId (Get-PnPGroup -Identity DemoGroup).Id"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerAppPermission",
+    "description": "This cmdlet returns the list of user or group permissions granted to a specific Power App.",
+    "syntax": "Get-PnPPowerAppPermission [-Environment <PowerPlatformEnvironmentPipeBind>] [-AsAdmin] -Identity <PowerAppPipeBind> \n[-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPPowerAppPermission -Identity \"bde2239e-fabc-42ad-9c9e-72323413b1b0\"",
+      "Get-PnPPowerAppPermission -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity \"bde2239e-fabc-42ad-9c9e-72323413b1b0\" -AsAdmin"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPriviledgedIdentityManagementRole",
+    "description": "Retrieve the available Privileged Identity Management roles that exist within the tenant. These are the roles to which elevation can take place.",
+    "syntax": "Get-PnPPriviledgedIdentityManagementRole [-Identity <PriviledgedIdentityManagementRolePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPriviledgedIdentityManagementRole",
+      "Get-PnPPriviledgedIdentityManagementRole -Identity \"Global Administrator\"",
+      "Get-PnPPriviledgedIdentityManagementRole -Identity 62e90394-69f5-4237-9190-012177145e10"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPRequestAccessEmails",
+    "description": "Allows to retrieve request access e-mail addresses.",
+    "syntax": "Get-PnPRequestAccessEmails [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPRequestAccessEmails"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPRoleDefinition",
+    "description": "Allows to retrieve Role Definitions of a site.",
+    "syntax": "Get-PnPRoleDefinition [[-Identity] <RoleDefinitionPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPRoleDefinition",
+      "Get-PnPRoleDefinition -Identity Read",
+      "Get-PnPRoleDefinition | Where-Object { $_.RoleTypeKind -eq \"Administrator\" }"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSharingForNonOwnersOfSite",
+    "description": "Returns $false if sharing of the site and items in the site is restricted only to owners or $true if members and owners are allowed to share. You can disable sharing by non owners by using Disable-PnPSharingForNonOwnersOfSite. At this point there is no interface available yet to enable sharing by owners and members again through script. You will have to do so through the user interface of SharePoint.",
+    "syntax": "Get-PnPSharingForNonOwnersOfSite [-Identity <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSharingForNonOwnersOfSite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSitePolicy",
+    "description": "Allows to retrieve site policies.",
+    "syntax": "Get-PnPSitePolicy [-AllAvailable] [-Name <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSitePolicy",
+      "Get-PnPSitePolicy -AllAvailable",
+      "Get-PnPSitePolicy -Name \"Contoso HBI\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteUserInvitations",
+    "description": "Searches against all stored sharing links on a Site and retrieves the email invites. If the site parameter is omitted the current site will be searched.",
+    "syntax": "Get-PnPSiteUserInvitations [[-Site] <SitePipeBind>] -EmailAddress <string>",
+    "examples": [
+      "Get-PnPSiteUserInvitations -Site \"https://contoso.sharepoint.com/sites/ContosoWeb1/\" -EmailAddress someone@example.com"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteVersionPolicy",
+    "description": "This cmdlet allows retrieval of version policy setting on the site. When the new document libraries are created, they will be set as the version policy of the site.\nIf the version policy is not set on the site, the setting of the tenant will be used.",
+    "syntax": "Get-PnPSiteVersionPolicy [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteVersionPolicy"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSiteVersionPolicyStatus",
+    "description": "This cmdlet allows retrieval of the progress of setting version policy for existing document libraries on the site.",
+    "syntax": "Get-PnPSiteVersionPolicyStatus [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSiteVersionPolicyStatus"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipal",
+    "description": "Returns the current tenant's \"SharePoint Online Client\" service principal.",
+    "syntax": "Get-PnPTenantServicePrincipal [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipalPermissionGrants",
+    "description": "Gets the collection of permission grants for the \"SharePoint Online Client\" service principal.",
+    "syntax": "Get-PnPTenantServicePrincipalPermissionGrants [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPTenantServicePrincipalPermissionRequests",
+    "description": "Gets the collection of permission requests for the \"SharePoint Online Client\" service principal.",
+    "syntax": "Get-PnPTenantServicePrincipalPermissionRequests [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPUnifiedAuditLog",
+    "description": "Allows to retrieve unified audit logs from the Office 365 Management API.",
+    "syntax": "Get-PnPUnifiedAuditLog [-ContentType <AuditContentType>] [-StartTime <DateTime>] [-EndTime <DateTime>]",
+    "examples": [
+      "Get-PnPUnifiedAuditLog -ContentType SharePoint -StartTime (Get-Date -asUtc).AddDays(-2) -EndTime (Get-Date -asUtc).AddDays(-1)"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUser",
+    "description": "This command will return all users that exist in the current site collection's User Information List, optionally identifying their current permissions to this site",
+    "syntax": "Get-PnPUser [-Identity <UserPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPUser",
+      "Get-PnPUser -Identity 23",
+      "Get-PnPUser -Identity \"i:0#.f|membership|user@tenant.onmicrosoft.com\"",
+      "Get-PnPUser | ? Email -eq \"user@tenant.onmicrosoft.com\"",
+      "Get-PnPUser -WithRightsAssigned",
+      "Get-PnPUser -WithRightsAssigned -Web subsite1",
+      "Get-PnPUser -WithRightsAssignedDetailed"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUserOneDriveQuota",
+    "description": "This command allows you to request the quota set on the OneDrive for Business site of a specific user.",
+    "syntax": "Get-PnPUserOneDriveQuota [-Account] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPUserOneDriveQuota -Account 'user@domain.com'",
+      "(Get-PnPUserOneDriveQuota -Account 'user@domain.com') / 1gb"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUserProfilePhoto",
+    "description": "This cmdlet downloads the user profile photo to the specified path and filename. If no filename has been specified it will default to the Display Name of the user with the either the extension .png or .jpeg depending on the format of the file.",
+    "syntax": "Get-PnPUserProfilePhoto -Identity <AzureADUserPipeBind> [-Filename <String>]  [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPUserProfilePhoto -Identity \"john@contoso.onmicrosoft.com\"",
+      "Get-PnPUserProfilePhoto -Identity \"john@contoso.onmicrosoft.com\" -Filename \"john.png\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUserProfileProperty",
+    "description": "Requires a connection to a SharePoint Tenant Admin site.",
+    "syntax": "Get-PnPUserProfileProperty -Account <String[]> [-Properties <String[]>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPUserProfileProperty -Account 'user@domain.com'",
+      "Get-PnPUserProfileProperty -Account 'user@domain.com','user2@domain.com'",
+      "Get-PnPUserProfileProperty -Account 'user@domain.com' -Properties 'FirstName','LastName'"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWebPermission",
+    "description": "This cmdlet retrieves the web permissions (role definitions) for a specific user or group in a provided web.",
+    "syntax": "Get-PnPWebPermission [-Identity] <WebPipeBind> -PrincipalId <Int32>",
+    "examples": [
+      "Get-PnPWebPermission -Identity (Get-PnPWeb) -PrincipalId 60",
+      "Get-PnPWebPermission -Identity \"subsite\" -PrincipalId (Get-PnPGroup -Identity DemoGroup).Id"
+    ]
+  },
+  {
+    "cmdlet": "Grant-PnPAzureADAppSitePermission",
+    "description": "This cmdlet adds permissions for a given Azure Active Directory application registration in a site collection. It is used in conjunction with the Azure Active Directory SharePoint application permission Sites.Selected.",
+    "syntax": "Grant-PnPAzureADAppSitePermission -AppId <Guid> -DisplayName <String> -Permissions <Read|Write|Manage|FullControl> [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Grant-PnPAzureADAppSitePermission -AppId \"aa37b89e-75a7-47e3-bdb6-b763851c61b6\" -DisplayName \"TestApp\" -Permissions Read",
+      "Grant-PnPAzureADAppSitePermission -AppId \"aa37b89e-75a7-47e3-bdb6-b763851c61b6\" -DisplayName \"TestApp\" -Permissions FullControl -Site https://contoso.sharepoint.com/sites/projects"
+    ]
+  },
+  {
+    "cmdlet": "Grant-PnPEntraIDAppSitePermission",
+    "description": "This is an alias forGrant-PnPAzureADAppSitePermission.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Grant-PnPHubSiteRights",
+    "description": "Allows to add additional permissions to existing once to associate sites to Hub Sites for specified users.",
+    "syntax": "Grant-PnPHubSiteRights [-Identity] <HubSitePipeBind> -Principals <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Grant-PnPHubSiteRights -Identity \"https://contoso.sharepoint.com/sites/hubsite\" -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\""
+    ]
+  },
+  {
+    "cmdlet": "Grant-PnPSiteDesignRights",
+    "description": "Allows to grant permission to use the site design for specified principal.",
+    "syntax": "Grant-PnPSiteDesignRights [-Identity] <TenantSiteDesignPipeBind> -Principals <String[]>\n [-Rights <TenantSiteDesignPrincipalRights>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Grant-PnPSiteDesignRights -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\"",
+      "Get-PnPSiteDesign -Title \"MySiteDesign\" -SiteScriptIds 438548fd-60dd-42cf-b843-2db506c8e259 -WebTemplate TeamSite | Grant-PnPSiteDesignRights -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\""
+    ]
+  },
+  {
+    "cmdlet": "Grant-PnPTenantServicePrincipalPermission",
+    "description": "Allows to grant a specified permission o the \"SharePoint Online Client Extensibility Web Application Principal\" service principal for SPFx solutions.",
+    "syntax": "Grant-PnPTenantServicePrincipalPermission -Scope <String> [-Resource <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Grant-PnPTenantServicePrincipalPermission -Scope \"Group.Read.All\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPAzureADUserTemporaryAccessPass",
+    "description": "This cmdlet allows creation of a temporary access pass for a specific user to allow the user to log on once using the generated token. This can be used i.e. when the user needs to sign in to replace the multi factor authentication token.",
+    "syntax": "New-PnPAzureADUserTemporaryAccessPass -DisplayName <String> -Description <String> -MailNickname <String> [-Owners <String[]>] [-Members <String[]>] [-IsSecurityEnabled <SwitchParameter>] [-IsMailEnabled <SwitchParameter>] [-Force]",
+    "examples": [
+      "New-PnPAzureADUserTemporaryAccessPass -Identity johndoe@contoso.onmicrosoft.com",
+      "New-PnPAzureADUserTemporaryAccessPass -Identity 72e2eb87-c124-4bd9-8e01-a447a1752058 -IsUseableOnce:$true",
+      "New-PnPAzureADUserTemporaryAccessPass -Identity johndoe@contoso.onmicrosoft.com -StartDateTime (Get-Date).AddHours(2) -LifeTimeInMinutes 10 -IsUseableOnce:$true",
+      "Get-PnPAzureADUser -Identity johndoe@contoso.onmicrosoft.com | New-PnPAzureADUserTemporaryAccessPass -StartDateTime (Get-Date).AddMinutes(10) -LifeTimeInMinutes 15 -IsUseableOnce:$false"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPEntraIDUserTemporaryAccessPass",
+    "description": "This is an alias forNew-PnPAzureADUserTemporaryAccessPass.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "New-PnPUser",
+    "description": "Allows to add a user to current site.",
+    "syntax": "New-PnPUser -LoginName <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPUser -LoginName user@company.com"
+    ]
+  },
+  {
+    "cmdlet": "Register-PnPAzureADApp",
+    "description": "Registers an Azure AD App and optionally creates a new self-signed certificate to use with the application registration.",
+    "syntax": "Register-PnPAzureADApp -ApplicationName <String>\n                                       -Tenant <String>\n                                       [-DeviceLogin]\n                                       [-CommonName <String>]\n                                       [-OutPath <String>]\n                                       [-Store <StoreLocation>]\n                                       [-GraphApplicationPermissions <Permission[]>]\n                                       [-GraphDelegatePermissions <Permission[]>]\n                                       [-SharePointApplicationPermissions <Permission[]>]\n                                       [-SharePointDelegatePermissions <Permission[]>]\n                                       [-Country <String>]\n                                       [-State <String>]\n                                       [-Locality <String>]\n                                       [-Organization <String>]\n                                       [-OrganizationUnit <String>]\n                                       [-ValidYears <Int>]\n                                       [-CertificatePassword <SecureString>]\n                                       [-LogoFilePath <string>]\n                                       [-MicrosoftGraphEndPoint <string>]\n                                       [-EntraIDLoginEndPoint <string>]\n                                       [-SignInAudience <EntraIDSignInAudience>]",
+    "examples": [
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -Store CurrentUser",
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -CertificatePath c:\\certificate.pfx -CertificatePassword (ConvertTo-SecureString -String \"password\" -AsPlainText -Force)",
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -Store CurrentUser -GraphApplicationPermissions \"User.Read.All\" -SharePointApplicationPermissions \"Sites.Read.All\"",
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -OutPath c:\\ -CertificatePassword (ConvertTo-SecureString -String \"password\" -AsPlainText -Force)",
+      "Register-PnPAzureADApp -DeviceLogin -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -CertificatePath c:\\certificate.pfx -CertificatePassword (ConvertTo-SecureString -String \"password\" -AsPlainText -Force)",
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -CertificatePath c:\\certificate.pfx -CertificatePassword (ConvertTo-SecureString -String \"password\" -AsPlainText -Force)",
+      "Register-PnPAzureADApp -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -CertificatePath c:\\certificate.pfx -CertificatePassword (ConvertTo-SecureString -String \"password\" -AsPlainText -Force) -LogoFilePath c:\\logo.png",
+      "Register-PnPAzureADApp -ApplicationName \"ACS App\" -Tenant yourtenant.onmicrosoft.com -OutPath c:\\temp -GraphApplicationPermissions \"User.Read.All\" -GraphDelegatePermissions \"Sites.Read.All\" -SharePointApplicationPermissions \"Sites.Read.All\" -SharePointDelegatePermissions \"AllSites.Read\""
+    ]
+  },
+  {
+    "cmdlet": "Register-PnPEntraIDApp",
+    "description": "This is an alias forRegister-PnPAzureADApp.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADApp",
+    "description": "This cmdlet removes an Azure AD App registration.",
+    "syntax": "Remove-PnPAzureADApp [-Identity] <AzureADAppPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPAzureADApp -Identity MyApp",
+      "Remove-PnPAzureADApp -Identity 93a9772d-d0af-4ed8-9821-17282b64690e"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADServicePrincipalAssignedAppRole",
+    "description": "Allows removal of one or more assigned app roles on a specific service principals/app registration in Azure Active Directory.",
+    "syntax": "Remove-PnPAzureADServicePrincipalAssignedAppRole -Identity <ServicePrincipalAssignedAppRoleBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPAzureADServicePrincipalAssignedAppRole -Principal 797ee8a7-a950-4eb8-945d-7f10cc68a933 -AppRoleName \"User.ReadWrite.All\"",
+      "Remove-PnPAzureADServicePrincipalAssignedAppRole -Principal \"My application\" -AppRoleName \"Group.ReadWrite.All\"",
+      "Remove-PnPAzureADServicePrincipalAssignedAppRole -Principal 797ee8a7-a950-4eb8-945d-7f10cc68a933",
+      "Remove-PnPAzureADServicePrincipalAssignedAppRole -Principal \"My application\"",
+      "Get-PnPAzureADServicePrincipal -AppId fd885e69-86dc-4f3b-851e-ad04920031cf | Remove-PnPAzureADServicePrincipalAssignedAppRole"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAzureADUser",
+    "description": "Allows a user to be removed from Azure Active Directory / Microsoft Entra ID. When the user is deleted, the user will be moved to the recycle bin and can be restored within 30 days. After 30 days the user will be permanently deleted.",
+    "syntax": "Remove-PnPAzureADUser -Identity <AzureADUserPipeBind> [-WhatIf] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Remove-PnPAzureADUser -Identity johndoe@contoso.onmicrosoft.com",
+      "Remove-PnPAzureADUser -Identity 5a4c547a-1440-4f64-9952-a0c6f1c9e7ea",
+      "Get-PnPEntraIDUser | Where-Object { $_.OfficeLocation -eq \"London\" } | Remove-PnPAzureADUser",
+      "Get-PnPEntraIDUser -Filter \"accountEnabled eq false\" | Remove-PnPAzureADUser"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDApp",
+    "description": "This is an alias forRemove-PnPAzureADApp.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDServicePrincipalAssignedAppRole",
+    "description": "This is an alias forRemove-PnPAzureADServicePrincipalAssignedAppRole.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPEntraIDUser",
+    "description": "This is an alias forRemove-PnPAzureADUser.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPExternalUser",
+    "description": "The Remove-PnPExternalUser cmdlet permanently removes a collection of external users from the tenant.",
+    "syntax": "Remove-PnPExternalUser -UniqueIDs <String[]> [-Confirm]",
+    "examples": [
+      "$user = Get-PnPExternalUser -Filter someone@example.com\nRemove-PnPExternalUser -UniqueIDs @($user.UniqueId)"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFileSharingLink",
+    "description": "Removes sharing links associated with a file.",
+    "syntax": "Remove-PnPFileSharingLink -FileUrl <String> -Identity <String> -Force <SwitchParamter> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFileSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\"",
+      "Remove-PnPFileSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Force",
+      "$sharingLinks = Get-PnPFileSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\"\nRemove-PnPFileSharingLink -FileUrl \"/sites/demo/Shared Documents/Test.docx\" -Identity $sharingLinks[0].Id -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFlowOwner",
+    "description": "This cmdlet removes owner permissions for a user from a Power Automate flow.",
+    "syntax": "Remove-PnPFlowOwner [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerPlatformPipeBind> -User <String> [-AsAdmin] [-Force] [-Verbose]",
+    "examples": [
+      "Remove-PnPFlowOwner -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User username@tenant.onmicrosoft.com",
+      "Remove-PnPFlowOwner -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User 6844c04a-8ee7-40ad-af66-28f6e948cd04",
+      "Remove-PnPFlowOwner (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User username@tenant.onmicrosoft.com -AsAdmin",
+      "Remove-PnPFlowOwner (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment) -Identity f07c34a9-a586-4e58-91fb-e7ea19741b61 -User username@tenant.onmicrosoft.com -AsAdmin -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFolderSharingLink",
+    "description": "Removes sharing links associated with a folder.",
+    "syntax": "Remove-PnPFolderSharingLink -Folder <FolderPipeBind> -Identity <String> -Force <SwitchParamter> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFolderSharingLink -Folder \"/sites/demo/Shared Documents/Test\"",
+      "Remove-PnPFolderSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Force",
+      "$sharingLinks = Get-PnPFolderSharingLink -Folder \"/sites/demo/Shared Documents/Test\"\nRemove-PnPFolderSharingLink -Folder \"/sites/demo/Shared Documents/Test\" -Identity $sharingLinks[0].Id -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPGroupMember",
+    "description": "Allows to remove a user from group.",
+    "syntax": "Remove-PnPGroupMember -LoginName <String> -Group <GroupPipeBind> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPGroupMember -LoginName user@company.com -Group 'Marketing Site Members'"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPRoleDefinition",
+    "description": "This cmdlet removes the specified role definition from a site collection.",
+    "syntax": "Remove-PnPRoleDefinition [-Identity] <RoleDefinitionPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPRoleDefinition -Identity MyRoleDefinition"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSiteUserInvitations",
+    "description": "Searches against all stored sharing links on a Site and removes an email invites. If the site parameter is omitted the current site will be searched.",
+    "syntax": "Remove-PnPSiteUserInvitations [[-Site] <SitePipeBind>] [-EmailAddress] <string> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSiteUserInvitations -Site \"https://contoso.sharepoint.com/sites/ContosoWeb1/\" -EmailAddress someone@example.com"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPUser",
+    "description": "This command will allow the removal of a specific user from the User Information List",
+    "syntax": "Remove-PnPUser [-Identity] <UserPipeBind> [-Force]  \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPUser -Identity 23",
+      "Remove-PnPUser -Identity i:0#.f|membership|user@tenant.onmicrosoft.com",
+      "Get-PnPUser | ? Email -eq \"user@tenant.onmicrosoft.com\" | Remove-PnPUser",
+      "Remove-PnPUser -Identity i:0#.f|membership|user@tenant.onmicrosoft.com -Force:$false"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPUserInfo",
+    "description": "Removes user information from the site user information list.",
+    "syntax": "Remove-PnPUserInfo -LoginName <String> [-Site <String>]",
+    "examples": [
+      "Remove-PnPUserInfo -LoginName user@domain.com -Site \"https://yoursite.sharepoint.com/sites/team\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPUserProfile",
+    "description": "Removes SharePoint User Profile data from the tenant.",
+    "syntax": "Remove-PnPUserProfile -LoginName <String>",
+    "examples": [
+      "Remove-PnPUserProfile -LoginName user@domain.com"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPUserProfilePhoto",
+    "description": "Notice that this cmdlet will immediately return but it can take a few hours before the changes are reflected in profile picture of the user everywhere in M365.",
+    "syntax": "Remove-PnPUserProfilePhoto -Identity <AzureADUserPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPUserProfilePhoto -Identity \"john@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Reset-PnPUserOneDriveQuotaToDefault",
+    "description": "This command allows you to reset the quota set on the OneDrive for Business site of a specific user to the default as set on the tenant. You must connect to the tenant admin website (https://:-admin.sharepoint.com) with Connect-PnPOnline in order to use this cmdlet.",
+    "syntax": "Reset-PnPUserOneDriveQuotaToDefault [-Account] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Reset-PnPUserOneDriveQuotaToDefault -Account 'user@domain.com'"
+    ]
+  },
+  {
+    "cmdlet": "Revoke-PnPAzureADAppSitePermission",
+    "description": "This cmdlets revokes permissions for a given app in a site.",
+    "syntax": "Revoke-PnPAzureADAppSitePermission -PermissionId <String> [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Revoke-PnPAzureADAppSitePermission -PermissionId ABSDFefsdfef33fsdFSvsadf3e3fsdaffsa"
+    ]
+  },
+  {
+    "cmdlet": "Revoke-PnPEntraIDAppSitePermission",
+    "description": "This is an alias forRevoke-PnPAzureADAppSitePermission.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Revoke-PnPHubSiteRights",
+    "description": "Allows to revoke permissions from existing once to associate sites to Hub Sites for specified users.",
+    "syntax": "Revoke-PnPHubSiteRights [-Identity] <HubSitePipeBind> -Principals <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Revoke-PnPHubSiteRights -Identity \"https://contoso.sharepoint.com/sites/hubsite\" -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\""
+    ]
+  },
+  {
+    "cmdlet": "Revoke-PnPSiteDesignRights",
+    "description": "Revokes the rights to use the site design for the specified users.",
+    "syntax": "Revoke-PnPSiteDesignRights [-Identity] <TenantSiteDesignPipeBind> -Principals <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Revoke-PnPSiteDesignRights -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\"",
+      "Get-PnPSiteDesign -Identity 5c73382d-9643-4aa0-9160-d0cba35e40fd | Revoke-PnPSiteDesignRights -Principals \"myuser@mydomain.com\",\"myotheruser@mydomain.com\""
+    ]
+  },
+  {
+    "cmdlet": "Revoke-PnPTenantServicePrincipalPermission",
+    "description": "Revokes a permission that was previously granted to the \"SharePoint Online Client Extensibility Web Application Service Principal\" service principal.",
+    "syntax": "Revoke-PnPTenantServicePrincipalPermission -Scope <String> [-Resource <String>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Revoke-PnPTenantServicePrincipalPermission -Scope \"Group.Read.All\""
+    ]
+  },
+  {
+    "cmdlet": "Revoke-PnPUserSession",
+    "description": "User will be signed out of browser, desktop and mobile applications accessing Office 365 resources across all devices.",
+    "syntax": "Revoke-PnPUserSession -User <String>    \n    [-Confirm]",
+    "examples": [
+      "Revoke-PnPUserSession -User user1@contoso.com"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAuditing",
+    "description": "Allows to modify Auditing setting for a site.",
+    "syntax": "Set-PnPAuditing [-EnableAll] [-RetentionTime <Int32>] [-TrimAuditLog] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPAuditing -EnableAll",
+      "Set-PnPAuditing -DisableAll",
+      "Set-PnPAuditing -RetentionTime 7",
+      "Set-PnPAuditing -TrimAuditLog",
+      "Set-PnPAuditing -RetentionTime 7 -CheckOutCheckInItems -MoveCopyItems -SearchContent"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAzureADAppSitePermission",
+    "description": "This cmdlet updates permissions for a given Azure Active Directory application registration in a site collection. It is used in conjunction with the Azure Active Directory SharePoint application permission Sites.Selected.",
+    "syntax": "Set-PnPAzureADAppSitePermission -PermissionId <String> -Permissions <Read|Write|Manage|FullControl> [-Site <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPAzureADAppSitePermission -PermissionId ABSDFefsdfef33fsdFSvsadf3e3fsdaffsa -Permissions Read",
+      "Set-PnPAzureADAppSitePermission -PermissionId ABSDFefsdfef33fsdFSvsadf3e3fsdaffsa -Permissions FullControl -Site https://contoso.microsoft.com/sites/projects"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPEntraIDAppSitePermission",
+    "description": "This is an alias forSet-PnPAzureADAppSitePermission.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Set-PnPFolderPermission",
+    "description": "Sets or clears permissions on folders within SharePoint Online. When adding permissions, if you don't use -InheritPermissions, the library will get unique permissions that initially match those of its parent. UseGet-PnPRoleDefinitionto retrieve all available roles you can add or remove using this cmdlet.",
+    "syntax": "Set-PnPFolderPermission [-List] <ListPipeBind> -Identity <FolderPipeBind> -User <String> [-AddRole <String>]\n [-RemoveRole <String>] [-ClearExisting] [-SystemUpdate] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPFolderPermission -List 'Shared Documents' -Identity 'Shared Documents/Folder' -User 'user@contoso.com' -AddRole 'Contribute'",
+      "Set-PnPFolderPermission -List 'AnotherDocumentLibrary' -Identity 'AnotherDocumentLibrary/Folder/Subfolder' -User 'user@contoso.com' -RemoveRole 'Contribute'",
+      "Set-PnPFolderPermission -List 'Shared Documents' -Identity 'Shared Documents/Folder' -User 'user@contoso.com' -AddRole 'Contribute' -ClearExisting",
+      "Get-PnPFolder -Url 'Shared Documents/Folder' | Set-PnPFolderPermission -List 'Shared Documents' -InheritPermissions"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPGroupPermissions",
+    "description": "This cmdlet adds or removes roles (permissions) of a specified group on a site or list level.",
+    "syntax": "Set-PnPGroupPermissions [-Identity] <GroupPipeBind> [-List <ListPipeBind>] [-AddRole <String[]>]\n [-RemoveRole <String[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPGroupPermissions -Identity 'My Site Members' -AddRole Contribute",
+      "Set-PnPGroupPermissions -Identity 'My Site Members' -RemoveRole 'Full Control' -AddRole 'Read'",
+      "Set-PnPGroupPermissions -Identity 'My Site Members' -AddRole @('Contribute', 'Design')",
+      "Set-PnPGroupPermissions -Identity 'My Site Members' -RemoveRole @('Contribute', 'Design')",
+      "Set-PnPGroupPermissions -Identity 'My Site Members' -List 'MyList' -RemoveRole @('Contribute')"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListInformationRightsManagement",
+    "description": "This cmdlet enables Information Rights Management (IRM) on the list and updates the IRM settings.",
+    "syntax": "Set-PnPListInformationRightsManagement -List <ListPipeBind> [-Enable <Boolean>] [-EnableExpiration <Boolean>]\n [-EnableRejection <Boolean>] [-AllowPrint <Boolean>] [-AllowScript <Boolean>] [-AllowWriteCopy <Boolean>]\n [-DisableDocumentBrowserView <Boolean>] [-DocumentAccessExpireDays <Int32>]\n [-DocumentLibraryProtectionExpireDate <DateTime>] [-EnableDocumentAccessExpire <Boolean>]\n [-EnableDocumentBrowserPublishingView <Boolean>] [-EnableGroupProtection <Boolean>]\n [-EnableLicenseCacheExpire <Boolean>] [-LicenseCacheExpireDays <Int32>] [-GroupName <String>]\n [-PolicyDescription <String>] [-PolicyTitle <String>] [-TemplateId <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListInformationRightsManagement -List \"Documents\" -Enable $true",
+      "Set-PnPListInformationRightsManagement -List \"Documents\" -Enable $true -EnableDocumentAccessExpire $true -DocumentAccessExpireDays 14"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListItemPermission",
+    "description": "Allows to modify list item permissions.\nUse Get-PnPRoleDefinition to retrieve all available roles you can add or remove using this cmdlet.\nUse Get-PnPGroup to retrieve all groups available that you can add or remove using this cmdlet when using the -group parameter.",
+    "syntax": "Set-PnPListItemPermission [-List] <ListPipeBind> -Identity <ListItemPipeBind> -User <String>\n [-AddRole <String>] [-RemoveRole <String>] [-ClearExisting] [-SystemUpdate] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListItemPermission -List 'Documents' -Identity 1 -User 'user@contoso.com' -AddRole 'Contribute'",
+      "Set-PnPListItemPermission -List 'Documents' -Identity 1 -User 'user@contoso.com' -RemoveRole 'Contribute'",
+      "Set-PnPListItemPermission -List 'Documents' -Identity 1 -User 'user@contoso.com' -AddRole 'Contribute' -ClearExisting",
+      "Set-PnPListItemPermission -List 'Documents' -Identity 1 -InheritPermissions",
+      "Set-PnPListItemPermission -List 'Documents' -Identity 1 -AddRole 'Read' -RemoveRole 'Contribute' -Group \"Site collection Visitors\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPListPermission",
+    "description": "Allows changing permissions on a SharePoint list. In case you would like to break the permission inheritance on a list from its parent, you can useSet-PnPList -BreakRoleInheritance.\nUse Get-PnPRoleDefinition to retrieve all available roles you can add or remove using this cmdlet.",
+    "syntax": "Set-PnPListPermission -Identity <ListPipeBind> -Group <GroupPipeBind> [-AddRole <String>]\n [-RemoveRole <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPListPermission -Identity 'Documents' -User 'user@contoso.com' -AddRole 'Contribute'",
+      "Set-PnPListPermission -Identity 'Documents' -User 'user@contoso.com' -RemoveRole 'Contribute'"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPRequestAccessEmails",
+    "description": "Enables or disables access requests to be sent and configures which e-mail address should receive these requests. The web you apply this on must have unique rights.",
+    "syntax": "Set-PnPRequestAccessEmails [-Emails <String[]>] [-Disabled] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPRequestAccessEmails -Emails someone@example.com",
+      "Set-PnPRequestAccessEmails -Disabled",
+      "Set-PnPRequestAccessEmails -Disabled:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPRoleDefinition",
+    "description": "Allows updating an existing Role Definition (Permission Level) in the site collection in the current context.",
+    "syntax": "Set-PnPRoleDefinition -Identity <RoleDefinitionPipeBind> [-NewRoleName <String>] [-Description <String>] [-Order <Int32>] [-SelectAll] [-ClearAll] [-Select <PermissionKind[]>] [-Clear <PermissionKind[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPRoleDefinition -Identity \"CustomPerm\" -Clear EditListItems",
+      "Set-PnPRoleDefinition -Identity \"NoDelete\" -SelectAll -Clear DeleteListItems",
+      "Set-PnPRoleDefinition -Identity \"CustomPerm\" -NewRoleName \"NoDelete\" -Description \"Contribute without delete\"",
+      "Set-PnPRoleDefinition -Identity \"CustomPerm\" -Order 500"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSitePolicy",
+    "description": "Allows to modify a site policy.",
+    "syntax": "Set-PnPSitePolicy -Name <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSitePolicy -Name \"Contoso HBI\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSiteVersionPolicy",
+    "description": "Configures the versioning policy for a SharePoint Online site collection.",
+    "syntax": "Set-PnPSiteVersionPolicy \n [-EnableAutoExpirationVersionTrim <Boolean>]\n [-ExpireVersionsAfterDays <UInt32>]\n [-MajorVersions <UInt32>]\n [-MajorWithMinorVersions <UInt32>]\n [-InheritFromTenant]\n [-ApplyToNewDocumentLibraries]\n [-ApplyToExistingDocumentLibraries]\n [-CancelForExistingDocumentLibraries]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $true",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 100 -MajorWithMinorVersions 10 -ExpireVersionsAfterDays 200",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 300 -MajorWithMinorVersions 20 -ExpireVersionsAfterDays 0",
+      "Set-PnPSiteVersionPolicy -InheritFromTenant",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $true -ApplyToNewDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 100 -ExpireVersionsAfterDays 200 -ApplyToNewDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 300 -ExpireVersionsAfterDays 0 -ApplyToNewDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $true -ApplyToExistingDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 100 -MajorWithMinorVersions 5 -ExpireVersionsAfterDays 200 -ApplyToExistingDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -EnableAutoExpirationVersionTrim $false -MajorVersions 100 -MajorWithMinorVersions 5 -ExpireVersionsAfterDays 0 -ApplyToExistingDocumentLibraries",
+      "Set-PnPSiteVersionPolicy -CancelForExistingDocumentLibraries"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantCdnPolicy",
+    "description": "Sets the CDN Policies for the specified CDN (Public | Private).",
+    "syntax": "Set-PnPTenantCdnPolicy -CdnType <SPOTenantCdnType> -PolicyType <SPOTenantCdnPolicyType> -PolicyValue <String>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantCdnPolicy -CdnType Public -PolicyType IncludeFileExtensions -PolicyValue \"CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF\"",
+      "Set-PnPTenantCdnPolicy -CdnType Public -PolicyType ExcludeRestrictedSiteClassifications -PolicyValue \"Confidential,Restricted\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPUserOneDriveQuota",
+    "description": "This command allows you to set the quota on the OneDrive for Business site of a specific user. You must connect to the tenant admin website (https://<tenant>-admin.sharepoint.com) with Connect-PnPOnline in order to use this cmdlet.",
+    "syntax": "Set-PnPUserOneDriveQuota [-Account] <String> [-Quota] <Int64> [-QuotaWarning] <Int64>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPUserOneDriveQuota -Account 'user@domain.com' -Quota 5368709120 -QuotaWarning 4831838208"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPUserProfilePhoto",
+    "description": "Notice that this cmdlet will immediately return but it can take a few hours before the changes are reflected in profile picture of the user everywhere in M365.",
+    "syntax": "Set-PnPUserProfilePhoto -Identity <AzureADUserPipeBind> -Path <String>  [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPUserProfilePhoto -Identity \"john@contoso.onmicrosoft.com\" -Path \"c:\\myimage.jpg\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPUserProfileProperty",
+    "description": "Updates the value of a specific user profile property for a single user profile in the SharePoint Online environment. Requires a connection to the SharePoint Tenant Admin site.",
+    "syntax": "Set-PnPUserProfileProperty -Account <String> -PropertyName <String> -Value <String>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPUserProfileProperty -Account 'john@domain.com' -Property 'SPS-Location' -Value 'Stockholm'",
+      "Set-PnPUserProfileProperty -Account 'john@domain.com' -Property 'MyProperty' -Values 'Value 1','Value 2'"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWebPermission",
+    "description": "This cmdlet adds permissions to a user or a group or removes permissions from a user or a group.",
+    "syntax": "Set-PnPWebPermission -Group <GroupPipeBind> [-Identity <WebPipeBind>] [-AddRole <String[]>] [-RemoveRole <String[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWebPermission -User \"user@contoso.com\" -AddRole \"Contribute\"",
+      "Set-PnPWebPermission -Group \"Project Managers\" -AddRole \"Contribute\"",
+      "Set-PnPWebPermission -Identity projectA -User \"user@contoso.com\" -AddRole \"Contribute\"",
+      "Set-PnPWebPermission -User \"user@contoso.com\" -AddRole \"Custom Role 1\",\"Custom Role 2\""
+    ]
+  },
+  {
+    "cmdlet": "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory",
+    "description": "This cmdlet allows synchronizing user profiles from Entra ID to their SharePoint Online User Profile equivalents. Note that certain properties are already synced by default. A list of these can be found here:https://learn.microsoft.com/sharepoint/user-profile-sync#properties-that-are-synced-into-sharepoint-user-profiles",
+    "syntax": "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping <Hashtable> [-IdType <Enum>] [-Users <Array>] [-Folder <String>] [-Wait] [-Verbose] [-Connection <PnPConnection>] [-WhatIf]",
+    "examples": [
+      "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping @{\"HomePhone\"=\"phone\";\"CustomProperty\"=\"DisplayName\"}",
+      "$users = Get-PnPAzureADUser -Filter \"jobTitle eq 'IT Administrator'\"\nSync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping @{\"CostCenter\"=\"extension_b0b5aaa58a0a4287acd826c5b8330e48_CostCenter\"} -Users $users",
+      "$delta = Get-PnPAzureADUser -Delta -DeltaToken $delta.DeltaToken\nSync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping @{\"CostCenter\"=\"extension_b0b5aaa58a0a4287acd826c5b8330e48_CostCenter\"} -Users $delta.Users",
+      "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping @{\"CostCenter\"=\"extension_b0b5aaa58a0a4287acd826c5b8330e48_CostCenter\"} -Folder \"User Profile Sync\"",
+      "Sync-PnPSharePointUserProfilesFromAzureActiveDirectory -UserProfilePropertyMapping @{\"CostCenter\"=\"extension_b0b5aaa58a0a4287acd826c5b8330e48_CostCenter\"} -Folder \"User Profile Sync\\Jobs\" -Wait -Verbose"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPUserType",
+    "description": "This cmdlet retrieves the UserType value of the specified user and updates the UserType across all SharePoint Online sites in the SharePoint Online tenant. This can be used, for example, to convert a Guest user to a standard (Member) user if the user's UserType was previously updated in Azure AD.",
+    "syntax": "Update-PnPUserType -LoginName <String>",
+    "examples": [
+      "Update-PnPUserType -LoginName jdoe@contoso.com"
+    ]
+  }
+]

@@ -1,0 +1,583 @@
+[
+  {
+    "cmdlet": "Add-PnPBrandCenterFont",
+    "description": "This cmdlet allows a font to be uploaded to the tenant Brand Center. The font will be available for use in the tenant and site collection Brand Center.",
+    "syntax": "Add-PnPBrandCenterFont -Path <String> [-Visible <Boolean>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Add-PnPBrandCenterFont -Path c:\\temp\\MyAwesomeFont.ttf",
+      "Add-PnPBrandCenterFont -Path c:\\temp\\MyAwesomeFont.ttf -Visible:$false"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPBrandCenterFontPackage",
+    "description": "This cmdlet allows a font package to be created in the Brand Center. Fonts can be uploaded to the Brand Center usingAdd-PnPBrandCenterFond. To see the available fonts, as well as the font styles available in each font, useGet-PnPBrandCenterFont.",
+    "syntax": "Add-PnPBrandCenterFontPackage -Name <String> -Store <Site|Tenant> -DisplayFont <BrandCenterFontPipeBind> -ContentFont <String> -TitleFont <BrandCenterFontPipeBind> -TitleFontStyle <String> -HeadlineFont <BrandCenterFontPipeBind> -HeadlineFontStyle <String>> -BodyFont <BrandCenterFontPipeBind> -BodyFontStyle <String>> -InteractiveFont <BrandCenterFontPipeBind> -InteractiveFontStyle <String> [-Visible <Boolean>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Add-PnPBrandCenterFontPackage -Name \"My Font Package\" -Store Tenant -DisplayFont \"My font\" -ContentFont \"My other font\" -TitleFont \"My font\" -TitleFontStyle \"Normal\" -HeadlineFont \"My font\" -HeadlineFontStyle \"Normal\" -BodyFont \"My other font\" -BodyFontStyle \"Regular\" -InteractiveFont \"My other font\" -InteractiveFontStyle \"Regular\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPHtmlPublishingPageLayout",
+    "description": "Allows to add a HTML based publishing page layout.",
+    "syntax": "Add-PnPHtmlPublishingPageLayout -SourceFilePath <String> -Title <String> -Description <String>\n -AssociatedContentTypeID <String> [-DestinationFolderHierarchy <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPHtmlPublishingPageLayout -Title 'Our custom page layout' -SourceFilePath 'customlayout.aspx' -Description 'A custom page layout' -AssociatedContentTypeID 0x01010901"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPJavaScriptLink",
+    "description": "Creates a custom action that refers to a JavaScript file",
+    "syntax": "Add-PnPJavaScriptLink -Name <String> -Url <String[]> [-Sequence <Int32>] [-Scope <CustomActionScope>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPJavaScriptLink -Name jQuery -Url https://code.jquery.com/jquery.min.js -Sequence 9999 -Scope Site",
+      "Add-PnPJavaScriptLink -Name jQuery -Url https://code.jquery.com/jquery.min.js"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPMasterPage",
+    "description": "Allows to add MasterPage.",
+    "syntax": "Add-PnPMasterPage -SourceFilePath <String> -Title <String> -Description <String>\n [-DestinationFolderHierarchy <String>] [-UIVersion <String>] [-DefaultCssFile <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPMasterPage -SourceFilePath \"page.master\" -Title \"MasterPage\" -Description \"MasterPage for Web\" -DestinationFolderHierarchy \"SubFolder\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPNavigationNode",
+    "description": "Adds a menu item to either the quicklaunch, top navigation, search navigation or the footer",
+    "syntax": "Add-PnPNavigationNode -Location <NavigationType> -Title <String> [-Url <String>] [-Parent <NavigationNodePipeBind>] [-First] [-External] [-AudienceIds <Guid[]> [-OpenInNewTab <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPNavigationNode -Title \"Contoso\" -Url \"http://contoso.sharepoint.com/sites/contoso/\" -Location \"QuickLaunch\"",
+      "Add-PnPNavigationNode -Title \"Contoso USA\" -Url \"http://contoso.sharepoint.com/sites/contoso/usa/\" -Location \"QuickLaunch\" -Parent 2012",
+      "Add-PnPNavigationNode -Title \"Contoso\" -Url \"http://contoso.sharepoint.com/sites/contoso/\" -Location \"QuickLaunch\" -First",
+      "Add-PnPNavigationNode -Title \"Contoso Pharmaceuticals\" -Url \"http://contoso.sharepoint.com/sites/contosopharma/\" -Location \"QuickLaunch\" -External",
+      "Add-PnPNavigationNode -Title \"Wiki\" -Location \"QuickLaunch\" -Url \"wiki/\"",
+      "Add-PnPNavigationNode -Title \"Label\" -Location \"TopNavigationBar\" -Url \"http://linkless.header/\"",
+      "Add-PnPNavigationNode -Title \"Wiki\" -Location \"QuickLaunch\" -Url \"wiki/\" -PreviousNode 2012",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\"\nAdd-PnPNavigationNode -Title \"Marketing\" -Url \"https://contoso.sharepoint.com/sites/Marketing\" -Location TopNavigationBar -External",
+      "Add-PnPNavigationNode -Title \"Contoso\" -Url \"http://contoso.sharepoint.com/sites/contoso/\" -Location \"QuickLaunch\" -OpenInNewTab"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPage",
+    "description": "Creates a new page. The page will be located inside the Site Pages library of the site currently connected to. If the library does not exist yet, tries to ensure it is created.",
+    "syntax": "Add-PnPPage [-Name] <String> [-LayoutType <PageLayoutType>]\n [-PromoteAs <PagePromoteType>] [-ContentType <ContentTypePipeBind>] [-CommentsEnabled] [-Publish]\n [-HeaderLayoutType <PageHeaderLayoutType>] [-ScheduledPublishDate <DateTime>] \n [-Translate][-TranslationLanguageCodes <Int[][]>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPage -Name \"NewPage\"",
+      "Add-PnPPage -Name \"NewPage\" -Title \"Welcome to my page\"",
+      "Add-PnPPage -Name \"NewPage\" -ContentType \"MyPageContentType\"",
+      "Add-PnPPage -Name \"NewPageTemplate\" -PromoteAs Template",
+      "Add-PnPPage -Name \"Folder/NewPage\"",
+      "Add-PnPPage -Name \"NewPage\" -HeaderLayoutType ColorBlock",
+      "Add-PnPPage -Name \"NewPage\" Article -ScheduledPublishDate (Get-Date).AddHours(1)",
+      "Add-PnPPage -Name \"NewPage\" -Translate",
+      "Add-PnPPage -Name \"NewPage\" -Translate -TranslationLanguageCodes 1043",
+      "Add-PnPPage -Name \"NewPage\" -Translate -TranslationLanguageCodes 1043,1035"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPageSection",
+    "description": "Allows to add a new section to a page.",
+    "syntax": "Add-PnPPageSection [-Page] <PagePipeBind> -SectionTemplate <CanvasSectionTemplate>\n [-Order <Int32>] [-ZoneEmphasis <Int32>] [-VerticalZoneEmphasis <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPageSection -Page \"MyPage\" -SectionTemplate OneColumn",
+      "Add-PnPPageSection -Page \"MyPage\" -SectionTemplate ThreeColumn -Order 10",
+      "$page = Add-PnPPage -Name \"MyPage\"\nAdd-PnPPageSection -Page $page -SectionTemplate OneColumn",
+      "$page = Add-PnPPage -Name \"MyPage\"\nAdd-PnPPageSection -Page $page -SectionTemplate OneColumn -ZoneEmphasis 2",
+      "$page = Add-PnPPage -Name \"MyPage\"\nAdd-PnPPageSection -Page $page -SectionTemplate OneColumnVerticalSection -Order 1 -ZoneEmphasis 2 -VerticalZoneEmphasis 3"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPageTextPart",
+    "description": "Adds a new text element to a section on a client-side page.",
+    "syntax": "Add-PnPPageTextPart -Page <PagePipeBind> -Text <String> [-Order <Int32>] [-ImageUrl <String>] [-PageImageAlignment <PageImageAlignment>] [-ImageWidth <Int32>] [-ImageHeight <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPageTextPart -Page \"MyPage\" -Text \"Hello World!\"",
+      "Add-PnPPageTextPart -Page \"MyPage\" -Text \"Hello World!\" -ImageUrl \"/sites/contoso/SiteAssets/test.png\"",
+      "Add-PnPPageTextPart -Page \"MyPage\" -Text \"Hello World!\" -ImageUrl \"/sites/contoso/SiteAssets/test.png\" -TextBeforeImage \"Text before\" -TextAfterImage \"Text after\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPublishingImageRendition",
+    "description": "Allows to add an Image Rendition.",
+    "syntax": "Add-PnPPublishingImageRendition -Name <String> -Width <Int32> -Height <Int32> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPublishingImageRendition -Name \"MyImageRendition\" -Width 800 -Height 600"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPublishingPage",
+    "description": "Allows to add a publishing page.",
+    "syntax": "Add-PnPPublishingPage -PageName <String> [-FolderPath <String>] -PageTemplateName <String> [-Title <String>]\n [-Publish] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPublishingPage -PageName 'OurNewPage' -Title 'Our new page' -PageTemplateName 'ArticleLeft'",
+      "Add-PnPPublishingPage -PageName 'OurNewPage' -Title 'Our new page' -PageTemplateName 'ArticleLeft' -Folder '/Pages/folder'"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPublishingPageLayout",
+    "description": "Allows to add a publishing page layout and associate it to a content type.",
+    "syntax": "Add-PnPPublishingPageLayout -SourceFilePath <String> -Title <String> -Description <String>\n -AssociatedContentTypeID <String> [-DestinationFolderHierarchy <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPPublishingPageLayout -Title 'Our custom page layout' -SourceFilePath 'customlayout.aspx' -Description 'A custom page layout' -AssociatedContentTypeID 0x01010901"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantTheme",
+    "description": "Adds or updates a theme to the tenant.",
+    "syntax": "Add-PnPTenantTheme [-Overwrite] -Identity <ThemePipeBind> -Palette <ThemePalettePipeBind> -IsInverted <Boolean>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "$themepalette = @{\n  \"themePrimary\" = \"#00ffff\";\n  \"themeLighterAlt\" = \"#f3fcfc\";\n  \"themeLighter\" = \"#daffff\";\n  \"themeLight\" = \"#affefe\";\n  \"themeTertiary\" = \"#76ffff\";\n  \"themeSecondary\" = \"#39ffff\";\n  \"themeDarkAlt\" = \"#00c4c4\";\n  \"themeDark\" = \"#009090\";\n  \"themeDarker\" = \"#005252\";\n  \"neutralLighterAlt\" = \"#f8f8f8\";\n  \"neutralLighter\" = \"#f4f4f4\";\n  \"neutralLight\" = \"#eaeaea\";\n  \"neutralQuaternaryAlt\" = \"#dadada\";\n  \"neutralQuaternary\" = \"#d0d0d0\";\n  \"neutralTertiaryAlt\" = \"#c8c8c8\";\n  \"neutralTertiary\" = \"#a6a6a6\";\n  \"neutralSecondaryAlt\" = \"#767676\";\n  \"neutralSecondary\" = \"#666666\";\n  \"neutralPrimary\" = \"#333\";\n  \"neutralPrimaryAlt\" = \"#3c3c3c\";\n  \"neutralDark\" = \"#212121\";\n  \"black\" = \"#000000\";\n  \"white\" = \"#fff\";\n  \"primaryBackground\" = \"#fff\";\n  \"primaryText\" = \"#333\"\n }\nAdd-PnPTenantTheme -Identity \"MyCompanyTheme\" -Palette $themepalette -IsInverted $false",
+      "$themepalette = @{\n  \"themePrimary\" = \"#00ffff\";\n  \"themeLighterAlt\" = \"#f3fcfc\";\n  \"themeLighter\" = \"#daffff\";\n  \"themeLight\" = \"#affefe\";\n  \"themeTertiary\" = \"#76ffff\";\n  \"themeSecondary\" = \"#39ffff\";\n  \"themeDarkAlt\" = \"#00c4c4\";\n  \"themeDark\" = \"#009090\";\n  \"themeDarker\" = \"#005252\";\n  \"neutralLighterAlt\" = \"#f8f8f8\";\n  \"neutralLighter\" = \"#f4f4f4\";\n  \"neutralLight\" = \"#eaeaea\";\n  \"neutralQuaternaryAlt\" = \"#dadada\";\n  \"neutralQuaternary\" = \"#d0d0d0\";\n  \"neutralTertiaryAlt\" = \"#c8c8c8\";\n  \"neutralTertiary\" = \"#a6a6a6\";\n  \"neutralSecondaryAlt\" = \"#767676\";\n  \"neutralSecondary\" = \"#666666\";\n  \"neutralPrimary\" = \"#333\";\n  \"neutralPrimaryAlt\" = \"#3c3c3c\";\n  \"neutralDark\" = \"#212121\";\n  \"black\" = \"#000000\";\n  \"white\" = \"#fff\";\n  \"primaryBackground\" = \"#fff\";\n  \"primaryText\" = \"#333\"\n }\nAdd-PnPTenantTheme -Identity \"MyCompanyTheme\" -Palette $themepalette -IsInverted $false -Overwrite"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPWikiPage",
+    "description": "Allows to add a wiki page.",
+    "syntax": "Add-PnPWikiPage -ServerRelativePageUrl <String> -Content <String> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPWikiPage -PageUrl '/sites/demo1/pages/wikipage.aspx' -Content 'New WikiPage'"
+    ]
+  },
+  {
+    "cmdlet": "ConvertTo-PnPPage",
+    "description": "Converts a classic page (wiki or web part page) into a modern page",
+    "syntax": "ConvertTo-PnPPage -Identity <PagePipeBind>\n                            [-Library <String>]\n                            [-Folder <String>]\n                            [-WebPartMappingFile <String>]\n                            [-Overwrite [<SwitchParameter>]]\n                            [-TakeSourcePageName [<SwitchParameter>]]\n                            [-ReplaceHomePageWithDefault [<SwitchParameter>]]\n                            [-AddPageAcceptBanner [<SwitchParameter>]]\n                            [-SkipItemLevelPermissionCopyToClientSidePage [<SwitchParameter>]]\n                            [-SkipUrlRewriting [<SwitchParameter>]]\n                            [-SkipDefaultUrlRewriting [<SwitchParameter>]]\n                            [-UrlMappingFile <String>]\n                            [-ClearCache [<SwitchParameter>]]\n                            [-CopyPageMetadata [<SwitchParameter>]]\n                            [-AddTableListImageAsImageWebPart [<SwitchParameter>]]\n                            [-UseCommunityScriptEditor [<SwitchParameter>]]\n                            [-SummaryLinksToHtml [<SwitchParameter>]]\n                            [-TargetWebUrl <String>]\n                            [-LogType <PageTransformatorLogType>]\n                            [-LogFolder <String>]\n                            [-LogSkipFlush [<SwitchParameter>]]\n                            [-LogVerbose [<SwitchParameter>]]\n                            [-DontPublish [<SwitchParameter>]]\n                            [-KeepPageCreationModificationInformation [<SwitchParameter>]]\n                            [-SetAuthorInPageHeader [<SwitchParameter>]]\n                            [-PostAsNews [<SwitchParameter>]]\n                            [-DisablePageComments [<SwitchParameter>]]\n                            [-PublishingPage [<SwitchParameter>]]\n                            [-BlogPage [<SwitchParameter>]]\n                            [-DelveBlogPage [<SwitchParameter>]]\n                            [-DelveKeepSubTitle [<SwitchParameter>]]\n                            [-PageLayoutMapping <String>]\n                            [-PublishingTargetPageName <String>]\n                            [-TargetPageName <String>]\n                            [-TargetPageFolder <String>]\n                            [-TargetPageFolderOverridesDefaultFolder [<SwitchParameter>]]\n                            [-RemoveEmptySectionsAndColumns [<SwitchParameter>]]\n                            [-TargetConnection <PnPConnection>]\n                            [-SkipUserMapping [<SwitchParameter>]]\n                            [-UserMappingFile <String>]\n                            [-TermMappingFile <String>]\n                            [-SkipTermStoreMapping [<SwitchParameter>]]\n                            [-LDAPConnectionString <String>]\n                            [-SkipHiddenWebParts [<SwitchParameter>]]\n\n                            [-Connection <PnPConnection>]",
+    "examples": [
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Overwrite",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Overwrite -WebPartMappingFile c:\\contoso\\webpartmapping.xml",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Overwrite -AddPageAcceptBanner",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Overwrite -CopyPageMetadata",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -PublishingPage -Overwrite -TargetWebUrl \"https://contoso.sharepoint.com/sites/targetmodernsite\"",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -PublishingPage -Overwrite -TargetConnection $target",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Library \"SiteAssets\" -Folder \"Folder1\" -Overwrite",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Folder \"<root>\" -Overwrite",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -Overwrite -TargetWebUrl \"https://contoso.sharepoint.com/sites/targetmodernsite\"",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -LogType File -LogFolder c:\\temp -LogVerbose -Overwrite",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -LogType SharePoint -LogSkipFlush",
+      "ConvertTo-PnPPage -Identity \"My post title\" -BlogPage -LogType Console -Overwrite -TargetWebUrl \"https://contoso.sharepoint.com/sites/targetmodernsite\"",
+      "ConvertTo-PnPPage -Identity \"My post title\" -DelveBlogPage -LogType Console -Overwrite -TargetWebUrl \"https://contoso.sharepoint.com/sites/targetmodernsite\"",
+      "ConvertTo-PnPPage -Identity \"somepage.aspx\" -PublishingPage -Overwrite -TargetConnection $target -UserMappingFile c:\\\\temp\\user_mapping_file.csv"
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPPage",
+    "description": "This command allows a site page to be moved from one site to another site. The source and destination sites can be specified using the -SourceSite and -DestinationSite parameters, respectively. The page to be moved is specified using the -PageName parameter.",
+    "syntax": "Copy-PnPPage -SourceSite <SPOSitePipeBind> -DestinationSite <SPOSitePipeBind> -PageName <String>",
+    "examples": [
+      "Copy-PnPPage -SourceSite https://tenant.sharepoint.com/sites/site1 -DestinationSite https://tenant.sharepoint.com -PageName \"FAQ.aspx\""
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPPageScheduling",
+    "description": "This will disable page publishing scheduling on modern sites",
+    "syntax": "Disable-PnPPageScheduling [-Connection <PnPConnection>]",
+    "examples": [
+      "Disable-PnPPageScheduling"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPPageScheduling",
+    "description": "This will enable page publishing scheduling on modern sites",
+    "syntax": "Enable-PnPPageScheduling [-Connection <PnPConnection>]",
+    "examples": [
+      "Enable-PnPPageScheduling"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPPage",
+    "description": "Allows to export a Client Side Page to a PnP Provisioning Template.",
+    "syntax": "Export-PnPPage [-Identity] <PagePipeBind> [-PersistBrandingFiles] [-Out <String>] [-Force]\n [-Configuration <ExtractConfigurationPipeBind>] [-OutputInstance]  [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPPage -Identity Home.aspx",
+      "Export-PnPPage -Identity HR/Home.aspx -Out template.pnp"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPPageMapping",
+    "description": "Get's the built-in mapping files or a custom mapping file for your publishing portal page layouts. These mapping files are used to tailor the page transformation experience.",
+    "syntax": "Export-PnPPageMapping [-BuiltInWebPartMapping [<SwitchParameter>]]\n                                [-BuiltInPageLayoutMapping [<SwitchParameter>]]\n                                [-CustomPageLayoutMapping [<SwitchParameter>]]\n                                [-PublishingPage <PagePipeBind>]\n                                [-AnalyzeOOBPageLayouts [<SwitchParameter>]]\n                                [-Folder <String>]\n                                [-Overwrite [<SwitchParameter>]]\n                                [-Logging [<SwitchParameter>]]\n                                \n                                [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPPageMapping -BuiltInPageLayoutMapping -CustomPageLayoutMapping -Folder c:\\\\temp -Overwrite",
+      "Export-PnPPageMapping -CustomPageLayoutMapping -PublishingPage mypage.aspx -Folder c:\\\\temp -Overwrite",
+      "Export-PnPPageMapping -BuiltInWebPartMapping -Folder c:\\\\temp -Overwrite"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterConfig",
+    "description": "Allows retrieval of the Brand Center configuration for the current tenant. The Brand Center is a centralized location for managing and sharing branding assets, such as logos, colors, and fonts, across Microsoft 365 applications.",
+    "syntax": "Get-PnPBrandCenterConfig",
+    "examples": [
+      "Get-PnPBrandCenterConfig"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterFont",
+    "description": "Allows retrieval of the available fonts from the Brand Center.",
+    "syntax": "Get-PnPBrandCenterFont [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPBrandCenterFont"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBrandCenterFontPackage",
+    "description": "Allows retrieval of the available font packages from the various Brand Centers.",
+    "syntax": "Get-PnPBrandCenterFontPackage [-Store <Tenant|OutOfBox|Site|All>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPBrandCenterFontPackage",
+      "Get-PnPBrandCenterFontPackage -Store Site",
+      "Get-PnPBrandCenterFontPackage -Identity \"My awesome font\"",
+      "Get-PnPBrandCenterFontPackage -Identity \"2812cbd8-7176-4e45-8911-6a063f89a1f1\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPClientSidePage",
+    "description": "This is an alias forGet-PnPPage.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPHideDefaultThemes",
+    "description": "Returns if the default themes are visible. Use Set-PnPHideDefaultThemes to change this value.",
+    "syntax": "Get-PnPHideDefaultThemes [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPHideDefaultThemes"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPHomePage",
+    "description": "Returns the URL to the page set as home page",
+    "syntax": "Get-PnPHomePage [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPHomePage"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPJavaScriptLink",
+    "description": "Returns all web scoped JavaScript links",
+    "syntax": "Get-PnPJavaScriptLink [[-Name] <String>] [-Scope <CustomActionScope>] [-ThrowExceptionIfJavaScriptLinkNotFound]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPJavaScriptLink",
+      "Get-PnPJavaScriptLink -Scope All",
+      "Get-PnPJavaScriptLink -Scope Web",
+      "Get-PnPJavaScriptLink -Scope Site",
+      "Get-PnPJavaScriptLink -Name Test"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPMasterPage",
+    "description": "Allows to retrieve urls of the default Master Page and custom Master Page of the current site.",
+    "syntax": "Get-PnPMasterPage [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPMasterPage"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPNavigationNode",
+    "description": "Allows to retrieve all navigation nodes or a specific on by usingIdoption.",
+    "syntax": "Get-PnPNavigationNode [-Location <NavigationType>] [-Tree] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPNavigationNode",
+      "Get-PnPNavigationNode -Location QuickLaunch",
+      "Get-PnPNavigationNode -Location TopNavigationBar",
+      "$node = Get-PnPNavigationNode -Id 2030\nPS> $children = $node.Children"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPage",
+    "description": "This command allows the retrieval of a modern sitepage along with its properties and contents on it. Note that for a newly created modern site, the Columns and Sections of the Home.aspx page will not be filled according to the actual site page contents. This is because the underlying CanvasContent1 will not be populated until the homepage has been edited and published. The reason for this behavior is to allow for the default homepage to be able to be updated by Microsoft as long as it hasn't been modified. For any other site page or after editing and publishing the homepage, this command will return the correct columns and sections as they are positioned on the site page.",
+    "syntax": "Get-PnPPage -Identity <PagePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPage -Identity \"MyPage.aspx\"",
+      "Get-PnPPage \"MyPage\"",
+      "Get-PnPPage \"Templates/MyPageTemplate\"",
+      "Get-PnPPage -Identity \"MyPage.aspx\" -Web (Get-PnPWeb -Identity \"Subsite1\")",
+      "Get-PnPPage"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPageComponent",
+    "description": "This command allows the retrieval of the components placed on a modern sitepage along with its properties. Note that for a newly created modern site, the Home.aspx page will not be returning any components. This is because the underlying CanvasContent1 will not be populated until the homepage has been edited and published. The reason for this behavior is to allow for the default homepage to be able to be updated by Microsoft as long as it hasn't been modified. For any other site page or after editing and publishing the homepage, this command will return the correct components as they are positioned on the site page.",
+    "syntax": "Get-PnPPageComponent [-Page] <PagePipeBind> [-InstanceId <Guid>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPageComponent -Page Home",
+      "Get-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82",
+      "Get-PnPPageComponent -Page Home -ListAvailable"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPageCopyProgress",
+    "description": "This command allows checking the progress of a site page move or copy operation from one site to another site. The destination site can be specified using the -DestinationSite parameter, and the work item ID can be specified using the -WorkItemId parameter.",
+    "syntax": "Get-PnPPageCopyProgress -DestinationSite <SPOSitePipeBind> -WorkItemId <Guid>",
+    "examples": [
+      "Get-PnPPageCopyProgress -DestinationSite https://tenant.sharepoint.com -WorkItemId 12345678-1234-1234-1234-123456789012"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPageLikedByInformation",
+    "description": "This command retrieves the LikedBy Information of a modern page.",
+    "syntax": "Get-PnPPageLikedByInformation -Identity <PagePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPageLikedByInformation -Identity \"MyPage.aspx\"",
+      "Get-PnPPageLikedByInformation \"MyPage\"",
+      "Get-PnPPageLikedByInformation -Identity \"MyPage.aspx\" -Web (Get-PnPWeb -Identity \"Subsite1\")",
+      "Name         : User 1\nMail         :\nId           : 14\nLoginName    : i:0#.f|membership|user1@contoso.onmicrosoft.com\nCreationDate : 2024-02-16 14:49:55\n\nName         : User 2\nMail         : user2@contoso.onmicrosoft.com\nId           : 6\nLoginName    : i:0#.f|membership|user2@contoso.onmicrosoft.com\nCreationDate : 2024-02-22 19:47:24"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPageSchedulingEnabled",
+    "description": "This will return a boolean value stating if the modern page schedule feature has been enabled or not.",
+    "syntax": "Get-PnPPageSchedulingEnabled [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPageSchedulingEnabled"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPublishingImageRendition",
+    "description": "Allows to retrieve all image renditions or a specific one whenIdentityoption is used.",
+    "syntax": "Get-PnPPublishingImageRendition [[-Identity] <ImageRenditionPipeBind>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPublishingImageRendition",
+      "Get-PnPPublishingImageRendition -Identity \"Test\"",
+      "Get-PnPPublishingImageRendition -Identity 2"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantTheme",
+    "description": "Returns all or a specific tenant theme.",
+    "syntax": "Get-PnPTenantTheme [[-Name] <String>] [-AsJson] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantTheme",
+      "Get-PnPTenantTheme -Name \"MyCompanyTheme\"",
+      "Get-PnPTenantTheme -Name \"MyCompanyTheme\" -AsJson"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTheme",
+    "description": "Allows to retrieve current theme/composed look of the current web.",
+    "syntax": "Get-PnPTheme [-DetectCurrentComposedLook] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTheme",
+      "Get-PnPTheme -DetectCurrentComposedLook"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUnfurlLink",
+    "description": "Creates a new organization sharing link for a file.",
+    "syntax": "Get-PnPUnfurlLink -Url <String>",
+    "examples": [
+      "Get-PnPUnfurlLink -Url \"https://contoso.sharepoint.com/:u:/s/testsitecol/ERs6pDuyD95LpUSUsJxi1EIBr9FMEYVBvMcs_B7cPdNPgQ?e=ZL3DPe\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPWikiPageContent",
+    "description": "Allows to retrieve contents/source of a wiki page.",
+    "syntax": "Get-PnPWikiPageContent [-ServerRelativePageUrl] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPWikiPageContent -PageUrl '/sites/demo1/pages/wikipage.aspx'"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPPage",
+    "description": "This command allows a site page to be moved from one site to another site. The source and destination sites can be specified using the -SourceSite and -DestinationSite parameters, respectively. The page to be moved is specified using the -PageName parameter.",
+    "syntax": "Move-PnPPage -SourceSite <SPOSitePipeBind> -DestinationSite <SPOSitePipeBind> -PageName <String>",
+    "examples": [
+      "Move-PnPPage -SourceSite https://tenant.sharepoint.com/sites/site1 -DestinationSite https://tenant.sharepoint.com -PageName \"FAQ.aspx\""
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPPageComponent",
+    "description": "Moves a component to a different location on the page. Notice that the sections and or columns need to be present before moving the component.",
+    "syntax": "Move-PnPPageComponent [-Page] <PagePipeBind> -InstanceId <Guid> -Section <Int32>\n [-Position <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Move-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82 -Section 1",
+      "Move-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82 -Column 2",
+      "Move-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82 -Section 1 -Column 2",
+      "Move-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82 -Section 1 -Column 2 -Position 2"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPClientSidePage",
+    "description": "This is an alias forRemove-PnPPage.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Remove-PnPJavaScriptLink",
+    "description": "Allows to remove JavaScript link or block from a web or sitecollection.",
+    "syntax": "Remove-PnPJavaScriptLink [[-Identity] <UserCustomActionPipeBind>] [-Force] [-Scope <CustomActionScope>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPJavaScriptLink -Identity jQuery",
+      "Remove-PnPJavaScriptLink -Identity jQuery -Scope Site",
+      "Remove-PnPJavaScriptLink -Identity jQuery -Scope Site -Confirm:$false",
+      "Remove-PnPJavaScriptLink -Scope Site",
+      "Remove-PnPJavaScriptLink -Identity faea0ce2-f0c2-4d45-a4dc-73898f3c2f2e -Scope All",
+      "Get-PnPJavaScriptLink -Scope All | ? Sequence -gt 1000 | Remove-PnPJavaScriptLink"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPNavigationNode",
+    "description": "Allows to remove menu item from either the quick launch or top navigation.",
+    "syntax": "Remove-PnPNavigationNode [-Identity] <NavigationNodePipeBind> [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPNavigationNode -Identity 1032",
+      "Get-PnPNavigationNode -Location Footer | Select-Object -First 1 | Remove-PnPNavigationNode -Force",
+      "Remove-PnPNavigationNode -Title Recent -Location QuickLaunch",
+      "Remove-PnPNavigationNode -Title Home -Location TopNavigationBar -Force",
+      "Get-PnPNavigationNode -Location QuickLaunch | Remove-PnPNavigationNode -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPage",
+    "description": "Allows to remove a page.",
+    "syntax": "Remove-PnPPage [-Identity] <PagePipeBind> [-Force] [-Recycle]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPage -Identity \"MyPage\"",
+      "Remove-PnPPage -Identity \"Templates/MyPageTemplate\"",
+      "Remove-PnPPage $page",
+      "Remove-PnPPage -Identity \"MyPage\" -Recycle"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPageComponent",
+    "description": "This cmdlet removes specified page component from a page.",
+    "syntax": "Remove-PnPPageComponent [-Page] <PagePipeBind> -InstanceId <Guid> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPageComponent -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82",
+      "$webpart = Get-PnPPageComponent -Page \"Home\" | Where-Object { $_.Title -eq \"Site activity\" }\nRemove-PnPPageComponent -Page \"Home\" -InstanceId $webpart.InstanceId -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPublishingImageRendition",
+    "description": "Allows to remove an existing image rendition.",
+    "syntax": "Remove-PnPPublishingImageRendition [-Identity] <ImageRenditionPipeBind> [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPublishingImageRendition -Name \"MyImageRendition\" -Width 800 -Height 600"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantTheme",
+    "description": "Removes the specified theme from the tenant configuration.",
+    "syntax": "Remove-PnPTenantTheme [-Identity] <ThemePipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPTenantTheme -Name \"MyCompanyTheme\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPWikiPage",
+    "description": "This cmdlet removes a single wiki page specified by server relative url or site relative url.",
+    "syntax": "Remove-PnPWikiPage [-ServerRelativePageUrl] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPWikiPage -PageUrl '/pages/wikipage.aspx'"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAvailablePageLayouts",
+    "description": "This cmdlet sets the available page layouts for the current site. It requires NoScript feature to be disabled.",
+    "syntax": "Set-PnPAvailablePageLayouts -PageLayouts <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPAvailablePageLayouts -AllowAllPageLayouts"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPClientSidePage",
+    "description": "This is an alias forSet-PnPPage.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Set-PnPDefaultPageLayout",
+    "description": "Allows to set the default page layout for a publishing site.",
+    "syntax": "Set-PnPDefaultPageLayout -Title <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPDefaultPageLayout -Title projectpage.aspx",
+      "Set-PnPDefaultPageLayout -Title test/testpage.aspx",
+      "Set-PnPDefaultPageLayout -InheritFromParentSite"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPHideDefaultThemes",
+    "description": "Use this cmdlet to hide or show the default themes to users as an option to change the look of their site.",
+    "syntax": "Set-PnPHideDefaultThemes -HideDefaultThemes <Boolean> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPHideDefaultThemes -HideDefaultThemes $true",
+      "Set-PnPHideDefaultThemes -HideDefaultThemes $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPHomePage",
+    "description": "Allows to set the home page of the current site.",
+    "syntax": "Set-PnPHomePage [-RootFolderRelativeUrl] <String> [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Set-PnPHomePage -RootFolderRelativeUrl SitePages/Home.aspx",
+      "Set-PnPHomePage -RootFolderRelativeUrl Lists/Sample/AllItems.aspx"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMasterPage",
+    "description": "Sets the default master page of the current web.",
+    "syntax": "Set-PnPMasterPage [-MasterPageServerRelativeUrl <String>] [-CustomMasterPageServerRelativeUrl <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMasterPage -MasterPageServerRelativeUrl /sites/projects/_catalogs/masterpage/oslo.master",
+      "Set-PnPMasterPage -MasterPageServerRelativeUrl /sites/projects/_catalogs/masterpage/oslo.master -CustomMasterPageServerRelativeUrl /sites/projects/_catalogs/masterpage/oslo.master",
+      "Set-PnPMasterPage -MasterPageSiteRelativeUrl _catalogs/masterpage/oslo.master",
+      "Set-PnPMasterPage -MasterPageSiteRelativeUrl _catalogs/masterpage/oslo.master -CustomMasterPageSiteRelativeUrl _catalogs/masterpage/oslo.master"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPage",
+    "description": "Sets parameters of a page. All pages must be located inside the Site Pages library.",
+    "syntax": "Set-PnPPage -Identity <PagePipeBind> [-Name <String>] [-Title <String>]\n [-LayoutType <PageLayoutType>] [-PromoteAs <PagePromoteType>] [-CommentsEnabled]\n [-Publish] [-HeaderType <PageHeaderType>] [-HeaderLayoutType <PageHeaderLayoutType>] [-ScheduledPublishDate <DateTime>] \n [-RemoveScheduledPublish] [-ContentType <ContentTypePipeBind>] [-ThumbnailUrl <String>] [-ShowPublishDate <Boolean>]\n [-Translate][-TranslationLanguageCodes <Int[][]>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPage -Identity \"MyPage\" -LayoutType Home -Title \"My Page\"",
+      "Set-PnPPage -Identity \"MyPage\" -CommentsEnabled",
+      "Set-PnPPage -Identity \"MyPage\" -CommentsEnabled:$false",
+      "Set-PnPPage -Identity \"hr/MyPage\" -HeaderType Default",
+      "Set-PnPPage -Identity \"MyPage\" -HeaderType None",
+      "Set-PnPPage -Identity \"MyPage\" -HeaderType Custom -ServerRelativeImageUrl \"/sites/demo1/assets/myimage.png\" -TranslateX 10.5 -TranslateY 11.0",
+      "Set-PnPPage -Identity \"MyPage\" -ScheduledPublishDate (Get-Date).AddHours(1)",
+      "Set-PnPPage -Identity \"MyPage\" -Translate",
+      "Set-PnPPage -Identity \"MyPage\" -Translate -TranslationLanguageCodes 1043",
+      "Set-PnPPage -Identity \"MyPage\" -Translate -TranslationLanguageCodes 1043,1035",
+      "Set-PnPPage -Identity \"MyPage\" -ShowPublishDate $true -Publish",
+      "Set-PnPPage -Identity \"MyPage.aspx\" -Like",
+      "Set-PnPPage -Identity \"MyPage.aspx\" -Like:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPageTextPart",
+    "description": "Sets the rendered text in existing client side text component.",
+    "syntax": "Set-PnPPageTextPart -Page <PagePipeBind> -InstanceId <Guid> -Text <String>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPageTextPart -Page Home -InstanceId a2875399-d6ff-43a0-96da-be6ae5875f82 -Text \"MyText\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTheme",
+    "description": "Sets the theme of the current web. If any of the attributes is not set, that value will be set to null.",
+    "syntax": "Set-PnPTheme [-ColorPaletteUrl <String>] [-FontSchemeUrl <String>] [-BackgroundImageUrl <String>]\n [-ResetSubwebsToInherit] [-UpdateRootWebOnly] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTheme",
+      "Set-PnPTheme -ColorPaletteUrl _catalogs/theme/15/company.spcolor",
+      "Set-PnPTheme -ColorPaletteUrl _catalogs/theme/15/company.spcolor -BackgroundImageUrl 'style library/background.png'",
+      "Set-PnPTheme -ColorPaletteUrl _catalogs/theme/15/company.spcolor -BackgroundImageUrl 'style library/background.png' -ResetSubwebsToInherit"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPWikiPageContent",
+    "description": "This cmdlet updates the content of the specified wiki page to the value specified either in a string or a file.",
+    "syntax": "Set-PnPWikiPageContent -Content <String> -ServerRelativePageUrl <String> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPWikiPageContent -ServerRelativePageUrl /sites/PnPWikiCollection/SitePages/OurWikiPage.aspx -Path .\\sampleblog.html",
+      "$htmlContent = \"<div>test</div>\"\nSet-PnPWikiPageContent -ServerRelativePageUrl /sites/PnPWikiCollection/SitePages/OurWikiPage.aspx -Content $htmlContent"
+    ]
+  },
+  {
+    "cmdlet": "Use-PnPBrandCenterFontPackage",
+    "description": "Applies the specified font from the Brand Center to the current site.",
+    "syntax": "Use-PnPBrandCenterFontPackage -Identity <BrandCenterFontPipeBind> [-Store <Tenant|OutOfBox|Site|All>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Use-PnPBrandCenterFontPackage -Identity \"2812cbd8-7176-4e45-8911-6a063f89a1f1\"",
+      "Use-PnPBrandCenterFontPackage -Identity \"My awesome font\" -Store Tenant"
+    ]
+  }
+]

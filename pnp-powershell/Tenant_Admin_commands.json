@@ -1,0 +1,725 @@
+[
+  {
+    "cmdlet": "Add-PnPApp",
+    "description": "Allows to upload an app to the app catalog at tenant or site collection level. By specifying-Publishoption it is possible to deploy/trust it at the same time.",
+    "syntax": "Add-PnPApp [-Path] <String> [-Scope <AppCatalogScope>] [-Overwrite] [-Timeout <Int32>] [-Publish [-SkipFeatureDeployment]] [-Connection <PnPConnection>] [-Force <SwitchParameter>]",
+    "examples": [
+      "Add-PnPApp -Path ./myapp.sppkg",
+      "Add-PnPApp -Path ./myapp.sppkg -Publish",
+      "Add-PnPApp -Path ./myapp.sppkg -Scope Site -Publish",
+      "Add-PnPApp -Path ./myapp.sppkg -Publish -SkipFeatureDeployment"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPApplicationCustomizer",
+    "description": "Adds a SharePoint Framework client side extension application customizer by registering a user custom action to a web or sitecollection. This can be useful in the scenario where you have a SPFx Application Customizer whcih you decide to deploy to the global app catalog, checking the box to deploy it to the entire tenant. If you then go to the Tenant Wide Extensions list inside the tenant app catalog and set the SPFx Application Customizer its Disabled property to be Yes, you can use this cmdlet to add the functionality of that SPFx component to specific site collections manually. This voids having to add it as an app to every site collection and it being visible in the site contents, yet you having full control over where it should be ran and where not.",
+    "syntax": "Add-PnPApplicationCustomizer [-Name <String>] [-Title <String>] [-Description <String>] [-Sequence <Int32>]\n [-Scope <CustomActionScope>] -ClientSideComponentId <Guid> [-ClientSideComponentProperties <String>]\n [-ClientSideHostProperties <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPApplicationCustomizer -Title \"CollabFooter\" -ClientSideComponentId c0ab3b94-8609-40cf-861e-2a1759170b43 -ClientSideComponentProperties \"{`\"sourceTermSet`\":`\"PnP-CollabFooter-SharedLinks`\",`\"personalItemsStorageProperty`\":`\"PnP-CollabFooter-MyLinks`\"}"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantCdnOrigin",
+    "description": "Add a new origin to the public or private CDN, on either Tenant level or on a single Site level. Effectively, a tenant admin points out to a document library, or a folder in the document library and requests that content in that library should be retrievable by using a CDN.",
+    "syntax": "Add-PnPTenantCdnOrigin -OriginUrl <String> -CdnType <SPOTenantCdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPTenantCdnOrigin -OriginUrl /sites/site/subfolder -CdnType Public"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPTenantSequence",
+    "description": "Allows to add a tenant sequence object to a tenant template.",
+    "syntax": "Add-PnPTenantSequence -Template <ProvisioningHierarchy> -Sequence <ProvisioningSequence>",
+    "examples": [
+      "Add-PnPTenantSequence -Template $mytemplate -Sequence $mysequence",
+      "New-PnPTenantSequence -Id \"MySequence\" | Add-PnPTenantSequence -Template $template"
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPFlow",
+    "description": "This cmdlet disables a specific flow",
+    "syntax": "Disable-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind> [-AsAdmin] [-Connection <PnPConnection>]",
+    "examples": [
+      "Disable-PnPFlow -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Disable-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPFlow",
+    "description": "This cmdlet enables a specific flow",
+    "syntax": "Enable-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind> [-AsAdmin] \n[-Connection <PnPConnection>]",
+    "examples": [
+      "Enable-PnPFlow -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Enable-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPFlow",
+    "description": "This cmdlet exports a Microsoft Power Automate Flow either as a json file or as a zip package.",
+    "syntax": "Export-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind>\n [-AsZipPackage] [-PackageDisplayName <String>] [-PackageDescription <String>] [-PackageCreatedBy <String>]\n [-PackageSourceEnvironment <String>] [-OutPath <String>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Export-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Export-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -IsDefault) -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Get-PnPPowerPlatformEnvironment | foreach { Get-PnPFlow -Environment $_.Name } | foreach { Export-PnPFlow -Environment $_.Properties.EnvironmentDetails.Name -Identity $_ -OutPath \"c:\\flows\\$($_.Name).zip\" -AsZipPackage }"
+    ]
+  },
+  {
+    "cmdlet": "Export-PnPPowerApp",
+    "description": "This cmdlet exports a Microsoft Power App as zip package.",
+    "syntax": "Export-PnPPowerApp [-Environment <PowerPlatformEnvironmentPipeBind>] -Identity <PowerAppPipeBind>\n [-PackageDisplayName <String>] [-PackageDescription <String>] [-PackageCreatedBy <String>]\n [-PackageSourceEnvironment <String>] [-OutPath <String>] [-Force] [-Connection <PnPConnection>]\n [<CommonParameters>]",
+    "examples": [
+      "Export-PnPPowerApp -Identity fba63225-baf9-4d76-86a1-1b42c917a182 -OutPath \"C:\\Users\\user1\\Downloads\\test_20230408152624.zip\"",
+      "Export-PnPPowerApp -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182 -OutPath \"C:\\Users\\user1\\Downloads\\test_20230408152624.zip\" -PackageDisplayName \"MyAppDisplayName\" -PackageDescription \"Package exported using PnP Powershell\" -PackageCreatedBy \"Siddharth Vaghasia\" -PackageSourceEnvironment \"UAT Environment\"",
+      "Get-PnPPowerPlatformEnvironment | foreach { Get-PnPPowerApp -Environment $_.Name } | foreach { Export-PnPPowerApp -Environment $_.Properties.EnvironmentDetails.Name -Identity $_ -OutPath \"C:\\Users\\user1\\Downloads\\$($_.Name).zip\" }"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPApp",
+    "description": "Allows to retrieve available apps from the app catalog. In order to get apps from site collection scoped app catalog setScopeoption toSite.",
+    "syntax": "Get-PnPApp [-Identity <AppMetadataPipeBind>] [-Scope <AppCatalogScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPApp",
+      "Get-PnPApp -Scope Site",
+      "Get-PnPApp -Identity 2646ccc3-6a2b-46ef-9273-81411cbbb60f"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAppErrors",
+    "description": "The Get-PnPAppErrors cmdlet returns application monitoring errors (if available) for the application that is specified by ProductId between StartTimeInUtc in Coordinated Universal Time (UTC) and EndTimeInUtc in UTC.",
+    "syntax": "Get-PnPAppErrors -ProductId <Guid> [-StartTimeInUtc <DateTime>] [-EndTimeInUtc <DateTime>]",
+    "examples": [
+      "Get-PnPAppErrors -ProductId a2681b0c-84fe-41bf-9a8e-d480ab81ba7b",
+      "Get-PnPAppErrors -ProductId a2681b0c-84fe-41bf-9a8e-d480ab81ba7b -StartTimeInUtc (Get-Date).AddHours(-1).ToUniversalTime()"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAppInfo",
+    "description": "The Get-PnPAppInfo cmdlet gets all the installed applications from an external marketplace or from the App Catalog that containNamein their application names or the installed application with mentionedProductId.",
+    "syntax": "Get-PnPAppInfo -ProductId <Guid>",
+    "examples": [
+      "Get-PnPAppInfo -Name \"Excel Service\"",
+      "Get-PnPAppInfo -ProductId 2646ccc3-6a2b-46ef-9273-81411cbbb60f",
+      "Get-PnPAppInfo -Name \" \" | Sort -Property Name"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPApplicationCustomizer",
+    "description": "Returns all SharePoint Framework client side extension application customizers registered on the current web and/or site",
+    "syntax": "Get-PnPApplicationCustomizer [-Identity <Guid>] [-Scope <CustomActionScope>]\n [-ThrowExceptionIfCustomActionNotFound] [-Connection <PnPConnection>] \n  [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPApplicationCustomizer",
+      "Get-PnPApplicationCustomizer -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2",
+      "Get-PnPApplicationCustomizer -ClientSideComponentId aa66f67e-46c0-4474-8a82-42bf467d07f2 -Scope Web"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDeletedFlow",
+    "description": "This cmdlet returns Deleted Power Automate Flows meeting the specified criteria.",
+    "syntax": "Get-PnPDeletedFlow [-Environment <PowerAutomateEnvironmentPipeBind>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPDeletedFlow",
+      "Get-PnPPowerPlatformEnvironment -Identity \"MyOrganization (default)\" | Get-PnPDeletedFlow"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPEnterpriseAppInsightsReport",
+    "description": "This cmdlet allows checking for the status of generated App Insights reports. Only one report can exist for every supported timespan `day, 7 days, 14 days, or 28 days. New requests for reports can be initiated usingStart-PnPEnterpriseAppInsightsReportand will overwrite any existing reports thay may exist.",
+    "syntax": "Get-PnPEnterpriseAppInsightsReport",
+    "examples": [
+      "Get-PnPEnterpriseAppInsightsReport",
+      "Get-PnPEnterpriseAppInsightsReport -ReportId bed8845f-72ba-43ec-b1f3-844ff6a64f28",
+      "Get-PnPEnterpriseAppInsightsReport -ReportId bed8845f-72ba-43ec-b1f3-844ff6a64f28 -Action Download"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFlow",
+    "description": "This cmdlet returns Power Automate Flows meeting the specified criteria.",
+    "syntax": "Get-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] [-AsAdmin] [-SharingStatus <FlowSharingStatus>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPFlow -AsAdmin",
+      "Get-PnPPowerPlatformEnvironment -Identity \"MyOrganization (default)\" | Get-PnPFlow",
+      "Get-PnPFlow -SharingStatus SharedWithMe",
+      "Get-PnPFlow -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFlowRun",
+    "description": "This cmdlet returns the flow runs for a given flow.",
+    "syntax": "Get-PnPFlowRun [-Environment <PowerAutomateEnvironmentPipeBind>] -Flow <PowerAutomateFlowPipeBind> [-Identity <PowerAutomateFlowRunPipeBind>]\n[-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFlowRun -Flow fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Get-PnPFlowRun -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230",
+      "$flowrun = Get-PnPFlowRun -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230\n$flowrun.Properties.trigger",
+      "Name              : Recurrence\nStartTime         : 2024-02-02 06:00:00\nEndTime           : 2024-02-02 06:00:00\nScheduledTime     : 2024-02-02 06:00:00\nOriginHistoryName : 08584947532854535568834568113CU171\nCode              : OK\nStatus            : Succeeded",
+      "$flowruns = Get-PnPFlowRun -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Flow fba63225-baf9-4d76-86a1-1b42c917a182\n$flowruns.Properties.trigger",
+      "Name              : Recurrence\nStartTime         : 2024-02-02 06:00:00\nEndTime           : 2024-02-02 06:00:00\nScheduledTime     : 2024-02-02 06:00:00\nOriginHistoryName : 08584947532854535568834568113CU171\nCode              : OK\nStatus            : Succeeded\n\nName              : Recurrence\nStartTime         : 2024-02-01 06:00:00\nEndTime           : 2024-02-01 06:00:00\nScheduledTime     : 2024-02-01 06:00:00\nOriginHistoryName : 08584948396849679000001446214CU251\nCode              : OK\nStatus            : Succeeded\n\nName              : Recurrence\nStartTime         : 2024-01-31 06:00:00\nEndTime           : 2024-01-31 06:00:00\nScheduledTime     : 2024-01-31 06:00:00\nOriginHistoryName : 08584949260853628013416159080CU185\nCode              : OK\nStatus            : Succeeded"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPGraphSubscription",
+    "description": "Retrieves all subscriptions from Microsoft Graph",
+    "syntax": "Get-PnPGraphSubscription",
+    "examples": [
+      "Get-PnPGraphSubscription",
+      "Get-PnPGraphSubscription -Identity 328c7693-5524-44ac-a946-73e02d6b0f98"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPManagedAppId",
+    "description": "Returns an associated App Id from the Windows Credential Manager or Mac OS Key Chain Entry.",
+    "syntax": "Get-PnPManagedAppId -Url <String>",
+    "examples": [
+      "Get-PnPManagedAppId -Url https://yourtenant.sharepoint.com"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerApp",
+    "description": "This cmdlet returns the Power Apps for a given enviroment.",
+    "syntax": "Get-PnPPowerApp [-Environment <PowerPlatformEnvironmentPipeBind>] [-AsAdmin] [-Identity <PowerAppPipeBind>] \n[-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPPowerApp",
+      "Get-PnPPowerApp -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPRetentionLabel",
+    "description": "Allows to retrieve all retention labels for current site or list. UseRawoption if you want will include more detailed information regarding labels.",
+    "syntax": "Get-PnPRetentionLabel [-List <ListPipeBind>] [-Raw] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPRetentionLabel",
+      "Get-PnPRetentionLabel -List \"Demo List\" -ValuesOnly"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPStorageEntity",
+    "description": "Allows to retrieve storage entities from either tenant app catalog or current site app catalog.",
+    "syntax": "Get-PnPStorageEntity [-Key <String>] [-Scope <StorageEntityScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPStorageEntity",
+      "Get-PnPStorageEntity -Key MyKey",
+      "Get-PnPStorageEntity -Scope Site",
+      "Get-PnPStorageEntity -Key MyKey -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSyntexModel",
+    "description": "This command allows the retrieval of a Syntex document processing models defined in the connected Syntex Content Center site.",
+    "syntax": "Get-PnPSyntexModel [-Identity] <SyntexModelPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSyntexModel",
+      "Get-PnPSyntexModel -Identity 1",
+      "Get-PnPSyntexModel -Identity \"Invoice model\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSyntexModelPublication",
+    "description": "This command returns the libraries to which a Syntex document processing model defined in the connected Syntex Content Center site was published.",
+    "syntax": "Get-PnPSyntexModelPublications -Model <SyntexModelPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSyntexModelPublication -Identity \"Invoice model\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTemporarilyDisableAppBar",
+    "description": "Allows to retrieve disabled state of the SharePoint Online App Bar.",
+    "syntax": "Get-PnPTemporarilyDisableAppBar",
+    "examples": [
+      "Get-PnPTemporarilyDisableAppBar"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenant",
+    "description": "Returns organization-level site collection properties such as StorageQuota, StorageQuotaAllocated, ResourceQuota,\nResourceQuotaAllocated, and SiteCreationMode.",
+    "syntax": "Get-PnPTenant [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenant"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnEnabled",
+    "description": "Enables or disabled the public or private Office 365 Content Delivery Network (CDN).",
+    "syntax": "Get-PnPTenantCdnEnabled -CdnType <SPOTenantCdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantCdnEnabled -CdnType Public"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnOrigin",
+    "description": "Returns the current registered origins from the public or private content delivery network (CDN).",
+    "syntax": "Get-PnPTenantCdnOrigin -CdnType <SPOTenantCdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantCdnOrigin -CdnType Public"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantCdnPolicies",
+    "description": "Retrieves the current CDN policies for the tenant for the specified CDN type.",
+    "syntax": "Get-PnPTenantCdnPolicies -CdnType <SPOTenantCdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantCdnPolicies -CdnType Public"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantId",
+    "description": "Allows to retrieve id of tenant. This does not require an active connection to that tenant.",
+    "syntax": "Get-PnPTenantId -TenantUrl <String> [-AzureEnvironment <AzureEnvironment>]",
+    "examples": [
+      "Get-PnPTenantId",
+      "Get-PnPTenantId contoso",
+      "Get-PnPTenantId -TenantUrl contoso.sharepoint.com",
+      "Get-PnPTenantId -TenantUrl contoso.sharepoint.us -AzureEnvironment USGovernment"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantInfo",
+    "description": "Gets the tenantId, federation brand name, company name and default domain name regarding a specific tenant. If no Domain name or Tenant id is specified, it returns the Tenant Info of the currently connected to tenant.",
+    "syntax": "Get-PnPTenantInfo [-Verbose]",
+    "examples": [
+      "Get-PnPTenantInfo -TenantId \"e65b162c-6f87-4eb1-a24e-1b37d3504663\"",
+      "Get-PnPTenantInfo -DomainName \"contoso.com\"",
+      "Get-PnPTenantInfo",
+      "Get-PnPTenantInfo -CurrentTenant"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantInstance",
+    "description": "Allows to retrieve list of all instances of the tenant.",
+    "syntax": "Get-PnPTenantInstance",
+    "examples": [
+      "Get-PnPTenantInstance"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantInternalSetting",
+    "description": "Returns organizational level site collection properties such asSitePagesEnabled,DisableSelfServiceSiteCreation,EnableAutoNewsDigest,CustomFormUrl,AutoQuotaEnabled,DisableGroupify,IncludeAtAGlanceInShareEmails,MailFromAddress,MobileNotificationIsEnabledForSharepoint,NewSiteManagedPath,NewSubsiteInModernOffForAll,NewSubsiteInModernOffForModernTemplates,NewTeamSiteManagedPath,ParentSiteUrl,PolicyOption,RequireSecondaryContact,ShowSelfServiceSiteCreation,SiteCreationNewUX,SmtpServer,SPListModernUXOff,TenantDefaultTimeZoneIdandAvailableManagedPathsForSiteCreation.",
+    "syntax": "Get-PnPTenantInternalSetting [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantInternalSetting"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantPronounsSetting",
+    "description": "This cmdlet can be used to retrieve tenant wide pronounsSettings properties.",
+    "syntax": "Get-PnPTenantPronounsSetting [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantPronounsSetting"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantRetentionLabel",
+    "description": "This cmdlet allows retrieval of the available Microsoft Purview retention labels in the currently connected tenant. You can retrieve all the labels or a specific label.",
+    "syntax": "Get-PnPTenantRetentionLabel [-Identity <Guid>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantRetentionLabel",
+      "Get-PnPTenantRetentionLabel -Identity 58f77809-9738-5080-90f1-gh7afeba2995"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantSequence",
+    "description": "Allows to retrieve provisioning sequence objects from a tenant template. By usingIdentityoption it is possible to retrieve a specific provisioning sequence object.",
+    "syntax": "Get-PnPTenantSequence -Template <ProvisioningHierarchy> [-Identity <ProvisioningSequencePipeBind>]",
+    "examples": [
+      "Get-PnPTenantSequence -Template $myTemplateObject",
+      "Get-PnPTenantSequence -Template $myTemplateObject -Identity \"mysequence\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantSyncClientRestriction",
+    "description": "Returns organization-level OneDrive synchronization restriction properties such as BlockMacSync,\nOptOutOfGrooveBlock, and TenantRestrictionEnabled.",
+    "syntax": "Get-PnPTenantSyncClientRestriction [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantSyncClientRestriction"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTenantTemplate",
+    "description": "Allows to generate a provisioning tenant template from a site. If the site is a hubsite any connected site will be included.",
+    "syntax": "Get-PnPTenantTemplate [-SiteUrl <String>] [-Out <String>] [-Force]\n [-Configuration <ExtractConfigurationPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPTenantTemplate -Out tenanttemplate.xml",
+      "Get-PnPTenantTemplate -Out tenanttemplate.xml -SiteUrl https://m365x123456.sharepoint.com/sites/HomeSite",
+      "Get-PnPTenantTemplate -Out tenanttemplate.xml -SiteUrl https://m365x123456.sharepoint.com/sites/HomeSite -Force"
+    ]
+  },
+  {
+    "cmdlet": "Install-PnPApp",
+    "description": "Allows to install an available app from the app catalog.",
+    "syntax": "Install-PnPApp [-Identity] <AppMetadataPipeBind> [-Scope <AppCatalogScope>] [-Wait]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Install-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Install-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site",
+      "Get-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe | Install-PnPApp",
+      "Get-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site | Install-PnPApp"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPTenantTemplate",
+    "description": "Allows to apply a tenant template on current tenant.",
+    "syntax": "Invoke-PnPTenantTemplate [-Path] <String> [-SequenceId <String>] [-ResourceFolder <String>]\n [-Handlers <Handlers>] [-ExcludeHandlers <Handlers>] [-ExtensibilityHandlers <ExtensibilityHandler[]>]\n [-TemplateProviderExtensions <ITemplateProviderExtension[]>] [-Parameters <Hashtable>]\n [-OverwriteSystemPropertyBagValues] [-IgnoreDuplicateDataRowErrors] [-ProvisionContentTypesToSubWebs]\n [-ProvisionFieldsToSubWebs] [-ClearNavigation] [-Configuration <ApplyConfigurationPipeBind>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPTenantTemplate -Path myfile.pnp",
+      "Invoke-PnPTenantTemplate -Path myfile.pnp -SequenceId \"mysequence\"",
+      "Invoke-PnPTenantTemplate -Path myfile.pnp -Parameters @{\"ListTitle\"=\"Projects\";\"parameter2\"=\"a second value\"}"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPGraphSubscription",
+    "description": "Creates a new Microsoft Graph Subscription. The required Azure Active Directory application permission depends on the resource creating the subscription for, seehttps://learn.microsoft.com/graph/api/subscription-post-subscriptions#permissions. For a sample ASP.NET WebApi webhook implementation to receive the notifications from Microsoft Graph, seehttps://github.com/microsoftgraph/msgraph-training-changenotifications/blob/b8d21ca7aa5feeece336287c9a781e71b7ba01c6/demos/01-create-application/Controllers/NotificationsController.cs#L51.",
+    "syntax": "New-PnPGraphSubscription -ChangeType <GraphSubscriptionChangeType> -NotificationUrl <String> -Resource <String>\n [-ExpirationDateTime <DateTime>] [-ClientState <String>]\n [-LatestSupportedTlsVersion <GraphSubscriptionTlsVersion>]",
+    "examples": [
+      "New-PnPGraphSubscription -ChangeType Create -NotificationUrl https://mywebapiservice/notifications -Resource \"me/mailFolders('Inbox')/messages\" -ExpirationDateTime (Get-Date).AddDays(1) -ClientState [Guid]::NewGuid().ToString()",
+      "New-PnPGraphSubscription -ChangeType Updates -NotificationUrl https://mywebapiservice/notifications -Resource \"Users\" -ExpirationDateTime (Get-Date).AddHours(1) -ClientState [Guid]::NewGuid().ToString()"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSdnProvider",
+    "description": "This Cmdlet creates a new Software-Defined Networking, and it receives two parameters, the Identity (ID) of the Hive and the License key of the Hive.",
+    "syntax": "New-PnPSdnProvider -Identity <String> -License <String>",
+    "examples": [
+      "New-PnPSdnProvider -ID \"Hive\" -License \"\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantSequence",
+    "description": "Allows to create a new tenant sequence object.",
+    "syntax": "New-PnPTenantSequence [-Id <String>]",
+    "examples": [
+      "$sequence = New-PnPTenantSequence",
+      "$sequence = New-PnPTenantSequence -Id \"MySequence\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPTenantTemplate",
+    "description": "Allows to create a new tenant template object.",
+    "syntax": "New-PnPTenantTemplate [-Author <String>] [-Description <String>] [-DisplayName <String>] [-Generator <String>]",
+    "examples": [
+      "$template = New-PnPTenantTemplate"
+    ]
+  },
+  {
+    "cmdlet": "Publish-PnPApp",
+    "description": "Allows to deploy/trust an available app in the app catalog.",
+    "syntax": "Publish-PnPApp [-Identity] <AppMetadataPipeBind> [-SkipFeatureDeployment] [-Scope <AppCatalogScope>] [-Connection <PnPConnection>] [-Force <SwitchParameter>]",
+    "examples": [
+      "Publish-PnPApp -Identity 2646ccc3-6a2b-46ef-9273-81411cbbb60f",
+      "Publish-PnPApp -Identity 2646ccc3-6a2b-46ef-9273-81411cbbb60f -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Publish-PnPSyntexModel",
+    "description": "This command publishes Syntex document processing models to a list.",
+    "syntax": "Publish-PnPSyntexModel -Model <SyntexModelPipeBind> -ListWebUrl <string> -List <ListPipeBind> [-PublicationViewOption <MachineLearningPublicationViewOption>]  [-Connection <PnPConnection>]",
+    "examples": [
+      "Publish-PnPSyntexModel -Model \"Invoice model\" -ListWebUrl \"https://contoso.sharepoint.com/sites/finance\" -List \"Documents\"",
+      "Publish-PnPSyntexModel -Model \"Invoice model\" -TargetSiteUrl \"https://contoso.sharepoint.com/sites/finance\" -TargetWebServerRelativeUrl \"/sites/finance\" -TargetLibraryServerRelativeUrl \"/sites/finance/shared%20documents\" -Batch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Read-PnPTenantTemplate",
+    "description": "Allows to load a PnP tenant template from the file system, from a stream or from a string to memory and return its instance object.",
+    "syntax": "Read-PnPTenantTemplate -Path <String>",
+    "examples": [
+      "Read-PnPTenantTemplate -Path template.pnp",
+      "$template = Get-PnPFile \"/sites/config/Templates/Default.xml\" -AsMemoryStream\nRead-PnPTenantTemplate -Stream $template"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPApp",
+    "description": "Allows to remove an app from the app catalog.",
+    "syntax": "Remove-PnPApp [-Identity] <AppMetadataPipeBind> [-Scope <AppCatalogScope>] [-Connection <PnPConnection>] [-Force <SwitchParameter>]",
+    "examples": [
+      "Remove-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Remove-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPApplicationCustomizer",
+    "description": "Removes a SharePoint Framework client side extension application customizer by removing a user custom action from a web or sitecollection.",
+    "syntax": "Remove-PnPApplicationCustomizer [[-Identity] <UserCustomActionPipeBind>] [-Scope <CustomActionScope>] [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPApplicationCustomizer -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2",
+      "Remove-PnPApplicationCustomizer -ClientSideComponentId aa66f67e-46c0-4474-8a82-42bf467d07f2 -Scope web"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFlow",
+    "description": "This cmdlet removes the specified flow.",
+    "syntax": "Remove-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind> [-AsAdmin]\n [-Force] [-ThrowExceptionIfPowerAutomateNotFound] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFlow -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Remove-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182 -ThrowExceptionIfPowerAutomateNotFound"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPGraphSubscription",
+    "description": "Allows to remove an existing Microsoft Graph subscription.",
+    "syntax": "Remove-PnPGraphSubscription -Identity <GraphSubscriptionPipeBind>",
+    "examples": [
+      "Remove-PnPGraphSubscription -Identity bc204397-1128-4911-9d70-1d8bceee39da"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPManagedAppId",
+    "description": "Removes an App Id from the Credential Manager",
+    "syntax": "Remove-PnPManagedAppId -Url <String> [-Force]",
+    "examples": [
+      "Remove-PnPManagedAppId -Url \"https://tenant.sharepoint.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSdnProvider",
+    "description": "Removes SDN Support in your SharePoint Online tenant.",
+    "syntax": "Remove-PnPSdnProvider [-Confirm]",
+    "examples": [
+      "Remove-PnPSdnProvider -Confirm:false"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPStorageEntity",
+    "description": "Allows to remove Storage Entities / Farm Properties from either the tenant scoped app catalog or the current site collection app catalog.",
+    "syntax": "Remove-PnPStorageEntity -Key <String> [-Scope <StorageEntityScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPStorageEntity -Key MyKey",
+      "Remove-PnPStorageEntity -Key MyKey -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantCdnOrigin",
+    "description": "Removes an origin from the Public or Private content delivery network (CDN).",
+    "syntax": "Remove-PnPTenantCdnOrigin -OriginUrl <String> -CdnType <SPOTenantCdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPTenantCdnOrigin -OriginUrl /sites/site/subfolder -CdnType Public"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPTenantSyncClientRestriction",
+    "description": "The Remove-PnPTenantSyncClientRestriction cmdlet disables the feature for the tenant, but does not remove any present domain GUID entries from the safe sender recipient list. After the Remove-PnPTenantSyncClientRestriction cmdlet is run it can take up to 24 hours for change to take effect. This parameter will also remove any values set from the GrooveBlockOption parameter for syncing.",
+    "syntax": "Remove-PnPTenantSyncClientRestriction",
+    "examples": [
+      "Remove-PnPTenantSyncClientRestriction"
+    ]
+  },
+  {
+    "cmdlet": "Request-PnPSyntexClassifyAndExtract",
+    "description": "This command requests for all files in a library, folder or individual files to be classified and extracted via the published Syntex models on the libraries hosting the files. When using with theOffPeakswitch then the files are send to the off peak Syntex document processing queue, this way there's no need to enumerate all files in the library and submit them to the regular queue. When using theForceswitch without setting OffPeak then all files are enumerated and sent to the regular queue, regardless of whether they were processed in the past.",
+    "syntax": "Request-PnPSyntexClassifyAndExtract -FileUrl <string> [-Batch <PnPBatch>]  [-Connection <PnPConnection>]",
+    "examples": [
+      "Request-PnPSyntexClassifyAndExtract -FileUrl \"/sites/finance/invoices/invoice1.docx\"",
+      "Request-PnPSyntexClassifyAndExtract -List \"Invoices\"",
+      "Request-PnPSyntexClassifyAndExtract -Folder (Get-PnPFolder -Url \"invoices/Q1/jan\")"
+    ]
+  },
+  {
+    "cmdlet": "Reset-PnPRetentionLabel",
+    "description": "Removes the retention label on a list or library and its items, or removes the retention label from specified items in a list or a library. Does not work for sensitivity labels.\nWhen resetting retention label on specified items, cmdlet allows passing of unlimited number of items - items will be split and processed in batches (CSOM method SetComplianceTagOnBulkItems has a hard count limit on number of processed items in one go). If needed, batch size may be adjusted with BatchSize parameter.",
+    "syntax": "Reset-PnPRetentionLabel [-List] <ListPipeBind> [-SyncToItems <Boolean>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Reset-PnPRetentionLabel -List \"Demo List\"",
+      "Reset-PnPRetentionLabel -List \"Demo List\" -SyncToItems $true",
+      "Set-PnPRetentionLabel -List \"Demo List\" -ItemIds @(1,2,3)"
+    ]
+  },
+  {
+    "cmdlet": "Restart-PnPFlowRun",
+    "description": "This cmdlet restarts/resubmits a specific Power Automate flow run.",
+    "syntax": "Restart-PnPFlowRun [-Environment <PowerAutomateEnvironmentPipeBind>] -Flow <PowerAutomateFlowPipeBind> -Identity <PowerAutomateFlowRunPipeBind> [-Force]",
+    "examples": [
+      "Restart-PnPFlowRun -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230",
+      "$environment = \nRestart-PnPFlowRun -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230 -Force"
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPFlow",
+    "description": "This cmdlet Restores a specific flow",
+    "syntax": "Restore-PnPFlow [-Environment <PowerAutomateEnvironmentPipeBind>] -Identity <PowerAutomateFlowPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPFlow -Identity fba63225-baf9-4d76-86a1-1b42c917a182",
+      "Restore-PnPFlow -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Save-PnPTenantTemplate",
+    "description": "This cmdlet saves the tenant template for provisioning hierarchy to the file system in the latest or specified schema.",
+    "syntax": "Save-PnPTenantTemplate -Template <ProvisioningHierarchyPipeBind> [-Out] <String>\n [-Schema <XMLPnPSchemaVersion>] [-Force]",
+    "examples": [
+      "Save-PnPTenantTemplate -Template template.xml -Out .\\tenanttemplate.pnp",
+      "$template = Read-PnPTenantTemplate -Path template.xml\nSave-PnPTenantTemplate -Template $template -Out .\\template.pnp",
+      "$template = Read-PnPTenantTemplate -Path template.xml\nSave-PnPTenantTemplate -Template $template -Out .\\template.pnp -Schema V202002",
+      "Read-PnPTenantTemplate -Path template.xml | Save-PnPTenantTemplate -Out .\\template.pnp"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPApplicationCustomizer",
+    "description": "Updates a SharePoint Framework client side extension application customizer by updating its custom action. Only the properties that will be provided will be updated. Others will remain as they are.",
+    "syntax": "Set-PnPApplicationCustomizer [[-Identity] <UserCustomActionPipeBind>] [-Scope <CustomActionScope>]\n [-Title <String>] [-Description <String>] [-Sequence <Int32>] [-ClientSideComponentProperties <String>] [-ClientSideHostProperties> <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPApplicationCustomizer -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2",
+      "Set-PnPApplicationCustomizer -ClientSideComponentId aa66f67e-46c0-4474-8a82-42bf467d07f2 -Scope web -ClientSideComponentProperties \"{`\"sourceTermSet`\":`\"PnP-CollabFooter-SharedLinks`\",`\"personalItemsStorageProperty`\":`\"PnP-CollabFooter-MyLinks`\"}\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAppSideLoading",
+    "description": "This cmdlet enables or disables the app side loading feature on the site.",
+    "syntax": "Set-PnPAppSideLoading [-On] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPAppSideLoading -On",
+      "Set-PnPAppSideLoading -Off"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPGraphSubscription",
+    "description": "Allows to update an existing Microsoft Graph subscription.",
+    "syntax": "Set-PnPGraphSubscription -Identity <GraphSubscriptionPipeBind> -ExpirationDate <DateTime> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPGraphSubscription -Identity bc204397-1128-4911-9d70-1d8bceee39da -ExpirationDate \"2020-11-22T18:23:45.9356913Z\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPManagedAppId",
+    "description": "Adds an App Id entry to the Windows Credential Manager or Mac OS Key Chain Entry. PnP PowerShell will check if an App Id is available when you connect using Connect-PnPOnline -Interactive. If it finds a matching URL it will use the associated App Id. You do not need to specify the -ClientId parameter then.",
+    "syntax": "Set-PnPManagedAppId -Url <String> -AppId <String> [-Overwrite]",
+    "examples": [
+      "Set-PnPManagedAppId -Url \"https://tenant.sharepoint.com\" -AppId d96c0a07-770d-46f4-bb38-a54084254bf7"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPowerAppByPassConsent",
+    "description": "This command can be used to set the bypassConsent flag of an PowerApps to true or false. Set the value as true so users aren't required to authorize API connections for the targeted app. To Remove the consent set the value false so users are required to authorize API connections for the targeted app",
+    "syntax": "Set-PnPPowerAppByPassConsent [-Environment <PowerPlatformEnvironmentPipeBind>] [-Identity <PowerAppPipeBind> -ByPassConsent <Boolean>] \n[-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Set-PnPPowerAppByPassConsent -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Identity fba63225-baf9-4d76-86a1-1b42c917a182 -ByPassConsent true",
+      "Set-PnPPowerAppByPassConsent -Identity fba63225-baf9-4d76-86a1-1b42c917a182 -ByPassConsent false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPRetentionLabel",
+    "description": "Allows setting a retention label on a list or library and its items, or sets the retention label for specified items in a list or a library. Does not work for sensitivity labels.\nWhen setting retention label to specified items, cmdlet allows passing of unlimited number of items - items will be split and processed in batches (CSOM method SetComplianceTagOnBulkItems has a hard count limit on number of processed items in one go). If needed, batch size may be adjusted with BatchSize parameter.",
+    "syntax": "Set-PnPRetentionLabel [-List] <ListPipeBind> -Label <String> [-SyncToItems <Boolean>] [-BlockDeletion <Boolean>]\n [-BlockEdit <Boolean>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPRetentionLabel -List \"Demo List\" -Label \"Project Documentation\"",
+      "Set-PnPRetentionLabel -List \"Demo List\" -Label \"Project Documentation\" -SyncToItems $true",
+      "Set-PnPRetentionLabel -List \"Demo List\" -ItemIds @(1,2,3) -Label \"My demo label\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPStorageEntity",
+    "description": "Allows to set Storage Entities / Farm Properties in either the tenant scoped app catalog or the site collection app catalog.",
+    "syntax": "Set-PnPStorageEntity -Key <String> -Value <String> [-Comment <String>] [-Description <String>]\n [-Scope <StorageEntityScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPStorageEntity -Key MyKey -Value \"MyValue\" -Comment \"My Comment\" -Description \"My Description\"",
+      "Set-PnPStorageEntity -Scope Site -Key MyKey -Value \"MyValue\" -Comment \"My Comment\" -Description \"My Description\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTemporarilyDisableAppBar",
+    "description": "Allows to disable/enable SharePoint Online App Bar.",
+    "syntax": "Set-PnPTemporarilyDisableAppBar -Enabled <Boolean>  [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTemporarilyDisableAppBar $true",
+      "Set-PnPTemporarilyDisableAppBar $false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenant",
+    "description": "Sets organization-level tenant properties which impact the entire tenant.",
+    "syntax": "Set-PnPTenant [-SpecialCharactersStateInFileFolderNames <SpecialCharactersState>]\n [-MinCompatibilityLevel <Int32>]\n [-MaxCompatibilityLevel <Int32>]\n [-ExternalServicesEnabled <Boolean>]\n [-NoAccessRedirectUrl <String>]\n [-SharingCapability <SharingCapabilities>]\n [-DisplayStartASiteOption <Boolean>]\n [-StartASiteFormUrl <String>] [-ShowEveryoneClaim <Boolean>]\n [-ShowAllUsersClaim <Boolean>]\n [-ShowEveryoneExceptExternalUsersClaim <Boolean>]\n [-SearchResolveExactEmailOrUPN <Boolean>]\n [-OfficeClientADALDisabled <Boolean>]\n [-LegacyAuthProtocolsEnabled <Boolean>]\n [-RequireAcceptingAccountMatchInvitedAccount <Boolean>]\n [-ProvisionSharedWithEveryoneFolder <Boolean>]\n [-SignInAccelerationDomain <String>]\n [-EnableGuestSignInAcceleration <Boolean>]\n [-UsePersistentCookiesForExplorerView <Boolean>]\n [-BccExternalSharingInvitations <Boolean>]\n [-BccExternalSharingInvitationsList <String>]\n [-UserVoiceForFeedbackEnabled <Boolean>]\n [-PublicCdnEnabled <Boolean>]\n [-PublicCdnAllowedFileTypes <String>]\n [-RequireAnonymousLinksExpireInDays <Int32>]\n [-SharingAllowedDomainList <String>]\n [-SharingBlockedDomainList <String>]\n [-SharingDomainRestrictionMode <SharingDomainRestrictionModes>]\n [-OneDriveStorageQuota <Int64>]\n [-OneDriveForGuestsEnabled <Boolean>]\n [-IPAddressEnforcement <Boolean>]\n [-IPAddressAllowList <String>]\n [-IPAddressWACTokenLifetime <Int32>]\n [-UseFindPeopleInPeoplePicker <Boolean>]\n [-DefaultSharingLinkType <SharingLinkType>]\n [-ODBMembersCanShare <SharingState>]\n [-ODBAccessRequests <SharingState>]\n [-PreventExternalUsersFromReSharing <Boolean>]\n [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>]\n [-FileAnonymousLinkType <AnonymousLinkType>]\n [-FolderAnonymousLinkType <AnonymousLinkType>]\n [-NotifyOwnersWhenItemsReShared <Boolean>]\n [-NotifyOwnersWhenInvitationsAccepted <Boolean>]\n [-NotificationsInOneDriveForBusinessEnabled <Boolean>]\n [-NotificationsInSharePointEnabled <Boolean>]\n [-OwnerAnonymousNotification <Boolean>]\n [-CommentsOnSitePagesDisabled <Boolean>]\n [-SocialBarOnSitePagesDisabled <Boolean>]\n [-OrphanedPersonalSitesRetentionPeriod <Int32>]\n [-DisallowInfectedFileDownload <Boolean>]\n [-DefaultLinkPermission <SharingPermissionType>]\n [-ConditionalAccessPolicy <SPOConditionalAccessPolicyType>]\n [-AllowDownloadingNonWebViewableFiles <Boolean>]\n [-AllowEditing <Boolean>]\n [-ApplyAppEnforcedRestrictionsToAdHocRecipients <Boolean>]\n [-FilePickerExternalImageSearchEnabled <Boolean>]\n [-EmailAttestationRequired <Boolean>]\n [-EmailAttestationReAuthDays <Int32>]\n [-HideDefaultThemes <Boolean>]\n [-DisabledWebPartIds <Guid[]>]\n [-EnableAIPIntegration <Boolean>]\n [-DisableCustomAppAuthentication <Boolean>] \n [-EnableAutoNewsDigest <Boolean>]\n [-CommentsOnListItemsDisabled <Boolean>]\n [-CommentsOnFilesDisabled <Boolean>]\n [-AllowCommentsTextOnEmailEnabled <Boolean>]\n [-DisableBackToClassic <Boolean>]\n [-InformationBarriersSuspension <Boolean>] \n [-AllowFilesWithKeepLabelToBeDeletedODB <Boolean>]\n [-AllowFilesWithKeepLabelToBeDeletedSPO <Boolean>]\n [-ExternalUserExpirationRequired <Boolean>]\n [-ExternalUserExpireInDays <Boolean>]\n [-OneDriveRequestFilesLinkEnabled <Boolean>]\n [-EnableRestrictedAccessControl <Boolean>]\n [-EnableAzureADB2BIntegration <Boolean>]\n [-CoreRequestFilesLinkEnabled <Boolean>]\n [-CoreRequestFilesLinkExpirationInDays <Int32>]\n [-LabelMismatchEmailHelpLink <String>]\n [-DisableDocumentLibraryDefaultLabeling <Boolean>]\n [-IsEnableAppAuthPopUpEnabled <Boolean>]\n [-ExpireVersionsAfterDays <Int32>]\n [-MajorVersionLimit <Int32>]\n [-EnableAutoExpirationVersionTrim <Boolean>]\n [-OneDriveLoopSharingCapability <SharingCapabilities>]\n [-OneDriveLoopDefaultSharingLinkScope <SharingScope>]\n [-OneDriveLoopDefaultSharingLinkRole <Role>]\n [-CoreLoopSharingCapability <SharingCapabilities>]\n [-CoreLoopDefaultSharingLinkScope <SharingScope>]\n [-CoreLoopDefaultSharingLinkRole <Role>]\n [-DisableVivaConnectionsAnalytics <Boolean>]\n [-CoreDefaultLinkToExistingAccess <Boolean>]\n [-HideSyncButtonOnTeamSite <Boolean>]\n [-CoreBlockGuestsAsSiteAdmin <SharingState>]\n [-IsWBFluidEnabled <Boolean>]\n [-IsCollabMeetingNotesFluidEnabled <Boolean>]\n [-AllowAnonymousMeetingParticipantsToAccessWhiteboards <SharingState>]\n [-IBImplicitGroupBased <Boolean>]\n [-ShowOpenInDesktopOptionForSyncedFiles <Boolean>]\n [-ShowPeoplePickerGroupSuggestionsForIB <Boolean>]\n [-BlockDownloadFileTypePolicy <Boolean>]\n [-BlockDownloadFileTypeIds <SPBlockDownloadFileTypeId[]>]\n [-ExcludedBlockDownloadGroupIds <GUID[]>]\n [-ArchiveRedirectUrl <String>]\n [-StopNew2013Workflows <Boolean>]\n [-MediaTranscription <MediaTranscriptionPolicyType>]\n [-MediaTranscriptionAutomaticFeatures <MediaTranscriptionAutomaticFeaturesPolicyType>]\n [-SiteOwnerManageLegacyServicePrincipalEnabled <Boolean>]\n [-ReduceTempTokenLifetimeEnabled <Boolean>]\n [-ReduceTempTokenLifetimeValue <Int32>]\n [-ViewersCanCommentOnMediaDisabled <Boolean>]\n [-AllowGuestUserShareToUsersNotInSiteCollection <Boolean>]\n [-ConditionalAccessPolicyErrorHelpLink <String>]\n [-CustomizedExternalSharingServiceUrl <String>]\n [-IncludeAtAGlanceInShareEmails <Boolean>]\n [-MassDeleteNotificationDisabled <Boolean>]\n [-BusinessConnectivityServiceDisabled <Boolean>]\n [-EnableSensitivityLabelForPDF <Boolean>]\n [-IsDataAccessInCardDesignerEnabled <Boolean>]\n [-CoreSharingCapability <SharingCapabilities>]\n [-BlockUserInfoVisibilityInOneDrive <TenantBrowseUserInfoPolicyValue>]\n [-AllowOverrideForBlockUserInfoVisibility <Boolean>]\n [-AllowEveryoneExceptExternalUsersClaimInPrivateSite <Boolean>]\n [-AIBuilderEnabled <Boolean>]\n [-AllowSensitivityLabelOnRecords <Boolean>]\n [-AnyoneLinkTrackUsers <Boolean>]\n [-EnableSiteArchive <Boolean>]\n [-ESignatureEnabled <Boolean>]\n [-BlockUserInfoVisibilityInSharePoint <TenantBrowseUserInfoPolicyValue>]\n [-MarkNewFilesSensitiveByDefault <SensitiveByDefaultState>]\n [-OneDriveDefaultShareLinkScope <SharingScope>]\n [-OneDriveDefaultShareLinkRole <Role>]\n [-OneDriveDefaultLinkToExistingAccess <Boolean>]\n [-OneDriveBlockGuestsAsSiteAdmin <SharingState>]\n [-RecycleBinRetentionPeriod <Int32>]\n [-IsSharePointAddInsDisabled <Boolean>]\n [-CoreDefaultShareLinkScope <SharingScope>]\n [-CoreDefaultShareLinkRole <Role>] \n [-GuestSharingGroupAllowListInTenantByPrincipalIdentity <string[]>]\n [-OneDriveSharingCapability <SharingCapabilities>]\n [-AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled <Boolean>]\n [-SelfServiceSiteCreationDisabled <Boolean>]\n [-SyncAadB2BManagementPolicy]\n [-ExtendPermissionsToUnprotectedFiles <Boolean>]\n [-WhoCanShareAllowListInTenant <String>]\n [-LegacyBrowserAuthProtocolsEnabled <Boolean>]\n [-EnableDiscoverableByOrganizationForVideos <Boolean>]\n [-RestrictedAccessControlforSitesErrorHelpLink <String>]\n [-Workflow2010Disabled <Boolean>]\n [-AllowSharingOutsideRestrictedAccessControlGroups <Boolean>]\n [-HideSyncButtonOnDocLib <Boolean>]\n [-HideSyncButtonOnODB <Boolean>]\n [-StreamLaunchConfig <Int32>]\n [-EnableMediaReactions <Boolean>]\n [-ContentSecurityPolicyEnforcement <Boolean>]\n [-DisableSpacesActivation <Boolean>]\n [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantSite -Identity \"https://contoso.sharepoint.com/sites/team1\" -LockState NoAccess\nSet-PnPTenant -NoAccessRedirectUrl \"http://www.contoso.com\"",
+      "Set-PnPTenant -ShowEveryoneExceptExternalUsersClaim $false",
+      "Set-PnPTenant -ShowAllUsersClaim $false",
+      "Set-PnPTenant -UsePersistentCookiesForExplorerView $true",
+      "Set-PnPTenant  -GuestSharingGroupAllowListInTenantByPrincipalIdentity {c:0o.c|federateddirectoryclaimprovider|ee0f40fc-b2f7-45c7-b62d-11b90dd2ea8e}",
+      "Set-PnPTenant  -GuestSharingGroupAllowListInTenantByPrincipalIdentity {}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantCdnEnabled",
+    "description": "Enables or disables the public or private Office 365 Content Delivery Network (CDN) for the tenant.",
+    "syntax": "Set-PnPTenantCdnEnabled [-NoDefaultOrigins] -Enable <Boolean> -CdnType <CdnType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantCdnEnabled -CdnType Public -Enable $true",
+      "Set-PnPTenantCdnEnabled -CdnType Private -Enable $false",
+      "Set-PnPTenantCdnEnabled -CdnType Public -Enable $true -NoDefaultOrigins"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantPronounsSetting",
+    "description": "Allows allowing or disallowing users configuring their own desired pronouns in their user profile.",
+    "syntax": "Set-PnPTenantPronounsSetting [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantPronounsSetting -IsEnabledInOrganization:$true",
+      "Set-PnPTenantPronounsSetting -IsEnabledInOrganization:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPTenantSyncClientRestriction",
+    "description": "Sets organization-level sync client restriction properties such as BlockMacSync, OptOutOfGroveBlock, and DisableReportProblemDialog.",
+    "syntax": "Set-PnPTenantSyncClientRestriction [-BlockMacSync] [-DisableReportProblemDialog]\n [-DomainGuids <System.Collections.Generic.List`1[System.Guid]>] [-Enable]\n [-ExcludedFileExtensions <System.Collections.Generic.List`1[System.String]>]\n [-GrooveBlockOption <GrooveBlockOption>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPTenantSyncClientRestriction -BlockMacSync:$false",
+      "Set-PnPTenantSyncClientRestriction  -ExcludedFileExtensions \"pptx;docx;xlsx\""
+    ]
+  },
+  {
+    "cmdlet": "Start-PnPEnterpriseAppInsightsReport",
+    "description": "This cmdlet will start the generation of a new App Insights report. It can generate a report over the past day (default), 7 days, 14 days, or 28 days. It will overwrite any existing report for the same period. The report will be generated in the background. UseGet-PnPEnterpriseAppInsightsReportto check the status of the report.",
+    "syntax": "Start-PnPEnterpriseAppInsightsReport [-ReportPeriodInDays <1, 7, 14, 28>]",
+    "examples": [
+      "Start-PnPEnterpriseAppInsightsReport",
+      "Start-PnPEnterpriseAppInsightsReport 28"
+    ]
+  },
+  {
+    "cmdlet": "Stop-PnPFlowRun",
+    "description": "This cmdlet cancels a running Power Automate flow run.",
+    "syntax": "Stop-PnPFlowRun [-Environment <PowerAutomateEnvironmentPipeBind>] -Flow <PowerAutomateFlowPipeBind> -Identity <PowerAutomateFlowRunPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Stop-PnPFlowRun -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230",
+      "Stop-PnPFlowRun -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\") -Flow fba63225-baf9-4d76-86a1-1b42c917a182 -Identity 08585531682024670884771461819CU230 -Force"
+    ]
+  },
+  {
+    "cmdlet": "Test-PnPTenantTemplate",
+    "description": "Allows to check if the tenant template has invalid references.",
+    "syntax": "Test-PnPTenantTemplate -Template <ProvisioningHierarchy> [-Connection <PnPConnection>]",
+    "examples": [
+      "Test-PnPTenantTemplate -Template $myTemplate"
+    ]
+  },
+  {
+    "cmdlet": "Uninstall-PnPApp",
+    "description": "Allows to uninstall an available add-in from the site.",
+    "syntax": "Uninstall-PnPApp [-Identity] <AppMetadataPipeBind> [-Scope <AppCatalogScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Uninstall-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Uninstall-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Unpublish-PnPApp",
+    "description": "Allows to unpublish an available add-in from the site collection app catalog or tenant app catalog.",
+    "syntax": "Unpublish-PnPApp [-Identity] <AppMetadataPipeBind> [-Scope <AppCatalogScope>] [-Connection <PnPConnection>] [-Force <SwitchParameter>]",
+    "examples": [
+      "Unpublish-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Unpublish-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Unpublish-PnPSyntexModel",
+    "description": "This command unpublishes a Syntex document processing model from a list.",
+    "syntax": "Unpublish-PnPSyntexModel -Model <SyntexModelPipeBind> -ListWebUrl <string> -List <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Unpublish-PnPSyntexModel -Model \"Invoice model\" -ListWebUrl \"https://contoso.sharepoint.com/sites/finance\" -List \"Documents\"",
+      "Unpublish-PnPSyntexModel -Model \"Invoice model\" -TargetSiteUrl \"https://contoso.sharepoint.com/sites/finance\" -TargetWebServerRelativeUrl \"/sites/finance\" -TargetLibraryServerRelativeUrl \"/sites/finance/shared%20documents\" -Batch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPApp",
+    "description": "Allows to update an available app from the app catalog.",
+    "syntax": "Update-PnPApp [-Identity] <AppMetadataPipeBind> [-Scope <AppCatalogScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Update-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Update-PnPApp -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Site"
+    ]
+  }
+]

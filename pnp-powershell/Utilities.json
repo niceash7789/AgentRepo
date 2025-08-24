@@ -1,0 +1,982 @@
+[
+  {
+    "cmdlet": "Add-PnPAdaptiveScopeProperty",
+    "description": "This is an alias forSet-PnPAdaptiveScopeProperty.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPAlert",
+    "description": "This cmdlets allows to add an alert for a user to a list.",
+    "syntax": "Add-PnPAlert [-List] <ListPipeBind> [-Title <String>] [-User <UserPipeBind>]\n [-DeliveryMethod <AlertDeliveryChannel>] [-ChangeType <AlertEventType>] [-Frequency <AlertFrequency>]\n [-Filter <AlertFilter>] [-Time <DateTime>] [-AlertTemplateName <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPAlert -List \"Demo List\"",
+      "Add-PnPAlert -Title \"Daily summary\" -List \"Demo List\" -Frequency Daily -ChangeType All -Time (Get-Date -Hour 11 -Minute 00 -Second 00)",
+      "Add-PnPAlert -Title \"Alert for user\" -List \"Demo List\" -User \"i:0#.f|membership|Alice@contoso.onmicrosoft.com\"",
+      "Add-PnPAlert -Title \"Alert for user\" -List \"Demo List\" -User \"i:0#.f|membership|Alice@contoso.onmicrosoft.com\" -Frequency Daily -Time ((Get-Date).AddDays(1))"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPCustomAction",
+    "description": "Adds a user custom action to a web or sitecollection.",
+    "syntax": "Add-PnPCustomAction -Name <String> -Title <String> -Description <String> -Group <String> -Location <String>\n [-Sequence <Int32>] [-Url <String>] [-ImageUrl <String>] [-CommandUIExtension <String>]\n [-RegistrationId <String>] [-Rights <PermissionKind[]>] [-RegistrationType <UserCustomActionRegistrationType>]\n [-Scope <CustomActionScope>] [-Connection <PnPConnection>]",
+    "examples": [
+      "$cUIExtn = \"<CommandUIExtension><CommandUIDefinitions><CommandUIDefinition Location=\"\"Ribbon.List.Share.Controls._children\"\"><Button Id=\"\"Ribbon.List.Share.GetItemsCountButton\"\" Alt=\"\"Get list items count\"\" Sequence=\"\"11\"\" Command=\"\"Invoke_GetItemsCountButtonRequest\"\" LabelText=\"\"Get Items Count\"\" TemplateAlias=\"\"o1\"\" Image32by32=\"\"_layouts/15/images/placeholder32x32.png\"\" Image16by16=\"\"_layouts/15/images/placeholder16x16.png\"\" /></CommandUIDefinition></CommandUIDefinitions><CommandUIHandlers><CommandUIHandler Command=\"\"Invoke_GetItemsCountButtonRequest\"\" CommandAction=\"\"javascript: alert('Total items in this list: '+ ctx.TotalListItems);\"\" EnabledScript=\"\"javascript: function checkEnable() { return (true);} checkEnable();\"\"/></CommandUIHandlers></CommandUIExtension>\"\n\nAdd-PnPCustomAction -Name 'GetItemsCount' -Title 'Invoke GetItemsCount Action' -Description 'Adds custom action to custom list ribbon' -Group 'SiteActions' -Location 'CommandUI.Ribbon' -CommandUIExtension $cUIExtn",
+      "Add-PnPCustomAction -Title \"CollabFooter\" -Name \"CollabFooter\" -Location \"ClientSideExtension.ApplicationCustomizer\" -ClientSideComponentId c0ab3b94-8609-40cf-861e-2a1759170b43 -ClientSideComponentProperties \"{`\"sourceTermSet`\":`\"PnP-CollabFooter-SharedLinks`\",`\"personalItemsStorageProperty`\":`\"PnP-CollabFooter-MyLinks`\"}\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPEventReceiver",
+    "description": "This cmdlet adds a new remote event receiver.",
+    "syntax": "Add-PnPEventReceiver [-List <ListPipeBind>] [-Scope <EventReceiverScope>] -Name <String> -Url <String> -EventReceiverType <EventReceiverType>\n -Synchronization <EventReceiverSynchronization> [-SequenceNumber <Int32>] [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPEventReceiver -List \"ProjectList\" -Name \"TestEventReceiver\" -Url https://yourserver.azurewebsites.net/eventreceiver.svc -EventReceiverType ItemAdded -Synchronization Asynchronous",
+      "Add-PnPEventReceiver -Name \"TestEventReceiver\" -Url https://yourserver.azurewebsites.net/eventreceiver.svc -EventReceiverType WebAdding -Synchronization Synchronous",
+      "Add-PnPEventReceiver -Name \"TestEventReceiver\" -Url https://yourserver.azurewebsites.net/eventreceiver.svc -EventReceiverType ListAdding -Synchronization Synchronous -Scope Site",
+      "Add-PnPEventReceiver -Name \"TestEventReceiver\" -Url https://yourserver.azurewebsites.net/eventreceiver.svc -EventReceiverType ListDeleted -Synchronization Asynchronous -Scope Web"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPHubToHubAssociation",
+    "description": "Use this cmdlet to associate a hub site to a hub site.",
+    "syntax": "Add-PnPHubToHubAssociation -Source <Guid> -Target <Guid> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPHubToHubAssociation -Source 6638bd4c-d88d-447c-9eb2-c84f28ba8b15 -Target 0b70f9de-2b98-46e9-862f-ba5700aa2443",
+      "Add-PnPHubToHubAssociation -SourceUrl \"https://yourtenant.sharepoint.com/sites/sourcehub\" -TargetUrl \"https://yourtenant.sharepoint.com/sites/targethub\"",
+      "Add-PnPHubToHubAssociation -SourceUrl \"https://yourtenant.sharepoint.com/sites/secondlevelhub\" -TargetUrl \"https://yourtenant.sharepoint.com/sites/toplevelhub\"\nAdd-PnPHubToHubAssociation -SourceUrl \"https://yourtenant.sharepoint.com/sites/thirdlevelhub\" -TargetUrl \"https://yourtenant.sharepoint.com/sites/secondlevelhub\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPIndexedProperty",
+    "description": "Allows to set search index on propertybag key.",
+    "syntax": "Add-PnPIndexedProperty [-Key] <String> [-List <ListPipeBind>] \n [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPJavaScriptBlock",
+    "description": "Specify a scope as 'Site' to add the custom action to all sites in a site collection.",
+    "syntax": "Add-PnPJavaScriptBlock -Name <String> -Script <String> [-Sequence <Int32>] [-Scope <CustomActionScope>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPJavaScriptBlock -Name myAction -script '<script>Alert(\"This is my Script block\");</script>' -Sequence 9999 -Scope Site",
+      "Add-PnPJavaScriptBlock -Name myAction -script '<script>Alert(\"This is my Script block\");</script>'"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPPropertyBagValue",
+    "description": "This is an alias forSet-PnPPropertyBagValue.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "Add-PnPView",
+    "description": "Allows to add a new view to a list.",
+    "syntax": "Add-PnPView [-List] <ListPipeBind> -Title <String> [-Query <String>] -Fields <String[]> [-ViewType <ViewType>]\n [-RowLimit <UInt32>] [-Personal] [-SetAsDefault] [-Paged] [-Aggregations <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPView -List \"Demo List\" -Title \"Demo View\" -Fields \"Title\",\"Address\"",
+      "Add-PnPView -List \"Demo List\" -Title \"Demo View\" -Fields \"Title\",\"Address\" -Paged -RowLimit 100",
+      "Add-PnPView -List \"Demo List\" -Title \"Demo View\" -Fields \"Title\",\"Address\" -Aggregations \"<FieldRef Name='Title' Type='COUNT'/>\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPViewsFromXML",
+    "description": "This cmdlet allows the creation of one or more views on a SharePoint Online list based on passing in an XML definition with the view details.",
+    "syntax": "Add-PnPViewsFromXML [-List] <ListPipeBind> [-ViewsXML <String>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "$viewsXML = @\"\n<ListViews>\n\u00a0  <List Type='GenericList'>\n\u00a0    <View Name='Demo View' ViewTypeKind='Html' OrderedView='TRUE' ViewFields='Author,Created,Editor,Modified' RowLimit='30' DefaultView='TRUE'>\n\u00a0      <ViewQuery>\n\u00a0        <OrderBy>\n\u00a0          <FieldRef Name='ID' Ascending='FALSE'/>\n\u00a0        </OrderBy>\n\u00a0      </ViewQuery>\n\u00a0    </View>\n    </List>\n</ListViews>\n\"@\n\nAdd-PnPViewsFromXML -List \"Demo List\" -ViewsXML $viewsXML",
+      "$viewsXML = @\"\n<ListViews>\n\u00a0  <List Type='GenericList'>\n\u00a0    <View Name='Demo View' ViewTypeKind='Html' OrderedView='TRUE' ViewFields='Author,Created,Editor,Modified' RowLimit='30' DefaultView='TRUE'>\n\u00a0      <ViewQuery>\n\u00a0        <OrderBy>\n\u00a0          <FieldRef Name='ID'  Ascending='FALSE'/>\n\u00a0        </OrderBy>\n\u00a0      </ViewQuery>\n\u00a0    </View>\n    </List>\n    <List Type='GenericList'>\n\u00a0    <View Name='Created By Me' ViewTypeKind='Html' OrderedView='TRUE' ViewFields='Author,Created,Editor,Modified' RowLimit='30' DefaultView='FALSE'>\n\u00a0      <ViewQuery>\n\u00a0        <Where>\n\u00a0          <Eq>\n\u00a0            <FieldRef Name='Author' />\n\u00a0            <Value Type='Integer'>\n\u00a0              <UserID Type='Integer' />\n\u00a0            </Value>\n\u00a0          </Eq>\n\u00a0        </Where>\n\u00a0        <OrderBy>\n\u00a0          <FieldRef Name='Created' Ascending='FALSE'/>\n\u00a0        </OrderBy>\n\u00a0      </ViewQuery>\n\u00a0    </View>\n    </List>\n</ListViews>\n\"@\n\nAdd-PnPViewsFromXML -List \"Demo List\" -ViewsXML $viewsXML"
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPDefaultColumnValues",
+    "description": "Clear default column values for a document library, per folder, or for the root folder if the folder parameter has not been specified.",
+    "syntax": "Clear-PnPDefaultColumnValues [-List] <ListPipeBind> -Field <FieldPipeBind> [-Folder <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Clear-PnPDefaultColumnValues -List Documents -Field MyField",
+      "Clear-PnPDefaultColumnValues -List Documents -Field MyField -Folder A"
+    ]
+  },
+  {
+    "cmdlet": "Clear-PnPTraceLog",
+    "description": "This clears the in memory stored log stream which was started with theStart-PnPTraceLog -WriteToLogstreamcmdlet. It will not clear the log file if one was specified.",
+    "syntax": "Clear-PnPTraceLog [-Verbose]",
+    "examples": [
+      "Clear-PnPTraceLog"
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPFeature",
+    "description": "Deactivates a feature that was active on a site",
+    "syntax": "Disable-PnPFeature [-Identity] <Guid> [-Force] [-Scope <FeatureScope>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Disable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Disable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Force",
+      "Disable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Web"
+    ]
+  },
+  {
+    "cmdlet": "Disable-PnPPowerShellTelemetry",
+    "description": "This cmdlet disables sending of telemetry data.",
+    "syntax": "Disable-PnPPowerShellTelemetry",
+    "examples": [
+      "Disable-PnPPowerShellTelemetry",
+      "Disable-PnPPowerShellTelemetry -Force"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPFeature",
+    "description": "Allows to enable to feature.",
+    "syntax": "Enable-PnPFeature [-Identity] <Guid> [-Force] [-Scope <FeatureScope>] [-Sandboxed] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Enable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe",
+      "Enable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Force",
+      "Enable-PnPFeature -Identity 99a00f6e-fb81-4dc7-8eac-e09c6f9132fe -Scope Web"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPPowerShellTelemetry",
+    "description": "This cmdlet Enables sending of telemetry data.",
+    "syntax": "Enable-PnPPowerShellTelemetry",
+    "examples": [
+      "Enable-PnPPowerShellTelemetry",
+      "Enable-PnPPowerShellTelemetry -Force"
+    ]
+  },
+  {
+    "cmdlet": "Enable-PnPPriviledgedIdentityManagement",
+    "description": "Temporarily enables a Privileged Identity Management role for the provided allowing the user to perform actions that require the role. The role will be enabled starting at the specified date and time and will expire after the specified number of hours. The reason for the elevation of rights can be provided as justification.",
+    "syntax": "Enable-PnPPriviledgedIdentityManagement -Role <PriviledgedIdentityManagementRolePipeBind> [-PrincipalId <Guid>] [-Justification <string>] [-StartAt <DateTime>] [-ExpireInHours <short>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Enable-PnPPriviledgedIdentityManagement -Role \"Global Administrator\"",
+      "Enable-PnPPriviledgedIdentityManagement -Role \"Global Administrator\" -Justification \"Just because\"",
+      "Enable-PnPPriviledgedIdentityManagement -Role \"Global Administrator\" -Justification \"Just because\" -StartAt (Get-Date).AddHours(2) -ExpireInHours 2",
+      "Enable-PnPPriviledgedIdentityManagement -Role \"Global Administrator\" -User \"someone@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAlert",
+    "description": "Allows to retrieve all registered alerts for given users. UsingAllUsersoption will allow to retrieve all alerts in the current site, regardless of the user or list it belongs to.",
+    "syntax": "Get-PnPAlert [[-List] <ListPipeBind>] [-User <UserPipeBind>] [-Title <String>] [-AllUsers]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAlert",
+      "Get-PnPAlert -List \"Demo List\"",
+      "Get-PnPAlert -List \"Demo List\" -User \"i:0#.f|membership|Alice@contoso.onmicrosoft.com\"",
+      "Get-PnPAlert -Title \"Demo Alert\"",
+      "Get-PnPAlert -AllUsers",
+      "Get-PnPAlert -List \"Demo List\" -AllUsers"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAvailableLanguage",
+    "description": "Allows to retrieve available languages from the current site.",
+    "syntax": "Get-PnPAvailableLanguage [[-Identity] <WebPipeBind>] [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPAvailableLanguage"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAzureCertificate",
+    "description": "Allows to PEM values and manifest settings for an existing certificate (.pfx) for use when using CSOM via an app-only ADAL application.",
+    "syntax": "Get-PnPAzureCertificate -Path <String> [-Password <SecureString>]",
+    "examples": [
+      "Get-PnPAzureCertificate -Path \"mycert.pfx\"",
+      "Get-PnPAzureCertificate -Path \"mycert.pfx\" -Password (ConvertTo-SecureString -String \"YourPassword\" -AsPlainText -Force)",
+      "Get-PnPAzureCertificate -Path \"mycert.cer\" | clip"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBrowserIdleSignout",
+    "description": "Use this cmdlet to retrieve the current configuration values for Idle session sign-out policy, the time at which users are warned and subsequently signed out of Microsoft 365 after a period of browser inactivity in SharePoint and OneDrive.",
+    "syntax": "Get-PnPBrowserIdleSignout",
+    "examples": [
+      "Get-PnPBrowserIdleSignout"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPBuiltInDesignPackageVisibility",
+    "description": "Use this cmdlet to retrieve the current visibility state of each built-in design package.",
+    "syntax": "Get-PnPBuiltInDesignPackageVisibility [-DesignPackage <DesignPackageType>]",
+    "examples": [
+      "Get-PnPBuiltInDesignPackageVisibility -DesignPackage Showcase",
+      "Get-PnPBuiltInDesignPackageVisibility"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPChangeLog",
+    "description": "This cmdlets returns what has changed in PnP PowerShell in a specific version in markdown format. It is retrieved dynamically from GitHub.",
+    "syntax": "Get-PnPChangeLog -Nightly [-Verbose]",
+    "examples": [
+      "Get-PnPChangeLog",
+      "Get-PnPChangeLog -Nightly",
+      "Get-PnPChangeLog -Version 2.12.0"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContainer",
+    "description": "Returns a tabular list of Containers created under the specified SharePoint Embedded application.",
+    "syntax": "Get-PnPContainer [-Identity <ContainerPipeBind>] [-OwningApplicationId <Guid>] [-Paged <switchparameter>] [-PagingToken <string>][-SortOrder <SortOrder>] [-ArchiveStatus <SPContainerArchiveStatusFilterProperties>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPContainer -OwningApplicationId a187e399-0c36-4b98-8f04-1edc167a0996",
+      "Get-PnPContainer -OwningApplicationId a187e399-0c36-4b98-8f04-1edc167a0996 -Identity \"b!aBrXSxKDdUKZsaK3Djug6C5rF4MG3pRBomypnjOHiSrjkM_EBk_1S57U3gD7oW-1\"",
+      "Get-PnPContainer -Identity \"bc07d4b8-1c2f-4184-8cc2-a52dfd6fe0c4\" -Identity  \"https://contoso.sharepoint.com/contentstorage/CSP_4bd71a68-8312-4275-99b1-a2b70e3ba0e8\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContainerType",
+    "description": "Returns the list of Container Types created for a SharePoint Embedded application in the tenant.",
+    "syntax": "Get-PnPContainerType [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPContainerType"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContainerTypeConfiguration",
+    "description": "Returns a container type configuration data of the application created under the specified SharePoint Embedded application.",
+    "syntax": "Get-PnPContainerTypeConfiguration [-Identity <GUID>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPContainerTypeConfiguration -Identity a187e399-0c36-4b98-8f04-1edc167a0996"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPContext",
+    "description": "Returns a SharePoint Online Client Side Object Model (CSOM) context",
+    "syntax": "Get-PnPContext [-Connection <PnPConnection>]",
+    "examples": [
+      "$ctx = Get-PnPContext",
+      "Connect-PnPOnline -Url $siteAurl -Credentials $credentials\n$ctx = Get-PnPContext\nGet-PnPList # returns the lists from site specified with $siteAurl\nConnect-PnPOnline -Url $siteBurl -Credentials $credentials\nGet-PnPList # returns the lists from the site specified with $siteBurl\nSet-PnPContext -Context $ctx # switch back to site A\nGet-PnPList # returns the lists from site A"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPCopilotAdminLimitedMode",
+    "description": "Returns a setting that controls whether Microsoft 365 Copilot in Teams Meetings users can receive responses to sentiment-related prompts. If this setting is enabled, Copilot in Teams Meetings doesn't respond to sentiment-related prompts and questions asked by the user. If the setting is disabled, Copilot in Teams Meetings responds to sentiment-related prompts and questions asked by the user. Copilot in Teams Meetings currently honors this setting. By default, the setting is disabled.",
+    "syntax": "Get-PnPCopilotAdminLimitedMode [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPCopilotAdminLimitedMode"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPCopilotAgent",
+    "description": "This cmdlet iterates through the document libraries in a site and finds the copilot agents in that site.",
+    "syntax": "Get-PnPCopilotAgent [-ServerRelativeUrl <string>] [-Connection <PnPConnection>] [<CommonParameters>]",
+    "examples": [
+      "Get-PnPCopilotAgent",
+      "Get-PnPCopilotAgent -ServerRelativeUrl /sites/demo/siteassets/copilots/approved/main.agent"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPCustomAction",
+    "description": "Returns all or a specific user custom action",
+    "syntax": "Get-PnPCustomAction [-Identity <Guid>] [-Scope <CustomActionScope>]\n [-ThrowExceptionIfCustomActionNotFound] [-Connection <PnPConnection>]\n [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPCustomAction",
+      "Get-PnPCustomAction -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2",
+      "Get-PnPCustomAction -Scope web"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDefaultColumnValues",
+    "description": "Gets the default column values for a document library, per folder. Supports both text, people and taxonomy fields.",
+    "syntax": "Get-PnPDefaultColumnValues [-List] <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPDeletedContainer",
+    "description": "Returns a list of the ContainerId, ContainerName, and CreatedDate of all deleted Containers in the Recycle Bin.",
+    "syntax": "Get-PnPDeletedContainer [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPDeletedContainer"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDiagnostics",
+    "description": "This cmdlet returns diagnostic information which can help to determine issues with PnP PowerShell",
+    "syntax": "Get-PnPDiagnostics",
+    "examples": [
+      "Get-PnPDiagnostics"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDisableSpacesActivation",
+    "description": "Retrieves if SharePoint Spaces is disabled on the entire tenant. At this point there is no API yet for retrieving the setting for a specific site, although you can set it for a specific site.",
+    "syntax": "Get-PnPDisableSpacesActivation [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPDisableSpacesActivation"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPEventReceiver",
+    "description": "Returns all registered or a specific event receiver",
+    "syntax": "Get-PnPEventReceiver [-List <ListPipeBind>] [-Scope <EventReceiverScope>] [-Identity <EventReceiverPipeBind>] \n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPEventReceiver",
+      "Get-PnPEventReceiver -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22",
+      "Get-PnPEventReceiver -Identity MyReceiver",
+      "Get-PnPEventReceiver -List \"ProjectList\"",
+      "Get-PnPEventReceiver -List \"ProjectList\" -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22",
+      "Get-PnPEventReceiver -List \"ProjectList\" -Identity MyReceiver",
+      "Get-PnPEventReceiver -Scope Site",
+      "Get-PnPEventReceiver -Scope Web",
+      "Get-PnPEventReceiver -Scope All"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPException",
+    "description": "Returns the last exception which can be used while debugging PnP Cmdlets",
+    "syntax": "Get-PnPException [-All]",
+    "examples": [
+      "Get-PnPException",
+      "Get-PnPException -All"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFeature",
+    "description": "This cmdlet returns all activated features or a specific activated feature.",
+    "syntax": "Get-PnPFeature [[-Identity] <FeaturePipeBind>] [-Scope <FeatureScope>] \n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPFeature",
+      "Get-PnPFeature -Scope Site",
+      "Get-PnPFeature -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22",
+      "Get-PnPFeature -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22 -Scope Site"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFooter",
+    "description": "Allows the current configuration of the footer in the current web to be retrieved. The footer currently only works on Modern Communication sites.",
+    "syntax": "Get-PnPFooter [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFooter"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPGroup",
+    "description": "Returns all SharePoint groups in the current site",
+    "syntax": "Get-PnPGroup [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPGroup",
+      "Get-PnPGroup -Identity 'My Site Users'",
+      "Get-PnPGroup -AssociatedMemberGroup"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPIndexedPropertyKeys",
+    "description": "Optional connection to be used by the cmdlet. Retrieve the value for this parameter by either specifying -ReturnConnection on Connect-PnPOnline or by executing Get-PnPConnection.",
+    "syntax": "Get-PnPIndexedPropertyKeys [-List <ListPipeBind>] [-Connection <PnPConnection>]",
+    "examples": []
+  },
+  {
+    "cmdlet": "Get-PnPMessageCenterAnnouncement",
+    "description": "Allows to retrieve the available message center announcements.",
+    "syntax": "Get-PnPMessageCenterAnnouncement [-Identity <Id>]",
+    "examples": [
+      "Get-PnPMessageCenterAnnouncement",
+      "Get-PnPMessageCenterAnnouncement -Identity \"MC123456\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformEnvironment",
+    "description": "This cmdlet retrieves all of the Microsoft Power Platform environments for the current tenant",
+    "syntax": "Get-PnPPowerPlatformEnvironment [-IsDefault] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPPowerPlatformEnvironment",
+      "Get-PnPPowerPlatformEnvironment -IsDefault $true",
+      "Get-PnPPowerPlatformEnvironment -Identity \"MyOrganization (default)\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformSolution",
+    "description": "This cmdlet returns the PowerPlatform solution on a given enviroment.",
+    "syntax": "Get-PnPPowerPlatformSolution [-Environment <PowerPlatformEnvironmentPipeBind>] [-Name <PowerPlatformConnectorPipeBind>] [-Verbose]",
+    "examples": [
+      "Get-PnPPowerPlatformSolution -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\")",
+      "Get-PnPPowerPlatformSolution -Name 'My Solution Name'"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerShellTelemetryEnabled",
+    "description": "In order to help to make PnP PowerShell better, we can track anonymous telemetry. For more information on what we collect and how to prevent this data from being collected, visitConfigure PnP PowerShell.",
+    "syntax": "Get-PnPPowerShellTelemetryEnabled [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPowerShellTelemetryEnabled"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPriviledgedIdentityManagementEligibleAssignment",
+    "description": "Retrieve the available Privileged Identity Management eligibility assignment roles that exist within the tenant. These are the configured users with the configured roles they can be elevated to.",
+    "syntax": "Get-PnPPriviledgedIdentityManagementEligibleAssignment [-Identity <PriviledgedIdentityManagementRoleEligibilitySchedulePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPriviledgedIdentityManagementEligibleAssignment",
+      "Get-PnPPriviledgedIdentityManagementEligibleAssignment -Identity 62e90394-69f5-4237-9190-012177145e10"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPProperty",
+    "description": "Will populate properties of an object and optionally, if needed, load the value from the server. If one property is specified its value will be returned to the output.",
+    "syntax": "Get-PnPProperty [-ClientObject] <ClientObject> [-Property] <String[]> [-Connection <PnPConnection>]",
+    "examples": [
+      "$web = Get-PnPWeb\nGet-PnPProperty -ClientObject $web -Property Id, Lists\n$web.Lists",
+      "$list = Get-PnPList -Identity 'Site Assets'\nGet-PnPProperty -ClientObject $list -Property Views"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPropertyBag",
+    "description": "Allows to retrieve all property bag values. It is possible to get property bag values for a folder usingFolderoption or a specific property bag value usingKeyoption.",
+    "syntax": "Get-PnPPropertyBag [[-Key] <String>] [-Folder <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPPropertyBag",
+      "Get-PnPPropertyBag -Key MyKey",
+      "Get-PnPPropertyBag -Folder /MyFolder",
+      "Get-PnPPropertyBag -Folder /MyFolder -Key vti_mykey",
+      "Get-PnPPropertyBag -Folder / -Key vti_mykey"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPServiceCurrentHealth",
+    "description": "Allows to retrieve current service status of the Office 365 Services from the Microsoft Graph API.",
+    "syntax": "Get-PnPServiceCurrentHealth [-Identity <Office365Workload>]",
+    "examples": [
+      "Get-PnPServiceCurrentHealth",
+      "Get-PnPServiceCurrentHealth -Identity \"SharePoint Online\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPServiceHealthIssue",
+    "description": "Allows to retrieve current service health issues of the Office 365 Services from the Microsoft Graph API.",
+    "syntax": "Get-PnPServiceHealthIssue [-Identity <Id>]",
+    "examples": [
+      "Get-PnPServiceHealthIssue",
+      "Get-PnPServiceHealthIssue -Identity \"EX123456\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSharePointAddIn",
+    "description": "Returns the SharePoint addins installed in your site collection",
+    "syntax": "Get-PnPSharePointAddIn [-IncludeSubsites <SwitchParameter>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSharePointAddIn",
+      "Get-PnPSharePointAddIn -IncludeSubsites"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTimeZoneId",
+    "description": "In order to create a new classic site you need to specify the timezone this site will use. Use the cmdlet to retrieve a list of possible values.",
+    "syntax": "Get-PnPTimeZoneId [[-Match] <String>]",
+    "examples": [
+      "Get-PnPTimeZoneId",
+      "Get-PnPTimeZoneId -Match Stockholm"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPTraceLog",
+    "description": "This cmdlet returns the logged messages during the execution of PnP PowerShell cmdlets. It can return the messages from an in memory log stream or from a file. Note that you cannot read from a log file if it is currently in use to write to. In this case, you would first have to stop logging to it usingStop-PnPTraceLogand then read the log file. The in memory log stream is always available.",
+    "syntax": "Get-PnPTraceLog -Path <string> [-Verbose]",
+    "examples": [
+      "Get-PnPTraceLog",
+      "Get-PnPTraceLog -Path \"C:\\temp\\log.txt\"",
+      "Get-PnPTraceLog | Where-Object { $_.Level -eq \"Error\" }",
+      "Get-PnPTraceLog | Where-Object { $_.CorrelationId -eq \"5a6206a0-6c83-4446-9d1b-38c14f93cb60\" }",
+      "Get-PnPTraceLog | Sort-Object -Property EllapsedMilliseconds -Descending -Top 10 | Select EllapsedMilliseconds, Source, Message",
+      "Get-PnPTraceLog | Group-Object -Property CorrelationId | ForEach-Object { [pscustomobject]@{ Started = ($_.Group | Select -First 1).TimeStamp; Ended = ($_.Group | Select -Last 1).TimeStamp; Cmdlet = $_.Group[0].Source; TimeTaken = ($_.Group | Measure-Object -Property EllapsedMilliseconds -Sum).Sum; Logs = $_.Group }} | Sort-Object -Property TimeTaken -Descending -Top 5 | Select Started, Cmdlet, TimeTaken"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPUPABulkImportStatus",
+    "description": "Retrieve information about the status of submitted user profile bulk upload jobs.",
+    "syntax": "Get-PnPUPABulkImportStatus [-JobId <Guid>] [-IncludeErrorDetails] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPUPABulkImportStatus",
+      "Get-PnPUPABulkImportStatus -IncludeErrorDetails",
+      "Get-PnPUPABulkImportStatus -JobId <guid>",
+      "Get-PnPUPABulkImportStatus -JobId <guid> -IncludeErrorDetails"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPView",
+    "description": "Allows to retrieve list of views from a list. By usingIdentityoption it is possible to retrieve a specific view.",
+    "syntax": "Get-PnPView [-List] <ListPipeBind> [-Identity <ViewPipeBind>] \n [-Connection <PnPConnection>] [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPView -List \"Demo List\"",
+      "Get-PnPView -List \"Demo List\" -Identity \"Demo View\"",
+      "Get-PnPView -List \"Demo List\" -Identity \"5275148a-6c6c-43d8-999a-d2186989a661\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPVivaEngageCommunity",
+    "description": "Allows to list Viva engage communities.",
+    "syntax": "Get-PnPVivaEngageCommunity [[-Identity] <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPVivaEngageCommunity",
+      "Get-PnPVivaEngageCommunity -Identity \"eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMTI0ODA3MTI3MDQifQ\""
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPBatch",
+    "description": "Executes any queued actions / changes in the batch.",
+    "syntax": "Invoke-PnPBatch [-Batch] <PnPBatch> [-Details] [-StopOnException] [-Force]",
+    "examples": [
+      "$batch = New-PnPBatch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 1\"} -Batch $batch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 2\"} -Batch $batch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 3\"} -Batch $batch\nInvoke-PnPBatch -Batch $batch"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPGraphMethod",
+    "description": "Invokes a REST request towards the Microsoft Graph API. It will take care of potential throttling retries that are needed to retrieve the data.",
+    "syntax": "Invoke-PnPGraphMethod -Url <String>\n                      [-AdditionalHeaders GraphAdditionalHeadersPipeBind]\n                      [[-Method] <HttpRequestMethod>] \n                      [-Content <Object>] \n                      [-ContentType <String>] \n                      [-ConsistencyLevelEventual] \n                      [-Raw]\n                      [-All] \n                      [-Connection <PnPConnection>]\n                      [-Verbose]",
+    "examples": [
+      "Invoke-PnPGraphMethod -Url \"groups?`$filter=startsWith(displayName,'ZZ')&`$select=displayName\"\nInvoke-PnPGraphMethod -Url 'groups/{id}?`$select=hideFromOutlookClients'",
+      "Invoke-PnPGraphMethod -Url \"groups/{id}\" -Method Delete",
+      "Invoke-PnPGraphMethod -Url \"groups/{id}\" -Method Patch -Content @{ displayName = \"NewName\" }",
+      "Invoke-PnPGraphMethod -Url \"users?`$filter=accountEnabled ne true&`$count=true\" -Method Get -ConsistencyLevelEventual",
+      "Invoke-PnPGraphMethod -Url \"users\"",
+      "Invoke-PnPGraphMethod -Url \"users/user@contoso.com/photo/`$value\" -OutFile c:\\temp\\photo.jpg",
+      "Invoke-PnPGraphMethod -Url \"users/user@contoso.com/photo/`$value\" -OutStream | Add-PnPFile -FileName user.jpg -Folder \"Shared Documents\"",
+      "$task = Invoke-PnPGraphMethod -Url \"planner/tasks/23fasefxcvzvsdf32e\" # retrieve the task so we can figure out the etag which is needed to update the task\n$etag = $task.'@odata.etag'\n$headers = @{\"If-Match\"=$etag} \n$content = @{\"title\"=\"My new task title\"}\nInvoke-PnPGraphMethod -Url \"planner/tasks/23fasefxcvzvsdf32e\" -Method PATCH -Content $content -AdditionalHeaders $headers",
+      "$batch = New-PnPBatch -RetainRequests\nInvoke-PnPSPRestMethod -Method Get -Url \"users\" -Batch $batch\nInvoke-PnPSPRestMethod -Method Get -Url \"groups\" -Batch $batch\n$response = Invoke-PnPBatch $batch -Details\n$response"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPQuery",
+    "description": "Executes any queued actions / changes on the SharePoint Client Side Object Model Context",
+    "syntax": "Invoke-PnPQuery [-RetryCount <Int32>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Invoke-PnPQuery -RetryCount 5"
+    ]
+  },
+  {
+    "cmdlet": "Invoke-PnPSPRestMethod",
+    "description": "Invokes a REST request towards a SharePoint site.",
+    "syntax": "Invoke-PnPSPRestMethod -Url <String>\n                       [-Method <HttpRequestMethod>]\n                       [-Content <Object>]\n                       [-ContentType <String>]\n                       [-Raw]\n                       [-Connection <PnPConnection>]\n                       [-ResponseHeadersVariable <String>]\n                       [-Batch <PnPBatch>]",
+    "examples": [
+      "Invoke-PnPSPRestMethod -Url /_api/web",
+      "$output = Invoke-PnPSPRestMethod -Url '/_api/web/lists?$select=Id,Title'\n$output.value",
+      "$item = @{Title=\"Test\"}\nInvoke-PnPSPRestMethod -Method Post -Url \"/_api/web/lists/GetByTitle('Test')/items\" -Content $item",
+      "$item = \"{'Title':'Test'}\"\nInvoke-PnPSPRestMethod -Method Post -Url \"/_api/web/lists/GetByTitle('Test')/items\" -Content $item",
+      "$item = \"{ '__metadata': { 'type': 'SP.Data.TestListItem' }, 'Title': 'Test'}\"\nInvoke-PnPSPRestMethod -Method Post -Url \"/_api/web/lists/GetByTitle('Test')/items\" -Content $item -ContentType \"application/json;odata=verbose\"",
+      "$output = Invoke-PnPSPRestMethod -Url '/_api/web/lists?$select=Id,Title' -ResponseHeadersVariable headers\n$output.value\n$headers",
+      "$batch = New-PnPBatch -RetainRequests\nInvoke-PnPSPRestMethod -Method Get -Url \"https://tenant.sharepoint.com/sites/mysite/_api/web/lists\" -Batch $batch\n$item = \"{'Title':'Test'}\"\nInvoke-PnPSPRestMethod -Method Post -Url \"https://tenant.sharepoint.com/sites/mysite/_api/web/lists/GetByTitle('Test')/items\" -Content $item -Batch $batch\n$response = Invoke-PnPBatch $batch -Details\n$response"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPClientSideComponent",
+    "description": "This is an alias forMove-PnPPageComponent.",
+    "syntax": "",
+    "examples": []
+  },
+  {
+    "cmdlet": "New-PnPAzureCertificate",
+    "description": "Allows to create a self-signed certificate and manifest settings to be used with PnP PowerShell via an app-only application registration.",
+    "syntax": "New-PnPAzureCertificate [-CommonName <String>] [-Country <String>] [-State <String>]\n [-Locality <String>] [-Organization <String>] [-OrganizationUnit <String>] [-OutPfx <String>]\n [-OutCert <String>] [-ValidYears <Int32>] [-CertificatePassword <SecureString>] [-Store <StoreLocation>] [-SanNames <String[]>]",
+    "examples": [
+      "New-PnPAzureCertificate -OutPfx pnp.pfx -OutCert pnp.cer",
+      "New-PnPAzureCertificate -CommonName \"My Certificate\" -ValidYears 30",
+      "New-PnPAzureCertificate -OutPfx pnp.pfx -OutCert pnp.cer -CertificatePassword (ConvertTo-SecureString -String \"pass@word1\" -AsPlainText -Force)",
+      "New-PnPAzureCertificate -OutPfx pnp.pfx -OutCert pnp.cer -SanNames $null"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPBatch",
+    "description": "Creates a new batch to be used by cmdlets that support batching. The requests in the batch are clear after execute Invoke-PnPBatch, unless you specify -RetainRequests. That allows you to execute batch multiple times.",
+    "syntax": "New-PnPBatch [-RetainRequests]",
+    "examples": [
+      "$batch = New-PnPBatch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 1\"} -Batch $batch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 2\"} -Batch $batch\nAdd-PnPListItem -List \"DemoList\" -Values @{\"Title\"=\"Demo Item 3\"} -Batch $batch\nInvoke-PnPBatch -Batch $batch",
+      "$batch = New-PnPBatch\n1..50 | Foreach-Object{Remove-PnPListItem -List \"DemoList\" -Identity $_ -Batch $batch}\nInvoke-PnPBatch -Batch $batch"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPContainerType",
+    "description": "Enables the creation of either a trial or standard SharePoint Container Type. Use theTrialContainerTypeswitch parameter to designate the container type as a trial.",
+    "syntax": "New-PnPContainerType -ContainerTypeName <string> -OwningApplicationId <Guid> -TrialContainerType [-Verbose]",
+    "examples": [
+      "New-PnPContainerType -ContainerTypeName \"test1\" -OwningApplicationId 50785fde-3082-47ac-a36d-06282ac5c7da -AzureSubscription c7170373-eb8d-4984-8cc9-59bcc88c65a0 -ResouceGroup \"SPEmbed\" -Region \"Uk-South\"",
+      "New-SPOContainerType -TrialContainerType -ContainerTypeName \"test1\" -OwningApplicationId df4085cc-9a38-4255-badc-5c5225610475"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPExtensibilityHandlerObject",
+    "description": "Allows to create an ExtensibilityHandler.",
+    "syntax": "New-PnPExtensibilityHandlerObject [-Assembly] <String> -Type <String> [-Configuration <String>] [-Disabled]",
+    "examples": [
+      "$handler = New-PnPExtensibilityHandlerObject -Assembly Contoso.Core.Handlers -Type Contoso.Core.Handlers.MyExtensibilityHandler\nGet-PnPSiteTemplate -Out NewTemplate.xml -ExtensibilityHandlers $handler"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPGroup",
+    "description": "This command creates a SharePoint group in the current Site Collection connected to.",
+    "syntax": "New-PnPGroup -Title <String> [-Description <String>] [-Owner <String>] [-AllowRequestToJoinLeave]\n [-AutoAcceptRequestToJoinLeave] [-AllowMembersEditMembership] [-DisallowMembersViewMembership]\n[-RequestToJoinEmail <String>] [-SetAssociatedGroup <AssociatedGroupType>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPGroup -Title \"My Site Users\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPUPABulkImportJob",
+    "description": "Seehttps://learn.microsoft.com/sharepoint/dev/solution-guidance/bulk-user-profile-update-api-for-sharepoint-onlinefor information on the API and how the bulk import process works.",
+    "syntax": "New-PnPUPABulkImportJob [-Folder] <String> [-Path] <String> [-UserProfilePropertyMapping] <Hashtable>\n [-IdProperty] <String> [[-IdType] <ImportProfilePropertiesUserIdType>] [-Wait] [-Verbose] [-Connection <PnPConnection>] [-WhatIf]",
+    "examples": [
+      "@\" \n {\n  \"value\": [\n    {\n      \"IdName\": \"mikaels@contoso.com\",\n      \"Department\": \"PnP\",\n    },\n\t{\n      \"IdName\": \"vesaj@contoso.com\",\n      \"Department\": \"PnP\",\n    }    \n  ]\n}\n\"@ > profiles.json\n\nNew-PnPUPABulkImportJob -Folder \"Shared Documents\" -Path profiles.json -IdProperty \"IdName\" -UserProfilePropertyMapping @{\"Department\"=\"Department\"}",
+      "New-PnPUPABulkImportJob -Url \"https://{tenant}.sharepoint.com/Shared Documents/profiles.json\" -IdProperty \"IdName\" -UserProfilePropertyMapping @{\"Department\"=\"Department\"}",
+      "New-PnPUPABulkImportJob -Url \"https://{tenant}.sharepoint.com/sites/userprofilesync/Shared Documents/profiles.json\" -IdProperty \"IdName\" -UserProfilePropertyMapping @{\"Department\"=\"Department\"} -Wait -Verbose"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPVivaEngageCommunity",
+    "description": "Creates a Viva engage community",
+    "syntax": "New-PnPVivaEngageCommunity [[-DisplayName] <string> [-Description] <string> [-Privacy] <CommunityPrivacy>] [-Owners <string[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPVivaEngageCommunity -DisplayName \"myPnPDemo1\" -Description \"Viva engage community description\" -Privacy Public"
+    ]
+  },
+  {
+    "cmdlet": "Receive-PnPCopyMoveJobStatus",
+    "description": "This cmdlets outputs the results of a pending/finished copy or move job.",
+    "syntax": "Receive-PnPCopyMoveJobStatus -Job <CopyMigrationInfo> [-Wait]",
+    "examples": [
+      "$job = Copy-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"SubSite2/Shared Documents\" -NoWait\n$jobStatus = Receive-PnPCopyMoveJobStatus -Job $job\nif($jobStatus.JobState == 0)\n{\n  Write-Host \"Job finished\"\n}"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAdaptiveScopeProperty",
+    "description": "This cmdlet is used to remove a property bag value. Executing this cmdlet removes a value from the current web property bag just likeRemove-PnPPropertyBagValuewould do, but also takes care of toggling the noscript value to allow for this to be possible in one cmdlet. Using this cmdlet does therefore require having the SharePoint Online Admin role or equivalent app permissions.",
+    "syntax": "Remove-PnPAdaptiveScopeProperty [-Key] <String> [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPAdaptiveScopeProperty -Key MyKey",
+      "Remove-PnPAdaptiveScopeProperty -Key MyKey -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPAlert",
+    "description": "Allows to remove an alert for a user.",
+    "syntax": "Remove-PnPAlert [-User <UserPipeBind>] -Identity <AlertPipeBind> [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPAlert -Identity 641ac67f-0ce0-4837-874a-743c8f8572a7",
+      "Remove-PnPAlert -Identity 641ac67f-0ce0-4837-874a-743c8f8572a7 -User \"i:0#.f|membership|Alice@contoso.onmicrosoft.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPContainer",
+    "description": "Removes the specified container by using the container id.",
+    "syntax": "Remove-PnPContainer [-Identity] <ContainerPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPContainer -Identity \"b!aBrXSxKDdUKZsaK3Djug6C5rF4MG3pRBomypnjOHiSrjkM_EBk_1S57U3gD7oW-1\"",
+      "Remove-PnPContainer -Identity  \"https://contoso.sharepoint.com/contentstorage/CSP_4bd71a68-8312-4275-99b1-a2b70e3ba0e8\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPContainerType",
+    "description": "Removes the specified trial container by using the container id.",
+    "syntax": "Remove-PnPContainerType [-Identity] <Guid> [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPContainerType -Identity 00be1092-0c75-028a-18db-89e57908e7d6"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPCustomAction",
+    "description": "Allows to remove a custom action.",
+    "syntax": "Remove-PnPCustomAction [[-Identity] <UserCustomActionPipeBind>] [-Scope <CustomActionScope>] [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPCustomAction -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2",
+      "Remove-PnPCustomAction -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2 -Scope web",
+      "Remove-PnPCustomAction -Identity aa66f67e-46c0-4474-8a82-42bf467d07f2 -Force",
+      "Get-PnPCustomAction -Scope All | ? Location -eq ScriptLink | Remove-PnPCustomAction"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPEventReceiver",
+    "description": "Removes/unregister a specific event receiver.",
+    "syntax": "Remove-PnPEventReceiver -Identity <EventReceiverPipeBind> [-List <ListPipeBind>] [-Scope <EventReceiverScope>] [-Force] \n[-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPEventReceiver -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22",
+      "Remove-PnPEventReceiver -List ProjectList -Identity fb689d0e-eb99-4f13-beb3-86692fd39f22",
+      "Remove-PnPEventReceiver -List ProjectList -Identity MyReceiver",
+      "Remove-PnPEventReceiver -List ProjectList",
+      "Remove-PnPEventReceiver",
+      "Get-PnPEventReceiver | ? ReceiverUrl -Like \"*azurewebsites.net*\" | Remove-PnPEventReceiver",
+      "Remove-PnPEventReceiver -Scope Site",
+      "Remove-PnPEventReceiver -Scope Web",
+      "Remove-PnPEventReceiver -Scope All"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPGroup",
+    "description": "Allows to remove a group from web.",
+    "syntax": "Remove-PnPGroup [[-Identity] <GroupPipeBind>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPGroup -Identity \"My Users\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPHubToHubAssociation",
+    "description": "Use this cmdlet to remove the selected hub site from its parent hub.",
+    "syntax": "Remove-PnPHubToHubAssociation -HubSiteId <Guid>",
+    "examples": [
+      "Remove-PnPHubToHubAssociation -HubSiteId 6638bd4c-d88d-447c-9eb2-c84f28ba8b15",
+      "Remove-PnPHubToHubAssociation -HubSiteUrl \"https://yourtenant.sharepoint.com/sites/sourcehub\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPIndexedProperty",
+    "description": "Allows to remove indexed property from the current web.",
+    "syntax": "Remove-PnPIndexedProperty [-Key] <String> [-List <ListPipeBind>] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPIndexedProperty -key \"MyIndexProperty\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPPropertyBagValue",
+    "description": "Removes a value from the property bag. If working with a modern SharePoint Online site or having noscript enabled, you will have to disable this yourself temporarily usingSet-PnPTenantSite -Url <url> -NoScriptSite:$falseto be able to make the change.",
+    "syntax": "Remove-PnPPropertyBagValue [-Key] <String> [-Folder <String>] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPPropertyBagValue -Key MyKey",
+      "Remove-PnPPropertyBagValue -Key MyKey -Folder /MyFolder",
+      "Remove-PnPPropertyBagValue -Key MyKey -Folder /"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPView",
+    "description": "Allows to remove view from a list.",
+    "syntax": "Remove-PnPView [-Identity] <ViewPipeBind> [-List] <ListPipeBind> [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPView -List \"Demo List\" -Identity \"All Items\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPVivaEngageCommunity",
+    "description": "Deletes Viva engage community.",
+    "syntax": "Remove-PnPVivaEngageCommunity [[-Identity] <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPVivaEngageCommunity -Identity \"eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMTI0ODA3MTI3MDQifQ\""
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPDeletedContainer",
+    "description": "Restores the Container with ContainerId \"b!jKRbiovfMEWUWKabObEnjC5rF4MG3pRBomypnjOHiSrjkM_EBk_1S57U3gD7oW-1\" from the Recycle Bin.",
+    "syntax": "Restore-PnPDeletedContainer -Identity <string> [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPDeletedContainer -Identity \"b!jKRbiovfMEWUWKabObEnjC5rF4MG3pRBomypnjOHiSrjkM_EBk_1S57U3gD7oW-1\""
+    ]
+  },
+  {
+    "cmdlet": "Send-PnPMail",
+    "description": "Allows sending an e-mail through SharePoint Online or Microsoft Graph. Sending e-mail through Microsoft Graph requires theMail.Sendpermission.",
+    "syntax": "Send-PnPMail -From <String> -To <String[]> -Subject <String> -Body <String> [-Cc <String[]>] [-Bcc <String[]>] [-ReplyTo <String[]>] [-Importance <MessageImportanceType>] [-BodyContentType <MessageBodyContentType>] [-SaveToSentItems <bool>] [-Connection <PnPConnection>] [-Verbose] [-Attachments <String[]>]",
+    "examples": [
+      "Send-PnPMail -From \"user@contoso.onmicrosoft.com\" -To \"recipient@contoso.com\" -Subject \"Test message\" -Body \"This is a test message\"",
+      "Send-PnPMail -From \"sharedmailbox@contoso.onmicrosoft.com\" -To \"recipient1@contoso.com\",\"recipient2@contoso.com\",\"recipient3@contoso.com\" -Cc \"recipient4@contoso.com\" -Bcc \"recipient5@contoso.com\" -Subject \"Test message\" -Body \"This is a test message\" -Importance Low",
+      "Send-PnPMail -To \"address@tenant.microsoftonline.com\" -Subject \"Test message\" -Body \"This is a test message\"",
+      "Send-PnPMail -From \"user@contoso.onmicrosoft.com\" -To \"recipient@contoso.com\" -Subject \"Test message\" -Body \"This is a test message\" -Attachments \"C:\\PnPCommunity\\Test\\test.docx\"",
+      "Send-PnPMail -From \"user@contoso.onmicrosoft.com\" -To \"recipient@contoso.com\" -Subject \"Test message\" -Body \"This is a test message\" -Files \"/sites/test/Shared Documents/Test.docx\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPAdaptiveScopeProperty",
+    "description": "This cmdlet is used to set or create an indexed property bag value for use inSharePoint site scopeswithadaptive policy scopes. Executing this cmdlet is similar to setting or adding an indexed value to the current web property bag usingSet-PnPPropertyBagValuewith the-Indexedparameter with the addition that it will also ensure the noscript is temporarily disabled to allow for this to happen. It will revert its state back to what it was after adding or updating the property bag value. Using this cmdlet does therefore require having the SharePoint Online Admin role or equivalent app permissions.",
+    "syntax": "Set-PnPAdaptiveScopeProperty -Key <String> -Value <String>\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPAdaptiveScopeProperty -Key MyKey -Value MyValue"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPBrowserIdleSignout",
+    "description": "Use this cmdlet to set the current configuration values for Idle session sign-out, the time at which users are warned and subsequently signed out of Microsoft 365 after a period of browser inactivity in SharePoint Online and OneDrive.",
+    "syntax": "Set-PnPBrowserIdleSignOut -Enabled:$true -WarnAfter <TimeSpan> -SignOutAfter <TimeSpan>",
+    "examples": [
+      "Set-PnPBrowserIdleSignOut -Enabled:$true -WarnAfter \"0.00:45:00\" -SignOutAfter \"0.01:00:00\"",
+      "Set-PnPBrowserIdleSignOut -Enabled:$true -WarnAfter (New-TimeSpan -Minutes 45) -SignOutAfter (New-TimeSpan -Hours 1)",
+      "Set-PnPBrowserIdleSignOut -Enabled:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPBuiltInDesignPackageVisibility",
+    "description": "Sets the visibility of the available built-in Design Packages.",
+    "syntax": "Set-PnPBuiltInDesignPackageVisibility [-IsVisible] <Boolean> [-DesignPackage] <DesignPackageType> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPBuiltInDesignPackageVisibility -DesignPackage Showcase -IsVisible:$false",
+      "Set-PnPBuiltInDesignPackageVisibility -DesignPackage TeamSite -IsVisible:$true"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPContext",
+    "description": "Sets the Client Context to be used by the cmdlets, which allows easy context switching. See examples for details.",
+    "syntax": "Set-PnPContext -Context <ClientContext> [-Connection <PnPConnection>]",
+    "examples": [
+      "Connect-PnPOnline -Url $siteAurl -Credentials $credentials\n$ctx = Get-PnPContext\nGet-PnPList # returns the lists from site specified with $siteAurl\nConnect-PnPOnline -Url $siteBurl -Credentials $credentials\nGet-PnPList # returns the lists from the site specified with $siteBurl\nSet-PnPContext -Context $ctx # switch back to site A\nGet-PnPList # returns the lists from site A"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPCopilotAdminLimitedMode",
+    "description": "Represents a setting that controls whether Microsoft 365 Copilot in Teams Meetings users can receive responses to sentiment-related prompts. If this setting is enabled, Copilot in Teams Meetings doesn't respond to sentiment-related prompts and questions asked by the user. If the setting is disabled, Copilot in Teams Meetings responds to sentiment-related prompts and questions asked by the user. Copilot in Teams Meetings currently honors this setting. By default, the setting is disabled.",
+    "syntax": "Set-PnPCopilotAdminLimitedMode -IsEnabledForGroup <boolean> -GroupId <String> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPCopilotAdminLimitedMode -IsEnabledForGroup:$true -GroupId 32b5ad0f-b502-4083-9d01-0f192f15b2b6",
+      "Set-PnPCopilotAdminLimitedMode -IsEnabledForGroup:$false"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPDefaultColumnValues",
+    "description": "Sets default column values for a document library, per folder, or for the root folder if the folder parameter has not been specified. Supports both text and taxonomy fields.",
+    "syntax": "Set-PnPDefaultColumnValues [-List] <ListPipeBind> -Field <FieldPipeBind> -Value <String[]> [-Folder <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPDefaultColumnValues -List Documents -Field TaxKeyword -Value \"Company|Locations|Stockholm\"",
+      "Set-PnPDefaultColumnValues -List Documents -Field TaxKeyword -Value \"15c4c4e4-4b67-4894-a1d8-de5ff811c791\"",
+      "Set-PnPDefaultColumnValues -List Documents -Field MyTextField -Value \"DefaultValue\" -Folder \"My folder\"",
+      "Set-PnPDefaultColumnValues -List Documents -Field MyPeopleField -Value \"1;#Foo Bar\"",
+      "$user = New-PnPUser -LoginName foobar@contoso.com\nSet-PnPDefaultColumnValues -List Documents -Field MyPeopleField -Value \"$($user.Id);#$($user.LoginName)\"",
+      "$user1 = New-PnPUser -LoginName user1@contoso.com\n$user2 = New-PnPUser -LoginName user2@contoso.com\nSet-PnPDefaultColumnValues -List Documents -Field MyMultiPeopleField -Value \"$($user1.Id);#$($user1.LoginName)\",\"$($user2.Id);#$($user2.LoginName)\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPDisableSpacesActivation",
+    "description": "This cmdlet disables or enables SharePoint Spaces for a specific site collection or entire SharePoint tenant.",
+    "syntax": "Set-PnPDisableSpacesActivation -Disable <SwitchParameter> [-Scope <String>] [-Identity <SitePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPDisableSpacesActivation -Disable:$true -Scope Tenant",
+      "Set-PnPDisableSpacesActivation -Disable -Scope Site -Identity \"https://contoso.sharepoint.com\"",
+      "Set-PnPDisableSpacesActivation -Disable:$false -Scope Site -Identity \"https://contoso.sharepoint.com\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPFooter",
+    "description": "Allows the footer to be enabled or disabled and fine tuned in the current web. For modifying the navigation links shown in the footer, use Add-PnPNavigationNode -Location Footer.",
+    "syntax": "Set-PnPFooter [-Enabled] [-Layout <FooterLayoutType>] [-BackgroundTheme <FooterVariantThemeType>]\n [-Title <String>] [-LogoUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPFooter -Enabled:$true",
+      "Set-PnPFooter -Enabled:$true -Layout Extended -BackgroundTheme Neutral",
+      "Set-PnPFooter -Title \"Contoso Inc.\" -LogoUrl \"/sites/communication/Shared Documents/logo.png\"",
+      "Set-PnPFooter -LogoUrl \"\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPGroup",
+    "description": "This cmdlet updates the roles and settings of the specified group.",
+    "syntax": "Set-PnPGroup -Identity <GroupPipeBind> [-SetAssociatedGroup <AssociatedGroupType>] [-AddRole <String>]\n [-RemoveRole <String>] [-Title <String>] [-Owner <String>] [-Description <String>]\n [-AllowRequestToJoinLeave <Boolean>] [-AutoAcceptRequestToJoinLeave <Boolean>]\n [-AllowMembersEditMembership <Boolean>] [-OnlyAllowMembersViewMembership <Boolean>]\n [-RequestToJoinEmail <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPGroup -Identity 'My Site Members' -SetAssociatedGroup Members",
+      "Set-PnPGroup -Identity 'My Site Members' -Owner 'site owners'"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPIndexedProperties",
+    "description": "Marks values of the propertybag to be indexed by search. Notice that this will overwrite the existing flags, i.e. only the properties you define with the cmdlet will be indexed.",
+    "syntax": "Set-PnPIndexedProperties -Keys <System.Collections.Generic.List`1[System.String]> \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPIndexedProperties -Keys SiteClosed, PolicyName"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsArchived",
+    "description": "Allows to mark message center announcements as archived.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsArchived [-Identity <Ids>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsArchived -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsArchived -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsArchived"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsFavorite",
+    "description": "Allows to mark message center announcements as favorite.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsFavorite [-Identity <Ids>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsFavorite -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsFavorite -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsFavorite"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsNotArchived",
+    "description": "Allows to mark message center announcements as not archived.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsNotArchived [-Identity <Ids>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsNotArchived -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsNotArchived -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsNotArchived"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsNotFavorite",
+    "description": "Allows to mark message center announcements as not favorite.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsNotFavorite [-Identity <Ids>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsNotFavorite -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsNotFavorite -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsNotFavorite"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsRead",
+    "description": "Allows to mark message center announcements as read.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsRead [-Identity <Ids>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsRead -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsRead -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsRead"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPMessageCenterAnnouncementAsUnread",
+    "description": "This cmdlet marks one or multiple message center announcements of the Office 365 Services as unread for the current user.",
+    "syntax": "Set-PnPMessageCenterAnnouncementAsUnread [-Identity <String[]>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPMessageCenterAnnouncementAsUnread -Identity \"MC123456\"",
+      "Set-PnPMessageCenterAnnouncementAsUnread -Identity \"MC123456\", \"MC234567\"",
+      "Set-PnPMessageCenterAnnouncementAsUnread"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPPropertyBagValue",
+    "description": "Updates an existing property bag value or adds it as a new key\\value pair if it doesn't exist yet. If working with a modern SharePoint Online site or having noscript enabled, you will have to disable this yourself temporarily usingSet-PnPTenantSite -Url <url> -NoScriptSite:$falseto be able to make the change.",
+    "syntax": "Set-PnPPropertyBagValue -Key <String> -Value <String> [-Indexed] [-Force] \n [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPPropertyBagValue -Key MyKey -Value MyValue",
+      "Set-PnPPropertyBagValue -Key MyKey -Value MyValue -Folder /",
+      "Set-PnPPropertyBagValue -Key MyKey -Value MyValue -Folder /MyFolder"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPView",
+    "description": "Sets one or more properties of an existing view, see herehttps://learn.microsoft.com/previous-versions/office/sharepoint-server/ee543328(v=office.15)for the list of view properties.",
+    "syntax": "Set-PnPView [[-List] <ListPipeBind>] -Identity <ViewPipeBind> [-Values <Hashtable>] [-Fields <String[]>]\n [-Aggregations <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPView -List \"Tasks\" -Identity \"All Tasks\" -Values @{JSLink=\"hierarchytaskslist.js|customrendering.js\";Title=\"My view\"}",
+      "Get-PnPList -Identity \"Tasks\" | Get-PnPView | Set-PnPView -Values @{JSLink=\"hierarchytaskslist.js|customrendering.js\"}",
+      "Set-PnPView -List \"Documents\" -Identity \"Corporate Documents\" -Fields \"Title\",\"Created\"",
+      "Set-PnPView -List \"Documents\" -Identity \"Corporate Documents\" -Fields \"Title\",\"Created\" -Aggregations \"<FieldRef Name='Title' Type='COUNT'/>\"",
+      "Set-PnPView -List \"Documents\" -Identity \"Dept Documents\" -Fields \"Title,\"Created\" -Values @{Paged=$true;RowLimit=[UInt32]\"100\"}"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPVivaEngageCommunity",
+    "description": "Updates the Viva engage community.",
+    "syntax": "Set-PnPVivaEngageCommunity [[-Identity] <string>] [[-DisplayName] <string>] [[-Description] <string>][[-Privacy] <CommunityPrivacy>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPVivaEngageCommunity -Identity \"eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMTI0ODA3MTI3MDQifQ\" -DisplayName \"New Viva Community\"",
+      "Set-PnPVivaEngageCommunity -Identity \"eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMTI0ODA3MTI3MDQifQ\" -DisplayName \"New Viva Community\" -Description \"Updated description\" -Privacy Private"
+    ]
+  },
+  {
+    "cmdlet": "Start-PnPTraceLog",
+    "description": "Starts .NET tracelogging. Many cmdlets output detailed trace information when executed. Turn on the trace log with this cmdlet, optionally specify the level. By default the level is set to 'Information', but you will receive more detail by setting the level to 'Debug'.",
+    "syntax": "Start-PnPTraceLog [-Path <String>] [-Level <LogLevel>] [-AutoFlush <Boolean>] [-WriteToConsole <SwitchParameter>] [-WriteToLogStream <SwitchParameter>]",
+    "examples": [
+      "Start-PnPTraceLog -Path ./TraceOutput.txt",
+      "Start-PnPTraceLog -Path ./TraceOutput.txt -Level Debug",
+      "Start-PnPTraceLog -WriteToConsole -WriteToLogStream -Level Debug",
+      "Start-PnPTraceLog -WriteToConsole -Level Debug"
+    ]
+  },
+  {
+    "cmdlet": "Stop-PnPTraceLog",
+    "description": "Stops PnP PowerShell tracelogging to specific targets. By default, all logging is stopped. You can use the parameters to stop specific logging targets only.",
+    "syntax": "Stop-PnPTraceLog [-StopFileLogging <SwitchParameter>] [-StopConsoleLogging <SwitchParameter>] [-StopLogStreamLogging <SwitchParameter>] [-Verbose]",
+    "examples": [
+      "Stop-PnPTraceLog"
+    ]
+  },
+  {
+    "cmdlet": "Write-PnPTraceLog",
+    "description": "This cmdlet allows logging of your own messages in line with the PnPTraceLog cmdlets that allow logging what happens behind the scenes of the execution of PnP PowerShell cmdlets. This allows you to inject your own custom logging along with the built in logging to get a complete and chronoligal log of the execution of the cmdlets in your scripts.",
+    "syntax": "Write-PnPTraceLog -Path <string> [-Verbose]",
+    "examples": [
+      "Write-PnPTraceLog \"Hello World\"",
+      "Write-PnPTraceLog \"Hello World\" -Level Warning",
+      "Write-PnPTraceLog \"Hello World\" -Level Error -Source \"MyScript\"",
+      "Write-PnPTraceLog \"Hello World\" -Level Debug -Source \"MyScript\" -CorrelationId \"5a6206a0-6c83-4446-9d1b-38c14f93cb60\" -EllapsedMilliseconds 1000"
+    ]
+  }
+]

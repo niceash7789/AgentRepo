@@ -1,0 +1,194 @@
+[
+  {
+    "cmdlet": "Add-PnPStoredCredential",
+    "description": "Adds an entry to the Windows Credential Manager or Mac OS Key Chain Entry. If you add an entry in the form of the URL of your tenant/server PnP PowerShell will check if that entry is available when you connect using Connect-PnPOnline. If it finds a matching URL it will use the associated credentials.",
+    "syntax": "Add-PnPStoredCredential -Name <String> -Username <String> [-Password <SecureString>] [-Overwrite]",
+    "examples": [
+      "Add-PnPStoredCredential -Name \"https://tenant.sharepoint.com\" -Username yourname@tenant.onmicrosoft.com",
+      "Add-PnPStoredCredential -Name \"https://tenant.sharepoint.com\" -Username yourname@tenant.onmicrosoft.com -Password (ConvertTo-SecureString -String \"YourPassword\" -AsPlainText -Force)",
+      "Add-PnPStoredCredential -Name \"https://tenant.sharepoint.com\" -Username yourname@tenant.onmicrosoft.com -Password (ConvertTo-SecureString -String \"YourPassword\" -AsPlainText -Force)\nConnect-PnPOnline -Url \"https://tenant.sharepoint.com/sites/mydemosite\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPVivaConnectionsDashboardACE",
+    "description": "Allows to add a new an Adaptive card extension in the Viva Home dashboard page. Before running the command it is required you are connect to a SharePoint Home site and have configured the Viva connections page.",
+    "syntax": "Add-PnPVivaConnectionsDashboardACE [-Identity <DefaultACE>] [-Title <string>] [-PropertiesJSON <string>] [-Description <string>] [-IconProperty <string>] [-Order <Int>][-CardSize <CardSize>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPVivaConnectionsDashboardACE -Identity CardDesigner -Order 3 -Title \"Hello there\" -PropertiesJSON $myProperties -CardSize Large -Description \"ACE description\" -Iconproperty \"https://cdn.hubblecontent.osi.office.net/m365content/publish/002f8bf9-b8ee-4689-ae97-e411b756099d/691108002.jpg\"",
+      "Add-PnPVivaConnectionsDashboardACE -Identity ThirdPartyApp -Order 1 -Title \"Hello there\" -PropertiesJSON $myProperties -CardSize Medium -Description \"ACE with description\" -Iconproperty \"https://cdn.hubblecontent.osi.office.net/m365content/publish/002f8bf9-b8ee-4689-ae97-e411b756099d/691108002.jpg\"",
+      "Add-PnPVivaConnectionsDashboardACE -Identity AssignedTasks -Order 2 -Title \"Tasks\" -PropertiesJSON $myProperties -CardSize Medium -Description \"My Assigned tasks\" -Iconproperty \"https://cdn.hubblecontent.osi.office.net/m365content/publish/002f8bf9-b8ee-4689-ae97-e411b756099d/691108002.jpg\""
+    ]
+  },
+  {
+    "cmdlet": "Connect-PnPOnline",
+    "description": "Connects to a SharePoint site or another API and creates a context that is required for the other PnP Cmdlets.\nSeehttps://pnp.github.io/powershell/articles/connecting.htmlfor more information on the options to connect.",
+    "syntax": "Connect-PnPOnline -Interactive [-ReturnConnection] -Url <String> [-PersistLogin] [-CreateDrive] [-DriveName <String>]\n [-ClientId <String>] [-AzureEnvironment <AzureEnvironment>] [-TenantAdminUrl <String>] [-ForceAuthentication] [-ValidateConnection] [-MicrosoftGraphEndPoint <string>] [-AzureADLoginEndPoint <string>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\"",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -Credentials (Get-Credential)",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.de\" -ClientId 344b8aab-389c-4e4a-8fa1-4c1ae2c0a60d -ClientSecret $clientSecret",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -DeviceLogin -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28",
+      "$password = (ConvertTo-SecureString -AsPlainText 'myprivatekeypassword' -Force)\nConnect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -CertificatePath 'c:\\mycertificate.pfx' -CertificatePassword $password  -Tenant 'contoso.onmicrosoft.com'",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -Tenant 'contoso.onmicrosoft.com' -Thumbprint 34CFAA860E5FB8C44335A38A097C1E41EEA206AA",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -CertificateBase64Encoded $base64encodedstring -Tenant 'contoso.onmicrosoft.com'",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -Interactive -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28",
+      "Connect-PnPOnline -Url \"https://portal.contoso.com\" -TransformationOnPrem -CurrentCredential",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ManagedIdentity\nGet-PnPTeamsTeam",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ManagedIdentity -UserAssignedManagedIdentityObjectId 363c1b31-6872-47fd-a616-574d3aec2a51\nGet-PnPList",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -AccessToken $token",
+      "Connect-PnPOnline -Url contoso.sharepoint.com -EnvironmentVariable -Tenant 'contoso.onmicrosoft.com'",
+      "Connect-PnPOnline -Url contoso.sharepoint.com -EnvironmentVariable",
+      "Connect-PnPOnline -Url contoso.sharepoint.com -AzureEnvironment Custom -MicrosoftGraphEndPoint \"custom.graph.microsoft.com\" -AzureADLoginEndPoint \"https://custom.login.microsoftonline.com\"",
+      "Connect-PnPOnline -Url contoso.sharepoint.com -AzureADWorkloadIdentity",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -OSLogin",
+      "$keyStorageflags = [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::MachineKeySet -bor [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::PersistKeySet\n\nConnect-PnPOnline -Url \"contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -CertificateBase64Encoded $base64encodedstring -X509KeyStorageFlags $keyStorageflags -Tenant 'contoso.onmicrosoft.com'",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -Credentials \"https://contoso.sharepoint.com\"",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -ClientId 6c5c98c7-e05a-4a0f-bcfa-0cfc65aa1f28 -Tenant 'contoso.onmicrosoft.com' -FederatedIdentity",
+      "Connect-PnPOnline -Url \"https://contoso.sharepoint.com\" -FederatedIdentity"
+    ]
+  },
+  {
+    "cmdlet": "Disconnect-PnPOnline",
+    "description": "Disconnects the current connection and optionally clears its token cache. It will require you to build up a new connection again usingConnect-PnPOnlinein order to use any of the PnP PowerShell cmdlets. You might have to reauthenticate. If instead you simply want to connect to another site collection within the same tenant using the same credentials you used previously, do not use this cmdlet but instead useConnect-PnPOnline -Url https://tenant.sharepoint.com/sites/othersiteinstead without disconnecting. It will try to reuse the existing authentication method and cached credentials.",
+    "syntax": "Disconnect-PnPOnline [-ClearPersistedLogin]",
+    "examples": [
+      "Disconnect-PnPOnline"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAccessToken",
+    "description": "Returns the OAuth 2.0 Access Token.",
+    "syntax": "Get-PnPAccessToken [-ResourceTypeName] [-Decoded] [-Scopes] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAccessToken",
+      "Get-PnPAccessToken -Decoded",
+      "Get-PnPAccessToken -ResourceTypeName SharePoint",
+      "Get-PnPAccessToken -ResourceTypeName ARM",
+      "Get-PnPAccessToken -ResourceUrl \"https://management.azure.com/.default\"",
+      "Get-PnPAccessToken -ListPermissionScopes"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPAuthenticationRealm",
+    "description": "Gets the authentication realm for the current web",
+    "syntax": "Get-PnPAuthenticationRealm [[-Url] <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPAuthenticationRealm",
+      "Get-PnPAuthenticationRealm -Url \"https://contoso.sharepoint.com\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPConnection",
+    "description": "Returns a PnP PowerShell Connection for use with the -Connection parameter on other cmdlets.",
+    "syntax": "Get-PnPConnection [-Connection <PnPConnection>]",
+    "examples": [
+      "$ctx = Get-PnPConnection"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPPowerPlatformCustomConnector",
+    "description": "This cmdlet returns the custom connectors on a given enviroment.",
+    "syntax": "Get-PnPPowerPlatformCustomConnector [-Environment <PowerPlatformEnvironmentPipeBind>] [-Identity <PowerPlatformConnectorPipeBind>] [-AsAdmin] [-Verbose]",
+    "examples": [
+      "Get-PnPPowerPlatformCustomConnector -Environment (Get-PnPPowerPlatformEnvironment -Identity \"myenvironment\")",
+      "Get-PowerPlatformConnectorPipeBind -Identity fba63225-baf9-4d76-86a1-1b42c917a182"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPSearchExternalConnection",
+    "description": "This cmdlet can be used to retrieve all connections to external datasources that are being indexed into Microsoft Search through a custom connector. UseSet-PnPSearchExternalItemto add items to the index for a connector.",
+    "syntax": "Get-PnPSearchExternalConnection [-Identity <String>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPSearchExternalConnection",
+      "Get-PnPSearchExternalConnection -Identity \"pnppowershell\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPStoredCredential",
+    "description": "Returns a stored credential from the Windows Credential Manager or Mac OS Key Chain Entry.",
+    "syntax": "Get-PnPStoredCredential -Name <String>",
+    "examples": [
+      "Get-PnPStoredCredential -Name O365"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPVivaConnectionsDashboardACE",
+    "description": "Allows to retrieve the adaptive card extensions from the Viva connections dashboard page.",
+    "syntax": "Get-PnPVivaConnectionsDashboardACE [-Identity <VivaACEPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPVivaConnectionsDashboardACE",
+      "Get-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnPSearchExternalConnection",
+    "description": "This cmdlet can be used to create a new connection to an external datasource that needs to be indexed into Microsoft Search through a custom connector. UseSet-PnPSearchExternalItemto add items to the index for this connector.",
+    "syntax": "New-PnPSearchExternalConnection -Identity <String> -Name <String> -Description <String> [-AuthorizedAppIds <String[]>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnPSearchExternalConnection -Identity \"pnppowershell\" -Name \"PnP PowerShell\" -Description \"External content ingested using PnP PowerShell\"",
+      "New-PnPSearchExternalConnection -Identity \"pnppowershell\" -Name \"PnP PowerShell\" -Description \"External content ingested using PnP PowerShell\" -AuthorizedAppIds \"00000000-0000-0000-0000-000000000000\",\"11111111-1111-1111-1111-111111111111\""
+    ]
+  },
+  {
+    "cmdlet": "Register-PnPEntraIDAppForInteractiveLogin",
+    "description": "Registers an Entra ID App for use with the interactive login on Connect-PnPOnline. By default it assumes an Interactive login, but you can decide to use Device Login auth by specifying -DeviceLogin.",
+    "syntax": "Register-PnPEntraIDAppForInteractiveLogin -ApplicationName <String>\n                                       -Tenant <String>\n                                       [-GraphApplicationPermissions <Permission[]>]\n                                       [-GraphDelegatePermissions <Permission[]>]\n                                       [-SharePointApplicationPermissions <Permission[]>]\n                                       [-SharePointDelegatePermissions <Permission[]>]\n                                       [-LogoFilePath <string>]\n                                       [-MicrosoftGraphEndPoint <string>]\n                                       [-EntraIDLoginEndPoint <string>]\n                                       [-SignInAudience <EntraIDSignInAudience>]",
+    "examples": [
+      "Register-PnPEntraIDAppForInteractiveLogin -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com",
+      "Register-PnPEntraIDAppForInteractiveLogin -ApplicationName TestApp -Tenant yourtenant.onmicrosoft.com -GraphDelegatePermissions \"Group.Read.All\" -SharePointDelegatePermissions \"AllSites.FullControl\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPSearchExternalConnection",
+    "description": "This cmdlet can be used to remove a connection to an external datasource that is being indexed into Microsoft Search through a custom connector.",
+    "syntax": "Remove-PnPSearchExternalConnection -Identity <SearchExternalConnectionPipeBind> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPSearchExternalConnection -Identity \"pnppowershell\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPStoredCredential",
+    "description": "Removes a stored credential from the Credential Manager",
+    "syntax": "Remove-PnPStoredCredential -Name <String> [-Force]",
+    "examples": [
+      "Remove-PnPStoredCredential -Name \"https://tenant.sharepoint.com\""
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPVivaConnectionsDashboardACE",
+    "description": "Allows to remove Adaptive card extensions from the Viva connections dashboard page.",
+    "syntax": "Remove-PnPVivaConnectionsDashboardACE [-Identity <VivaACEPipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPSearchExternalConnection",
+    "description": "This cmdlet can be used to update an external datasource connection that is being indexed into Microsoft Search through a custom connector. UseNew-PnPSearchExternalConnectionto create a new connector.",
+    "syntax": "Set-PnPSearchExternalConnection -Identity <SearchExternalConnectionPipeBind> [-Name <String>] [-Description <String>] [-AuthorizedAppIds <String[]>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPSearchExternalConnection -Identity \"pnppowershell\" -Name \"PnP PowerShell Rocks\"",
+      "Set-PnPSearchExternalConnection -Identity \"pnppowershell\" -Name \"PnP PowerShell Rocks\" -Description \"External content ingested using PnP PowerShell which rocks\"",
+      "Set-PnPSearchExternalConnection -Identity \"pnppowershell\" -AuthorizedAppIds \"00000000-0000-0000-0000-000000000000\",\"11111111-1111-1111-1111-111111111111\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPVivaConnectionsDashboardACE",
+    "description": "Allows to update the Adaptive card extension in the Viva Connections dashboard page.",
+    "syntax": "Update-PnPVivaConnectionsDashboardACE -Identity <VivaACEPipeBind> [-Title <string>] [-Properties <object>] [-Description <string>] [-IconProperty <string>] [-Order <Int>][-CardSize <CardSize>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\" -Title \"Update title\" -Description \"Update Description\" -IconProperty \"https://cdn.hubblecontent.osi.office.net/m365content/publish/002f8bf9-b8ee-4689-ae97-e411b756099d/691108002.jpg\" -Order 4 -CardSize Large -PropertiesJSON $myProperties",
+      "Set-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\" -Title \"Update title\" -Description \"Update Description\"",
+      "Set-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\" -IconProperty \"https://cdn.hubblecontent.osi.office.net/m365content/publish/002f8bf9-b8ee-4689-ae97-e411b756099d/691108002.jpg\" -Order 4",
+      "Set-PnPVivaConnectionsDashboardACE -Identity \"58108715-185e-4214-8786-01218e7ab9ef\" -CardSize Large",
+      "$ace = Get-PnPVivaConnectionsDashboardACE -Identity 58108715-185e-4214-8786-01218e7ab9ef\n$ace.Properties.QuickViews[0].Data = '{ \n        \"items\": [ \n            { \"title\": \"Sample 1\", \"image\": \"https://contoso.sharepoint.com/SiteAssets/image1.png\" }, \n            { \"title\": \"Sample 2\", \"image\": \"https://contoso.sharepoint.com/SiteAssets/image2.png\" } \n        ]}'\nUpdate-PnPVivaConnectionsDashboardACE -Identity $ace.InstanceId -Properties $ace.Properties",
+      "$ace = Get-PnPVivaConnectionsDashboardACE -Identity 58108715-185e-4214-8786-01218e7ab9ef\n$ace.Properties.QuickViews[0].Template = '{\n    \"type\": \"AdaptiveCard\",\n    \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n    \"version\": \"1.3\",\n    \"body\": [\n        ...\n    ]}'\nSet-PnPVivaConnectionsDashboardACE -Identity $ace.InstanceId -Properties $ace.Properties"
+    ]
+  },
+  {
+    "cmdlet": "Update-PnPVivaConnectionsDashboardACE",
+    "description": "This is an alias forSet-PnPVivaConnectionsDashboardACE.",
+    "syntax": "",
+    "examples": []
+  }
+]

@@ -1,0 +1,467 @@
+[
+  {
+    "cmdlet": "Add-PnPDocumentSet",
+    "description": "Allows to add new document set to the library.",
+    "syntax": "Add-PnPDocumentSet [-List] <ListPipeBind> [-Name] <String> [-ContentType <ContentTypePipeBind>] [-Folder <FolderPipeBind>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPDocumentSet -List \"Documents\" -ContentType \"Test Document Set\" -Name \"Test\"",
+      "Add-PnPDocumentSet -List \"Documents\" -ContentType \"Test Document Set\" -Name \"Test\" -Folder \"Documents/Projects/Europe\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFile",
+    "description": "This cmdlet uploads a local file, file from a stream or plain text to the specified folder.",
+    "syntax": "Add-PnPFile -Path <String> -Folder <FolderPipeBind> [-NewFileName <String>] [-Checkout] [-CheckInComment <String>] [-CheckinType <CheckinType>]\n [-Approve] [-ApproveComment <String>] [-Publish] [-PublishComment <String>] [-UseWebDav] [-Values <Hashtable>]\n [-ContentType <ContentTypePipeBind>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFile -Path c:\\temp\\company.master -Folder \"_catalogs/masterpage\"",
+      "Add-PnPFile -Path .\\displaytemplate.html -Folder \"_catalogs/masterpage/display templates/test\"",
+      "Add-PnPFile -Path .\\sample.doc -Folder \"Shared Documents\" -Values @{Modified=\"12/28/2023\"}",
+      "Add-PnPFile -FileName sample.doc -Folder \"Shared Documents\" -Stream $fileStream -Values @{Modified=\"12/28/2023\"}",
+      "Add-PnPFile -Path sample.doc -Folder \"Shared Documents\" -ContentType \"Document\" -Values @{Modified=\"12/28/2023\"}",
+      "Add-PnPFile -Path sample.docx -Folder \"Documents\" -Values @{Modified=\"12/28/2016\"; Created=\"12/28/2023\"; Editor=23}",
+      "Add-PnPFile -Path sample.docx -Folder \"Documents\" -NewFileName \"differentname.docx\"",
+      "Add-PnPFile -FileName sample.txt -Folder \"Shared Documents\" -Content '{ \"Test\": \"Value\" }'"
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPFolder",
+    "description": "Allows to add a new folder.",
+    "syntax": "Add-PnPFolder -Name <String> -Folder <FolderPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPFolder -Name NewFolder -Folder _catalogs/masterpage",
+      "Add-PnPFolder -Name NewFolder -Folder \"Shared Documents\"",
+      "Add-PnPFolder -Name NewFolder -Folder \"Shared Documents/Folder\""
+    ]
+  },
+  {
+    "cmdlet": "Add-PnPOrgAssetsLibrary",
+    "description": "Adds a given document library as an organizational asset source in your SharePoint Online Tenant. You can specify multiple libraries, but all organizational asset sources you add must reside in the same site collection.",
+    "syntax": "Add-PnPOrgAssetsLibrary -LibraryUrl <String> [-ThumbnailUrl <String>] [-CdnType <SPOTenantCdnType>] [-OrgAssetType <OrgAssetType>] [-DefaultOriginAdded <bool>] [-IsCopilotSearchable <bool>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Add-PnPOrgAssetsLibrary -LibraryUrl \"https://yourtenant.sharepoint.com/sites/branding/logos\"",
+      "Add-PnPOrgAssetsLibrary -LibraryUrl \"https://yourtenant.sharepoint.com/sites/branding/logos\" -ThumbnailUrl \"https://yourtenant.sharepoint.com/sites/branding/logos/thumbnail.jpg\"",
+      "Add-PnPOrgAssetsLibrary -LibraryUrl \"https://yourtenant.sharepoint.com/sites/branding/logos\" -CdnType Private"
+    ]
+  },
+  {
+    "cmdlet": "Convert-PnPFile",
+    "description": "Allows converting of a file from SharePoint Online. The file contents can either be directly saved to local disk, or stored in memory for further processing, or Can be uploaded back to SharePoint Online SiteCollection",
+    "syntax": "Convert-PnPFile -Url <String> -Path <String> [-Force]",
+    "examples": [
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Document.docx\" -AsMemoryStream",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Document.docx\"",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Document.docx\" -Path \"C:\\Temp\"",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Document.docx\" -Path \"C:\\Temp\" -Force",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Test/Book.xlsx\" -Folder \"/sites/demo/Shared Documents/Archive\"",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Test/Book.png\" -ConvertToFormat Jpg  -Folder \"/sites/demo/Shared Documents/Archive\"",
+      "Convert-PnPFile -Url \"/sites/demo/Shared Documents/Test/Book.xlsx\" -Folder \"/sites/demo/Shared Documents/Archive\" -NewFileName \"differentname.pdf\""
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPFile",
+    "description": "Copies a file or folder to a different location. This location can be within the same document library, same site, same site collection or even to another site collection on the same tenant. Notice that if copying between sites or to a subsite you cannot specify a target filename, only a folder name.",
+    "syntax": "Copy-PnPFile [-SourceUrl] <String> [-TargetUrl] <String> [-Overwrite] [-Force] [-IgnoreVersionHistory] [-NoWait] [-Connection <PnPConnection>]",
+    "examples": [
+      "Copy-PnPFile -SourceUrl \"Shared Documents/MyProjectfiles\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFile -SourceUrl \"/sites/project/Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\"",
+      "Copy-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\" -IgnoreVersionHistory",
+      "Copy-PnPFile -SourceUrl \"/sites/project/Shared Documents/Archive\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFile -SourceUrl \"Documents/company.docx\" -TargetUrl \"Documents/company2.docx\"",
+      "Copy-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"Shared Documents2/company.docx\"",
+      "Copy-PnPFile -SourceUrl \"Shared DocuDocuments/company.docx\" -TargetUrl \"Subsite/Shared Documents\"",
+      "Copy-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFile -SourceUrl \"Shared Documents/MyDocs\" -TargetUrl \"/sites/otherproject/Documents\" -Overwrite",
+      "Copy-PnPFile -SourceUrl \"SubSite1/Documents/company.docx\" -TargetUrl \"SubSite2/Documents\"",
+      "$job = Copy-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"SubSite2/Shared Documents\" -NoWait\n$jobStatus = Receive-PnPCopyMoveJobStatus -Job $job\nif($jobStatus.JobState == 0)\n{\n  Write-Host \"Job finished\"\n}"
+    ]
+  },
+  {
+    "cmdlet": "Copy-PnPFolder",
+    "description": "Copies a folder or file to a different location within SharePoiint. This location can be within the same document library, same site, same site collection or even to another site collection on the same tenant. Notice that if copying between sites or to a subsite you cannot specify a target filename, only a folder name.",
+    "syntax": "Copy-PnPFolder -SourceUrl <String> -TargetUrl <String> [-Overwrite] [-Force] [-IgnoreVersionHistory] [-NoWait] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Copy-PnPFolder -SourceUrl \"Shared Documents/MyProjectfiles\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFolder -SourceUrl \"/sites/project/Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\"",
+      "Copy-PnPFolder -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\" -IgnoreVersionHistory",
+      "Copy-PnPFolder -SourceUrl \"/sites/project/Shared Documents/Archive\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFolder -SourceUrl \"Documents/company.docx\" -TargetUrl \"Documents/company2.docx\"",
+      "Copy-PnPFolder -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"Shared Documents2/company.docx\"",
+      "Copy-PnPFolder -SourceUrl \"Shared DocuDocuments/company.docx\" -TargetUrl \"Subsite/Shared Documents\"",
+      "Copy-PnPFolder -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite",
+      "Copy-PnPFolder -SourceUrl \"Shared Documents/MyDocs\" -TargetUrl \"/sites/otherproject/Documents\" -Overwrite",
+      "Copy-PnPFolder -SourceUrl \"SubSite1/Documents/company.docx\" -TargetUrl \"SubSite2/Documents\"",
+      "$job = Copy-PnPFolder -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"SubSite2/Shared Documents\" -NoWait\n$jobStatus = Receive-PnPCopyMoveJobStatus -Job $result\nif($jobStatus.JobState == 0)\n{\n  Write-Host \"Job finished\"\n}",
+      "Copy-PnPFolder -LocalPath \"c:\\temp\" -TargetUrl \"Subsite1/Shared Documents\" -Recurse -Overwrite"
+    ]
+  },
+  {
+    "cmdlet": "Find-PnPFile",
+    "description": "Allows to find a file in the virtual file system of the web.",
+    "syntax": "Find-PnPFile [-Match] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Find-PnPFile -Match *.master",
+      "Find-PnPFile -List \"Documents\" -Match *.pdf",
+      "Find-PnPFile -Folder \"Shared Documents/Sub Folder\" -Match *.docx"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPDocumentSetTemplate",
+    "description": "Allows to retrieve a document set template.",
+    "syntax": "Get-PnPDocumentSetTemplate [-Identity] <DocumentSetPipeBind> [-Connection <PnPConnection>]\n [-Includes <String[]>]",
+    "examples": [
+      "Get-PnPDocumentSetTemplate -Identity \"Test Document Set\"",
+      "Get-PnPDocumentSetTemplate -Identity \"0x0120D520005DB65D094035A241BAC9AF083F825F3B\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFile",
+    "description": "Allows downloading of a file from SharePoint Online. The file contents can either be read directly into memory as text, directly saved to local disk or stored in memory for further processing.",
+    "syntax": "Get-PnPFile -Url <String> -AsFileObject [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFile -Url \"/sites/project/Shared Documents/Document.docx\"",
+      "Get-PnPFile -Url \"https://contoso.sharepoint.com/sites/project/Shared Documents/Document.docx\"",
+      "Get-PnPFile -Url /sites/project/SiteAssets/image.jpg -Path c:\\temp -FileName image.jpg -AsFile",
+      "Get-PnPFile -Url /sites/project/_catalogs/themes/15/company.spcolor -AsString",
+      "Get-PnPFile -Url /sites/project/Shared Documents/Folder/Presentation.pptx -AsFileObject",
+      "Get-PnPFile -Url /sites/project/_catalogs/themes/15/company.spcolor -AsListItem",
+      "Get-PnPFile -Url /personal/john_tenant_onmicrosoft_com/Documents/Sample.xlsx -Path c:\\temp -FileName Project.xlsx -AsFile",
+      "Get-PnPFile -Url \"/sites/templates/Shared Documents/HR Site.pnp\" -AsMemoryStream"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileAnalyticsData",
+    "description": "Retrieves file analytics data within a specific date range.",
+    "syntax": "Get-PnPFileAnalyticsData -Url <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFileAnalyticsData -Url \"/sites/project/Shared Documents/Document.docx\"",
+      "Get-PnPFileAnalyticsData -Url \"/sites/project/Shared Documents/Document.docx\" -LastSevenDays",
+      "Get-PnPFileAnalyticsData -Url \"/sites/project/Shared Documents/Document.docx\" -StartDate (Get-date).AddDays(-15) -EndDate (Get-date) -AnalyticsAggregationInterval Day"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileCheckedOut",
+    "description": "This cmdlet allows to retrieve all files that are currently checked out in a library.",
+    "syntax": "Get-PnPFileCheckedOut -List <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFileCheckedOut -List \"Documents\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileInFolder",
+    "description": "This cmdlet allows listing of all the files in a folder. It can optionally also list all files in the underlying subfolders.",
+    "syntax": "Get-PnPFileInFolder [-FolderSiteRelativeUrl <String>] [-ItemName <String>] [-Recurse] [-Includes <String[]>] [-ExcludeSystemFolders] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFileInFolder",
+      "Get-PnPFileInFolder -Recurse",
+      "Get-PnPFileInFolder -Identity \"Shared Documents\"",
+      "Get-PnPFileInFolder -FolderSiteRelativeUrl \"SitePages\" -ItemName \"Default.aspx\"",
+      "Get-PnPFolder -Identity \"Shared Documents\" | Get-PnPFileInFolder",
+      "Get-PnPFileInFolder -FolderSiteRelativeUrl \"SitePages\" -Recurse",
+      "Get-PnPFolder -List \"Documents\" | Get-PnPFileInFolder -Recurse -ExcludeSystemFolders"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileRetentionLabel",
+    "description": "The Get-PnPFileRetentionLabel cmdlet retrieves the retention label information for a file in SharePoint using Microsoft Graph. It takes a URL as input, decodes it, and specifically encodes the '+' character if it is part of the filename.",
+    "syntax": "Get-PnPFileRetentionLabel -Url <String>",
+    "examples": [
+      "Get-PnPFileRetentionLabel -Url \"/sites/Marketing/Shared Documents/Report.pptx\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFileVersion",
+    "description": "Retrieves the version history of a file, not including its current version. To get the current version use the MajorVersion and MinorVersion properties returned from Get-PnPFile.",
+    "syntax": "Get-PnPFileVersion -Url <String> [-UseVersionExpirationReport] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFileVersion -Url Documents/MyDocument.docx",
+      "Get-PnPFileVersion -Url \"/sites/marketing/Shared Documents/MyDocument.docx\"",
+      "Get-PnPFileVersion -Url \"/sites/marketing/Shared Documents/MyDocument.docx\" -UseVersionExpirationReport"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFolder",
+    "description": "Retrieves the folder instance of the specified location.",
+    "syntax": "Get-PnPFolder [-Includes <String[]>] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Get-PnPFolder",
+      "Get-PnPFolder -CurrentWebRootFolder",
+      "Get-PnPFolder -Url \"Shared Documents\"",
+      "Get-PnPFolder -Url \"/sites/demo/Shared Documents\"",
+      "Get-PnPFolder -ListRootFolder \"Shared Documents\"",
+      "Get-PnPFolder -List \"Shared Documents\"",
+      "Get-PnPFolder -Url \"/sites/demo/Shared Documents/Test\" -AsListItem"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFolderInFolder",
+    "description": "This cmdlet allows listing of all the subfolders of a folder. It can optionally also list all folders in the underlying subfolders.",
+    "syntax": "Get-PnPFolderInFolder [-FolderSiteRelativeUrl <String>] [-ItemName <String>] [-ExcludeSystemFolders] [-Includes <String[]>] [-Recurse] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFolderInFolder",
+      "Get-PnPFolderInFolder -Recurse",
+      "Get-PnPFolderInFolder -Identity \"Shared Documents\"",
+      "Get-PnPFolderInFolder -Identity \"Shared Documents\" -ExcludeSystemFolders",
+      "Get-PnPFolderInFolder -FolderSiteRelativeUrl \"Shared Documents\" -ItemName \"Templates\"",
+      "Get-PnPFolder -Identity \"Shared Documents\" | Get-PnPFolderInFolder",
+      "Get-PnPFolderInFolder -FolderSiteRelativeUrl \"SitePages\" -Recurse"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPFolderStorageMetric",
+    "description": "Allows retrieval of storage metrics for a folder in SharePoint Online. It will reveal the true storage usage, similar to what will be shown through storman.aspx, the date and time the folder was last modified and the amount of files inside the folder.",
+    "syntax": "Get-PnPFolderStorageMetric [-FolderSiteRelativeUrl <String>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPFolderStorageMetric",
+      "Get-PnPFolderStorageMetric -List \"Documents\"",
+      "Get-PnPFolderStorageMetric -FolderSiteRelativeUrl \"Shared Documents\"",
+      "$folder = Get-PnPFolder -Url \"Shared Documents\"\nGet-PnPFolderStorageMetric -Identity $folder"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPLibraryFileVersionBatchDeleteJobStatus",
+    "description": "This cmdlet allows retrieval of the progress of deleting existing file versions on the document library.",
+    "syntax": "Get-PnPLibraryFileVersionBatchDeleteJobStatus -Identity <ListPipeBind> [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPLibraryFileVersionBatchDeleteJobStatus -Identity \"Documents\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPLibraryFileVersionExpirationReportJobStatus",
+    "description": "Gets the status for a file version usage report generation job for a document library.",
+    "syntax": "Get-PnPLibraryFileVersionExpirationReportJobStatus -Identity <ListPipeBind> -ReportUrl <string>",
+    "examples": [
+      "Get-PnPLibraryFileVersionExpirationReportJobStatus -Identity \"Documents\" -ReportUrl \"https://contoso.sharepoint.com/sites/reports/MyReports/VersionReport.csv\""
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPOrgAssetsLibrary",
+    "description": "Allows to retrieve list of all the configured organizational asset libraries.",
+    "syntax": "Get-PnPOrgAssetsLibrary [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPOrgAssetsLibrary",
+      "(Get-PnPOrgAssetsLibrary)[0].OrgAssetsLibraries[0].LibraryUrl.DecodedUrl"
+    ]
+  },
+  {
+    "cmdlet": "Get-PnPProfileCardProperty",
+    "description": "This cmdlet may be used to retrieve custom properties added to user profile card.",
+    "syntax": "Get-PnPProfileCardProperty [-PropertyName <ProfileCardPropertyName>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Get-PnPProfileCardProperty",
+      "Get-PnPProfileCardProperty -PropertyName \"pnppowershell\""
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPFile",
+    "description": "Allows moving a file or folder to a different location inside the same document library, such as in a subfolder, to a different document library on the same site collection or to a document library on another site collection. If you move a file to a different site or subweb you cannot specify a target filename.",
+    "syntax": "Move-PnPFile [-SourceUrl] <String> [-TargetUrl] <String> [-Overwrite] [-AllowSchemaMismatch] [-AllowSmallerVersionLimitOnDestination] [-IgnoreVersionHistory] [-NoWait] [-Force] [-Connection <PnPConnection>] [-Verbose]",
+    "examples": [
+      "Move-PnPFile -SourceUrl \"Shared Documents/Document.docx\" -TargetUrl \"Archive/Document2.docx\"",
+      "Move-PnPFile -SourceUrl \"Shared Documents/Document.docx\" -TargetUrl \"Archive\" -Overwrite",
+      "Move-PnPFile -SourceUrl \"Shared Documents/Document.docx\" -TargetUrl \"/sites/otherproject/Shared Documents\" -Overwrite -AllowSchemaMismatch -AllowSmallerVersionLimitOnDestination",
+      "Move-PnPFile -SourceUrl \"/sites/project/Shared Documents/Archive\" -TargetUrl \"/sites/archive/Project\" -AllowSchemaMismatch -AllowSmallerVersionLimitOnDestination",
+      "$job = Move-PnPFile -SourceUrl \"Shared Documents/company.docx\" -TargetUrl \"SubSite2/Shared Documents\" -NoWait\n$jobStatus = Receive-PnPCopyMoveJobStatus -Job $job\nif($jobStatus.JobState -eq 0)\n{\n  Write-Host \"Job finished\"\n}"
+    ]
+  },
+  {
+    "cmdlet": "Move-PnPFolder",
+    "description": "Allows to move folder to another location in the current web. If you want to move a folder to a different site collection, use the Move-PnPFile cmdlet instead, which also supports moving folders and also across site collections. Move-PnPFolder can be used to move folders that are within the list view threshold, the commandlet will fail if the list view threshold is exceeded.",
+    "syntax": "Move-PnPFolder -Folder <FolderPipeBind> -TargetFolder <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Move-PnPFolder -Folder Documents/Reports -TargetFolder 'Archived Reports'",
+      "Move-PnPFolder -Folder 'Shared Documents/Reports/2016/Templates' -TargetFolder 'Shared Documents/Reports'"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPLibraryFileVersionBatchDeleteJob",
+    "description": "Starts a file version batch trim job for a document library.",
+    "syntax": "New-PnPLibraryFileVersionBatchDeleteJob -Identity <ListPipeBind> [-DeleteBeforeDays <int>] [-MajorVersionLimit <int>] [-MajorWithMinorVersionsLimit <int>][Automatic][-Force]",
+    "examples": [
+      "New-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\" -DeleteBeforeDays 360",
+      "New-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\" -DeleteBeforeDays 360 -Force",
+      "New-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\" -Automatic",
+      "New-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\" -MajorVersionLimit 30 -MajorWithMinorVersionsLimit 10"
+    ]
+  },
+  {
+    "cmdlet": "New-PnPLibraryFileVersionExpirationReportJob",
+    "description": "Starts generating file version usage report for a document library.",
+    "syntax": "New-PnPLibraryFileVersionExpirationReportJob -Identity <ListPipeBind> -ReportUrl <string>",
+    "examples": [
+      "New-PnPLibraryFileVersionExpirationReportJob -Identity \"Documents\" -ReportUrl \"https://contoso.sharepoint.com/sites/reports/MyReports/VersionReport.csv\""
+    ]
+  },
+  {
+    "cmdlet": "New-PnpProfileCardProperty",
+    "description": "This cmdlet may be used to add a property to user profile card. Please note that it may take up to 24 hours to reflect the changes.",
+    "syntax": "New-PnpProfileCardProperty -PropertyName <ProfileCardPropertyName> -DisplayName <String> [-Localizations <Hashtable>] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "New-PnpProfileCardProperty -PropertyName CustomAttribute1 -DisplayName \"Cost Centre\"",
+      "$localizations = @{ \"pl\" = \"Centrum koszt\u00f3w\"; \"de\" = \"Kostenstelle\" }\nNew-PnpProfileCardProperty -PropertyName CustomAttribute1 -DisplayName \"Cost Centre\" -Localizations $localizations"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFile",
+    "description": "This cmdlet removes the specified file based on the site-relative or server-relative url.",
+    "syntax": "Remove-PnPFile [-ServerRelativeUrl] <String> [-Recycle] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFile -ServerRelativeUrl /sites/project/_catalogs/themes/15/company.spcolor",
+      "Remove-PnPFile -SiteRelativeUrl _catalogs/themes/15/company.spcolor",
+      "Remove-PnPFile -SiteRelativeUrl _catalogs/themes/15/company.spcolor -Recycle"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFileVersion",
+    "description": "This cmdlet removes all versions or one specific version for the specified file.",
+    "syntax": "Remove-PnPFileVersion -Url <String> [-Recycle] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFileVersion -Url Documents/MyDocument.docx -Identity 512",
+      "Remove-PnPFileVersion -Url Documents/MyDocument.docx -Identity \"Version 1.0\"",
+      "Remove-PnPFileVersion -Url Documents/MyDocument.docx -All"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPFolder",
+    "description": "Allows to remove a folder.",
+    "syntax": "Remove-PnPFolder -Name <String> -Folder <FolderPipeBind> [-Recycle] [-Force] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPFolder -Name NewFolder -Folder _catalogs/masterpage",
+      "Remove-PnPFolder -Name NewFolder -Folder _catalogs/masterpage -Recycle"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPLibraryFileVersionBatchDeleteJob",
+    "description": "Cancels further processing of a file version batch trim job for a document library.",
+    "syntax": "Remove-PnPLibraryFileVersionBatchDeleteJob -Identity <ListPipeBind> [-Force]",
+    "examples": [
+      "Remove-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\"",
+      "Remove-PnPLibraryFileVersionBatchDeleteJob -Identity \"Documents\" -DeleteBeforeDays 360 -Force"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPOrgAssetsLibrary",
+    "description": "Removes a given document library as an organizational asset source based on its server relative URL in your SharePoint Online tenant. It will not remove the document library itself. It may take some time before this change will be reflected in the web interface.",
+    "syntax": "Remove-PnPOrgAssetsLibrary -LibraryUrl <String> [-ShouldRemoveFromCdn <Boolean>] [-CdnType <SPOTenantCdnType>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPOrgAssetsLibrary -LibraryUrl \"sites/branding/logos\"",
+      "Remove-PnPOrgAssetsLibrary -LibraryUrl \"sites/branding/logos\" -ShouldRemoveFromCdn $true",
+      "Remove-PnPOrgAssetsLibrary -LibraryUrl \"sites/branding/logos\" -ShouldRemoveFromCdn $true -CdnType Private"
+    ]
+  },
+  {
+    "cmdlet": "Remove-PnPProfileCardProperty",
+    "description": "This cmdlet can be used to remove a property from user profile card",
+    "syntax": "Remove-PnPProfileCardProperty -PropertyName <ProfileCardPropertyName> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Remove-PnPProfileCardProperty -PropertyName CustomAttribute1"
+    ]
+  },
+  {
+    "cmdlet": "Rename-PnPFile",
+    "description": "Allows to rename a file.",
+    "syntax": "Rename-PnPFile [-ServerRelativeUrl] <String> [-TargetFileName] <String> [-OverwriteIfAlreadyExists] [-Force]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Rename-PnPFile -ServerRelativeUrl /sites/project/Documents/company.docx -TargetFileName mycompany.docx",
+      "Rename-PnPFile -SiteRelativeUrl Documents/company.aspx -TargetFileName mycompany.docx",
+      "Rename-PnPFile -ServerRelativeUrl /sites/project/Documents/company.docx -TargetFileName mycompany.docx -OverwriteIfAlreadyExists"
+    ]
+  },
+  {
+    "cmdlet": "Rename-PnPFolder",
+    "description": "Allows to rename a folder.",
+    "syntax": "Rename-PnPFolder -Folder <FolderPipeBind> -TargetFolderName <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Rename-PnPFolder -Folder Documents/Reports -TargetFolderName 'Archived Reports'"
+    ]
+  },
+  {
+    "cmdlet": "Reset-PnPDocumentId",
+    "description": "This cmdlet allows requesting SharePoint Online to recalculate and reassign the unique document ID of a specific file or of all files using a specific content type in a document library. This can be useful if the document ID of a file has been lost, has gotten corrupted or duplicated. The unique document ID will be calculated based on an internal predictable algorithm and will contain parts of the site collection, web, list and listitem.",
+    "syntax": "Reset-PnPDocumentId -File <FilePipeBind> [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Reset-PnPDocumentId -File \"/sites/demo/Shared Documents/MyDocument.docx\"",
+      "Get-PnPFileInFolder -Recurse -FolderSiteRelativeUrl \"Shared Documents\" -ItemName \"MyDocument.docx\" | Reset-PnPDocumentId",
+      "Reset-PnPDocumentId -Library \"Documents\" -ContentType (Get-PnPContentType -List \"Documents\" | Where-Object Name -eq \"Document\""
+    ]
+  },
+  {
+    "cmdlet": "Reset-PnPFileVersion",
+    "description": "Allows to rollback a file to its previous version.",
+    "syntax": "Reset-PnPFileVersion -ServerRelativeUrl <String> [-CheckinType <CheckinType>] [-CheckInComment <String>]\n [-Connection <PnPConnection>]",
+    "examples": [
+      "Reset-PnPFileVersion -ServerRelativeUrl \"/sites/test/office365.png\"",
+      "Reset-PnPFileVersion -ServerRelativeUrl \"/sites/test/office365.png\" -CheckinType MajorCheckin -Comment \"Restored to previous version\""
+    ]
+  },
+  {
+    "cmdlet": "Resolve-PnPFolder",
+    "description": "Returns a folder from a given site relative path, and will create it if it does not exist. If you do not want the folder to be created, for instance just to test if a folder exists, use Get-PnPFolder",
+    "syntax": "Resolve-PnPFolder [-SiteRelativePath] <String> [-Connection <PnPConnection>]\n [-Includes <String[]>]",
+    "examples": [
+      "Resolve-PnPFolder -SiteRelativePath \"demofolder/subfolder\""
+    ]
+  },
+  {
+    "cmdlet": "Restore-PnPFileVersion",
+    "description": "This cmdlet restores a specific file version.",
+    "syntax": "Restore-PnPFileVersion -Url <String> -Identity <FileVersionPipeBind> [-Force] [-Verbose] [-Connection <PnPConnection>]",
+    "examples": [
+      "Restore-PnPFileVersion -Url Documents/MyDocument.docx -Identity 512",
+      "Restore-PnPFileVersion -Url /sites/HRSite/Documents/MyDocument.docx -Identity 512",
+      "Restore-PnPFileVersion -Url Documents/MyDocument.docx -Identity \"Version 1.0\""
+    ]
+  },
+  {
+    "cmdlet": "Save-PnPPageConversionLog",
+    "description": "Persists the current client side page conversion log data to the loggers linked to the last used page transformation run. Needs to be used in conjunction with the -LogSkipFlush flag on the ConvertTo-PnPPage cmdlet.",
+    "syntax": "Save-PnPPageConversionLog  [-Connection <PnPConnection>]",
+    "examples": [
+      "Save-PnPPageConversionLog"
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPFileCheckedIn",
+    "description": "This cmdlet checks in a single file, optionally with a comment.",
+    "syntax": "Set-PnPFileCheckedIn -Url <String> [-CheckInType <CheckInType>] [-Comment <String>] [-Approve] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPFileCheckedIn -Url \"/Documents/Contract.docx\"",
+      "Set-PnPFileCheckedIn -Url \"/sites/news/Documents/Article.docx\"",
+      "Set-PnPFileCheckedIn -Url \"/Documents/Contract.docx\" -CheckInType MinorCheckIn -Comment \"Smaller changes\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPFileCheckedOut",
+    "description": "Allows to check out a file.",
+    "syntax": "Set-PnPFileCheckedOut [-Url] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPFileCheckedOut -Url \"/sites/testsite/subsite/Documents/Contract.docx\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPFileRetentionLabel",
+    "description": "The Set-PnPFileRetentionLabel cmdlet updates the retention label information or locks/unlocks a file in SharePoint using Microsoft Graph. It takes a URL as input, decodes it, and specifically encodes the '+' character if it is part of the filename.",
+    "syntax": "Set-PnPFileRetentionLabel -Identity <FilePipeBind> -RecordLocked <Boolean> [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPFileRetentionLabel -Url \"/sites/Marketing/Shared Documents/Report.pptx\" -RecordLocked $true",
+      "Set-PnPFileRetentionLabel -Identity \"/sites/Marketing/Shared Documents/Report.pptx\" -RetentionLabel \"Finance\"",
+      "Set-PnPFileRetentionLabel -Identity \"/sites/Marketing/Shared Documents/Report.pptx\" -RetentionLabel \"\""
+    ]
+  },
+  {
+    "cmdlet": "Set-PnPOrgAssetsLibrary",
+    "description": "Updates a document library which was already set as an organizational asset source in your SharePoint Online Tenant.",
+    "syntax": "Set-PnPOrgAssetsLibrary -LibraryUrl <String> [-ThumbnailUrl <String>] [-OrgAssetType <OrgAssetType>] [-IsCopilotSearchable <bool>] [-Connection <PnPConnection>]",
+    "examples": [
+      "Set-PnPOrgAssetsLibrary -LibraryUrl \"https://yourtenant.sharepoint.com/sites/branding/logos\" -ThumbnailUrl \"https://yourtenant.sharepoint.com/sites/branding/logos/thumbnail.jpg\"",
+      "Set-PnPOrgAssetsLibrary -LibraryUrl \"https://yourtenant.sharepoint.com/sites/branding/logos\" -IsCopilotSearchable:$true"
+    ]
+  },
+  {
+    "cmdlet": "Undo-PnPFileCheckedOut",
+    "description": "This cmdlet discards changes to a single file.",
+    "syntax": "Undo-PnPFileCheckedOut [-Url] <String> [-Connection <PnPConnection>]",
+    "examples": [
+      "Undo-PnPFileCheckedOut -Url \"/sites/PnP/Shared Documents/Contract.docx\""
+    ]
+  }
+]
