@@ -2,7 +2,7 @@
   {
     "cmdlet": "Add-PnPPlannerBucket",
     "description": "This cmdlets creates a new bucket for tasks in a Planner plan.",
-    "syntax": "Add-PnPPlannerBucket -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Name <String>",
+    "syntax": "Add-PnPPlannerBucket -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Name <String> [-Connection <PnPConnection>]\nAdd-PnPPlannerBucket -PlanId <String> -Name <String> [-Connection <PnPConnection>]",
     "examples": [
       "Add-PnPPlannerBucket -Group \"My Group\" -Plan \"My Plan\" -Name \"Project Todos\"",
       "Add-PnPPlannerBucket -PlanId \"QvfkTd1mc02gwxHjHC_43JYABhAy\" -Name \"Project Todos\""
@@ -27,7 +27,7 @@
   {
     "cmdlet": "Add-PnPPlannerTask",
     "description": "This cmdlet adds a new task to Planner bucket",
-    "syntax": "Add-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Bucket <PlannerBucketPipeBind> -Title <String> \n[-PercentComplete <Int32>] [-DueDateTime <DateTime>] [-StartDateTime <DateTime>] [-AppliedCategories <AppliedCategories>]\n [-AssignedTo <String[]] [-Priority <Int32>] [-Description <String>] [-OutputTask]",
+    "syntax": "Add-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Bucket <PlannerBucketPipeBind> -Title <String> \n[-PercentComplete <Int32>] [-DueDateTime <DateTime>] [-StartDateTime <DateTime>] [-AppliedCategories <AppliedCategories>]\n [-AssignedTo <String[]>] [-Priority <Int32>] [-Description <String>] [-OutputTask] [-Connection <PnPConnection>]\nAdd-PnPPlannerTask -PlanId <String> -Bucket <PlannerBucketPipeBind> -Title <String> \n[-PercentComplete <Int32>] [-DueDateTime <DateTime>] [-StartDateTime <DateTime>] [-AppliedCategories <AppliedCategories>]\n [-AssignedTo <String[]>] [-Priority <Int32>] [-Description <String>] [-OutputTask] [-Connection <PnPConnection>]",
     "examples": [
       "Add-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -Bucket \"Todos\" -Title \"Design booth layout\" -AppliedCategories @{\"Category1\"=$true,\"Category3\"=$true}",
       "Add-PnPPlannerTask -PlanId \"QvfkTd1mc02gwxHjHC_43JYABhAy\" -Bucket \"Todos\" -Title \"Design booth layout\" -AppliedCategories @{\"Category1\"=$true,\"Category3\"=$true}",
@@ -81,7 +81,7 @@
   {
     "cmdlet": "Get-PnPPlannerTask",
     "description": "This cmdlet returns Planner tasks.",
-    "syntax": "Get-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> [-ResolveUserDisplayNames]",
+    "syntax": "Get-PnPPlannerTask -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> [-ResolveUserDisplayNames] [-Connection <PnPConnection>]\nGet-PnPPlannerTask -PlanId <String> [-ResolveUserDisplayNames] [-Connection <PnPConnection>]\nGet-PnPPlannerTask -TaskId <String> [-Connection <PnPConnection>]",
     "examples": [
       "Get-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\"",
       "$tasks = Get-PnPPlannerTask -Group \"Marketing\" -Plan \"Conference Plan\" -ResolveUserDiplayNames\n$task = $tasks | Select-Object -First 1\n$task.CreatedBy.DisplayName",
@@ -165,7 +165,7 @@
   {
     "cmdlet": "Set-PnPPlannerPlan",
     "description": "This cmdlet updates an existing planner plan.",
-    "syntax": "Set-PnPPlannerPlan -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Title <String> [-Connection <PnPConnection>]",
+    "syntax": "Set-PnPPlannerPlan -Group <PlannerGroupPipeBind> -Plan <PlannerPlanPipeBind> -Title <String> [-Connection <PnPConnection>]\nSet-PnPPlannerPlan -PlanId <String> -Title <String> [-Connection <PnPConnection>]",
     "examples": [
       "Set-PnPPlannerPlan -Group \"Marketing\" -Plan \"Conference\" -Title \"Conference 2020\""
     ]
